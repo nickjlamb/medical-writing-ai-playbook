@@ -1,0 +1,58 @@
+---
+title: "PLS Generator"
+description: "Generate plain language summaries from clinical and scientific source materials."
+icon: "file-text"
+---
+
+## What it does
+
+PLS Generator creates plain language summaries from technical medical and scientific content. It is specifically designed for producing lay-friendly summaries of clinical trial results, study findings, and medical information.
+
+## The problem it solves
+
+Plain language summaries are now a regulatory requirement, not an optional nice-to-have. The EU Clinical Trials Regulation requires lay-friendly summaries of clinical trial results. Sponsors are increasingly publishing PLS for transparency and patient engagement. But writing an effective PLS is one of the hardest tasks in medical writing: it requires translating complex study designs, statistical results, and safety profiles into language that a non-specialist adult can genuinely understand — without distorting the science or creating false reassurance.
+
+PLS Generator produces first-draft plain language summaries from clinical source materials, structured to common PLS frameworks. The writer then verifies medical accuracy, checks readability, ensures balanced representation of benefits and risks, and confirms compliance with any applicable regulatory template requirements.
+
+## Where it fits in the playbook
+
+| Workflow | Role |
+|---|---|
+| [Create a plain language summary](/workflows/create-plain-language-summary) | Primary tool — generating structured PLS drafts |
+
+## How to use it in a workflow
+
+1. **Provide the source material** — Clinical study report, published paper, or results summary
+2. **Specify the PLS requirements** — Format, structure, reading level, any regulatory template requirements
+3. **Run PLS Generator** — Generate a first-draft plain language summary
+4. **Review for accuracy** — Ensure all data points, findings, and conclusions are accurately represented
+5. **Review for readability** — Confirm the output meets the target reading level and is genuinely accessible
+6. **Expert review** — PLS for regulatory submission or public disclosure must be reviewed by qualified professionals
+7. **Patient/lay review** — Where possible, test the summary with representative readers from the target audience
+
+## What it does well
+
+- Translates clinical trial results into structured, accessible language
+- Follows common PLS frameworks and structures
+- Handles standard clinical trial terminology and endpoint descriptions
+- Produces content at an appropriate reading level for lay audiences
+
+## What it does not do
+
+- **Does not guarantee regulatory compliance.** PLS for clinical trial disclosure must meet specific regulatory requirements. PLS Generator produces drafts — compliance is the responsibility of the review team.
+- **Does not replace patient testing.** Best practice for PLS includes review by patient representatives or lay readers. AI cannot replicate this feedback.
+- **Does not determine what to include or exclude.** Decisions about which results, endpoints, or findings to include in a PLS are made by the study team and medical writer.
+- **Does not provide translations.** PLS may need to be produced in multiple languages. Translation is a separate process requiring qualified medical translators.
+
+## Risk tier
+
+Plain language summaries are **medium-to-high risk**, particularly when they are:
+- Required for regulatory disclosure (e.g., EU CTR lay summaries)
+- Intended for direct patient or public consumption
+- Summarising safety data or adverse event information
+
+All PLS Generator output requires expert review and, where applicable, patient/lay reader testing.
+
+---
+
+**[Try PLS Generator →](https://pharmatools.ai)** | Part of the [PharmaTools.AI](https://pharmatools.ai) toolkit for medical writing

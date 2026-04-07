@@ -1,0 +1,121 @@
+---
+title: "Risk Levels for AI Use in Medical Communications"
+description: "Four risk tiers for AI use in med comms. Defines review requirements, AI boundaries, and what can go wrong at each level — Low, Medium, High, Critical."
+icon: "gauge"
+---
+
+## Core principle
+
+Summarising a published paper for an internal briefing and drafting a promotional claim for a detail aid are both "writing tasks" — but the consequences of an error are fundamentally different. This playbook defines four risk tiers — Low, Medium, High, and Critical — that determine how much AI contribution is appropriate, what verification is required, and who signs off.
+
+---
+
+## Risk tier framework
+
+### Low risk
+
+**AI produces a working first draft. Standard medical writing review applies.**
+
+Tasks where AI is structuring, summarising, or reorganising content from clear source materials. The output is a starting point — the writer reviews, corrects, and refines before it becomes a deliverable.
+
+**Typical deliverables:**
+- Structured summary of a published paper for an internal briefing or literature review
+- First-draft content outline from a briefing document and key messages
+- Reformatted version of existing approved content (e.g., slide deck notes into a written summary)
+- Internal meeting notes or therapeutic area backgrounder from source materials
+
+**Review requirement:** Standard medical writing review. Check data points against sources, verify structure matches the deliverable purpose, refine language and emphasis.
+
+**What can go wrong:** A summary transposes a primary and secondary endpoint result. An outline prioritises the wrong sections for the target audience. A reformatted piece drops a safety finding from the original. These are correctable in standard review, but they must be caught.
+
+---
+
+### Medium risk
+
+**AI is useful but the transformation introduces drift risk. Enhanced review with source cross-checking applies.**
+
+Tasks where AI is reframing, adapting, or extracting interpretive content from source materials. The core risk is that the output subtly changes the meaning, emphasis, or scope of the original evidence.
+
+**Typical deliverables:**
+- Key messages extracted from a Phase III paper for a messaging framework
+- HCP slide deck content adapted into a GP-facing leave piece
+- Congress poster summarised into a client-facing highlights report
+- Technical manuscript summary adapted for a payer audience
+
+**Review requirement:** Enhanced review. Cross-check every claim in the adapted output against the source. Specifically verify that transformation has not shifted emphasis, dropped qualifiers, merged study populations, or strengthened language beyond what the evidence supports.
+
+**What can go wrong:** A key message frames a non-inferiority result as if it demonstrated superiority. An audience adaptation drops "in patients with moderate-to-severe disease" and the claim reads as applying to all patients. A repurposed summary introduces a comparative framing not present in the original. These errors are subtle, read fluently, and are easy to miss if review is surface-level.
+
+---
+
+### High risk
+
+**AI provides limited drafting support only. Expert review is mandatory. No AI output enters the deliverable without line-by-line verification.**
+
+Tasks where the content is regulatory-sensitive, patient-facing, or involves claims with compliance, safety, or legal consequences. The cost of an undetected error is not rework — it is regulatory action, patient harm, or reputational damage.
+
+**Typical deliverables:**
+- Promotional claims or value messages for a detail aid, leave piece, or HCP website
+- Patient-facing explanations of treatment benefits and risks
+- Plain language summaries of clinical trial results for public disclosure (e.g., EU CTR lay summaries)
+- Content subject to ABPI, IFPMA, or FDA promotional review
+- Safety narratives or adverse event profile summaries
+
+**Review requirement:** Expert review by a senior medical writer, medical advisor, or regulatory/compliance reviewer. AI output is raw input only — it does not reduce the scope, rigour, or timeline of the review process. The reviewer is not checking whether the AI did a good job; they are verifying the content as if they had written it themselves.
+
+**What can go wrong:** An AI-drafted promotional claim implies superiority based on a non-comparative study. A plain language summary understates a common adverse event, and the document is published as part of clinical trial disclosure. A detail aid includes a claim supported by a subgroup analysis without labelling it as such, and MLR rejects the submission. A patient-facing document uses reassuring language that creates false confidence about treatment outcomes. These are not hypothetical risks — they are the failure modes that this tier is designed to prevent.
+
+---
+
+## How to use risk tiers in your workflow
+
+### Step 1: Identify the task's risk tier
+
+Before starting an AI-assisted workflow, determine the risk tier based on:
+
+- What type of content is being produced?
+- Who is the intended audience?
+- Is the content regulated or promotional?
+- What are the consequences if the AI output contains an error?
+
+### Step 2: Match the review process to the risk tier
+
+| Risk tier | AI role | Review process |
+|---|---|---|
+| Low | First draft, structuring, summarisation | Standard medical writing review |
+| Medium | Transformation, adaptation, extraction | Enhanced review with source verification |
+| High | Limited drafting support only | Expert review, full verification, formal sign-off |
+| Critical | Supporting role only | Full expert review by qualified reviewer with formal sign-off |
+
+### Step 3: Document the risk tier
+
+When using AI in a project, record:
+
+- Which workflow was used
+- What risk tier applies
+- Who reviewed the AI-assisted output
+- What changes were made during review
+
+This supports transparency, audit trails, and continuous improvement.
+
+---
+
+## Risk tier boundaries
+
+Some tasks cross boundaries between tiers. When in doubt:
+
+- **Default to the higher risk tier.** It is always safer to over-review than under-review.
+- **Consider the downstream use.** A summary that will be used internally is lower risk than the same summary adapted for a public-facing document.
+- **Consider the regulatory context.** Content for regulated markets, promotional use, or patient communication should always be treated as high risk regardless of the task type.
+
+---
+
+## Risk tiers and tools
+
+Some PharmaTools.AI tools are specifically designed for higher-risk tasks:
+
+- **[RefCheckr](/tools/refcheckr)** — Supports claim verification (high-risk workflow)
+- **[MedCheckr](/tools/medcheckr)** — Supports promotional compliance review (high-risk workflow)
+- **[Patiently AI](/tools/patiently-ai)** and **[PLS Generator](/tools/pls-generator)** — Support patient-facing content creation (medium-to-high-risk workflow)
+
+These tools assist the review process — they do not replace expert judgement. A tool flagging no issues does not mean there are no issues. A tool flagging an issue requires a human to assess whether it is a real problem.

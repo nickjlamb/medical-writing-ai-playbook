@@ -1,0 +1,137 @@
+---
+title: "Review and Accountability"
+description: "Structured sign-off protocols, audit trails, and documentation requirements for AI-assisted deliverables."
+icon: "clipboard-check"
+---
+
+## Core principle
+
+Every AI-assisted deliverable must have a clear owner, a defined review process, and an auditable trail from source to final output. AI does not reduce accountability — it changes how work is produced, not who is responsible for it.
+
+---
+
+## Accountability structure
+
+### Who is accountable?
+
+The person who signs off on a deliverable is accountable for its content, regardless of how it was produced. This is true whether the content was:
+
+- Written manually from scratch
+- Drafted with AI assistance and reviewed
+- Generated using AI tools and edited
+
+AI-assisted workflows do not create a new category of reduced accountability. They create a new set of review requirements.
+
+### What are they accountable for?
+
+- **Accuracy:** Every factual claim is supported by the cited source
+- **Completeness:** No material omissions that would change the reader's understanding
+- **Appropriateness:** The content is suitable for its intended audience, channel, and regulatory context
+- **Compliance:** The content meets applicable promotional codes, regulatory requirements, and organisational standards
+- **Transparency:** The use of AI in the content development process is documented where required
+
+---
+
+## Review process framework
+
+### For every AI-assisted deliverable
+
+1. **Identify the risk tier** — Use the [risk levels framework](/principles/risk-levels) to determine the review intensity required
+2. **Assign a named reviewer** — Every AI-assisted output must have a specific person responsible for reviewing it
+3. **Review against sources** — Do not review AI output only for readability or flow. Verify claims, data, and interpretations against the original source materials
+4. **Use structured checklists** — The [review checklist template](/templates/review-checklist-template) provides a starting point. Each workflow card includes a task-specific checklist
+5. **Document the review** — Record what was reviewed, what was changed, and who approved the final version
+
+### Review intensity by risk tier
+
+| Risk tier | Minimum review | Reviewer qualification |
+|---|---|---|
+| Low | Standard review by medical writer | Experienced medical writer |
+| Medium | Enhanced review with source cross-check | Senior medical writer or subject matter expert |
+| High | Full expert review with formal sign-off | Medical advisor, regulatory reviewer, or compliance lead |
+| Critical | Full expert review — this IS the final quality gate | Qualified reviewer for the content type; the sign-off reviewer is accountable |
+
+---
+
+## What to review in AI-assisted content
+
+AI outputs have specific failure patterns that reviewers should watch for:
+
+### Accuracy checks
+- [ ] All numerical data matches the source (endpoints, p-values, confidence intervals, sample sizes)
+- [ ] Study populations are correctly described (ITT, mITT, per-protocol, subgroups)
+- [ ] Timepoints and study phases are accurately represented
+- [ ] Statistical significance and clinical significance are not conflated
+- [ ] Conclusions match the source's stated conclusions
+
+### Completeness checks
+- [ ] Safety data is included where relevant and not minimised
+- [ ] Limitations of the evidence are preserved
+- [ ] Relevant qualifiers (subgroup, post-hoc, exploratory) are retained
+- [ ] Comparator information is accurate and present
+
+### Appropriateness checks
+- [ ] Language is suitable for the target audience
+- [ ] Claims are appropriate for the content type (promotional vs. scientific vs. educational)
+- [ ] Tone is consistent with the therapeutic area and context
+- [ ] No inappropriate certainty or hedging
+
+### Compliance checks
+- [ ] Claims are within the approved messaging framework (if applicable)
+- [ ] References are correctly cited and support the claims made
+- [ ] No off-label implications
+- [ ] Balance of efficacy and safety information is appropriate
+
+---
+
+## Audit trails
+
+For AI-assisted workflows, maintain documentation that supports traceability:
+
+### What to record
+
+- **Source materials used** — What was provided as input to the AI
+- **Workflow applied** — Which workflow card was followed
+- **AI tools used** — Which tools or models were used and for which steps
+- **Reviewer identity** — Who reviewed the AI-assisted output
+- **Changes made** — What was modified during review (tracked changes or documented edits)
+- **Final sign-off** — Who approved the final deliverable and when
+
+### Why this matters
+
+- Supports internal quality processes
+- Provides transparency for clients and stakeholders
+- Enables retrospective analysis of AI workflow effectiveness
+- Meets emerging expectations around AI transparency in regulated industries
+
+---
+
+## For agencies implementing AI workflows
+
+### Integrate with existing QC processes
+
+AI workflows should sit within your existing quality control framework, not outside it:
+
+- Add AI-specific checkpoints to your review SOPs
+- Include AI workflow documentation in project trackers
+- Train reviewers on AI-specific failure modes
+- Do not create separate, lighter review tracks for AI-assisted content
+
+### Client transparency
+
+- Proactively brief clients on how AI is used in their projects — do not wait for them to ask
+- Follow client-specific AI policies where they exist. Some pharma companies have explicit restrictions on AI use in specific deliverable types.
+- Document AI use in project files at a level of detail that would satisfy a client audit. As a minimum: which deliverables, which workflow steps, which tools, who reviewed.
+- If a client asks "Was AI used in this deliverable?", the project team should be able to answer immediately and specifically.
+
+### Team training
+
+- Train every writer using AI workflows on the specific failure modes covered in this playbook — not generic "AI limitations" slides, but the actual patterns: hallucinated p-values, merged study arms, dropped qualifiers, promotional framing of non-promotional evidence
+- Train reviewers to approach AI-assisted content differently from human-written content. AI errors are fluent and plausible. The review mindset is verification, not editorial polish.
+- Run periodic calibration exercises: give reviewers an AI-generated summary with planted errors and assess detection rates. This builds the skill that matters most.
+
+---
+
+## The bottom line
+
+A client, an MLR committee, or a regulatory body does not see a lower standard because AI was involved in production. The deliverable either meets the required standard or it does not. AI changes how content is produced. It does not change what "correct" looks like. The reviewer's job is not easier because AI was involved — it is different, and in some cases it requires more vigilance, not less, because AI-generated errors are fluent, plausible, and easy to skim past.

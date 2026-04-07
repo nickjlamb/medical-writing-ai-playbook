@@ -1,0 +1,52 @@
+---
+title: "Patiently AI"
+description: "Translate clinical content into patient-friendly language for accessible medical communications."
+icon: "heart"
+---
+
+## What it does
+
+Patiently AI simplifies medical information into patient-friendly language. It takes clinical or technical medical content and produces clear, accessible explanations suitable for patients and non-specialist readers.
+
+## The problem it solves
+
+A discharge summary, clinic letter, or study results document written for HCPs is largely unreadable for the patients it concerns. Translating this content into language a patient can genuinely understand — without losing medical accuracy or creating false reassurance — is one of the most skilled tasks in medical writing. It is also time-consuming, because the writer must simultaneously hold the clinical meaning and the patient's reading level in mind.
+
+Patiently AI produces a structured first draft of patient-friendly content from clinical source material. The writer then reviews for accuracy (has simplification changed the meaning?), readability (would the target patient actually understand this?), and tone (is it reassuring without being misleading?).
+
+## Where it fits in the playbook
+
+| Workflow | Role |
+|---|---|
+| [Create a plain language summary](/workflows/create-plain-language-summary) | Primary tool — generating patient-friendly first drafts |
+| [Adapt for different audiences](/workflows/adapt-for-different-audiences) | Supporting tool — when the target audience includes patients |
+
+## How to use it in a workflow
+
+1. **Provide the source material** — Clinical text, medical notes, or technical content that needs simplification
+2. **Run Patiently AI** — Generate a patient-friendly version of the content
+3. **Review for accuracy** — Ensure simplification has not changed the medical meaning
+4. **Review for readability** — Confirm the output is genuinely accessible to the target audience
+5. **Expert review** — Patient-facing medical content should be reviewed by a qualified medical professional before use
+
+## What it does well
+
+- Translates medical jargon into plain language
+- Maintains the core meaning of clinical information while making it accessible
+- Produces structured, readable output suitable for patient communications
+- Handles common medical terminology and procedural descriptions
+
+## What it does not do
+
+- **Does not provide medical advice.** Patiently AI simplifies existing medical information — it does not generate medical recommendations.
+- **Does not replace patient communication specialists.** The output requires review by someone with expertise in patient-facing medical content.
+- **Does not guarantee health literacy compliance.** Output should be assessed against relevant health literacy standards (e.g., reading level, structure, formatting) by a qualified reviewer.
+- **Does not assess whether the source information is appropriate for patients.** A human must decide what information is suitable for a patient audience.
+
+## Risk tier
+
+Patient-facing content is **medium-to-high risk**. Simplification can inadvertently change medical meaning, omit important safety information, or create false reassurance. All Patiently AI output must be reviewed by a medical professional before it reaches patients.
+
+---
+
+**[Try Patiently AI →](https://pharmatools.ai)** | Part of the [PharmaTools.AI](https://pharmatools.ai) toolkit for medical writing

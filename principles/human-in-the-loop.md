@@ -1,0 +1,86 @@
+---
+title: "Human-in-the-Loop Decision Making"
+description: "Every deliverable has a named owner. AI produces working material; a qualified professional verifies, edits, and signs off."
+icon: "user-check"
+---
+
+## Core principle
+
+Every deliverable has a named owner. AI produces working material — structured drafts, candidate summaries, flagged issues — that a qualified professional reviews, edits, and approves. At no point in any workflow does AI output go directly into a deliverable without human verification.
+
+This is not a disclaimer appended to make AI use sound responsible. It is a structural requirement embedded in every workflow card: defined review points, specific verification steps, and documented sign-off.
+
+---
+
+## What this means in practice
+
+### What AI handles well in med comms workflows
+
+- Producing a structured first-draft summary of a Phase III paper in 2 minutes instead of 45
+- Generating a candidate content outline from a briefing document and key message set
+- Adapting a specialist-level summary for a GP or nurse audience
+- Scanning a 20-page detail aid for language patterns commonly flagged in MLR review
+- Extracting study design, endpoints, and results from a congress poster into a structured format
+
+### What AI cannot do — and should never be trusted to do
+
+- Confirm that a hazard ratio, p-value, or confidence interval in a summary actually matches the source paper
+- Determine whether a key message crosses from scientific education into promotional territory
+- Decide which endpoints to foreground in a slide deck for a specific advisory board audience
+- Judge whether a plain language summary accurately represents the benefit-risk balance for patients
+- Bear accountability when a deliverable is signed off and sent to a client, regulator, or MLR committee
+
+---
+
+## Decision points in every workflow
+
+Each workflow card in this playbook includes explicit sections:
+
+- **Where AI helps** — bounded, specific tasks where AI adds value
+- **Where human judgement is essential** — points where a trained professional must review, verify, or decide
+- **Human review checklist** — a practical checklist for the review step
+
+These are not optional. Skipping the human review step turns an AI-assisted workflow into an AI-dependent one, which introduces unacceptable risk in medical communications.
+
+---
+
+## Why this matters for medical writing
+
+Medical writing operates in a space where:
+
+- **Accuracy is non-negotiable.** A misrepresented endpoint, an overstated efficacy claim, or an omitted safety finding can have real consequences — for patients, for prescribers, and for regulatory standing.
+- **Context is everything.** The same data point can be appropriate in a journal manuscript, misleading in a promotional piece, and incomprehensible in a patient leaflet. Only a trained professional can make that judgement.
+- **Accountability is personal.** When a document is signed off, a named individual is accountable for its accuracy and compliance. AI cannot bear that accountability.
+
+---
+
+## How to implement this principle
+
+1. **Never submit AI-generated text without expert review.** This applies to every deliverable — an internal summary, a client-facing slide deck, a congress highlights report. No exceptions by risk tier.
+2. **Document where AI was used.** Track which sections were AI-assisted in your project files. This is not bureaucracy — it tells the reviewer where to focus verification effort and supports client transparency.
+3. **Review against sources, not just for readability.** AI output reads fluently. That is the danger. A summary that sounds authoritative can contain transposed data points, merged study arms, or conclusions the authors did not draw. Always verify claims against the original source materials.
+4. **Treat AI output as a working draft.** The value is reaching a reviewable draft faster — getting from a blank page to a structured starting point. The review itself is not shortened; in some cases, it requires more attention, not less.
+5. **Maintain clear sign-off protocols.** The person who approves the final deliverable owns its accuracy, compliance, and completeness. The fact that AI was involved in production does not change their accountability.
+
+---
+
+## Common failure modes
+
+| Failure | What it looks like in practice | How to prevent it |
+|---|---|---|
+| Over-trust | A writer accepts an AI-generated summary without checking it against the paper. The summary transposes a primary and secondary endpoint result. The error enters a client slide deck. | Verify every data point against the source. Treat AI output the same way you would treat a junior writer's first draft — it needs line-by-line checking. |
+| Automation bias | MedCheckr flags no issues on a promotional piece. The writer assumes it is clean. MLR catches an unsubstantiated comparative claim the tool missed. | Automated screening is one input. It catches patterns, not context. The writer's own compliance review still applies. |
+| Accountability gap | An agency uses AI across multiple writers on a project. No one is clearly responsible for verifying the AI-assisted sections. A hallucinated data point reaches the client. | Assign a named reviewer to every AI-assisted deliverable. Document which sections used AI and who verified them. |
+| Review fatigue | A medical writer reviews five AI-generated summaries in a row. By the fourth, they are skimming. An incorrect sample size passes through. | Use the structured checklist for every review. Batch AI-assisted QC in manageable sets. Do not review more than three AI-generated documents without a break. |
+
+---
+
+## For agencies and teams
+
+If you are implementing AI workflows across a team or agency:
+
+- Establish minimum review standards for AI-assisted content at each risk tier and write them into your SOPs
+- Train writers and reviewers on the specific failure modes of AI in medical writing — hallucinated data, meaning drift, omitted qualifiers — not just generic "AI limitations"
+- Track AI use in project management systems so reviewers, account leads, and clients have visibility
+- Brief client services teams on how to discuss AI-assisted workflows with clients — lead with the review framework and risk tiers, not the speed
+- Do not position AI as a way to reduce QC time or headcount. Position it as a way to produce more reviewable first drafts, improve consistency across deliverables, and free up writer time for the work that requires expert judgement

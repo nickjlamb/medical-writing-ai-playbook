@@ -24,67 +24,60 @@
   "feedback": {
     "thumbsRating": true
   },
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Playbook",
-        "groups": [
-          {
-            "group": "",
-            "pages": [
-              "index",
-              "start"
-            ]
-          },
-          {
-            "group": "Principles",
-            "pages": [
-              "principles/human-in-the-loop",
-              "principles/source-grounding",
-              "principles/risk-levels",
-              "principles/review-and-accountability"
-            ]
-          },
-          {
-            "group": "Workflows",
-            "pages": [
-              "workflows/summarise-source-paper",
-              "workflows/extract-key-messages",
-              "workflows/build-content-outline",
-              "workflows/adapt-for-different-audiences",
-              "workflows/create-plain-language-summary",
-              "workflows/verify-claims-against-references",
-              "workflows/check-promotional-compliance",
-              "workflows/repurpose-content-across-channels",
-              "workflows/prepare-congress-or-poster-summary",
-              "workflows/final-human-review"
-            ]
-          },
-          {
-            "group": "Prompt Patterns",
-            "pages": [
-              "prompts/source-analysis-prompts",
-              "prompts/outlining-prompts",
-              "prompts/adaptation-prompts",
-              "prompts/review-prompts"
-            ]
-          },
-          {
-            "group": "Tools",
-            "pages": [
-              "tools/pubcrawl",
-              "tools/refcheckr",
-              "tools/medcheckr",
-              "tools/patiently-ai",
-              "tools/llmentor",
-              "tools/pls-generator",
-              "tools/posterlens"
-            ]
-          }
-        ]
-      }
-    ]
-  },
+  "navigation": [
+    {
+      "group": "",
+      "pages": [
+        "index",
+        "start"
+      ]
+    },
+    {
+      "group": "Principles",
+      "pages": [
+        "principles/human-in-the-loop",
+        "principles/source-grounding",
+        "principles/risk-levels",
+        "principles/review-and-accountability"
+      ]
+    },
+    {
+      "group": "Workflows",
+      "pages": [
+        "workflows/summarise-source-paper",
+        "workflows/extract-key-messages",
+        "workflows/build-content-outline",
+        "workflows/adapt-for-different-audiences",
+        "workflows/create-plain-language-summary",
+        "workflows/verify-claims-against-references",
+        "workflows/check-promotional-compliance",
+        "workflows/repurpose-content-across-channels",
+        "workflows/prepare-congress-or-poster-summary",
+        "workflows/final-human-review"
+      ]
+    },
+    {
+      "group": "Prompt Patterns",
+      "pages": [
+        "prompts/source-analysis-prompts",
+        "prompts/outlining-prompts",
+        "prompts/adaptation-prompts",
+        "prompts/review-prompts"
+      ]
+    },
+    {
+      "group": "Tools",
+      "pages": [
+        "tools/pubcrawl",
+        "tools/refcheckr",
+        "tools/medcheckr",
+        "tools/patiently-ai",
+        "tools/llmentor",
+        "tools/pls-generator",
+        "tools/posterlens"
+      ]
+    }
+  ],
   "footerSocials": {
     "website": "https://pharmatools.ai"
   }

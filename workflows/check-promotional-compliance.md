@@ -2,7 +2,7 @@
 title: "Check Promotional Compliance"
 sidebarTitle: "Compliance Check"
 description: "Pre-screen content for promotional compliance signals before formal MLR review."
-icon: "shield-alert"
+icon: "shield"
 ---
 
 ## Purpose

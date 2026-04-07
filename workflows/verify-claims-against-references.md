@@ -2,7 +2,7 @@
 title: "Verify Claims Against References"
 sidebarTitle: "Verify Claims"
 description: "Systematically check whether claims in a document are accurately supported by cited references."
-icon: "search-check"
+icon: "search"
 ---
 
 ## Purpose

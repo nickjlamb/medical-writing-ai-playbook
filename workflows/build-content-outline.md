@@ -2,7 +2,7 @@
 title: "Build a First Content Outline"
 sidebarTitle: "Build an Outline"
 description: "Create a structured content outline organising key messages and source materials into a deliverable framework."
-icon: "layout"
+icon: "list-check"
 ---
 
 ## Purpose

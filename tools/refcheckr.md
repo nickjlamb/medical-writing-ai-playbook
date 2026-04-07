@@ -53,4 +53,4 @@ RefCheckr is used in **high-risk** workflows. Its outputs should always be revie
 
 **[Try RefCheckr →](https://www.pharmatools.ai/refcheckr)**
 
-Part of the [PharmaTools.AI](https://pharmatools.ai) toolkit for medical writing.
+Part of [PharmaTools.AI](https://pharmatools.ai) — practical AI tools for medical writing.

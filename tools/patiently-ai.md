@@ -51,4 +51,4 @@ Patient-facing content is **medium-to-high risk**. Simplification can inadverten
 
 **[Try Patiently AI →](https://www.pharmatools.ai/patiently-ai)**
 
-Part of the [PharmaTools.AI](https://pharmatools.ai) toolkit for medical writing.
+Part of [PharmaTools.AI](https://pharmatools.ai) — practical AI tools for medical writing.

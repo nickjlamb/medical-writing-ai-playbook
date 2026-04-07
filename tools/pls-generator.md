@@ -57,4 +57,4 @@ All PLS Generator output requires expert review and, where applicable, patient/l
 
 **[Try PLS Generator →](https://www.pharmatools.ai/plsease)**
 
-Part of the [PharmaTools.AI](https://pharmatools.ai) toolkit for medical writing.
+Part of [PharmaTools.AI](https://pharmatools.ai) — practical AI tools for medical writing.

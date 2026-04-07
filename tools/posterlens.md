@@ -50,4 +50,4 @@ Poster extraction is **low risk** as a data extraction task. The risk increases 
 
 **[Try PosterLens →](https://www.pharmatools.ai/posterlens)**
 
-Part of the [PharmaTools.AI](https://pharmatools.ai) toolkit for medical writing.
+Part of [PharmaTools.AI](https://pharmatools.ai) — practical AI tools for medical writing.

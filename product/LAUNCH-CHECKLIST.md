@@ -17,8 +17,9 @@
 
 - [ ] Set up Mintlify project at [dashboard.mintlify.com](https://dashboard.mintlify.com)
 - [ ] Connect GitHub repo to Mintlify
-- [ ] Configure custom domain: `pharmatools.ai/playbook`
-- [ ] Verify DNS / subdirectory proxy configuration
+- [ ] Configure custom domain: `playbook.pharmatools.ai`
+- [ ] Add CNAME record: `playbook` → Mintlify's hosting endpoint
+- [ ] Verify DNS propagation
 - [ ] Confirm site builds successfully on Mintlify hosting
 - [ ] Test all pages render correctly on live site
 - [ ] Test internal links on live site
@@ -28,22 +29,12 @@
 
 ## Custom domain setup
 
-Mintlify supports two approaches for hosting under `pharmatools.ai/playbook`:
+Hosting at `playbook.pharmatools.ai` via subdomain CNAME.
 
-**Option A — Subdirectory proxy (recommended)**
-Configure your web server or CDN (Cloudflare, Vercel, Netlify) to proxy `/playbook/*` requests to Mintlify's hosted site. This keeps the playbook under your main domain.
-
-- Add a rewrite/proxy rule: `pharmatools.ai/playbook/*` → Mintlify hosted URL
-- Set `basePath` in `docs.json` if Mintlify supports it, or configure via Mintlify dashboard
-- Verify all asset paths resolve correctly under the `/playbook` prefix
-
-**Option B — Subdomain**
-Host at `playbook.pharmatools.ai` instead. Simpler DNS setup (CNAME record) but loses the `/playbook` URL structure.
-
-- Add CNAME record: `playbook.pharmatools.ai` → Mintlify's hosting endpoint
-- Configure custom domain in Mintlify dashboard
-
-**Recommendation:** Option A if pharmatools.ai is already on Cloudflare or a CDN that supports path-based proxying. Option B if you want the simplest setup.
+1. Add CNAME record in your DNS provider: `playbook` → Mintlify's hosting endpoint
+2. Configure `playbook.pharmatools.ai` as the custom domain in the Mintlify dashboard
+3. Wait for DNS propagation (up to 30 minutes with TTL set to 1/2 hour)
+4. Verify SSL certificate is issued and site loads over HTTPS
 
 ## Content QA
 

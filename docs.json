@@ -8,7 +8,6 @@
     "dark": "#0A4F45"
   },
   "favicon": "/favicon.svg",
-  "basePath": "/playbook",
   "appearance": {
     "default": "light"
   },

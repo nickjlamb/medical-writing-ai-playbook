@@ -27,7 +27,7 @@ Translation, not invention.
 
 The playbook is completely free. No login, no gating, no subscription.
 
-pharmatools.ai/playbook
+playbook.pharmatools.ai
 
 ---
 

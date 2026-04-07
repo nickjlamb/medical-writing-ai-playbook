@@ -66,4 +66,6 @@ PubCrawl is used in **low-risk** workflows. It supports the evidence discovery p
 
 ---
 
-**[Try PubCrawl →](https://www.pharmatools.ai/pubcrawl)** | Part of the [PharmaTools.AI](https://pharmatools.ai) toolkit for medical writing
+**[Try PubCrawl →](https://www.pharmatools.ai/pubcrawl)**
+
+Part of the [PharmaTools.AI](https://pharmatools.ai) toolkit for medical writing.

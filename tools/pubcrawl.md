@@ -1,7 +1,7 @@
 ---
 title: "PubCrawl"
 description: "Search and explore published literature, clinical trials, and prescribing information to find the evidence that informs your medical writing."
-icon: "book-marked"
+icon: "microscope"
 ---
 
 ## What it does

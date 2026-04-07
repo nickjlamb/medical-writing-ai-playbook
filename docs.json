@@ -18,8 +18,8 @@
     }
   ],
   "topbarCtaButton": {
-    "name": "Browse Workflows",
-    "url": "/workflows/summarise-source-paper"
+    "name": "Start Here",
+    "url": "/start"
   },
   "feedback": {
     "thumbsRating": true
@@ -30,7 +30,7 @@
         "tab": "Playbook",
         "groups": [
           {
-            "group": "Getting Started",
+            "group": "",
             "pages": [
               "index",
               "start"

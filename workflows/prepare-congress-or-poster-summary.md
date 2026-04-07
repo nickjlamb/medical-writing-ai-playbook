@@ -59,7 +59,8 @@ Create a structured summary of scientific posters or congress presentations — 
 
 | Tool | Role in this workflow |
 |---|---|
-| PosterLens | Primary tool — structured extraction of poster content |
+| [PosterLens](/tools/posterlens) | Primary tool — structured extraction of poster content |
+| [PubCrawl](/tools/pubcrawl) | Optional — find related publications or trial registry data alongside the poster |
 
 ## Prompt pattern
 

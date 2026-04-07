@@ -83,7 +83,8 @@ Generate a structured summary of a published clinical or scientific paper that a
 
 | Tool | Role in this workflow |
 |---|---|
-| PosterLens | If the source is a scientific poster rather than a paper, use PosterLens to extract structured content before summarising |
+| [PubCrawl](/tools/pubcrawl) | Optional — find and retrieve the source paper if you are starting from an indication or research question rather than a specific reference |
+| [PosterLens](/tools/posterlens) | If the source is a scientific poster rather than a paper, use PosterLens to extract structured content before summarising |
 
 ## Prompt pattern
 

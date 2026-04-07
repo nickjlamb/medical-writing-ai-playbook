@@ -72,6 +72,7 @@
           {
             "group": "Tools",
             "pages": [
+              "tools/pubcrawl",
               "tools/refcheckr",
               "tools/medcheckr",
               "tools/patiently-ai",

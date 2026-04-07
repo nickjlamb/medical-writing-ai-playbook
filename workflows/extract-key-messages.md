@@ -58,7 +58,8 @@ Identify and articulate the key messages supported by a piece of clinical or sci
 
 | Tool | Role in this workflow |
 |---|---|
-| RefCheckr | Verify that extracted key messages are supported by the cited source |
+| [PubCrawl](/tools/pubcrawl) | Optional — identify related publications and build the evidence base before extracting messages |
+| [RefCheckr](/tools/refcheckr) | Verify that extracted key messages are supported by the cited source |
 
 ## Prompt pattern
 

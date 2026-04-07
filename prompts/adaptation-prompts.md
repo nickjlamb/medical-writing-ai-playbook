@@ -1,7 +1,8 @@
 ---
 title: "Adaptation Prompts"
+sidebarTitle: "Adaptation Prompts"
 description: "Prompt patterns for adapting medical content across audience levels, channels, and formats."
-icon: "pen-line"
+icon: "file-text"
 ---
 
 Prompt patterns for adapting reviewed medical content across audience levels (specialist → generalist → patient), channels (slide deck → leave piece → email → web), and stakeholder types (HCPs, payers, internal teams, patients).

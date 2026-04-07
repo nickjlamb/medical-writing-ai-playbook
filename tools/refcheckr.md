@@ -49,8 +49,5 @@ RefCheckr is most relevant in these workflows:
 
 RefCheckr is used in **high-risk** workflows. Its outputs should always be reviewed by a qualified medical writer or reviewer. A clean RefCheckr result does not mean the document has no referencing issues — it means the automated check found none. Manual review remains essential.
 
----
 
-**[Try RefCheckr →](https://www.pharmatools.ai/refcheckr)**
-
-Part of [PharmaTools.AI](https://pharmatools.ai) — practical AI tools for medical writing.
+[Try RefCheckr at PharmaTools.AI →](https://www.pharmatools.ai/refcheckr)

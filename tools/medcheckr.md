@@ -52,8 +52,5 @@ MedCheckr is used in **high-risk** workflows. Its outputs are compliance support
 
 This playbook does not provide regulatory or legal advice. MedCheckr and the compliance workflows in this playbook are designed to help medical writers identify potential issues earlier in the content development process. They do not replace the judgement of qualified compliance, legal, or regulatory professionals.
 
----
 
-**[Try MedCheckr →](https://www.pharmatools.ai/medcheckr-ai)**
-
-Part of [PharmaTools.AI](https://pharmatools.ai) — practical AI tools for medical writing.
+[Try MedCheckr at PharmaTools.AI →](https://www.pharmatools.ai/medcheckr-ai)

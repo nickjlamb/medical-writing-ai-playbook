@@ -47,8 +47,5 @@ Patiently AI produces a structured first draft of patient-friendly content from 
 
 Patient-facing content is **medium-to-high risk**. Simplification can inadvertently change medical meaning, omit important safety information, or create false reassurance. All Patiently AI output must be reviewed by a medical professional before it reaches patients.
 
----
 
-**[Try Patiently AI →](https://www.pharmatools.ai/patiently-ai)**
-
-Part of [PharmaTools.AI](https://pharmatools.ai) — practical AI tools for medical writing.
+[Try Patiently AI at PharmaTools.AI →](https://www.pharmatools.ai/patiently-ai)

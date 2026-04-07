@@ -47,8 +47,5 @@ LLMentor produces first-draft audience adaptations from a single reviewed source
 
 Audience adaptation is **low-to-medium risk** depending on the target audience. Adaptations for healthcare professionals are generally lower risk. Adaptations for patients, payers, or the public carry higher risk due to the potential for oversimplification or misinterpretation.
 
----
 
-**[Try LLMentor →](https://www.pharmatools.ai/llmentor)**
-
-Part of [PharmaTools.AI](https://pharmatools.ai) — practical AI tools for medical writing.
+[Try LLMentor at PharmaTools.AI →](https://www.pharmatools.ai/llmentor)

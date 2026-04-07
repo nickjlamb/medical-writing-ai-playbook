@@ -46,8 +46,5 @@ Manually reading, extracting, and structuring this information under time pressu
 
 Poster extraction is **low risk** as a data extraction task. The risk increases when extracted information is used in downstream workflows (summarisation, messaging, client communications) — review requirements should be set based on the downstream use case, not just the extraction step.
 
----
 
-**[Try PosterLens →](https://www.pharmatools.ai/posterlens)**
-
-Part of [PharmaTools.AI](https://pharmatools.ai) — practical AI tools for medical writing.
+[Try PosterLens at PharmaTools.AI →](https://www.pharmatools.ai/posterlens)

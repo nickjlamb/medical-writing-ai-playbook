@@ -53,8 +53,5 @@ Plain language summaries are **medium-to-high risk**, particularly when they are
 
 All PLS Generator output requires expert review and, where applicable, patient/lay reader testing.
 
----
 
-**[Try PLS Generator →](https://www.pharmatools.ai/plsease)**
-
-Part of [PharmaTools.AI](https://pharmatools.ai) — practical AI tools for medical writing.
+[Try PLS Generator at PharmaTools.AI →](https://www.pharmatools.ai/plsease)

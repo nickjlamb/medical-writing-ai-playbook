@@ -54,4 +54,4 @@ This playbook does not provide regulatory or legal advice. MedCheckr and the com
 
 ---
 
-**[Try MedCheckr →](https://pharmatools.ai)** | Part of the [PharmaTools.AI](https://pharmatools.ai) toolkit for medical writing
+**[Try MedCheckr →](https://www.pharmatools.ai/medcheckr-ai)** | Part of the [PharmaTools.AI](https://pharmatools.ai) toolkit for medical writing

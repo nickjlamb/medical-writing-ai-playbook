@@ -49,4 +49,4 @@ Audience adaptation is **low-to-medium risk** depending on the target audience. 
 
 ---
 
-**[Try LLMentor →](https://pharmatools.ai)** | Part of the [PharmaTools.AI](https://pharmatools.ai) toolkit for medical writing
+**[Try LLMentor →](https://www.pharmatools.ai/llmentor)** | Part of the [PharmaTools.AI](https://pharmatools.ai) toolkit for medical writing

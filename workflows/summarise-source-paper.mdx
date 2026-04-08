@@ -6,7 +6,7 @@ icon: "file-text"
 ---
 
 <Info>
-**Risk tier: Low** — Standard medical writing review required.
+**Risk tier: Low** · ~10 min with AI, ~45 min without · Standard medical writing review required.
 </Info>
 
 ## Best for
@@ -49,6 +49,28 @@ icon: "file-text"
 ## Output
 
 A 400–800 word structured summary that follows the specified section format, reproduces numerical data exactly as stated in the source, and clearly distinguishes between primary, secondary, and exploratory endpoints. Any areas of uncertainty are flagged with [VERIFY] markers. The summary uses professional medical writing language without promotional framing.
+
+<Accordion title="Worked example: Phase III oncology trial summary">
+
+**Source paper excerpt (results section):**
+
+> In the ITT population (n=450), patients receiving Drug X demonstrated a statistically significant improvement in overall survival compared to placebo (median OS: 14.7 months vs 10.3 months; HR 0.68, 95% CI: 0.55–0.84; p=0.0003). The ORR was 42% in the Drug X arm vs 18% in the placebo arm. Grade ≥3 treatment-emergent adverse events occurred in 67% of patients receiving Drug X vs 48% receiving placebo. The most common grade ≥3 AEs were neutropenia (23%), fatigue (12%), and diarrhoea (9%).
+
+**AI-generated summary (before review):**
+
+> **Primary endpoint:** Drug X significantly improved overall survival in the ITT population, with a median OS of 14.7 months vs 10.3 months for placebo (HR 0.68, 95% CI: 0.55–0.84; p=0.0003). **Response:** The objective response rate was 42% vs 18%. **Safety:** Treatment-related adverse events were manageable, with neutropenia being the most common.
+
+**Issues caught in review:**
+
+- ❌ "Treatment-related adverse events were manageable" — AI editorialised. The source says "treatment-emergent" not "treatment-related", and does not characterise them as "manageable"
+- ❌ Safety data is incomplete — grade ≥3 AE rate (67% vs 48%), fatigue (12%), and diarrhoea (9%) are omitted
+- ❌ Missing the qualifier that these results are from the ITT population
+
+**Reviewed summary (final):**
+
+> **Primary endpoint:** In the ITT population (n=450), Drug X demonstrated a statistically significant improvement in overall survival compared to placebo (median OS: 14.7 months vs 10.3 months; HR 0.68, 95% CI: 0.55–0.84; p=0.0003). **Response:** The ORR was 42% in the Drug X arm vs 18% in the placebo arm. **Safety:** Grade ≥3 treatment-emergent AEs occurred in 67% of patients receiving Drug X vs 48% receiving placebo. The most common grade ≥3 AEs were neutropenia (23%), fatigue (12%), and diarrhoea (9%).
+
+</Accordion>
 
 ## Prompt pattern
 

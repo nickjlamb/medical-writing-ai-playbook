@@ -6,7 +6,7 @@ icon: "search"
 ---
 
 <Info>
-**Risk tier: High** — Expert review required; verification results must be assessed by a qualified medical writer or reviewer.
+**Risk tier: High** · ~20 min with AI, ~2–3 hours without · Expert review required; verification results must be assessed by a qualified reviewer.
 </Info>
 
 ## Best for
@@ -48,6 +48,30 @@ icon: "search"
 ## Output
 
 A structured verification report covering every verifiable claim, with a clear verdict for each (SUPPORTED, PARTIALLY SUPPORTED, NOT SUPPORTED, CANNOT VERIFY). The report flags numerical discrepancies with exact values from both the document and the reference, highlights language strength mismatches, and notes missing qualifiers — formatted so a reviewer can work through it systematically.
+
+<Accordion title="Worked example: verifying a detail aid claim">
+
+**Document claim:**
+
+> "Drug Z reduced the risk of disease progression by 45% compared to standard of care (HR 0.55, p=0.002)."¹
+
+**Reference 1 (published paper) states:**
+
+> In the per-protocol population, Drug Z was associated with a 38% reduction in the risk of disease progression compared to standard of care (HR 0.62, 95% CI: 0.44–0.87; p=0.006).
+
+**Verification output:**
+
+| Check | Finding |
+|---|---|
+| **Verdict** | NOT SUPPORTED |
+| **Numerical mismatch** | Document states HR 0.55 and 45% reduction. Reference states HR 0.62 and 38% reduction. |
+| **p-value mismatch** | Document states p=0.002. Reference states p=0.006. |
+| **Missing qualifier** | Reference specifies per-protocol population. Document implies ITT by omitting this qualifier. |
+| **Action required** | Correct HR to 0.62, risk reduction to 38%, p-value to 0.006. Add "in the per-protocol population" qualifier. Confirm with study team whether ITT results are available. |
+
+This type of multi-error claim is common after several revision rounds — each edit drifts the numbers slightly further from the source.
+
+</Accordion>
 
 ## Prompt pattern
 

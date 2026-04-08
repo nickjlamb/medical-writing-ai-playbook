@@ -24,6 +24,15 @@
   "feedback": {
     "thumbsRating": true
   },
+  "search": {
+    "prompt": "Search workflows, prompts, tools..."
+  },
+  "metadata": {
+    "og:site_name": "Medical Writing AI Playbook",
+    "og:type": "website",
+    "og:image": "https://playbook.pharmatools.ai/og-image.png",
+    "twitter:card": "summary_large_image"
+  },
   "navigation": {
     "tabs": [
       {
@@ -33,7 +42,9 @@
             "group": "Overview",
             "pages": [
               "index",
-              "start"
+              "start",
+              "glossary",
+              "changelog"
             ]
           },
           {

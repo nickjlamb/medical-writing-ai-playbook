@@ -6,7 +6,7 @@ icon: "key"
 ---
 
 <Info>
-**Risk tier: Medium** — Enhanced review with source cross-check required.
+**Risk tier: Medium** · ~15 min with AI, ~60 min without · Enhanced review with source cross-check required.
 </Info>
 
 ## Best for
@@ -52,6 +52,34 @@ icon: "key"
 ## Output
 
 A set of 5–15 key messages organised by category (efficacy, safety, PROs, practical considerations), each paired with the specific data point that supports it, the evidence strength (primary endpoint, secondary, subgroup, post-hoc), and any required qualifiers or limitations. Messages use professional, evidence-based language — not promotional superlatives.
+
+<Accordion title="Worked example: key messages from a cardiovascular outcomes trial">
+
+**Source data (from paper):**
+
+> MACE occurred in 8.7% of Drug Y patients vs 11.2% of placebo patients (HR 0.76, 95% CI: 0.63–0.92; p=0.005). CV death occurred in 3.1% vs 4.4% (HR 0.71, p=0.02). Hospitalisation for heart failure occurred in 2.8% vs 4.1% (HR 0.67, p=0.008). Hypotension requiring treatment discontinuation occurred in 2.3% of Drug Y patients vs 0.8% of placebo patients. Renal impairment (eGFR decline ≥40%) was reported in 5.1% vs 3.8%.
+
+**AI-generated messages (before review):**
+
+1. Drug Y significantly reduced cardiovascular events by 24%
+2. Drug Y demonstrated a major benefit in reducing heart failure hospitalisations
+3. Drug Y showed a strong safety profile in cardiovascular patients
+
+**Issues caught in review:**
+
+- ❌ Message 1: "reduced cardiovascular events by 24%" — should specify MACE, state it's a relative risk reduction, and include the absolute rates and CI
+- ❌ Message 2: "major benefit" — promotional language not supported by the source; the source presents the data without this characterisation
+- ❌ Message 3: "strong safety profile" — contradicted by the source data showing higher rates of hypotension requiring discontinuation and renal impairment vs placebo
+- ❌ No safety messages at all — the set is unbalanced
+
+**Reviewed messages (final):**
+
+1. **Efficacy — primary endpoint:** Drug Y reduced the risk of MACE compared to placebo (8.7% vs 11.2%; HR 0.76, 95% CI: 0.63–0.92; p=0.005)
+2. **Efficacy — heart failure:** Hospitalisation for heart failure occurred in 2.8% of Drug Y patients vs 4.1% of placebo patients (HR 0.67, p=0.008)
+3. **Safety — hypotension:** Hypotension requiring treatment discontinuation was more frequent with Drug Y (2.3% vs 0.8%)
+4. **Safety — renal:** eGFR decline ≥40% was reported in 5.1% of Drug Y patients vs 3.8% of placebo patients
+
+</Accordion>
 
 ## Prompt pattern
 

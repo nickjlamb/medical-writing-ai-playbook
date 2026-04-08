@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 36" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 36" fill="none">
   <!-- Mark: stacked lines echoing the favicon -->
   <rect x="0" y="4" width="18" height="3" rx="1.5" fill="#16A085"/>
   <rect x="0" y="12" width="14" height="3" rx="1.5" fill="#16A085"/>
   <rect x="0" y="20" width="18" height="3" rx="1.5" fill="#16A085"/>
   <rect x="0" y="28" width="10" height="3" rx="1.5" fill="#16A085"/>
   <!-- Text -->
-  <text x="28" y="23" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="18" font-weight="600" fill="#f0f0f0" letter-spacing="-0.02em">Playbook</text>
+  <text x="28" y="23" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="16" font-weight="600" fill="#f0f0f0" letter-spacing="-0.02em">Medical Writing AI Playbook</text>
 </svg>

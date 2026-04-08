@@ -44,90 +44,97 @@
     "og:image": "https://playbook.pharmatools.ai/og-image.png",
     "twitter:card": "summary_large_image"
   },
-  "navigation": [
-    {
-      "group": "Overview",
-      "pages": [
-        "index",
-        "start",
-        "glossary",
-        "changelog"
-      ]
-    },
-    {
-      "group": "Principles",
-      "pages": [
-        "principles/human-in-the-loop",
-        "principles/source-grounding",
-        "principles/risk-levels",
-        "principles/ai-risk-framework",
-        "principles/review-and-accountability"
-      ]
-    },
-    {
-      "group": "Evidence & Insight",
-      "pages": [
-        "workflows/find-evidence",
-        "workflows/summarise-source-paper",
-        "workflows/prepare-congress-or-poster-summary",
-        "workflows/extract-study-data",
-        "workflows/extract-key-messages"
-      ]
-    },
-    {
-      "group": "Drafting",
-      "pages": [
-        "workflows/build-content-outline",
-        "workflows/write-a-manuscript",
-        "workflows/draft-regulatory-document",
-        "workflows/convert-stats-to-narrative",
-        "workflows/create-medical-slide-deck"
-      ]
-    },
-    {
-      "group": "Adaptation",
-      "pages": [
-        "workflows/adapt-for-different-audiences",
-        "workflows/create-plain-language-summary"
-      ]
-    },
-    {
-      "group": "Validation",
-      "pages": [
-        "workflows/verify-claims-against-references",
-        "workflows/check-promotional-compliance",
-        "workflows/check-document-consistency"
-      ]
-    },
-    {
-      "group": "Delivery",
-      "pages": [
-        "workflows/repurpose-content-across-channels",
-        "workflows/final-human-review"
-      ]
-    },
-    {
-      "group": "Prompt Patterns",
-      "pages": [
-        "prompts/source-analysis-prompts",
-        "prompts/outlining-prompts",
-        "prompts/adaptation-prompts",
-        "prompts/review-prompts"
-      ]
-    },
-    {
-      "group": "Tools",
-      "pages": [
-        "tools/pubcrawl",
-        "tools/refcheckr",
-        "tools/medcheckr",
-        "tools/patiently-ai",
-        "tools/llmentor",
-        "tools/pls-generator",
-        "tools/posterlens"
-      ]
-    }
-  ],
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Playbook",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "index",
+              "start",
+              "glossary",
+              "changelog"
+            ]
+          },
+          {
+            "group": "Principles",
+            "pages": [
+              "principles/human-in-the-loop",
+              "principles/source-grounding",
+              "principles/risk-levels",
+              "principles/ai-risk-framework",
+              "principles/review-and-accountability"
+            ]
+          },
+          {
+            "group": "Evidence & Insight",
+            "pages": [
+              "workflows/find-evidence",
+              "workflows/summarise-source-paper",
+              "workflows/prepare-congress-or-poster-summary",
+              "workflows/extract-study-data",
+              "workflows/extract-key-messages"
+            ]
+          },
+          {
+            "group": "Drafting",
+            "pages": [
+              "workflows/build-content-outline",
+              "workflows/write-a-manuscript",
+              "workflows/draft-regulatory-document",
+              "workflows/convert-stats-to-narrative",
+              "workflows/create-medical-slide-deck"
+            ]
+          },
+          {
+            "group": "Adaptation",
+            "pages": [
+              "workflows/adapt-for-different-audiences",
+              "workflows/create-plain-language-summary"
+            ]
+          },
+          {
+            "group": "Validation",
+            "pages": [
+              "workflows/verify-claims-against-references",
+              "workflows/check-promotional-compliance",
+              "workflows/check-document-consistency"
+            ]
+          },
+          {
+            "group": "Delivery",
+            "pages": [
+              "workflows/repurpose-content-across-channels",
+              "workflows/final-human-review"
+            ]
+          },
+          {
+            "group": "Prompt Patterns",
+            "pages": [
+              "prompts/source-analysis-prompts",
+              "prompts/outlining-prompts",
+              "prompts/adaptation-prompts",
+              "prompts/review-prompts"
+            ]
+          },
+          {
+            "group": "Tools",
+            "pages": [
+              "tools/pubcrawl",
+              "tools/refcheckr",
+              "tools/medcheckr",
+              "tools/patiently-ai",
+              "tools/llmentor",
+              "tools/pls-generator",
+              "tools/posterlens"
+            ]
+          }
+        ]
+      }
+    ]
+  },
   "footerSocials": {
     "website": "https://pharmatools.ai"
   }

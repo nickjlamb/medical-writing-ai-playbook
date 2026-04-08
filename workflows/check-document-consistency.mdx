@@ -1,0 +1,136 @@
+---
+title: "Check Document Consistency"
+sidebarTitle: "Document Consistency"
+description: "Use AI to flag inconsistencies in patient numbers, endpoint wording, terminology, and cross-references across long documents."
+icon: "search"
+---
+
+<Warning>
+**Risk tier: High**
+~15 min with AI, ~60 min without
+AI flags candidate issues. A qualified reviewer must verify each flag and confirm true inconsistencies.
+
+Document → Extract key variables → Compare across sections → Flag discrepancies → Manual verification
+</Warning>
+
+## Best for
+
+- Reviewing CSR drafts for inconsistent patient counts across Methods, Results, and tables
+- Checking whether endpoint names and definitions are used consistently throughout a document
+- Verifying table and figure numbering, cross-references, and callouts
+- Identifying mismatches in treatment arm names or population definitions across sections
+- Supporting QC on any long document (manuscript, regulatory submission, monograph) before formal review
+- Catching values that differ between the abstract, body text, and tables
+
+## Inputs
+
+- The full document to review (complete draft, not excerpts)
+- A list of critical variables to check (patient numbers, endpoint definitions, treatment arm names, key data values)
+- Any reference documents for comparison (protocol, SAP, source tables)
+
+## Steps
+
+<Steps>
+  <Step title="Identify the critical variables">
+    Before running the check, define what matters most. Common candidates: randomised patient count (N), primary endpoint definition, treatment arm names, key efficacy values (HR, ORR, OS), safety population size, and study duration. The more specific your list, the more useful the check.
+  </Step>
+  <Step title="Extract mentions across the document">
+    Use AI to find every instance where each critical variable appears in the document. For example: "Find every mention of the number of patients randomised, the primary endpoint name, and the hazard ratio for overall survival."
+  </Step>
+  <Step title="Compare values and wording">
+    Review the extracted mentions side by side. Look for numerical mismatches (the abstract says N=450 but Section 9 says N=448), wording inconsistencies (Methods says "progression-free survival" but Results says "time to progression"), and missing qualifiers.
+  </Step>
+  <Step title="Check cross-references">
+    Verify that every table and figure callout in the text points to the correct table or figure, and that table/figure numbering is sequential and complete. AI can list all callouts and compare them against the actual table/figure inventory.
+  </Step>
+  <Step title="Manually verify flagged items">
+    AI will flag candidate inconsistencies, but not all flags are true issues. A different N in the safety population versus the efficacy population is expected, not an error. Review each flag in context before making changes.
+  </Step>
+  <Step title="Document findings and corrections">
+    Record what was checked, what was flagged, and how each flag was resolved. This creates an audit trail for the QC process and supports the [Final Human Review](/workflows/final-human-review).
+  </Step>
+</Steps>
+
+## Output
+
+A consistency report listing every checked variable, where it appears in the document, and any discrepancies found. Each flag includes the specific text from each location so the reviewer can compare directly. The report distinguishes between confirmed inconsistencies (errors to fix) and expected differences (different populations, different analysis timepoints).
+
+## Prompt pattern
+
+```
+You are a medical writing QC assistant. Check the following document for internal consistency.
+
+For each variable listed below, find every mention in the document and compare them. Flag any discrepancies in values, wording, or definitions.
+
+Variables to check:
+1. Number of patients randomised (N)
+2. Primary endpoint name and definition
+3. Primary endpoint result (HR, CI, p-value)
+4. Treatment arm names
+5. Safety population size
+6. Study duration / follow-up period
+7. [ADD ANY PROJECT-SPECIFIC VARIABLES]
+
+For each variable:
+- List every location where it appears (section, page, table)
+- Quote the exact text at each location
+- Flag any differences between locations
+- Note whether the difference appears to be an error or an expected variation (e.g., different analysis populations)
+
+Document:
+[INSERT FULL DOCUMENT TEXT]
+```
+
+<Tip>
+**Customisation:** For long documents, check one variable category at a time (all patient numbers, then all endpoint mentions, then all key values). For manuscripts, add: "Check that the Abstract results match the Results section exactly." For regulatory documents, add: "Check that section cross-references and table/figure callouts are correct."
+</Tip>
+
+## Why this works
+
+Long documents develop inconsistencies as they move through drafts, revisions, and contributions from multiple authors. A value corrected in the Results may not be updated in the Abstract. An endpoint name changed in the protocol may persist in its old form in one section. AI scans the entire document and surfaces candidate mismatches far faster than manual reading. The human reviewer then applies the context AI lacks: distinguishing genuine errors from expected differences, and deciding how to resolve each issue.
+
+## Common mistakes
+
+<AccordionGroup>
+  <Accordion title="Treating every flag as an error">
+    The document reports N=450 in the efficacy section and N=448 in the safety section. AI flags this as inconsistent. In reality, 2 patients were excluded from the safety population for valid reasons. Review each flag in context before changing anything.
+  </Accordion>
+  <Accordion title="Checking only numbers, not definitions">
+    The patient count matches everywhere, but the primary endpoint is defined as "overall survival" in the Methods and "time to death from any cause" in the Results. Both are correct, but inconsistent wording creates confusion. Check definitions and terminology, not just values.
+  </Accordion>
+  <Accordion title="Missing table and figure consistency">
+    The text references "Table 5" but the actual table is numbered Table 6 after a table was added during revision. Cross-reference checks are easy to automate but easy to forget.
+  </Accordion>
+  <Accordion title="Not checking the abstract separately">
+    The abstract is often written first or last and may contain values from an earlier data cut. Always check abstract values against the final body text and tables.
+  </Accordion>
+  <Accordion title="Relying solely on AI without manual review">
+    AI may miss context-dependent inconsistencies or flag false positives. This workflow supports QC; it does not replace it. Every flagged item must be verified by a qualified reviewer.
+  </Accordion>
+</AccordionGroup>
+
+## Tool stack
+
+| Tool | Role |
+|---|---|
+| [RefCheckr](/tools/refcheckr) | Cross-check document claims against source references |
+
+**Alternatives:** [Claude](https://claude.ai) or [ChatGPT](https://chatgpt.com) for document-wide consistency scanning when provided with full text.
+
+## Review checklist
+
+<Accordion title="Human review checklist">
+- Critical variables (patient counts, endpoint names, key values) have been checked across all sections
+- Every flagged discrepancy has been reviewed in context
+- True inconsistencies have been corrected
+- Expected differences (different populations, analysis types) have been noted and confirmed
+- Table and figure numbering is sequential and all callouts are correct
+- Treatment arm names and population definitions are consistent throughout
+- The abstract matches the body text and tables
+- Terminology is consistent with the protocol and SAP
+- The consistency check is documented for audit
+</Accordion>
+
+---
+
+**Next steps:** After resolving inconsistencies, run [Verify Claims Against References](/workflows/verify-claims-against-references) if the document cites external sources. Complete [Final Human Review](/workflows/final-human-review) before submission.

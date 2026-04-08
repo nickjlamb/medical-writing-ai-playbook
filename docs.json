@@ -77,11 +77,14 @@
               "workflows/extract-key-messages",
               "workflows/build-content-outline",
               "workflows/write-a-manuscript",
+              "workflows/draft-regulatory-document",
+              "workflows/convert-stats-to-narrative",
               "workflows/create-medical-slide-deck",
               "workflows/adapt-for-different-audiences",
               "workflows/create-plain-language-summary",
               "workflows/verify-claims-against-references",
               "workflows/check-promotional-compliance",
+              "workflows/check-document-consistency",
               "workflows/repurpose-content-across-channels",
               "workflows/final-human-review"
             ]

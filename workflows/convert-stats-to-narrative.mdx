@@ -1,0 +1,133 @@
+---
+title: "Convert Statistical Outputs to Narrative"
+sidebarTitle: "Stats to Narrative"
+description: "Turn tables, figures, and statistical outputs into neutral, regulatory-style prose with exact value preservation."
+icon: "file-text"
+---
+
+<Warning>
+**Risk tier: High**
+~10 min with AI per table, ~30 min without
+Every generated statement must be verified against the source output. No exceptions.
+
+Statistical output → Variable extraction → Draft narrative → Value-by-value verification → Final text
+</Warning>
+
+## Best for
+
+- Drafting CSR results text from TFL (tables, figures, and listings) outputs
+- Converting adverse event incidence tables into safety narrative summaries
+- Writing efficacy summaries from primary and secondary endpoint tables
+- Preparing neutral data narratives for subgroup analyses
+- Drafting Module 2 summary text from CSR-level statistical outputs
+- Any task where a table of numbers needs to become a paragraph of text without interpretation
+
+## Inputs
+
+- The statistical output, table, or figure to convert (complete, not excerpted)
+- Context on the analysis population (ITT, mITT, PP) and analysis type
+- Any formatting or style requirements (MedDRA terms for AEs, decimal precision, CI format)
+- The section of the document where this text will appear (for context on appropriate detail level)
+
+## Steps
+
+<Steps>
+  <Step title="Identify the source output">
+    Select the specific table, figure, or listing you need to convert. Confirm it is the final, validated output. Drafting from interim or unvalidated tables creates rework when values change.
+  </Step>
+  <Step title="Capture the critical variables">
+    Before generating text, identify what the output contains: treatment arms, endpoints, effect sizes, confidence intervals, p-values, incidence rates, sample sizes. This list becomes your verification checklist.
+  </Step>
+  <Step title="Generate the draft narrative">
+    Use AI to convert the output into neutral prose. The instruction is translation, not interpretation: the narrative should say exactly what the table says, in sentence form, without adding meaning or emphasis.
+  </Step>
+  <Step title="Verify every value">
+    Check each number in the generated text against the source output. AI commonly transposes treatment arms, rounds values, omits confidence intervals, or changes "median" to "mean." Every value must match exactly.
+  </Step>
+  <Step title="Standardise phrasing">
+    Ensure the generated text uses consistent phrasing across sections. If the efficacy section says "a statistically significant difference was observed," the safety section should not say "the drug showed a significant effect." Align language with the protocol and SAP.
+  </Step>
+  <Step title="Integrate into the document">
+    Place the verified narrative into the target section. Check that it flows with surrounding text, that cross-references to the source table are correct, and that the level of detail matches the document section.
+  </Step>
+</Steps>
+
+## Output
+
+Neutral, regulatory-style prose that reports the contents of a statistical output without interpretation. Every value in the text matches the source exactly. The narrative uses consistent terminology, appropriate precision, and language suitable for a regulatory submission.
+
+## Prompt pattern
+
+```
+You are a regulatory medical writing assistant. Convert the following statistical output into neutral regulatory-style narrative text.
+
+Output type: [INSERT: e.g., "primary efficacy endpoint table" or "adverse event incidence table"]
+Analysis population: [INSERT: e.g., "ITT population" or "safety population"]
+Document section: [INSERT: e.g., "CSR Section 11.4.1 — Primary Endpoint"]
+
+Statistical output:
+[INSERT TABLE OR DATA]
+
+Rules:
+- Report the data exactly as presented. Do not round, convert, or reformat values.
+- Do not interpret the results. Do not use words like "promising," "encouraging," or "demonstrated benefit."
+- Use neutral language: "was observed," "was reported," "occurred in."
+- Report effect sizes with confidence intervals and p-values where provided.
+- For adverse events, use MedDRA preferred terms and report as n (%) by treatment group.
+- If a result is from a subgroup or post-hoc analysis, state this explicitly.
+- Flag any value you are uncertain about with [VERIFY].
+```
+
+<Tip>
+**Customisation:** For safety tables with many AE terms, add: "Report only AEs occurring in ≥5% of patients in any treatment group, then add a summary line for less common events." For subgroup analyses, add: "Note that subgroup analyses were exploratory and not powered for statistical testing."
+</Tip>
+
+## Why this works
+
+Converting tables to text is one of the most repetitive tasks in regulatory writing. The content is entirely determined by the source output; the writer's job is accurate translation, not interpretation. AI handles the mechanical conversion at speed while the writer focuses on the verification work that matters most: confirming every value is correct, the language is neutral, and the narrative is consistent with the rest of the document.
+
+## Common mistakes
+
+<AccordionGroup>
+  <Accordion title="Transposed treatment arms">
+    The efficacy table shows Drug X at 42% and placebo at 18%. AI writes "placebo showed a response rate of 42%." This is the single most dangerous error in stats-to-narrative conversion. Verify each value is attributed to the correct arm.
+  </Accordion>
+  <Accordion title="Values rounded or reformatted">
+    The source reports a hazard ratio of 0.683 (95% CI: 0.552–0.845). AI rounds to 0.68 (95% CI: 0.55–0.85). Regulatory documents must reproduce values at the precision reported in the validated output.
+  </Accordion>
+  <Accordion title="Interpretive language added">
+    AI writes "Treatment X showed a clinically meaningful improvement" when the source table only presents numerical results. Remove any language that interprets, characterises, or editorialises the data.
+  </Accordion>
+  <Accordion title="Confidence intervals or p-values omitted">
+    AI reports the point estimate but drops the CI or p-value. If the source provides them, the narrative should include them.
+  </Accordion>
+  <Accordion title="Inconsistent terminology across sections">
+    The efficacy narrative uses "overall survival" but the safety narrative uses "survival time" for the same endpoint. Use the protocol-defined term throughout the document.
+  </Accordion>
+</AccordionGroup>
+
+## Tool stack
+
+| Tool | Role |
+|---|---|
+| [RefCheckr](/tools/refcheckr) | Cross-check generated narrative against source data |
+
+**Alternatives:** [Claude](https://claude.ai) or [ChatGPT](https://chatgpt.com) for table-to-text conversion from pasted statistical outputs.
+
+## Review checklist
+
+<Accordion title="Human review checklist">
+- Every numerical value matches the source output exactly, at the reported precision
+- Values are attributed to the correct treatment arm and population
+- The analysis population (ITT, mITT, PP, safety) is correctly identified
+- No interpretive or promotional language is present
+- Confidence intervals and p-values are included where reported in the source
+- MedDRA preferred terms are used correctly for adverse events
+- Subgroup and post-hoc results are labelled as such
+- Terminology is consistent with the protocol, SAP, and other document sections
+- Cross-references to the source table or figure are correct
+</Accordion>
+
+---
+
+**Next steps:** Integrate the narrative into a [Regulatory Document](/workflows/draft-regulatory-document) or [Manuscript](/workflows/write-a-manuscript). Run [Check Document Consistency](/workflows/check-document-consistency) to verify values match across sections.

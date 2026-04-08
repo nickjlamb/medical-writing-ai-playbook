@@ -1,0 +1,133 @@
+---
+title: "Draft a Regulatory Document"
+sidebarTitle: "Regulatory Document"
+description: "Structure and draft regulatory documents from source materials, with AI support for organisation, summarisation, and first-pass text."
+icon: "file-text"
+---
+
+<Warning>
+**Risk tier: High**
+~30 min with AI per section, ~2–3 hours without
+Expert regulatory review required. All content must be verified against source data and applicable guidance.
+
+Source documents → Document structure → Section drafting → Source verification → Expert review
+</Warning>
+
+## Best for
+
+- Drafting CSR sections from study reports and statistical outputs
+- Structuring investigator brochure updates from accumulated safety and efficacy data
+- Preparing first-pass protocol summary narratives
+- Converting study data into Module 2 summary-style text
+- Drafting safety narrative sections from adverse event listings and summaries
+- Supporting repetitive regulatory drafting tasks where the source data is well-defined
+
+## Inputs
+
+- Source documents (CSR, protocol, statistical outputs, safety data, prior submissions)
+- Applicable document template or regulatory guidance (ICH structure, sponsor template)
+- Section-specific requirements (word limits, required content, cross-reference expectations)
+- Any prior versions or related documents for consistency reference
+
+## Steps
+
+<Steps>
+  <Step title="Gather and organise source materials">
+    Assemble all source documents for the section you are drafting. For a CSR efficacy section, this means the relevant TFL outputs, the SAP, and the protocol. Incomplete source materials produce incomplete drafts.
+  </Step>
+  <Step title="Identify the required document structure">
+    Confirm the template, guidance, or sponsor-specific structure for the document. Regulatory documents follow prescribed formats. AI can help map source content to required sections, but the writer must confirm the structure matches applicable guidance.
+  </Step>
+  <Step title="Draft section by section">
+    Provide the relevant source data for each section and use AI to generate a first-pass draft. Work one section at a time. AI handles the mechanical conversion of source data into structured narrative; you verify accuracy, completeness, and appropriate wording.
+  </Step>
+  <Step title="Preserve source traceability">
+    Every statement in the draft must trace to a specific source document, table, or listing. If a sentence cannot be traced, it should be flagged and either sourced or removed. AI-generated regulatory text that sounds authoritative but lacks a source is a submission risk.
+  </Step>
+  <Step title="Review wording and consistency">
+    Regulatory prose must be neutral, precise, and consistent with the source data. Check that AI has not introduced interpretation, softened safety language, or used wording inconsistent with other sections of the same document. Cross-check terminology against the protocol and SAP.
+  </Step>
+  <Step title="Expert regulatory review">
+    A qualified regulatory writer or reviewer verifies the draft against source documents, applicable guidance, and the overall submission strategy. AI-assisted drafts require the same level of review as manually drafted content.
+  </Step>
+</Steps>
+
+## Output
+
+A structured regulatory document section (or full document draft) with neutral, evidence-based prose that follows the required template and can be traced to specific source documents. The output is a working draft ready for expert review and revision, not a submission-ready document.
+
+## Prompt pattern
+
+```
+You are a regulatory medical writing assistant. Draft the [SECTION] of a [DOCUMENT TYPE] based on the following source materials.
+
+Document type: [INSERT: CSR / Investigator Brochure / Protocol Summary / Module 2 Summary]
+Section to draft: [INSERT: e.g., "Section 11.4 — Efficacy Results"]
+Template/guidance: [INSERT any structural requirements]
+
+Source materials:
+[INSERT RELEVANT SOURCE DATA — tables, listings, protocol excerpts]
+
+Rules:
+- Use neutral, regulatory-appropriate language. Do not use promotional or interpretive phrasing.
+- Reproduce all numerical values exactly as stated in the source.
+- Do not infer or interpret beyond what the data shows.
+- If a finding is from a subgroup or post-hoc analysis, state this explicitly.
+- Maintain consistent terminology with the protocol and SAP.
+- Flag any content you are uncertain about with [VERIFY].
+- If a statement needs a source reference you do not have, insert [SOURCE NEEDED].
+```
+
+<Tip>
+**Customisation:** For safety narratives, add: "Present adverse events using MedDRA preferred terms. Report incidence as n (%) for each treatment group." For Module 2 summaries, add: "Summarise at a higher level than the CSR. Focus on clinical significance, not exhaustive detail."
+</Tip>
+
+## Why this works
+
+Regulatory documents are highly structured and data-driven. Much of the drafting work involves converting source data (tables, listings, study reports) into prescribed narrative formats. AI handles this mechanical conversion efficiently, producing a structured first draft in minutes instead of hours. The regulatory writer then applies the expertise AI lacks: ensuring the wording meets applicable guidance, the data is interpreted appropriately (or not interpreted at all, where neutrality is required), and the document is internally consistent and traceable.
+
+## Common mistakes
+
+<AccordionGroup>
+  <Accordion title="AI interprets instead of reporting">
+    The source table shows a p-value of 0.06 for a secondary endpoint. AI writes "there was a trend toward improvement." Regulatory prose should report the result and let the data speak. Check every sentence for interpretation that was not in the source.
+  </Accordion>
+  <Accordion title="Safety language softened">
+    AI describes a serious adverse event as "generally manageable" when the source data does not use that characterisation. Safety sections must reflect the data without editorial softening. Verify safety language against the source listings and tables.
+  </Accordion>
+  <Accordion title="Terminology inconsistency">
+    The protocol uses "progression-free survival (PFS)" but AI switches between "PFS," "time to progression," and "disease-free survival" within the same section. Use the protocol-defined term consistently throughout.
+  </Accordion>
+  <Accordion title="Untraceable statements">
+    AI adds a sentence about the mechanism of action or disease epidemiology that is not in the source documents. Every statement must trace to a specific source. Flag and remove any content that cannot be sourced.
+  </Accordion>
+  <Accordion title="Structure does not match guidance">
+    AI generates a logical narrative structure, but it does not follow the required ICH or sponsor template. Always draft into the prescribed structure, not a structure AI invents. Confirm section headings, numbering, and content requirements against the template before drafting.
+  </Accordion>
+</AccordionGroup>
+
+## Tool stack
+
+| Tool | Role |
+|---|---|
+| [RefCheckr](/tools/refcheckr) | Verify that document statements are supported by source data |
+
+**Alternatives:** [Claude](https://claude.ai) or [ChatGPT](https://chatgpt.com) for section drafting from source materials. [Zotero](https://www.zotero.org) or [EndNote](https://endnote.com) for reference management in documents with literature citations.
+
+## Review checklist
+
+<Accordion title="Human review checklist">
+- Every numerical value matches the source document exactly
+- Every statement can be traced to a specific source (table, listing, protocol, or report)
+- No AI-generated interpretation or editorial language is present
+- Safety data is reported neutrally without softening or minimisation
+- Terminology is consistent with the protocol and SAP throughout
+- The document structure follows the required template or guidance
+- Cross-references to other sections, tables, and figures are correct
+- No content from AI training data has entered the document
+- The draft is ready for expert regulatory review, not for direct submission
+</Accordion>
+
+---
+
+**Next steps:** Use [Convert Statistical Outputs to Narrative](/workflows/convert-stats-to-narrative) for data-dense sections. Run [Check Document Consistency](/workflows/check-document-consistency) before final review. Complete [Final Human Review](/workflows/final-human-review) before submission.

@@ -5,62 +5,51 @@ description: "Create structured summaries from scientific posters and congress p
 icon: "presentation"
 ---
 
-## Purpose
+<Info>
+**Risk tier: Low-Medium** — Standard to enhanced review; verify all data points against the original poster
+</Info>
 
-Create a structured summary of scientific posters or congress presentations — capturing study design, key findings, and clinical relevance in a format suitable for client briefings, internal reports, or further content development.
+## Best for
 
-## Best used when
-
-- Covering a medical congress and need to produce rapid summaries of relevant presentations
-- Summarising multiple posters from a congress into a highlights report
-- Creating a structured extraction from a poster to use as source material for further med comms work
-- Preparing a quick-turnaround congress debrief for clients or internal stakeholders
-
-## Do not use when
-
-- The poster data is embargoed and you do not have permission to process it
-- You need a critical appraisal of the study — this workflow summarises what was presented, not whether the study was well conducted
-- The poster content is unclear or incomplete and you cannot verify the information presented
-- You need to interpret the data in the context of the competitive landscape — that requires a separate strategic analysis
+- Producing rapid summaries of relevant presentations during congress coverage
+- Summarising multiple posters into a congress highlights report
+- Creating structured extractions from posters as source material for further med comms work
+- Preparing quick-turnaround congress debriefs for clients or internal stakeholders
 
 ## Inputs
 
 - The scientific poster (image, PDF, or text extraction)
 - Any accompanying abstract or oral presentation slides
 - Context on the therapeutic area and why this poster is relevant
-- Target format for the summary (e.g., one-page brief, structured extraction, narrative summary)
+- Target format for the summary (e.g., one-page brief, structured extraction, bullet-point format)
 - Audience for the summary (e.g., medical affairs team, client account lead, publications group)
 
-## Recommended workflow
+## Steps
 
-1. **Obtain the poster** — Ensure you have access to the full poster content, not just the abstract.
-2. **Extract structured content** — Use PosterLens to extract key information (study design, endpoints, results, conclusions) into a structured format.
-3. **Review the extraction** — Verify that PosterLens has accurately captured the poster content. Check data points, population descriptions, and conclusions.
-4. **Draft the summary** — Using the structured extraction as source material, draft the summary in the required format. Use AI to assist with structuring and drafting.
-5. **Review against the original poster** — Confirm every data point and finding in the summary matches the poster.
-6. **Add context** — If required, add brief therapeutic area context based on your knowledge. Clearly distinguish between information from the poster and contextual information.
-7. **Final review** — Confirm accuracy, completeness, and appropriateness for the target audience.
+<Steps>
+  <Step title="Obtain the full poster">
+    Ensure you have access to the complete poster content, not just the abstract. Check that any embargoed data has been cleared for processing.
+  </Step>
+  <Step title="Extract structured content">
+    Use PosterLens to extract key information (study design, endpoints, results, conclusions) into a structured format.
+  </Step>
+  <Step title="Review the extraction against the poster">
+    Verify that PosterLens has accurately captured the poster content. Pay special attention to data from figures, tables, and footnotes — visual elements are the most common source of extraction errors.
+  </Step>
+  <Step title="Draft the summary">
+    Using the structured extraction as source material, draft the summary in the required format. Match the depth and framing to the target audience.
+  </Step>
+  <Step title="Verify every data point">
+    Confirm every number, endpoint, and finding in the summary matches the original poster exactly. Check Kaplan-Meier curves, forest plots, and waterfall plots manually.
+  </Step>
+  <Step title="Add context and finalise">
+    If required, add brief therapeutic area context. Clearly distinguish between information from the poster and contextual information you have added. Confirm the summary is appropriate for the target audience.
+  </Step>
+</Steps>
 
-## Where AI helps
+## Output
 
-- Extracting structured data from visually complex poster layouts rapidly
-- Organising poster content into a consistent summary format
-- Drafting narrative summaries from structured extractions
-- Processing multiple posters in sequence for congress coverage
-
-## Where human judgement is essential
-
-- **Assessing clinical significance.** The poster may report statistically significant results that are not clinically meaningful, or vice versa. The medical writer contextualises this.
-- **Selecting what to include.** Not every data point on a poster needs to be in the summary. The writer selects based on relevance to the audience and project.
-- **Contextualising within the congress.** A poster exists in the context of other presentations, competitor data, and the evolving evidence landscape. This context comes from the writer's expertise.
-- **Verifying data extraction.** Posters can be visually complex, with data in figures, tables, and text. The writer must verify that the extraction captured the correct data.
-
-## Suggested tools
-
-| Tool | Role in this workflow |
-|---|---|
-| [PosterLens](/tools/posterlens) | Primary tool — structured extraction of poster content |
-| [PubCrawl](/tools/pubcrawl) | Optional — find related publications or trial registry data alongside the poster |
+A good poster summary runs 200–500 words for a single poster, follows a consistent structure (poster reference, study design, population, primary results, secondary results, safety, conclusions, significance), and contains exact data points from the poster. It distinguishes between presented results and the authors' interpretation, and explicitly notes whether safety data was or was not presented.
 
 ## Prompt pattern
 
@@ -91,18 +80,44 @@ Rules:
 - Do not interpret results beyond what the authors state in their conclusions.
 ```
 
-## Risks and failure modes
+<Tip>
+**Customisation:** For congress coverage of multiple posters, use a consistent template across all summaries so stakeholders can compare them easily. Adjust the target length and detail level based on whether the summary is for a highlights report (shorter) or detailed briefing document (longer).
+</Tip>
 
-| Risk | Likelihood | Impact | Mitigation |
-|---|---|---|---|
-| Data extraction errors | Medium | High — a Kaplan-Meier curve on the poster shows median PFS of 11.2 months. The extraction reads it as 12.1 months from the figure. This incorrect number enters a congress highlights report sent to 30 client stakeholders. | Verify every data point from figures and tables against the original poster. Do not trust AI extraction of data from graphical elements without manual confirmation. |
-| Missing data from figures | Medium | Medium — a waterfall plot or forest plot contains key results that the extraction tool misses because the data is encoded visually, not in text | Open the original poster and manually check all figures, tables, and footnotes. Data in visual elements is the most common source of extraction gaps. |
-| Overinterpretation | Low–Medium | Medium — the poster reports "a numerical trend toward improvement (not statistically significant)." The summary states "improvement was observed." The qualifier vanishes. | Compare every conclusion and result statement in the summary against the poster's Results and Conclusions sections. |
-| Missing safety data | Low | Medium — the poster includes a safety table in a lower panel that the extraction overlooks. The summary reports no safety data when data was in fact presented. | Explicitly scan the full poster for safety content: AE tables, safety narratives, discontinuation data, deaths. Note whether safety data was presented, not just whether the extraction captured it. |
-| Context confusion | Low | Medium — when summarising 15 posters from a congress, data from Poster #7 leaks into the summary of Poster #8 because the AI processes them in sequence | Summarise one poster at a time in separate sessions. Verify each summary against its specific poster before moving to the next. |
+## Why this works
 
-## Human review checklist
+AI rapidly extracts and organises structured data from visually complex poster layouts, handling the mechanical work of pulling study design, results, and conclusions into a consistent format. The human writer then verifies data accuracy (especially from figures), selects what to emphasise for the audience, and contextualises the findings within the broader congress and evidence landscape. This enables same-day congress coverage at a quality level that manual-only approaches struggle to match.
 
+## Common mistakes
+
+<AccordionGroup>
+  <Accordion title="Misreading data from figures">
+    A Kaplan-Meier curve shows median PFS of 11.2 months, but the extraction reads it as 12.1 months from the figure. This incorrect number enters a congress highlights report sent to 30 stakeholders. Verify every data point from figures and tables against the original poster manually.
+  </Accordion>
+  <Accordion title="Missing data encoded in visual elements">
+    Waterfall plots, forest plots, and complex tables contain key results that extraction tools miss because the data is encoded visually rather than as text. Open the original poster and manually check all figures, tables, and footnotes.
+  </Accordion>
+  <Accordion title="Dropping qualifiers from results">
+    The poster reports "a numerical trend toward improvement (not statistically significant)." The summary states "improvement was observed." The qualifier vanishes. Compare every result statement against the poster's Results and Conclusions sections.
+  </Accordion>
+  <Accordion title="Overlooking safety data on the poster">
+    A safety table in a lower panel gets missed by the extraction. The summary reports no safety data when data was in fact presented. Explicitly scan the full poster for AE tables, safety narratives, discontinuation data, and deaths.
+  </Accordion>
+  <Accordion title="Cross-contamination across posters">
+    When summarising 15 posters from a congress, data from Poster #7 leaks into the summary of Poster #8 because AI processes them in sequence. Summarise one poster at a time in separate sessions and verify each against its specific poster.
+  </Accordion>
+</AccordionGroup>
+
+## Tool stack
+
+| Tool | Role |
+|---|---|
+| [PosterLens](/tools/posterlens) | Structured extraction of poster content from images and PDFs |
+| [PubCrawl](/tools/pubcrawl) | Find related publications or trial registry data alongside the poster |
+
+## Review checklist
+
+<Accordion title="Human review checklist">
 - [ ] Poster reference (authors, title, congress, poster number) is correct
 - [ ] Study design is accurately described
 - [ ] Population characteristics match the poster
@@ -113,27 +128,8 @@ Rules:
 - [ ] No data from other posters or sources has been mixed in
 - [ ] Summary format and length meet the project requirements
 - [ ] Summary is appropriate for the target audience
-
-## Example output characteristics
-
-A good congress or poster summary from this workflow should:
-
-- Be 200–500 words for a single poster (adjustable based on requirements)
-- Follow a consistent structure that allows comparison across multiple poster summaries
-- Contain exact data points from the poster
-- Distinguish between presented results and the authors' interpretation
-- Note when safety data was or was not presented
-- Be immediately useful for the target audience (client briefing, internal report, further content development)
-- Read as a factual summary, not a promotional interpretation
-
-## Next steps
-
-- [Extract Key Messages](/workflows/extract-key-messages) — pull out the key findings from your poster summary
-- [Repurpose Across Channels](/workflows/repurpose-content-across-channels) — adapt the summary for different deliverable formats
-- [Summarise a Source Paper](/workflows/summarise-source-paper) — if you also have the full publication
+</Accordion>
 
 ---
 
-**Risk tier:** Low–Medium
-**Review requirement:** Standard to enhanced review; verify all data points against the original poster
-**Workflow version:** 1.0
+**Next steps:** [Extract Key Messages](/workflows/extract-key-messages) to pull out key findings, then [Repurpose Across Channels](/workflows/repurpose-content-across-channels) to adapt the summary for different deliverable formats. See also [Summarise a Source Paper](/workflows/summarise-source-paper) if you have the full publication.

@@ -70,9 +70,13 @@
           {
             "group": "Workflows",
             "pages": [
+              "workflows/find-evidence",
               "workflows/summarise-source-paper",
+              "workflows/extract-study-data",
               "workflows/extract-key-messages",
               "workflows/build-content-outline",
+              "workflows/write-a-manuscript",
+              "workflows/create-medical-slide-deck",
               "workflows/adapt-for-different-audiences",
               "workflows/create-plain-language-summary",
               "workflows/verify-claims-against-references",

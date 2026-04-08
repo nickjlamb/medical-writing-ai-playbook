@@ -1,0 +1,140 @@
+---
+title: "Create a Medical Slide Deck"
+sidebarTitle: "Medical Slide Deck"
+description: "Structure and draft slide-based content for MSL training, advisory boards, congress updates, or medical education."
+icon: "presentation"
+---
+
+<Info>
+**Risk tier: Medium**
+~20 min with AI per deck, ~90 min without
+Enhanced review required. Compliance review needed for external-facing decks.
+
+Source materials → Key messages → Slide structure → Draft slide content → Review
+</Info>
+
+## Best for
+
+- MSL training decks on new data or therapeutic area updates
+- Advisory board background and discussion slides
+- Congress highlights or data update presentations
+- Internal medical education and training materials
+- Medical affairs slide sets for field teams
+- Repackaging published evidence into presentation format
+
+## Inputs
+
+- Source materials (published papers, data summaries, approved key messages)
+- Target audience and setting (e.g., "MSL training on Phase III results" or "advisory board on unmet need in NASH")
+- Slide count and format requirements
+- Any existing slide templates or brand guidelines
+- Regulatory context (internal use only, or external-facing requiring compliance review)
+
+## Steps
+
+<Steps>
+  <Step title="Define the audience and objective">
+    A deck for MSL training needs depth and nuance. A deck for an advisory board needs discussion prompts. A congress highlights deck needs speed and clarity. The audience determines the structure, depth, and tone of every slide.
+  </Step>
+  <Step title="Select and verify source materials">
+    Gather the evidence that will support the deck. Verify key data points before building slides around them. Correcting a data error propagated across 15 slides is far more work than verifying it once up front.
+  </Step>
+  <Step title="Build the slide outline">
+    Use AI to generate a candidate slide structure from your key messages and source materials. Specify the slide count. Review the narrative flow: does the audience follow the logic from slide 1 to slide N without backtracking?
+  </Step>
+  <Step title="Draft slide content">
+    Generate draft content for each slide: a clear headline, 3–5 bullet points or a concise data summary, and speaker notes where needed. AI handles the mechanical conversion of evidence into slide-ready text; you handle the editorial decisions about emphasis and framing.
+  </Step>
+  <Step title="Review for accuracy and balance">
+    Check every data point against the source. Confirm that slide headlines do not overstate findings. Verify that safety and limitations are included, not just efficacy highlights. A slide deck that foregrounds efficacy without safety context will fail compliance or scientific review.
+  </Step>
+  <Step title="Refine for the format">
+    Ensure the content works as slides, not as compressed paragraphs. Each slide should make one clear point. If a slide needs more than 5 bullets or 3 data points, it probably needs to be split.
+  </Step>
+</Steps>
+
+## Output
+
+A structured slide deck outline with draft content for each slide: headline, body content (bullets, data, or narrative), and speaker notes where applicable. The content is sourced, accurate, and balanced. The deck follows a logical narrative arc appropriate for the target audience and setting.
+
+## Prompt pattern
+
+```
+You are a medical writing assistant. Create a slide deck outline and draft content from the following source materials.
+
+Audience: [INSERT, e.g., "MSLs being trained on new Phase III data"]
+Objective: [INSERT, e.g., "understand the study design, key results, and clinical implications"]
+Slide count: [INSERT, e.g., "12–15 slides"]
+
+For each slide, provide:
+1. Slide number
+2. Headline (one clear statement, not a topic label)
+3. Body content (3–5 bullets or a concise data summary)
+4. Speaker notes (key talking points for the presenter)
+
+Rules:
+- Base all content on the provided source materials only.
+- Reproduce data points exactly as stated in the source.
+- Include at least one slide on safety/tolerability and one on limitations.
+- Use statement headlines ("Drug X reduced MACE by 24%") not topic labels ("Efficacy Results").
+- Flag any content you are uncertain about with [VERIFY].
+
+Source materials:
+[INSERT SOURCE TEXT]
+```
+
+<Tip>
+**Customisation:** For advisory board decks, add "Include 2–3 discussion questions per section." For congress highlights, add "Keep each slide to one key finding with the data point and clinical implication." For training decks, add "Include a knowledge-check slide at the end."
+</Tip>
+
+## Why this works
+
+AI converts dense source materials into slide-structured content quickly, handling the mechanical work of reformatting evidence into headlines, bullets, and speaker notes. The human writer makes the decisions AI cannot: which findings matter most for this audience, whether the narrative builds logically, whether the balance between efficacy and safety is appropriate, and whether the slides will actually work in a presentation setting.
+
+## Common mistakes
+
+<AccordionGroup>
+  <Accordion title="Topic label headlines instead of statement headlines">
+    AI defaults to "Efficacy Results" or "Safety Profile" as slide headlines. These tell the audience what category they are looking at, not what they should take away. Replace with statements: "Drug X met the primary endpoint of PFS at 12 months" or "Most common AEs were manageable and rarely led to discontinuation."
+  </Accordion>
+  <Accordion title="Too much content per slide">
+    AI packs 8 bullets and 3 data tables onto a single slide. If a presenter cannot deliver the slide's message in 60–90 seconds, it has too much content. Split dense slides and prioritise clarity over completeness.
+  </Accordion>
+  <Accordion title="Safety and limitations omitted">
+    A 15-slide deck with 10 slides on efficacy and no safety slide will not pass scientific or compliance review. Include safety and limitations proportionate to their importance in the source data.
+  </Accordion>
+  <Accordion title="Slides that read like compressed paragraphs">
+    AI sometimes produces slide content that is a shortened version of a paper paragraph rather than content designed for visual presentation. Slide content should be scannable, with clear data points and short phrases, not miniature essays.
+  </Accordion>
+  <Accordion title="Data points not verified against source">
+    A hazard ratio on slide 7 was correct in the source paper but AI rounded it from 0.73 to 0.7 for the slide. Rounding clinical data changes the evidence. Reproduce values exactly as published.
+  </Accordion>
+</AccordionGroup>
+
+## Tool stack
+
+| Tool | Role |
+|---|---|
+| [LLMentor](/tools/llmentor) | Adapt content depth and complexity for different presentation audiences |
+| [RefCheckr](/tools/refcheckr) | Verify that slide claims are supported by cited sources |
+
+**Alternatives:** [Claude](https://claude.ai) or [ChatGPT](https://chatgpt.com) for drafting slide content from source text. [Gamma](https://gamma.app) for converting structured content into presentation format. [Napkin](https://napkin.ai) for creating visual diagrams or concept illustrations for slides.
+
+## Review checklist
+
+<Accordion title="Human review checklist">
+- Every data point on every slide matches the source exactly
+- Slide headlines are statements, not topic labels
+- The narrative arc follows a logical progression for the target audience
+- Safety and tolerability are included proportionate to the source data
+- Limitations are noted
+- No slide contains unsourced claims or AI-generated context
+- Slide count matches the brief or format requirements
+- Speaker notes are accurate and add value beyond the slide content
+- Content is appropriate for the regulatory context (internal vs. external use)
+- The deck works as a presentation, not as a compressed document
+</Accordion>
+
+---
+
+**Next steps:** For external-facing decks, run [Check Promotional Compliance](/workflows/check-promotional-compliance) and [Verify Claims Against References](/workflows/verify-claims-against-references). For audience-specific versions, use [Adapt for Different Audiences](/workflows/adapt-for-different-audiences).

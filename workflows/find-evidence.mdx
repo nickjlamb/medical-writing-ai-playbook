@@ -1,0 +1,130 @@
+---
+title: "Find Evidence"
+sidebarTitle: "Find Evidence"
+description: "Search biomedical databases, screen results, and build an evidence set to support a medical writing project."
+icon: "microscope"
+---
+
+<Tip>
+**Risk tier: Low**
+~15 min with AI, ~2–3 hours without
+Standard review of search strategy and selected sources.
+
+Research question → Search strategy → Database search → Screen results → Evidence set
+</Tip>
+
+## Best for
+
+- Starting a new publication or medical affairs project that needs a defined evidence base
+- Background research for advisory board materials, slide decks, or training content
+- Identifying key papers for a literature review or competitive landscape analysis
+- Building an evidence set to support key message development or publication planning
+- Screening a large set of abstracts to find the most relevant sources quickly
+
+## Inputs
+
+- A clearly defined research question, indication, compound, or topic area
+- Any known key references or authors to use as starting points
+- Inclusion/exclusion criteria for the evidence you need (publication date, study type, population)
+- The intended use of the evidence (informs how broad or narrow the search should be)
+
+## Steps
+
+<Steps>
+  <Step title="Define the research question">
+    Be specific. "What is the efficacy and safety of Drug X in moderate-to-severe plaque psoriasis?" will produce better results than "Drug X psoriasis." Specify the population, intervention, comparator, and outcomes you need (PICO framework).
+  </Step>
+  <Step title="Build the search strategy">
+    Use AI to generate candidate search terms, MeSH headings, and Boolean combinations. Review and refine these manually. A poorly constructed search returns noise; a well-constructed one saves hours of screening.
+  </Step>
+  <Step title="Run the search">
+    Execute the search across relevant databases (PubMed, Embase, trial registries, prescribing information). Use PubCrawl for structured biomedical searches or Perplexity for quick exploratory queries with cited sources.
+  </Step>
+  <Step title="Screen results">
+    Review titles and abstracts against your inclusion criteria. AI can help flag likely relevant results, but the decision to include or exclude a paper is yours. Pay attention to study design, population, and recency.
+  </Step>
+  <Step title="Evaluate and select">
+    Read the full text of shortlisted papers. Assess relevance, quality, and how each paper fits the project's evidence needs. This is where editorial and scientific judgement matters most.
+  </Step>
+  <Step title="Organise the evidence set">
+    Structure your selected sources for downstream use. Note each paper's key contribution to the project (primary efficacy data, safety profile, comparator data, real-world evidence). Store and cite references using a reference manager.
+  </Step>
+</Steps>
+
+## Output
+
+A curated set of 5–30 source documents (depending on project scope) organised by relevance, with a brief note on each paper's contribution to the project. The evidence set should be traceable back to the search strategy and inclusion criteria, and sufficient to support the downstream writing workflows.
+
+## Prompt pattern
+
+```
+You are a medical writing research assistant. Help me build a search strategy for the following research question.
+
+Research question: [INSERT RESEARCH QUESTION]
+
+Please provide:
+1. Suggested PubMed search terms and MeSH headings
+2. A Boolean search string combining key concepts
+3. Suggested filters (date range, study type, language)
+4. Related search terms I may not have considered
+5. Key authors or research groups likely to have published in this area
+
+Context:
+- Therapeutic area: [INSERT]
+- Intended use of evidence: [INSERT, e.g., "publication planning for a review article" or "background research for an advisory board slide deck"]
+- Any known key references: [INSERT OR "none"]
+```
+
+<Tip>
+**Customisation:** For systematic-style searches, add a PRISMA-aligned instruction. For competitive landscape work, add comparator compounds and ask for head-to-head trial search terms.
+</Tip>
+
+## Why this works
+
+AI generates comprehensive search strategies in minutes, surfacing MeSH terms, author names, and Boolean combinations that a manual approach might miss. The human writer retains the decisions that determine evidence quality: defining the research question, setting inclusion criteria, evaluating study relevance, and judging whether the evidence set is sufficient for the project.
+
+## Common mistakes
+
+<AccordionGroup>
+  <Accordion title="Starting with too broad a question">
+    "What is known about Drug X?" returns hundreds of results across indications, populations, and study types. Narrow the question before searching. A 30-second refinement saves an hour of screening.
+  </Accordion>
+  <Accordion title="Relying on AI to select your sources">
+    AI can rank and flag abstracts, but it cannot judge whether a particular study design is appropriate for your project, whether the population matches your target, or whether the journal is credible. Source selection is a human decision.
+  </Accordion>
+  <Accordion title="Missing key databases">
+    PubMed does not index everything. For certain therapeutic areas, Embase, Cochrane, or trial registries (ClinicalTrials.gov, EU CTR) may contain essential evidence that PubMed misses. Match your database selection to the project requirements.
+  </Accordion>
+  <Accordion title="Stopping at abstracts">
+    An abstract may suggest a paper is relevant, but the full text may reveal a different population, a post-hoc analysis, or an endpoint that does not match your needs. Always read the full text of shortlisted papers before including them in your evidence set.
+  </Accordion>
+  <Accordion title="No documented search strategy">
+    If someone asks how you found your evidence, you should be able to show the search terms, databases, date range, and inclusion criteria. Undocumented evidence gathering cannot be audited or reproduced.
+  </Accordion>
+</AccordionGroup>
+
+## Tool stack
+
+| Tool | Role |
+|---|---|
+| [PubCrawl](/tools/pubcrawl) | Structured biomedical literature search across PubMed, trial registries, and prescribing information |
+
+**Alternatives:** [Elicit](https://elicit.com) for structured paper extraction and synthesis. [Consensus](https://consensus.app) for fast research question exploration. [Perplexity](https://www.perplexity.ai) for quick fact-checking with cited sources. [Zotero](https://www.zotero.org) or [EndNote](https://endnote.com) for storing and organising the evidence you find.
+
+## Review checklist
+
+<Accordion title="Human review checklist">
+- The research question is clearly defined and specific enough for the project
+- Search terms and Boolean strategy are appropriate and comprehensive
+- Relevant databases have been searched (not just PubMed)
+- Inclusion and exclusion criteria are documented
+- Abstracts have been screened against the criteria
+- Full texts of shortlisted papers have been reviewed
+- The evidence set is sufficient for the project's scope and objectives
+- Key papers in the therapeutic area have not been missed
+- The search strategy and results are documented for audit
+</Accordion>
+
+---
+
+**Next steps:** Use your evidence set to [Summarise a Source Paper](/workflows/summarise-source-paper) or [Extract Study Data](/workflows/extract-study-data), then [Extract Key Messages](/workflows/extract-key-messages) for content development.

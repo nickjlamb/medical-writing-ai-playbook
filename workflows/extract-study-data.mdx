@@ -1,0 +1,136 @@
+---
+title: "Extract Study Data"
+sidebarTitle: "Extract Study Data"
+description: "Pull endpoints, outcomes, and study details from clinical papers into structured evidence tables or data summaries."
+icon: "file-text"
+---
+
+<Info>
+**Risk tier: Medium**
+~15 min with AI per paper, ~45 min without
+Enhanced review with source cross-check required for every extracted value.
+
+Source papers → AI data extraction → Value-by-value verification → Structured evidence table
+</Info>
+
+## Best for
+
+- Building evidence tables for publications, HEOR submissions, or regulatory documents
+- Extracting endpoints, outcomes, and safety data from multiple papers for cross-study comparison
+- Creating competitor or landscape summaries from published trial data
+- Preparing structured data summaries for slide decks, advisory boards, or internal briefings
+- Supporting systematic literature review data extraction (non-regulatory SLRs)
+
+## Inputs
+
+- Full text of the source paper(s) (PDF or pasted text, not abstracts alone)
+- A defined extraction template specifying which data points to capture (study design, population, endpoints, results, safety)
+- Context on the intended use (evidence table format, comparison framework, or specific data needs)
+
+## Steps
+
+<Steps>
+  <Step title="Define the extraction template">
+    Decide which data points you need before starting. Common fields: study name/acronym, design, population (N, key criteria), primary endpoint, primary result, key secondary results, safety summary, and follow-up duration. Match the template to the downstream deliverable.
+  </Step>
+  <Step title="Provide the full paper to the AI">
+    Paste or upload the complete text. Do not extract from abstracts alone. Abstracts omit subgroup details, secondary endpoints, and safety data that the full paper contains.
+  </Step>
+  <Step title="Run the extraction">
+    Use the prompt pattern below to extract structured data into your template format. For posters, use PosterLens first to convert visual content into structured text before extracting.
+  </Step>
+  <Step title="Verify every value against the source">
+    Open the paper's results tables and check every extracted number side by side. AI commonly transposes values between study arms, confuses ITT and per-protocol populations, or rounds numbers differently from the source. Every value must match exactly.
+  </Step>
+  <Step title="Check completeness">
+    Confirm that all required fields are populated and that no key findings have been omitted. Safety data is frequently under-extracted. If the paper reports it, your extraction should capture it.
+  </Step>
+  <Step title="Repeat for additional papers">
+    When extracting across multiple papers, maintain consistent terminology and units. A hazard ratio in one paper and a relative risk in another need to be labelled accurately, not treated as interchangeable.
+  </Step>
+</Steps>
+
+## Output
+
+A structured data table or summary with one row per study, containing the specified data fields with exact values from the source papers. Every cell should be traceable to a specific location in the source text. The output uses consistent units, terminology, and formatting across all studies.
+
+## Prompt pattern
+
+```
+You are a medical writing data extraction assistant. Extract the following data points from the provided paper into a structured table format.
+
+Data points to extract:
+- Study name / acronym
+- Study design (phase, randomisation, blinding, control)
+- Population (N randomised, key inclusion criteria, demographics)
+- Primary endpoint (definition and result with statistical test, CI, and p-value)
+- Key secondary endpoints (up to 3, with results)
+- Safety summary (overall AE rate, grade ≥3 AE rate, most common AEs, discontinuations due to AEs)
+- Follow-up duration
+- Authors' conclusions
+
+Rules:
+- Extract values exactly as stated in the paper. Do not round, convert, or interpret.
+- If a value is not reported, enter "Not reported."
+- If a result is from a subgroup or post-hoc analysis, label it clearly.
+- Distinguish between ITT, mITT, and per-protocol populations.
+- Flag any value you are uncertain about with [VERIFY].
+
+Paper text:
+[INSERT FULL TEXT]
+```
+
+<Tip>
+**Customisation:** Adjust the data point list for HEOR extractions (add cost, QALY, resource use), safety-focused extractions (expand AE categories), or competitive landscape summaries (add comparator details and head-to-head data).
+</Tip>
+
+## Why this works
+
+AI extracts and structures data from dense clinical papers in minutes, consistently applying the same template across multiple studies. This handles the mechanical work of locating values in results sections, tables, and figures. The human writer verifies every value against the source, resolves ambiguities (which population? which analysis?), and makes the judgement calls about completeness and relevance that the extraction template cannot capture.
+
+## Common mistakes
+
+<AccordionGroup>
+  <Accordion title="Transposed values between study arms">
+    AI assigns the treatment arm's result to the placebo arm, or swaps the hazard ratio direction. This is the most common extraction error and the hardest to catch by reading alone. Verify each value against the specific table or figure in the source paper.
+  </Accordion>
+  <Accordion title="Mixing populations or analysis types">
+    A paper reports both ITT and per-protocol results. AI extracts the per-protocol result but labels it as ITT. If the paper reports multiple analysis populations, confirm which one your extraction captures and label it explicitly.
+  </Accordion>
+  <Accordion title="Under-extracting safety data">
+    AI extracts the efficacy endpoints in full detail but reduces safety to "adverse events were consistent with the known safety profile." If the paper reports specific AE rates, grade ≥3 events, and discontinuation rates, your extraction should capture these numbers.
+  </Accordion>
+  <Accordion title="Inconsistent units across studies">
+    One paper reports median OS in months; another reports it in weeks. AI may not flag this inconsistency. When extracting across multiple papers, standardise units or clearly label them to prevent miscomparison.
+  </Accordion>
+  <Accordion title="Extracting from abstracts instead of full text">
+    Abstracts are often written before final analysis and may contain rounded or preliminary values that differ from the full paper. Always extract from the full publication, not the abstract.
+  </Accordion>
+</AccordionGroup>
+
+## Tool stack
+
+| Tool | Role |
+|---|---|
+| [PosterLens](/tools/posterlens) | Extract structured content from scientific posters before data extraction |
+| [PubCrawl](/tools/pubcrawl) | Find source papers if starting from an indication or research question |
+
+**Alternatives:** [Claude](https://claude.ai) or [ChatGPT](https://chatgpt.com) for structured data extraction from pasted text. [Elicit](https://elicit.com) for extracting and comparing findings across multiple papers.
+
+## Review checklist
+
+<Accordion title="Human review checklist">
+- Every numerical value matches the source paper exactly
+- Values are attributed to the correct study arm and population
+- The analysis population (ITT, mITT, PP) is correctly identified for each result
+- Safety data is extracted with the same detail as efficacy data
+- Subgroup and post-hoc results are clearly labelled
+- Units are consistent across studies (or clearly labelled where they differ)
+- All required template fields are populated
+- "Not reported" is used where data is genuinely absent, not where extraction missed it
+- The extraction is traceable to specific sections of the source paper
+</Accordion>
+
+---
+
+**Next steps:** Use extracted data to [Extract Key Messages](/workflows/extract-key-messages), build an [Evidence Table or Content Outline](/workflows/build-content-outline), or feed into a [Manuscript](/workflows/write-a-manuscript) or [Slide Deck](/workflows/create-medical-slide-deck).

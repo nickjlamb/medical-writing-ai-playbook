@@ -1,0 +1,138 @@
+---
+title: "Write a Manuscript"
+sidebarTitle: "Write a Manuscript"
+description: "Draft a scientific manuscript from study data and references, with AI support for structure, section drafting, and synthesis."
+icon: "pen-line"
+---
+
+<Warning>
+**Risk tier: Medium–High**
+~30 min with AI per section, ~2–3 hours without
+Expert review required. All claims must be verified against source data before submission.
+
+Study data + references → Outline → Section drafting → Synthesis and review → Submission-ready manuscript
+</Warning>
+
+## Best for
+
+- Drafting original research manuscripts from clinical study data
+- Writing review articles or narrative reviews from a defined evidence base
+- Preparing conference papers or short communications
+- Publication support drafting where the medical writer works from a data package and author input
+- Creating first-draft sections (Introduction, Discussion) to accelerate the authoring timeline
+
+## Inputs
+
+- Study data (CSR, data tables, statistical outputs, or published results)
+- Reference library (full text of key citations)
+- Author guidance on narrative direction, key messages, and target journal
+- Target journal author guidelines (word limits, section structure, reference style)
+- Any existing outline or messaging framework
+
+## Steps
+
+<Steps>
+  <Step title="Confirm the outline and narrative">
+    Start from an approved outline or build one using the [Build a Content Outline](/workflows/build-content-outline) workflow. The outline should define what each section covers, which data supports it, and the overall narrative arc. Do not start drafting without an agreed structure.
+  </Step>
+  <Step title="Draft the Methods section">
+    Methods is the most mechanical section and the safest starting point for AI. Provide the study design details and let AI structure them into standard reporting format. Verify against the protocol or CSR, not just the data tables.
+  </Step>
+  <Step title="Draft the Results section">
+    Provide the statistical outputs and data tables. AI structures the results into text, tables, and figure legends. Verify every number. This section has the highest density of values that can be transposed, rounded, or misattributed.
+  </Step>
+  <Step title="Draft the Introduction">
+    Provide the key references and context. AI generates a structured introduction that positions the study within the existing evidence. Check that every contextual claim cites a specific reference and that no background information comes from AI training data.
+  </Step>
+  <Step title="Draft the Discussion">
+    This is the section requiring the most human input. AI can structure the discussion around key findings, but the interpretation, clinical implications, and limitations require author and medical writer judgement. Use AI for a structural first pass, then rewrite substantially.
+  </Step>
+  <Step title="Compile and verify">
+    Assemble all sections. Run [Verify Claims Against References](/workflows/verify-claims-against-references) on the full manuscript. Check internal consistency (do the Results match the Abstract? do the Discussion conclusions match the data?). Confirm the manuscript meets the target journal's guidelines.
+  </Step>
+</Steps>
+
+## Output
+
+A complete manuscript draft in IMRaD format (or journal-specified structure) with all sections populated, data accurately represented, references correctly cited, and internal consistency maintained. The draft is ready for author review and revision, not for submission. No manuscript drafted with AI support should be submitted without thorough author review and sign-off.
+
+## Prompt pattern
+
+```
+You are a medical writing assistant supporting manuscript development. Draft the [SECTION] of a manuscript based on the following materials.
+
+Section to draft: [INSERT: Introduction / Methods / Results / Discussion]
+Target journal: [INSERT journal name and any specific formatting requirements]
+Word limit for this section: [INSERT]
+
+Key points this section should cover:
+[INSERT OUTLINE POINTS FOR THIS SECTION]
+
+Source materials:
+[INSERT RELEVANT DATA, REFERENCES, OR STUDY DETAILS]
+
+Rules:
+- Base all content on the provided source materials only.
+- Reproduce data points exactly as stated in the source.
+- Cite references using numbered superscripts [1], [2], etc.
+- Do not add background information from your training data.
+- If a contextual claim needs a reference you do not have, insert [REF NEEDED].
+- Use formal scientific writing style appropriate for peer-reviewed publication.
+- Flag any content you are uncertain about with [VERIFY].
+```
+
+<Tip>
+**Customisation:** Draft one section at a time for better control. For the Discussion, provide a list of key findings to address and any author-specified interpretation points. For review articles, adjust the prompt to synthesise across multiple sources rather than reporting a single study.
+</Tip>
+
+## Why this works
+
+AI accelerates the mechanical parts of manuscript drafting: structuring Methods from a protocol, converting statistical tables into Results text, and organising Introduction references into a coherent narrative. These are time-consuming tasks where the content is largely determined by the source data. The human writer and authors handle the parts that require scientific judgement: interpreting results, contextualising findings, acknowledging limitations honestly, and ensuring the manuscript tells a coherent story that the data actually supports.
+
+## Common mistakes
+
+<AccordionGroup>
+  <Accordion title="Unsourced claims in the Introduction">
+    AI adds a sentence about disease prevalence or standard of care from its training data, not from a cited reference. Every factual statement in the Introduction must cite a specific source. Insert [REF NEEDED] for any claim that lacks a citation, then find the reference or remove the claim.
+  </Accordion>
+  <Accordion title="Results that do not match the data">
+    AI converts a data table into prose and transposes the treatment and placebo arm results. The Results section has the highest error density in AI-assisted drafts. Verify every number against the original statistical output or data table.
+  </Accordion>
+  <Accordion title="Discussion that overstates findings">
+    AI writes "This study demonstrates that Drug X is superior to standard of care" when the study was powered for non-inferiority. The Discussion must reflect exactly what the data shows, using the same language the statistical analysis supports.
+  </Accordion>
+  <Accordion title="Internal inconsistency across sections">
+    The Abstract reports a different p-value than the Results. The Discussion references a secondary endpoint that is not mentioned in the Results. After assembling all sections, read the manuscript end-to-end and cross-check key values across sections.
+  </Accordion>
+  <Accordion title="Skipping author review">
+    A manuscript drafted with AI support is a working draft, not a finished paper. Authors must review the scientific content, interpretation, and conclusions. The medical writer's role is to produce an accurate, well-structured draft that gives authors a strong starting point for their review.
+  </Accordion>
+</AccordionGroup>
+
+## Tool stack
+
+| Tool | Role |
+|---|---|
+| [RefCheckr](/tools/refcheckr) | Verify that manuscript claims are supported by cited references |
+| [PubCrawl](/tools/pubcrawl) | Find references for the Introduction and Discussion |
+
+**Alternatives:** [Claude](https://claude.ai) or [ChatGPT](https://chatgpt.com) for section drafting from source materials. [Zotero](https://www.zotero.org) or [EndNote](https://endnote.com) for reference management and citation formatting.
+
+## Review checklist
+
+<Accordion title="Human review checklist">
+- Every data point in Results matches the source data exactly
+- Every factual claim in the Introduction cites a specific reference
+- No background information has been added from AI training data
+- The Discussion accurately reflects the strength of the evidence (no overstatement)
+- Limitations are discussed honestly and proportionately
+- Internal consistency across Abstract, Results, and Discussion is confirmed
+- The manuscript meets the target journal's author guidelines (word count, structure, reference format)
+- Author review and input has been obtained on interpretation and conclusions
+- All [VERIFY] and [REF NEEDED] flags have been resolved
+- The manuscript is ready for author sign-off, not just AI-complete
+</Accordion>
+
+---
+
+**Next steps:** Run [Verify Claims Against References](/workflows/verify-claims-against-references) on the full manuscript. If the manuscript includes any content that could be considered promotional, run [Check Promotional Compliance](/workflows/check-promotional-compliance). Complete [Final Human Review](/workflows/final-human-review) before submission.

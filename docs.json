@@ -64,6 +64,7 @@
               "principles/human-in-the-loop",
               "principles/source-grounding",
               "principles/risk-levels",
+              "principles/ai-risk-framework",
               "principles/review-and-accountability"
             ]
           },

@@ -1,0 +1,145 @@
+---
+title: "AI Risk Framework for Medical Writing"
+description: "A practical framework for deciding where AI can assist, where it needs stricter review, and where human authority must remain primary."
+icon: "shield-check"
+---
+
+<Info>
+AI can accelerate structured writing tasks. Clinical interpretation and regulatory judgement remain human responsibilities.
+</Info>
+
+## Purpose
+
+Not all medical writing tasks carry the same risk when AI is involved. Summarising a paper and interpreting a clinical outcome are both "writing," but the consequences of AI getting it wrong are fundamentally different.
+
+This framework helps writers and teams decide:
+- Where AI can assist with relatively low risk
+- Where AI output requires more careful review
+- Where human expertise must remain the primary authority
+
+It complements the playbook's [Risk Levels](/principles/risk-levels) by focusing on the *type* of AI involvement, not just the review intensity.
+
+---
+
+## The framework
+
+Four tiers classify AI use by the impact of error and the degree of human judgement required.
+
+| Tier | Role of AI | Impact if wrong | Human involvement |
+|---|---|---|---|
+| **1. Assistive** | Structure, search, organise | Low — correctable in standard review | Writer reviews and refines |
+| **2. Structured transformation** | Adapt, convert, reformat | Medium — meaning can drift without detection | Detailed review against source |
+| **3. Evidence-critical** | Extract, verify, draft from data | High — incorrect data propagates downstream | Expert verification of every value |
+| **4. Human authority required** | Supporting role only | Very high — regulatory, clinical, or compliance consequence | Human controls the process; AI assists |
+
+### How to read the tiers
+
+AI use becomes higher risk as either:
+- **the impact of being wrong increases** (a transposed HR in a CSR vs. a formatting error in an outline)
+- **the task requires more interpretation** (reporting a number vs. drawing a clinical conclusion from it)
+
+The same workflow can sit in different tiers depending on how AI is used. Outlining a manuscript (Tier 1) is not the same as drafting the Discussion section's interpretation of results (Tier 3–4).
+
+---
+
+## Workflow mapping
+
+Where each playbook workflow sits in the framework. Ranges indicate that the tier depends on how AI is used within the workflow.
+
+| Workflow | Tier | Notes |
+|---|---|---|
+| [Find Evidence](/workflows/find-evidence) | 1 | AI supports search strategy; human selects sources |
+| [Summarise a Paper](/workflows/summarise-source-paper) | 1 | AI structures; human verifies data points |
+| [Congress Summary](/workflows/prepare-congress-or-poster-summary) | 1–2 | Extraction is Tier 1; contextualisation is Tier 2 |
+| [Extract Study Data](/workflows/extract-study-data) | 3 | Every extracted value must be verified against source |
+| [Extract Key Messages](/workflows/extract-key-messages) | 3 | Message framing and evidence strength require expert judgement |
+| [Build an Outline](/workflows/build-content-outline) | 1 | Structural task; low consequence if refined |
+| [Write a Manuscript](/workflows/write-a-manuscript) | 2–3 | Methods/Results drafting is Tier 2; Discussion interpretation is Tier 3–4 |
+| [Draft a Regulatory Document](/workflows/draft-regulatory-document) | 4 | Regulatory wording and interpretation require human authority |
+| [Convert Stats to Narrative](/workflows/convert-stats-to-narrative) | 2–3 | Mechanical conversion is Tier 2; verifying accuracy is Tier 3 |
+| [Create a Slide Deck](/workflows/create-medical-slide-deck) | 2 | Content reformatting with meaning-drift risk |
+| [Adapt for Audiences](/workflows/adapt-for-different-audiences) | 2 | Simplification can change meaning without visible errors |
+| [Plain Language Summary](/workflows/create-plain-language-summary) | 2 | Patient-facing; oversimplification risk |
+| [Verify Claims](/workflows/verify-claims-against-references) | 3 | Verification accuracy has direct downstream impact |
+| [Compliance Check](/workflows/check-promotional-compliance) | 4 | Compliance judgement cannot be delegated to AI |
+| [Check Document Consistency](/workflows/check-document-consistency) | 2 | AI flags candidates; human confirms true inconsistencies |
+| [Repurpose Content](/workflows/repurpose-content-across-channels) | 1–2 | Reformatting is Tier 1; channel-specific adaptation is Tier 2 |
+| [Final Review](/workflows/final-human-review) | 4 | The sign-off is a human responsibility |
+
+These mappings are not absolute. Risk depends on the source material, the context of use, the level of human review applied, and the consequences of error for the specific deliverable.
+
+---
+
+## Review expectations by tier
+
+What human review should look like at each level.
+
+### Tier 1 — Assistive
+
+- Confirm relevance and completeness
+- Verify key data points against sources
+- Check that structure matches the deliverable purpose
+- Standard medical writing review is sufficient
+
+### Tier 2 — Structured transformation
+
+- Detailed comparison between source and output
+- Check for meaning drift, dropped qualifiers, and shifted emphasis
+- Verify that safety information is preserved proportionately
+- Cross-check every clinical claim against the original
+
+### Tier 3 — Evidence-critical
+
+- Expert verification of every numerical value against source data
+- Confirm analysis populations, endpoint definitions, and statistical measures are correctly attributed
+- Verify that no AI-generated interpretation has entered the output
+- Spot-check unflagged content as well as flagged items
+
+### Tier 4 — Human authority required
+
+- Human controls the process from the start; AI assists with specific tasks (formatting, structuring, locating information)
+- Expert review of all wording, interpretation, and conclusions
+- No AI output enters the final deliverable without explicit human approval
+- Formal sign-off by a qualified professional
+
+---
+
+## Where AI should not be the deciding layer
+
+Regardless of tier, AI should not serve as the final authority for:
+
+- **Clinical interpretation** — whether a result is clinically meaningful
+- **Regulatory conclusions** — whether a document meets applicable guidance
+- **Benefit-risk assessment** — weighing efficacy against safety for a specific population
+- **Compliance sign-off** — whether content meets the requirements of a promotional code
+- **Final approval** — the decision that a deliverable is ready for submission, publication, or external use
+
+These decisions require human expertise, accountability, and professional judgement. AI can provide supporting information, but a human must own the conclusion.
+
+---
+
+## Using this framework in practice
+
+**For individual writers:** Before starting an AI-assisted task, identify which tier it falls into. Match your review effort to the tier. If you are unsure, default to the higher tier.
+
+**For team leads:** Use the tiers to set expectations for AI-assisted work across your team. Define which tiers require senior review, which require source cross-checks, and which require formal sign-off.
+
+**For client or stakeholder conversations:** The framework provides a clear, defensible answer to "how do you ensure AI-assisted content is accurate?" You can point to the tier, the review process, and the accountability structure.
+
+**When a task spans multiple tiers:** Many real-world deliverables involve tasks at different tiers. A manuscript has Tier 1 outlining, Tier 2 Methods drafting, and Tier 3–4 Discussion interpretation. Apply the appropriate review to each component, not a single blanket review to the whole document.
+
+---
+
+## Related principles
+
+- [Human-in-the-Loop Decision Making](/principles/human-in-the-loop) — every deliverable has a named owner
+- [Source Grounding](/principles/source-grounding) — every claim traces to a cited source
+- [Risk Levels](/principles/risk-levels) — four tiers defining review intensity
+- [Review and Accountability](/principles/review-and-accountability) — sign-off protocols and audit trails
+
+## Related workflows
+
+- [Verify Claims Against References](/workflows/verify-claims-against-references) — Tier 3 verification in practice
+- [Draft a Regulatory Document](/workflows/draft-regulatory-document) — Tier 4 drafting with human authority
+- [Convert Stats to Narrative](/workflows/convert-stats-to-narrative) — Tier 2–3 mechanical translation
+- [Final Human Review](/workflows/final-human-review) — the Tier 4 sign-off process

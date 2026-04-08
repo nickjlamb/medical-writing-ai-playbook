@@ -72,6 +72,7 @@
             "pages": [
               "workflows/find-evidence",
               "workflows/summarise-source-paper",
+              "workflows/prepare-congress-or-poster-summary",
               "workflows/extract-study-data",
               "workflows/extract-key-messages",
               "workflows/build-content-outline",
@@ -82,7 +83,6 @@
               "workflows/verify-claims-against-references",
               "workflows/check-promotional-compliance",
               "workflows/repurpose-content-across-channels",
-              "workflows/prepare-congress-or-poster-summary",
               "workflows/final-human-review"
             ]
           },

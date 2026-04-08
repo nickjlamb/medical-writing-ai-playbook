@@ -11,6 +11,12 @@
   "appearance": {
     "default": "light"
   },
+  "typography": {
+    "headings": {
+      "fontFamily": "Newsreader",
+      "weight": 600
+    }
+  },
   "topbarLinks": [
     {
       "name": "PharmaTools.AI",

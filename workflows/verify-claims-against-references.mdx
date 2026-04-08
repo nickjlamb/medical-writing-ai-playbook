@@ -31,7 +31,7 @@ Document + references → RefCheckr first pass → Manual review of flags → Sp
     Ensure every verifiable claim has a clear reference citation. Number or label claims if the document does not already do so.
   </Step>
   <Step title="Gather all reference materials">
-    Obtain the full text of every cited reference. Use high-quality, text-searchable PDFs — scanned PDFs with OCR errors cause false flags.
+    Obtain the full text of every cited reference. Use high-quality, text-searchable PDFs. Scanned PDFs with OCR errors cause false flags.
   </Step>
   <Step title="Run automated first-pass verification">
     Use RefCheckr or the prompt pattern below to compare claims against references. This catches numerical mismatches, language strength discrepancies, and missing qualifiers at scale.
@@ -119,7 +119,7 @@ AI excels at the mechanical comparison work — scanning dozens of claim-referen
     A claim is flagged as unsupported because the tool could not match paraphrased language to the reference text. The claim is actually fine. Review every flag against the source before making changes — false positives create unnecessary rework.
   </Accordion>
   <Accordion title="Poor reference PDF quality">
-    A scanned PDF has OCR errors in a results table — the tool reads "p=0.0O3" instead of "p=0.003" and flags a mismatch. Ensure reference PDFs are high-quality, text-searchable copies. Re-scan or obtain publisher PDFs where possible.
+    A scanned PDF has OCR errors in a results table, and the tool reads "p=0.0O3" instead of "p=0.003" and flags a mismatch. Ensure reference PDFs are high-quality, text-searchable copies. Re-scan or obtain publisher PDFs where possible.
   </Accordion>
   <Accordion title="Context-blind verification">
     A claim about response rates is technically supported by the reference, but the document uses it in a comparative context the reference does not support. The tool sees support; the context is misleading. Assess each claim in the context of the full document narrative, not just as isolated pairs.

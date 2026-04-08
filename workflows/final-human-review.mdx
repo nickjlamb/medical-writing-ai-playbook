@@ -33,7 +33,7 @@ Deliverable → Source verification → Compliance screen → Review checklist �
     Before checking details, read the entire piece to assess overall quality, flow, and coherence. Note anything that feels off — then verify systematically.
   </Step>
   <Step title="Check the workflow trail">
-    Review which workflows and AI tools were used. This tells you where to focus your verification effort — AI-generated sections need closer scrutiny.
+    Review which workflows and AI tools were used. This tells you where to focus your verification effort, since AI-generated sections need closer scrutiny.
   </Step>
   <Step title="Verify accuracy against sources">
     Use RefCheckr and manual checking to confirm that every claim, data point, and conclusion is supported by the cited sources. Confirm the right references are cited, not just that claims match their cited references.
@@ -51,7 +51,7 @@ Deliverable → Source verification → Compliance screen → Review checklist �
 
 ## Output
 
-The output is a review decision: Approved, Approved with minor changes (corrections documented), Returned for revision (specific feedback provided), or Rejected (fundamental issues requiring full rework). Good final review produces documented evidence that the deliverable was systematically checked against sources, reviewed for compliance where applicable, and assessed for quality — with a named individual accountable for the outcome.
+The output is a review decision: Approved, Approved with minor changes (corrections documented), Returned for revision (specific feedback provided), or Rejected (fundamental issues requiring full rework). Good final review produces documented evidence that the deliverable was systematically checked against sources, reviewed for compliance where applicable, and assessed for quality, with a named individual accountable for the outcome.
 
 ## Prompt pattern
 
@@ -93,7 +93,7 @@ Final review is fundamentally a human activity — AI supports it but cannot rep
     A reviewer QCs five AI-generated summaries in one session. By the fourth, they scan for flow rather than verifying data points. An incorrect confidence interval passes through into a client slide deck. Use the structured checklist for every review and limit AI-assisted QC to 3 documents per session.
   </Accordion>
   <Accordion title="Over-reliance on automated verification">
-    RefCheckr returns no flags on a manuscript summary. The reviewer concludes reference accuracy is confirmed. But one claim cites the wrong reference entirely — a mismatch the tool did not detect because it checks claims against cited references, not whether the right reference was cited. Automated tools are one layer, not the whole review.
+    RefCheckr returns no flags on a manuscript summary. The reviewer concludes reference accuracy is confirmed. But one claim cites the wrong reference entirely: a mismatch the tool did not detect because it checks claims against cited references, not whether the right reference was cited. Automated tools are one layer, not the whole review.
   </Accordion>
   <Accordion title="Reviewing without full source access">
     The reviewer has the paper's abstract but not the full text. They cannot verify a subgroup result cited in the deliverable. They pass it, assuming it is correct. It is not. Before starting, confirm full-text access to every cited reference.

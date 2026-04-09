@@ -54,6 +54,14 @@ PubCrawl is most relevant at the start of a project, before the core writing wor
 - Finds related papers from a starting reference
 - Supports indication-based and compound-based searches
 
+## How it works
+
+PubCrawl is a [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server. MCP is an open standard created by Anthropic that lets AI assistants call external tools securely.
+
+In practice, this means PubCrawl connects directly to your AI assistant (Claude Desktop, Cursor, or any MCP-compatible client) and gives it real-time access to PubMed, clinical trial registries, prescribing information databases, and more. When you ask a question about a compound, indication, or trial, the AI calls PubCrawl, which queries the live databases and returns structured, verified results with real PMIDs and DOIs.
+
+No API keys required. Install with `npm install -g @pharmatools/pubcrawl` and add it to your client configuration.
+
 ## What it does not do
 
 - **Does not assess study quality.** PubCrawl finds publications; it does not appraise their methodology or assess risk of bias.

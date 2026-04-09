@@ -128,7 +128,8 @@
               "tools/patiently-ai",
               "tools/llmentor",
               "tools/pls-generator",
-              "tools/posterlens"
+              "tools/posterlens",
+              "tools/ecosystem"
             ]
           }
         ]

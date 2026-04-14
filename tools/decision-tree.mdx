@@ -1,7 +1,7 @@
 ---
 title: "Which tool when"
 sidebarTitle: "Which tool when"
-description: "A decision tree for choosing the right AI tool for a medical writing task."
+description: "A decision guide for choosing the right AI tool for a medical writing task."
 icon: "signpost"
 ---
 
@@ -11,68 +11,56 @@ A quick decision aid for picking the right tool for a given medical writing task
 
 Use it as a starting point, not a prescription. Tool choice also depends on your organisation's policies, the sensitivity of the data involved, and your own familiarity with the tool. The writer remains responsible for verifying outputs against the source.
 
-## The decision tree
+## Start here
 
-```mermaid
-flowchart TD
-    Start([What are you trying to do?]) --> Q1{Medical-writing-specific<br/>task?}
+What are you trying to do?
 
-    Q1 -->|Yes| MW{Which task?}
-    Q1 -->|No| Q2{Working with<br/>sources or drafting<br/>from scratch?}
+<CardGroup cols={3}>
+  <Card title="Work with sources" icon="book-open" href="#working-with-sources">
+    You have papers, protocols, or internal documents and need to explore, extract, synthesise, or draft from them.
+  </Card>
+  <Card title="Draft from scratch" icon="pen-line" href="#drafting-from-scratch">
+    You are writing new text, building slides, creating figures, or transcribing spoken content.
+  </Card>
+  <Card title="Medical-writing-specific task" icon="stethoscope" href="#medical-writing-specific-tasks">
+    You need to verify claims, check MLR compliance, generate a plain language summary, or use another MW-specific tool.
+  </Card>
+</CardGroup>
 
-    MW --> MW1[Verify claims against refs<br/>→ RefCheckr]
-    MW --> MW2[MLR compliance check<br/>→ MedCheckr]
-    MW --> MW3[Plain language summary<br/>→ PLS Generator]
-    MW --> MW4[Poster/congress Q&A prep<br/>→ PosterLens]
-    MW --> MW5[Patient-facing content<br/>→ Patiently AI]
-    MW --> MW6[Literature search<br/>→ PubCrawl]
-    MW --> MW7[Tailor text to different<br/>audiences → LLMentor]
+## Working with sources
 
-    Q2 -->|Sources| Q3{What do you need<br/>to do with them?}
-    Q2 -->|Drafting from scratch| Q4{Output type?}
+| Job | Recommended tool | Why | Alternative |
+| --- | --- | --- | --- |
+| Explore or question one or many papers | [NotebookLM](/tools/ecosystem#notebooklm) | Source-grounded Q&A with inline citations back to the document | [Claude](/tools/ecosystem#claude-chatgpt) with uploaded PDFs |
+| Synthesise and draft across multiple sources | [Claude Cowork](/tools/ecosystem#claude-cowork) | Persistent project workspace; strong at cross-document synthesis and outlining | NotebookLM (for Q&A), ChatGPT Projects |
+| Structured extraction and comparison across papers | [Elicit](/tools/ecosystem#elicit) | Extracts predefined fields (population, intervention, outcomes) in a consistent table | Manual extraction in Claude Cowork |
+| Quick research-question framing | [Consensus](/tools/ecosystem#consensus) | Fast sense of what the literature says on a focused question | [Perplexity](/tools/ecosystem#perplexity) |
+| Citation context and sentiment | [Scite.ai](/tools/ecosystem#scite-ai) | Shows whether a paper is supported, contrasted, or mentioned by later work | — |
+| Literature search (MCP-enabled) | [PubCrawl](/tools/pubcrawl) | Structured PubMed search callable from Claude or ChatGPT via MCP | Direct PubMed, Google Scholar |
 
-    Q3 -->|Explore & question papers| T1[NotebookLM]
-    Q3 -->|Structured extraction & comparison| T2[Elicit]
-    Q3 -->|Synthesise & draft across sources| T3[Claude Cowork]
-    Q3 -->|Quick research-question framing| T5[Consensus]
-    Q3 -->|Citation context/sentiment| T6[Scite.ai]
+## Drafting from scratch
 
-    Q4 -->|Text drafting/rewriting| T7[Claude or ChatGPT]
-    Q4 -->|Enterprise Word/PPT| T8[Microsoft Copilot]
-    Q4 -->|Scientific figures| T9[BioRender]
-    Q4 -->|Concept diagrams/slides| T10[Napkin or Gamma]
-    Q4 -->|Transcription of calls| T11[Otter.ai or Fireflies.ai]
-```
+| Job | Recommended tool | Why | Alternative |
+| --- | --- | --- | --- |
+| General text drafting and rewriting | [Claude or ChatGPT](/tools/ecosystem#claude-chatgpt) | Strong writing quality, flexible prompting, long context | Gemini |
+| Enterprise Word and PowerPoint drafting | [Microsoft Copilot](/tools/ecosystem#microsoft-copilot) | In-suite integration that respects M365 tenant boundaries | Claude/ChatGPT with copy-paste |
+| Publication-quality scientific figures | [BioRender](/tools/ecosystem#biorender) | Purpose-built biological illustration library | Adobe Illustrator, PowerPoint |
+| Conceptual diagrams or AI-generated slides | [Napkin](/tools/ecosystem#napkin) or [Gamma](/tools/ecosystem#gamma) | Fast visualisation of concepts or draft decks from text | PowerPoint + Copilot |
+| Transcription of calls, ad boards, KOL interviews | [Otter.ai](/tools/ecosystem#otter-ai) or [Fireflies.ai](/tools/ecosystem#fireflies-ai) | Accurate transcripts with speaker separation and searchable archive | Microsoft Teams native transcription |
 
-## Fast reference
+## Medical-writing-specific tasks
 
-If you already know what you need, jump straight to the tool:
-
-**Working with sources**
-- Exploring and questioning one or many papers → [NotebookLM](/tools/ecosystem#notebooklm)
-- Synthesising and drafting across multiple sources → [Claude Cowork](/tools/ecosystem#claude-cowork)
-- Structured extraction and comparison across papers → [Elicit](/tools/ecosystem#elicit)
-- Framing a research question quickly → [Consensus](/tools/ecosystem#consensus)
-- Checking citation context or sentiment → [Scite.ai](/tools/ecosystem#scite-ai)
-
-**Drafting and output**
-- General text drafting and rewriting → [Claude or ChatGPT](/tools/ecosystem#claude-chatgpt)
-- Enterprise Word/PowerPoint environments → [Microsoft Copilot](/tools/ecosystem#microsoft-copilot)
-- Publication-quality scientific figures → [BioRender](/tools/ecosystem#biorender)
-- Conceptual diagrams or generated slides → [Napkin / Gamma](/tools/ecosystem)
-- Advisory board or KOL transcription → [Otter.ai / Fireflies.ai](/tools/ecosystem)
-
-**Medical-writing-specific tasks**
-- Verify claims against references → [RefCheckr](/tools/refcheckr)
-- MLR compliance check → [MedCheckr](/tools/medcheckr)
-- Plain language summaries → [PLS Generator](/tools/pls-generator)
-- Poster and congress Q&A prep → [PosterLens](/tools/posterlens)
-- Patient-facing content → [Patiently AI](/tools/patiently-ai)
-- Literature search (MCP-enabled) → [PubCrawl](/tools/pubcrawl)
-- Tailor text to different audiences → [LLMentor](/tools/llmentor)
+| Job | Recommended tool | Why |
+| --- | --- | --- |
+| Verify claims against references | [RefCheckr](/tools/refcheckr) | Checks whether each claim is actually supported by the cited source |
+| MLR compliance check | [MedCheckr](/tools/medcheckr) | Reviews copy against promotional compliance expectations before MLR submission |
+| Plain language summaries | [PLS Generator](/tools/pls-generator) | Converts clinical content into compliant, readable lay summaries |
+| Poster and congress Q&A prep | [PosterLens](/tools/posterlens) | Generates anticipated questions and responses from a poster or abstract |
+| Patient-facing content | [Patiently AI](/tools/patiently-ai) | Tailors content to patient audiences with appropriate tone and reading level |
+| Tailor text to different audiences | [LLMentor](/tools/llmentor) | Adapts draft content across HCP, patient, payer, and internal audiences |
 
 ## A note on overlap
 
-Several tools overlap. Perplexity, Consensus, and Elicit all help with literature exploration; Claude and ChatGPT are largely interchangeable for drafting; Napkin and Gamma both generate visual slides. The tree above recommends one starting point per path — switch to an alternative if your organisation already has a preferred tool or a licence in place.
+Several tools overlap. Claude and ChatGPT are largely interchangeable for drafting; Consensus, Perplexity, and Elicit all help with literature exploration; Napkin and Gamma both generate visual slides. The tables recommend one starting point per job — switch to an alternative if your organisation already has a preferred tool or a licence in place.
 
 The more important decision is usually *not* which tool, but whether you are using AI for the right kind of task. See [Risk levels](/principles/risk-levels) and [Human in the loop](/principles/human-in-the-loop) for the principles that should guide that choice.

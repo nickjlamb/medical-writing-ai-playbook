@@ -129,7 +129,8 @@
               "tools/llmentor",
               "tools/pls-generator",
               "tools/posterlens",
-              "tools/ecosystem"
+              "tools/ecosystem",
+              "tools/decision-tree"
             ]
           }
         ]

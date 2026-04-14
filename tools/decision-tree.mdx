@@ -1,0 +1,83 @@
+---
+title: "Which tool when"
+sidebarTitle: "Which tool when"
+description: "A decision tree for choosing the right AI tool for a medical writing task."
+icon: "signpost"
+---
+
+## What this page is
+
+A quick decision aid for picking the right tool for a given medical writing task. It maps common jobs-to-be-done to the tool best suited to them, drawing on both third-party tools and the PharmaTools.AI suite.
+
+Use it as a starting point, not a prescription. Tool choice also depends on your organisation's policies, the sensitivity of the data involved, and your own familiarity with the tool. The writer remains responsible for verifying outputs against the source.
+
+## The decision tree
+
+```mermaid
+flowchart TD
+    Start([What are you trying to do?]) --> Q1{Medical-writing-specific<br/>task?}
+
+    Q1 -->|Yes| MW{Which task?}
+    Q1 -->|No| Q2{Working with<br/>sources or drafting<br/>from scratch?}
+
+    MW --> MW1[Verify claims against refs<br/>→ RefCheckr]
+    MW --> MW2[Check medical accuracy<br/>→ MedCheckr]
+    MW --> MW3[Plain language summary<br/>→ PLS Generator]
+    MW --> MW4[Poster/congress Q&A prep<br/>→ PosterLens]
+    MW --> MW5[Patient-facing content<br/>→ Patiently AI]
+    MW --> MW6[Literature search<br/>→ PubCrawl]
+    MW --> MW7[Learn prompting for MW<br/>→ LLMentor]
+
+    Q2 -->|Sources| Q3{One source<br/>or many?}
+    Q2 -->|Drafting from scratch| Q4{Output type?}
+
+    Q3 -->|One paper| Q3a{Explore or extract?}
+    Q3 -->|Many sources| Q3b{Synthesise or search?}
+
+    Q3a -->|Explore & question| T1[NotebookLM]
+    Q3a -->|Structured extraction| T2[Elicit]
+
+    Q3b -->|Synthesise & draft across| T3[Claude Cowork]
+    Q3b -->|Search & compare papers| T4[Elicit]
+    Q3b -->|Quick question framing| T5[Consensus]
+    Q3b -->|Citation context/sentiment| T6[Scite.ai]
+
+    Q4 -->|Text drafting/rewriting| T7[Claude or ChatGPT]
+    Q4 -->|Enterprise Word/PPT| T8[Microsoft Copilot]
+    Q4 -->|Scientific figures| T9[BioRender]
+    Q4 -->|Concept diagrams/slides| T10[Napkin or Gamma]
+    Q4 -->|Transcription of calls| T11[Otter.ai or Fireflies.ai]
+```
+
+## Fast reference
+
+If you already know what you need, jump straight to the tool:
+
+**Working with sources**
+- One paper, exploring it → [NotebookLM](/tools/ecosystem#notebooklm)
+- Many papers, synthesising across them → [Claude Cowork](/tools/ecosystem#claude-cowork)
+- Structured extraction from multiple papers → [Elicit](/tools/ecosystem#elicit)
+- Framing a research question quickly → [Consensus](/tools/ecosystem#consensus)
+- Checking citation context or sentiment → [Scite.ai](/tools/ecosystem#scite-ai)
+
+**Drafting and output**
+- General text drafting and rewriting → [Claude or ChatGPT](/tools/ecosystem#claude-chatgpt)
+- Enterprise Word/PowerPoint environments → [Microsoft Copilot](/tools/ecosystem#microsoft-copilot)
+- Publication-quality scientific figures → [BioRender](/tools/ecosystem#biorender)
+- Conceptual diagrams or generated slides → [Napkin / Gamma](/tools/ecosystem)
+- Advisory board or KOL transcription → [Otter.ai / Fireflies.ai](/tools/ecosystem)
+
+**Medical-writing-specific tasks**
+- Verify claims against references → [RefCheckr](/tools/refcheckr)
+- Check medical accuracy → [MedCheckr](/tools/medcheckr)
+- Plain language summaries → [PLS Generator](/tools/pls-generator)
+- Poster and congress Q&A prep → [PosterLens](/tools/posterlens)
+- Patient-facing content → [Patiently AI](/tools/patiently-ai)
+- Literature search (MCP-enabled) → [PubCrawl](/tools/pubcrawl)
+- Prompt craft for medical writing → [LLMentor](/tools/llmentor)
+
+## A note on overlap
+
+Several tools overlap. Perplexity, Consensus, and Elicit all help with literature exploration; Claude and ChatGPT are largely interchangeable for drafting; Napkin and Gamma both generate visual slides. The tree above recommends one starting point per path — switch to an alternative if your organisation already has a preferred tool or a licence in place.
+
+The more important decision is usually *not* which tool, but whether you are using AI for the right kind of task. See [Risk levels](/principles/risk-levels) and [Human in the loop](/principles/human-in-the-loop) for the principles that should guide that choice.

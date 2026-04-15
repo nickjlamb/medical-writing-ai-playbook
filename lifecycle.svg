@@ -20,7 +20,7 @@
       .num-text { fill: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; font-size: 16px; font-weight: 700; }
       .title { fill: #0A4F45; font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; font-size: 17px; font-weight: 700; }
       .caption { fill: #0A4F45; font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; font-size: 13px; font-weight: 400; }
-      .icon { stroke: #0F6B5E; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .icon { fill: #0F6B5E; }
     </style>
   </defs>
 
@@ -31,89 +31,78 @@
   <line x1="918" y1="400" x2="728" y2="400" stroke="#16A085" stroke-width="2.5" marker-end="url(#arrow)"/>
   <line x1="478" y1="400" x2="288" y2="400" stroke="#16A085" stroke-width="2.5" marker-end="url(#arrow)"/>
 
-  <!-- Node 1: Evidence -->
+  <!-- Node 1: Evidence (Material: search) -->
   <g transform="translate(40, 60)">
     <rect class="node-bg" width="240" height="180" rx="14"/>
     <circle class="num-bg" cx="28" cy="0" r="20"/>
     <text class="num-text" x="28" y="6" text-anchor="middle">1</text>
-    <g class="icon" transform="translate(120, 60)">
-      <circle cx="-4" cy="-4" r="12"/>
-      <line x1="5" y1="5" x2="13" y2="13"/>
+    <g class="icon" transform="translate(100, 40) scale(1.667)">
+      <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
     </g>
     <text class="title" x="120" y="115" text-anchor="middle">Evidence</text>
     <text class="caption" x="120" y="140" text-anchor="middle">Find and curate</text>
     <text class="caption" x="120" y="157" text-anchor="middle">source material</text>
   </g>
 
-  <!-- Node 2: Insight -->
+  <!-- Node 2: Insight (Material: lightbulb_outline) -->
   <g transform="translate(480, 60)">
     <rect class="node-bg" width="240" height="180" rx="14"/>
     <circle class="num-bg" cx="28" cy="0" r="20"/>
     <text class="num-text" x="28" y="6" text-anchor="middle">2</text>
-    <g class="icon" transform="translate(120, 60)">
-      <path d="M -8 -2 Q -8 -13 0 -13 Q 8 -13 8 -2 Q 8 3 4 7 L 4 11 L -4 11 L -4 7 Q -8 3 -8 -2 Z"/>
-      <line x1="-3" y1="15" x2="3" y2="15"/>
+    <g class="icon" transform="translate(100, 40) scale(1.667)">
+      <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6A4.997 4.997 0 0 1 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"/>
     </g>
     <text class="title" x="120" y="115" text-anchor="middle">Insight</text>
     <text class="caption" x="120" y="140" text-anchor="middle">Extract data</text>
     <text class="caption" x="120" y="157" text-anchor="middle">and key messages</text>
   </g>
 
-  <!-- Node 3: Draft -->
+  <!-- Node 3: Draft (Material: edit) -->
   <g transform="translate(920, 60)">
     <rect class="node-bg" width="240" height="180" rx="14"/>
     <circle class="num-bg" cx="28" cy="0" r="20"/>
     <text class="num-text" x="28" y="6" text-anchor="middle">3</text>
-    <g class="icon" transform="translate(120, 60)">
-      <path d="M -12 12 L 6 -6 L 10 -2 L -8 16 Z"/>
-      <line x1="-12" y1="12" x2="-8" y2="16"/>
-      <line x1="4" y1="-8" x2="8" y2="-4"/>
+    <g class="icon" transform="translate(100, 40) scale(1.667)">
+      <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
     </g>
     <text class="title" x="120" y="115" text-anchor="middle">Draft</text>
     <text class="caption" x="120" y="140" text-anchor="middle">Build structure,</text>
     <text class="caption" x="120" y="157" text-anchor="middle">write content</text>
   </g>
 
-  <!-- Node 4: Adapt -->
+  <!-- Node 4: Adapt (Material: groups) -->
   <g transform="translate(920, 310)">
     <rect class="node-bg" width="240" height="180" rx="14"/>
     <circle class="num-bg" cx="28" cy="0" r="20"/>
     <text class="num-text" x="28" y="6" text-anchor="middle">4</text>
-    <g class="icon" transform="translate(120, 60)">
-      <circle cx="-11" cy="-4" r="4"/>
-      <circle cx="0" cy="-7" r="5"/>
-      <circle cx="11" cy="-4" r="4"/>
-      <path d="M -17 9 Q -17 3 -11 3 Q -5 3 -5 9"/>
-      <path d="M -7 9 Q -7 1 0 1 Q 7 1 7 9"/>
-      <path d="M 5 9 Q 5 3 11 3 Q 17 3 17 9"/>
+    <g class="icon" transform="translate(100, 40) scale(1.667)">
+      <path d="M12 12.75c1.63 0 3.07.39 4.24.9 1.08.48 1.76 1.56 1.76 2.73L18 18H6l.01-1.62c0-1.17.68-2.25 1.76-2.73 1.17-.51 2.6-.9 4.23-.9zM4 13c1.1 0 2-.9 2-2 0-1.1-.9-2-2-2s-2 .9-2 2c0 1.1.9 2 2 2zm1.13 1.1c-.37-.06-.74-.1-1.13-.1-.99 0-1.93.21-2.78.58A2.01 2.01 0 0 0 0 16.43V18l4.5-.01v-1.61c0-.83.23-1.61.63-2.28zM20 13c1.1 0 2-.9 2-2 0-1.1-.9-2-2-2s-2 .9-2 2c0 1.1.9 2 2 2zm4 3.43c0-.81-.48-1.53-1.22-1.85A6.95 6.95 0 0 0 20 14c-.39 0-.76.04-1.13.1.4.67.63 1.45.63 2.28v1.61L24 18v-1.57zM12 6c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z"/>
     </g>
     <text class="title" x="120" y="115" text-anchor="middle">Adapt</text>
     <text class="caption" x="120" y="140" text-anchor="middle">Tailor content</text>
     <text class="caption" x="120" y="157" text-anchor="middle">for each audience</text>
   </g>
 
-  <!-- Node 5: Validate -->
+  <!-- Node 5: Validate (Material: verified) -->
   <g transform="translate(480, 310)">
     <rect class="node-bg" width="240" height="180" rx="14"/>
     <circle class="num-bg" cx="28" cy="0" r="20"/>
     <text class="num-text" x="28" y="6" text-anchor="middle">5</text>
-    <g class="icon" transform="translate(120, 60)">
-      <path d="M -11 -11 L 11 -11 L 11 2 Q 11 11 0 15 Q -11 11 -11 2 Z"/>
-      <path d="M -5 0 L -1 5 L 6 -4"/>
+    <g class="icon" transform="translate(100, 40) scale(1.667)">
+      <path d="M23 12l-2.44-2.78.34-3.68-3.61-.82-1.89-3.18L12 3 8.6 1.54 6.71 4.72l-3.61.81.34 3.68L1 12l2.44 2.78-.34 3.69 3.61.82 1.89 3.18L12 21l3.4 1.46 1.89-3.18 3.61-.82-.34-3.68L23 12zm-12.91 4.72l-3.8-3.81 1.48-1.48 2.32 2.33 5.85-5.87 1.48 1.48-7.33 7.35z"/>
     </g>
     <text class="title" x="120" y="115" text-anchor="middle">Validate</text>
     <text class="caption" x="120" y="140" text-anchor="middle">Verify claims</text>
     <text class="caption" x="120" y="157" text-anchor="middle">and compliance</text>
   </g>
 
-  <!-- Node 6: Deliver -->
+  <!-- Node 6: Deliver (Material: send) -->
   <g transform="translate(40, 310)">
     <rect class="node-bg" width="240" height="180" rx="14"/>
     <circle class="num-bg" cx="28" cy="0" r="20"/>
     <text class="num-text" x="28" y="6" text-anchor="middle">6</text>
-    <g class="icon" transform="translate(120, 60)">
-      <path d="M -15 -2 L 15 -11 L 6 13 L 1 4 L -15 -2 Z"/>
-      <line x1="1" y1="4" x2="15" y2="-11"/>
+    <g class="icon" transform="translate(100, 40) scale(1.667)">
+      <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
     </g>
     <text class="title" x="120" y="115" text-anchor="middle">Deliver</text>
     <text class="caption" x="120" y="140" text-anchor="middle">Final review</text>

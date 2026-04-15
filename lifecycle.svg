@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 540" role="img" aria-label="The medical writing AI workflow lifecycle: Evidence, Insight, Draft, Adapt, Validate, Deliver">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#16A085"/>
+    </marker>
+    <style>
+      .node-bg { fill: #F0F9F6; stroke: #16A085; stroke-width: 1.5; }
+      .num-bg { fill: #0F6B5E; }
+      .num-text { fill: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; font-size: 16px; font-weight: 700; }
+      .title { fill: #0A4F45; font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; font-size: 17px; font-weight: 700; }
+      .caption { fill: #0A4F45; font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; font-size: 13px; font-weight: 400; }
+      .icon { stroke: #0F6B5E; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- Connectors -->
+  <line x1="282" y1="150" x2="472" y2="150" stroke="#16A085" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="722" y1="150" x2="912" y2="150" stroke="#16A085" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M 1040 242 L 1040 308" stroke="#16A085" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <line x1="918" y1="400" x2="728" y2="400" stroke="#16A085" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="478" y1="400" x2="288" y2="400" stroke="#16A085" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- Node 1: Evidence -->
+  <g transform="translate(40, 60)">
+    <rect class="node-bg" width="240" height="180" rx="14"/>
+    <circle class="num-bg" cx="28" cy="0" r="20"/>
+    <text class="num-text" x="28" y="6" text-anchor="middle">1</text>
+    <g class="icon" transform="translate(120, 60)">
+      <circle cx="-4" cy="-4" r="12"/>
+      <line x1="5" y1="5" x2="13" y2="13"/>
+    </g>
+    <text class="title" x="120" y="115" text-anchor="middle">Evidence</text>
+    <text class="caption" x="120" y="140" text-anchor="middle">Find and curate</text>
+    <text class="caption" x="120" y="157" text-anchor="middle">source material</text>
+  </g>
+
+  <!-- Node 2: Insight -->
+  <g transform="translate(480, 60)">
+    <rect class="node-bg" width="240" height="180" rx="14"/>
+    <circle class="num-bg" cx="28" cy="0" r="20"/>
+    <text class="num-text" x="28" y="6" text-anchor="middle">2</text>
+    <g class="icon" transform="translate(120, 60)">
+      <path d="M -8 -2 Q -8 -13 0 -13 Q 8 -13 8 -2 Q 8 3 4 7 L 4 11 L -4 11 L -4 7 Q -8 3 -8 -2 Z"/>
+      <line x1="-3" y1="15" x2="3" y2="15"/>
+    </g>
+    <text class="title" x="120" y="115" text-anchor="middle">Insight</text>
+    <text class="caption" x="120" y="140" text-anchor="middle">Extract data</text>
+    <text class="caption" x="120" y="157" text-anchor="middle">and key messages</text>
+  </g>
+
+  <!-- Node 3: Draft -->
+  <g transform="translate(920, 60)">
+    <rect class="node-bg" width="240" height="180" rx="14"/>
+    <circle class="num-bg" cx="28" cy="0" r="20"/>
+    <text class="num-text" x="28" y="6" text-anchor="middle">3</text>
+    <g class="icon" transform="translate(120, 60)">
+      <path d="M -12 12 L 6 -6 L 10 -2 L -8 16 Z"/>
+      <line x1="-12" y1="12" x2="-8" y2="16"/>
+      <line x1="4" y1="-8" x2="8" y2="-4"/>
+    </g>
+    <text class="title" x="120" y="115" text-anchor="middle">Draft</text>
+    <text class="caption" x="120" y="140" text-anchor="middle">Build structure,</text>
+    <text class="caption" x="120" y="157" text-anchor="middle">write content</text>
+  </g>
+
+  <!-- Node 4: Adapt -->
+  <g transform="translate(920, 310)">
+    <rect class="node-bg" width="240" height="180" rx="14"/>
+    <circle class="num-bg" cx="28" cy="0" r="20"/>
+    <text class="num-text" x="28" y="6" text-anchor="middle">4</text>
+    <g class="icon" transform="translate(120, 60)">
+      <circle cx="-11" cy="-4" r="4"/>
+      <circle cx="0" cy="-7" r="5"/>
+      <circle cx="11" cy="-4" r="4"/>
+      <path d="M -17 9 Q -17 3 -11 3 Q -5 3 -5 9"/>
+      <path d="M -7 9 Q -7 1 0 1 Q 7 1 7 9"/>
+      <path d="M 5 9 Q 5 3 11 3 Q 17 3 17 9"/>
+    </g>
+    <text class="title" x="120" y="115" text-anchor="middle">Adapt</text>
+    <text class="caption" x="120" y="140" text-anchor="middle">Tailor content</text>
+    <text class="caption" x="120" y="157" text-anchor="middle">for each audience</text>
+  </g>
+
+  <!-- Node 5: Validate -->
+  <g transform="translate(480, 310)">
+    <rect class="node-bg" width="240" height="180" rx="14"/>
+    <circle class="num-bg" cx="28" cy="0" r="20"/>
+    <text class="num-text" x="28" y="6" text-anchor="middle">5</text>
+    <g class="icon" transform="translate(120, 60)">
+      <path d="M -11 -11 L 11 -11 L 11 2 Q 11 11 0 15 Q -11 11 -11 2 Z"/>
+      <path d="M -5 0 L -1 5 L 6 -4"/>
+    </g>
+    <text class="title" x="120" y="115" text-anchor="middle">Validate</text>
+    <text class="caption" x="120" y="140" text-anchor="middle">Verify claims</text>
+    <text class="caption" x="120" y="157" text-anchor="middle">and compliance</text>
+  </g>
+
+  <!-- Node 6: Deliver -->
+  <g transform="translate(40, 310)">
+    <rect class="node-bg" width="240" height="180" rx="14"/>
+    <circle class="num-bg" cx="28" cy="0" r="20"/>
+    <text class="num-text" x="28" y="6" text-anchor="middle">6</text>
+    <g class="icon" transform="translate(120, 60)">
+      <path d="M -15 -2 L 15 -11 L 6 13 L 1 4 L -15 -2 Z"/>
+      <line x1="1" y1="4" x2="15" y2="-11"/>
+    </g>
+    <text class="title" x="120" y="115" text-anchor="middle">Deliver</text>
+    <text class="caption" x="120" y="140" text-anchor="middle">Final review</text>
+    <text class="caption" x="120" y="157" text-anchor="middle">and publication</text>
+  </g>
+</svg>

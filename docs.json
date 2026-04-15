@@ -54,6 +54,7 @@
             "pages": [
               "index",
               "start",
+              "about",
               "glossary",
               "changelog"
             ]

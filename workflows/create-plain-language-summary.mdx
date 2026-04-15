@@ -118,6 +118,26 @@ AI rapidly translates dense clinical language into plain terms and structures co
 
 **Alternatives:** [Claude](https://claude.ai) or [ChatGPT](https://chatgpt.com) for general-purpose simplification. PLS Generator and Patiently AI are built specifically for clinical-to-patient translation, including structured PLS formats and regulatory template support.
 
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="How do I stop AI from oversimplifying clinical findings?">
+    Oversimplification usually happens when AI drops qualifiers — "in patients with moderate-to-severe disease," "when added to standard care," "in a subgroup." Prompt the model to preserve every population and context qualifier, then compare the simplified text against the source claim by claim. If meaning has drifted, the simplification has gone too far.
+  </Accordion>
+  <Accordion title="What reading level should a plain language summary target?">
+    Most PLS guidance targets a reading age of 12–14 years (Flesch-Kincaid grade 6–8). Regulatory PLS templates (EMA, sponsor-specific) may specify a level explicitly. AI tools can report reading level, but automated scores miss context — a grade-6 sentence can still be confusing if the concept is unfamiliar.
+  </Accordion>
+  <Accordion title="Can AI translate a PLS between languages?">
+    AI can produce a starting draft in another language, but patient-facing translation requires back-translation, cultural review, and health-literacy checks by a native speaker familiar with patient communication norms. Do not publish a machine-translated PLS without that review.
+  </Accordion>
+  <Accordion title="How do I preserve safety information in a plain language summary?">
+    Safety is the most common casualty of simplification. Check that the PLS keeps safety information proportionate to the source, names the most important risks using patient-friendly language, and does not relegate safety to a single line at the end. If the source gives safety equal weight to efficacy, the PLS should too.
+  </Accordion>
+  <Accordion title="Are there regulatory requirements for plain language summaries?">
+    Yes, for many contexts. EU Clinical Trials Regulation requires a lay summary for trials conducted in the EU. Many journals and sponsors require a PLS alongside publications. Requirements vary on length, structure, language, and review process — always check the applicable template before drafting.
+  </Accordion>
+</AccordionGroup>
+
 ## Review checklist
 
 <Accordion title="Human review checklist">

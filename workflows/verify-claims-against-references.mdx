@@ -139,6 +139,26 @@ AI excels at the mechanical comparison work — scanning dozens of claim-referen
 
 **Complements:** [Scite.ai](https://scite.ai) for citation context analysis (whether a citation supports, contrasts, or merely mentions a claim). [Perplexity](https://www.perplexity.ai) for quick fact-checking and finding source material to verify against. [Zotero](https://www.zotero.org) or [EndNote](https://endnote.com) for managing and organising the reference library. RefCheckr verifies whether claims are supported by cited evidence; Scite adds context on how that evidence treats the claim; Perplexity can help locate evidence; Zotero/EndNote store and organise it.
 
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can AI automatically check whether every claim in a document is supported?">
+    AI can flag likely mismatches at scale, which is valuable for long or multi-reference documents. It cannot confirm that a reference genuinely supports a claim — that still requires a human read of the cited passage. Treat AI verification as a triage layer, not a sign-off.
+  </Accordion>
+  <Accordion title="What's the difference between a reference existing and a reference supporting a claim?">
+    A real reference can still be cited in the wrong context. The paper may discuss the same topic but report a different outcome, a different population, or contradict the claim. Verification means confirming the cited passage says *this specific thing*, not that the paper exists.
+  </Accordion>
+  <Accordion title="How do I handle a claim supported by multiple references?">
+    Check each reference independently against the specific part of the claim it is cited for. If two references are cited together, confirm that each one supports the claim on its own, or that together they cover it without gaps. Unclear attribution is a common source of drift.
+  </Accordion>
+  <Accordion title="Does AI verification replace a fact-check?">
+    No. AI verification catches a substantial share of mismatches quickly, but it does not replace the human fact-check required before sign-off. Use it to make the human review shorter and more focused, not to remove it.
+  </Accordion>
+  <Accordion title="Can AI detect when a reference is cited in the wrong context?">
+    Sometimes. AI can flag when the cited passage reports a different endpoint, population, or outcome than the claim describes. Subtle context errors — a pooled analysis cited for a single-study claim, a post-hoc finding cited as primary — are harder to catch and benefit from expert review.
+  </Accordion>
+</AccordionGroup>
+
 ## Review checklist
 
 <Accordion title="Human review checklist">

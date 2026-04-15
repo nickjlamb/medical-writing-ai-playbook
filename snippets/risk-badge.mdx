@@ -1,0 +1,28 @@
+export const RiskBadge = ({ level = "low" }) => {
+  const styles = {
+    "low":          { bg: "#D1FAE5", fg: "#065F46", label: "Low" },
+    "low-medium":   { bg: "#ECFCCB", fg: "#365314", label: "Low–Medium" },
+    "medium":       { bg: "#FEF3C7", fg: "#854D0E", label: "Medium" },
+    "medium-high":  { bg: "#FFEDD5", fg: "#9A3412", label: "Medium–High" },
+    "high":         { bg: "#FECACA", fg: "#991B1B", label: "High" },
+    "critical":     { bg: "#DC2626", fg: "#FFFFFF", label: "Critical" }
+  };
+  const s = styles[level] || styles.low;
+  return (
+    <span style={{
+      display: "inline-block",
+      backgroundColor: s.bg,
+      color: s.fg,
+      padding: "2px 12px",
+      borderRadius: "999px",
+      fontSize: "0.75rem",
+      fontWeight: 700,
+      letterSpacing: "0.03em",
+      textTransform: "uppercase",
+      verticalAlign: "middle",
+      whiteSpace: "nowrap"
+    }}>
+      Risk tier · {s.label}
+    </span>
+  );
+};

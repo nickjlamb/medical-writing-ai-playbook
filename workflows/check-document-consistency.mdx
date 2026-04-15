@@ -5,8 +5,10 @@ description: "Use AI to flag inconsistencies in patient numbers, endpoint wordin
 icon: "search"
 ---
 
+import { RiskBadge } from '/snippets/risk-badge.mdx';
+
 <Warning>
-**Risk tier: High**
+<RiskBadge level="high" />
 ~15 min with AI, ~60 min without
 AI flags candidate issues. A qualified reviewer must verify each flag and confirm true inconsistencies.
 

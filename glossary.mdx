@@ -13,14 +13,19 @@ Quick reference for abbreviations and terms used across the playbook. Listed alp
 |---|---|
 | **ABPI** | Association of the British Pharmaceutical Industry. UK pharmaceutical industry body whose Code of Practice governs promotional materials. |
 | **AE** | Adverse event. Any undesirable medical occurrence in a patient during a clinical trial, whether or not it is related to the treatment. |
+| **AI agent** | A program that uses a language model to plan and carry out multi-step tasks by calling tools, retrieving information, or acting on behalf of a user. Differs from a simple chatbot in that it takes actions rather than only generating text. |
 | **CI** | Confidence interval. A range of values within which the true treatment effect is expected to fall (e.g., 95% CI: 0.52–0.84). |
+| **Context window** | The amount of text (input plus output) a language model can process in a single call, measured in tokens. A 200,000-token window holds roughly 150,000 words. Sets the limit on how much source material can be provided in one prompt. |
 | **CSR** | Clinical study report. The comprehensive report of a clinical trial, including methods, results, and analysis. Primary source document for many medical writing deliverables. |
 | **DOI** | Digital object identifier. A unique, persistent identifier for published articles (e.g., 10.1000/xyz123). |
+| **Embedding** | A numerical representation of text that captures semantic meaning, used to compare how similar two pieces of text are. Underpins retrieval in RAG systems and semantic search. |
 | **EMA** | European Medicines Agency. The EU regulatory authority responsible for the scientific evaluation and approval of medicines. |
 | **EU CTR** | EU Clinical Trials Regulation. Requires sponsors to publish lay-friendly summaries of trial results. |
 | **EudraCT** | European Clinical Trials Database. The EU register for clinical trials, referenced in regulatory submissions and PLS documents. |
 | **Fair balance** | Regulatory requirement that promotional materials present both benefits and risks of a treatment in a balanced manner. |
 | **FDA** | Food and Drug Administration. The US regulatory authority responsible for approving drugs, biologics, and medical devices. |
+| **Fine-tuning** | Additional training that adapts a general-purpose language model to a specific domain, style, or task using a smaller dataset of examples. |
+| **Hallucination** | AI output that reads plausibly but is factually wrong or invented — a fabricated reference, a misremembered statistic, or a claim with no basis in the source. A primary risk in medical writing. |
 | **HCP** | Healthcare professional. Includes physicians, nurses, pharmacists, and other qualified practitioners. |
 | **HEOR** | Health economics and outcomes research. The discipline focused on the economic value and real-world outcomes of healthcare interventions. |
 | **HR** | Hazard ratio. A measure of relative risk over time, commonly used in survival analysis (e.g., HR 0.67 means 33% risk reduction). |
@@ -30,6 +35,7 @@ Quick reference for abbreviations and terms used across the playbook. Listed alp
 | **IMRAD** | Introduction, Methods, Results, and Discussion. Standard structure for scientific manuscripts. |
 | **ITT** | Intention-to-treat. Analysis that includes all randomised participants regardless of whether they completed the study. The primary analysis in most RCTs. |
 | **KOL** | Key opinion leader. A recognised expert in a therapeutic area, often engaged for advisory boards and speaker programmes. |
+| **LLM** | Large language model. A statistical model trained on large volumes of text that generates language by predicting the next token. GPT, Claude, and Gemini are LLMs. |
 | **MCP** | Model Context Protocol. An open standard created by Anthropic that lets AI assistants call external tools securely. PubCrawl is an MCP server. |
 | **MedDRA** | Medical Dictionary for Regulatory Activities. The standardised medical terminology used in regulatory reporting of adverse events. |
 | **MeSH** | Medical Subject Headings. The controlled vocabulary used by PubMed/MEDLINE to index biomedical literature. |
@@ -37,6 +43,7 @@ Quick reference for abbreviations and terms used across the playbook. Listed alp
 | **MLR** | Medical, Legal, Regulatory review. The formal review process for promotional and medical content before external use. |
 | **MOA** | Mechanism of action. How a drug produces its pharmacological effect. |
 | **MSL** | Medical science liaison. A field-based medical affairs professional who engages with HCPs on scientific and clinical matters. |
+| **Multimodal** | A model or system that can process more than one type of input — typically text plus images, audio, or video. In medical writing, useful for reading figures, tables, or scanned documents. |
 | **NMA** | Network meta-analysis. A statistical method for comparing multiple treatments indirectly through a network of studies. |
 | **OCR** | Optical character recognition. Converts scanned document images to searchable text. Poor OCR quality can cause errors in automated reference checking. |
 | **OR** | Odds ratio. A measure of association between an exposure and an outcome (e.g., OR 1.5 means 50% higher odds). |
@@ -50,8 +57,11 @@ Quick reference for abbreviations and terms used across the playbook. Listed alp
 | **PMID** | PubMed identifier. A unique number assigned to each article indexed in PubMed. |
 | **PP** | Per-protocol. Analysis that includes only participants who completed the study as planned, without major protocol deviations. |
 | **PRISMA** | Preferred Reporting Items for Systematic Reviews and Meta-Analyses. A reporting guideline for systematic reviews. |
+| **Prompt** | The instruction given to a language model. The structure, context, and constraints of a prompt strongly influence output quality. |
+| **Prompt engineering** | The practice of designing prompts to produce reliable, useful output from a language model. Includes setting role, constraints, examples, and output format. |
 | **QALY** | Quality-adjusted life year. A measure of disease burden used in health economics, combining quantity and quality of life. |
 | **QC** | Quality control. The review and verification process applied to deliverables before submission or publication. |
+| **RAG** | Retrieval-augmented generation. A technique where a language model is given relevant documents to draw on when answering, rather than relying only on what it learned during training. Central to source-grounded medical writing systems. |
 | **RCT** | Randomised controlled trial. A study design where participants are randomly assigned to treatment or control groups. |
 | **SAE** | Serious adverse event. An AE that results in death, hospitalisation, disability, or is otherwise medically significant. |
 | **SAP** | Statistical analysis plan. The document specifying the planned statistical analyses for a clinical trial, written before database lock. |
@@ -59,4 +69,6 @@ Quick reference for abbreviations and terms used across the playbook. Listed alp
 | **SmPC** | Summary of Product Characteristics. The EU equivalent of prescribing information. Approved by the EMA or national authority. |
 | **SOP** | Standard operating procedure. Documented internal processes that define how work is conducted within an organisation. |
 | **TFL** | Tables, figures, and listings. The statistical outputs from a clinical trial used as source material for CSR drafting. |
+| **Token** | The unit of text a language model processes, roughly ¾ of a word in English. Input and output length — and API costs — are measured in tokens. |
 | **USPI** | United States Prescribing Information. The FDA-approved product labelling. |
+| **Zero-shot / few-shot** | Prompting styles. Zero-shot gives the model a task with no examples; few-shot includes one or more worked examples. Few-shot often improves accuracy on structured tasks. |

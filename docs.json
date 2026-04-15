@@ -65,6 +65,7 @@
               "principles/source-grounding",
               "principles/risk-levels",
               "principles/ai-risk-framework",
+              "principles/ai-failure-modes",
               "principles/review-and-accountability"
             ]
           },

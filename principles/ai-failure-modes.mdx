@@ -1,0 +1,158 @@
+---
+title: "AI Failure Modes in Medical Writing"
+sidebarTitle: "AI Failure Modes"
+description: "Common ways AI can go wrong when working with scientific evidence, and how to catch them."
+icon: "triangle-alert"
+---
+
+<Info>
+AI can speed up drafting, summarising, and evidence handling. It can also fail in predictable ways. In regulated or scientific contexts, even small errors can matter.
+</Info>
+
+## Why this page exists
+
+AI is a capable collaborator for medical writing. It is not an infallible one. The failures below are the ones that recur in real projects — not hypothetical risks, but the kinds of errors that show up in drafts, summaries, and decks when AI output is accepted without verification.
+
+Recognising these patterns is the first step in catching them. Pairing AI with source checking and human judgement is the second.
+
+---
+
+## The failure modes
+
+<CardGroup cols={2}>
+  <Card title="1. Hallucinated citations" icon="book-x">
+    **What happens:** AI invents a plausible-looking reference — authors, journal, year, PMID — that does not exist.
+
+    **Example:** A draft cites "Patel et al., *Lancet Oncol* 2022;23(4):512–521" to support a survival claim. The paper is not indexed in PubMed. The DOI resolves to nothing.
+
+    **Why it matters:** A fabricated reference that survives into a manuscript, slide, or regulatory document undermines the credibility of every other citation in the deliverable.
+
+    **How to catch it:** Resolve every reference against PubMed, the publisher site, or a DOI. Do not trust the citation because it "looks right."
+  </Card>
+  <Card title="2. Misquoted statistics" icon="percent">
+    **What happens:** A numerical value is slightly wrong — a transposed digit, a wrong confidence interval, a p-value shifted by one decimal, a rounded sample size.
+
+    **Example:** Source: HR 0.72 (95% CI 0.61–0.85). AI output: HR 0.72 (95% CI 0.61–0.58).
+
+    **Why it matters:** Fluent prose makes numerical errors almost invisible on a read-through. Downstream documents inherit the wrong value.
+
+    **How to catch it:** Verify every number against the source table or figure. Do not rely on re-reading the AI output alone.
+  </Card>
+  <Card title="3. Wrong trial arm attribution" icon="shuffle">
+    **What happens:** A result is assigned to the wrong arm, comparator, subgroup, or cohort.
+
+    **Example:** A placebo-arm adverse event rate is described as the active treatment rate. A subgroup response is framed as the ITT result.
+
+    **Why it matters:** The claim may read as scientifically sound while reversing the direction of the evidence.
+
+    **How to catch it:** Cross-check attribution against the source table. Confirm the analysis population for every reported value.
+  </Card>
+  <Card title="4. Endpoint confusion" icon="target">
+    **What happens:** PFS is reported as OS. A secondary endpoint is presented as primary. A biomarker finding is framed as a clinical outcome.
+
+    **Example:** AI writes "the trial demonstrated an overall survival benefit" when the reported result was progression-free survival.
+
+    **Why it matters:** Endpoint confusion changes the clinical meaning of the finding, and in regulated materials it is a fair-balance and accuracy issue.
+
+    **How to catch it:** Confirm endpoint definitions from the protocol or publication. Check primary vs. secondary status before paraphrasing.
+  </Card>
+  <Card title="5. Overstated conclusions" icon="megaphone">
+    **What happens:** Cautious source language is upgraded to something stronger. "Suggests potential benefit" becomes "demonstrates superiority." "Numerically higher" becomes "significantly higher."
+
+    **Example:** A non-significant trend (p=0.08) is summarised as "an improvement in response rate."
+
+    **Why it matters:** The output still reads like scientific writing, but it no longer matches what the evidence supports.
+
+    **How to catch it:** Compare verbs and qualifiers line by line with the source. Watch for the quiet loss of hedging language.
+  </Card>
+  <Card title="6. Data-claim mismatch" icon="unlink">
+    **What happens:** The cited evidence supports one thing; the generated claim describes another.
+
+    **Example:** The reference reports tumour response rate. The AI-written sentence references the same paper to support a survival or quality-of-life claim.
+
+    **Why it matters:** The citation is real, but it does not support the claim. This is harder to spot than a fabricated reference because the reference exists.
+
+    **How to catch it:** For each claim, confirm that the cited source actually supports *that specific statement* — not just the general topic.
+  </Card>
+  <Card title="7. Source conflation" icon="layers">
+    **What happens:** AI blends details from two or more papers or trials into a single clean-sounding summary.
+
+    **Example:** A summary describes "a Phase 3 trial in 842 patients showing a 14-month median PFS" — but the patient number comes from one trial and the PFS from another.
+
+    **Why it matters:** The resulting statement does not describe any real study. Every verification path leads somewhere partially correct, which makes the error easy to miss.
+
+    **How to catch it:** Require one source per claim. If a sentence combines facts from multiple sources, split it.
+  </Card>
+  <Card title="8. Population drift" icon="users">
+    **What happens:** A finding in a specific subgroup or narrow population is rewritten as if it applies more broadly.
+
+    **Example:** A result seen in PD-L1–high patients is described as "patients with advanced NSCLC." A second-line finding is framed as first-line evidence.
+
+    **Why it matters:** The claim generalises beyond the evidence, which is a scientific accuracy issue and, in promotional contexts, a compliance issue.
+
+    **How to catch it:** Confirm the analysis population and line of therapy for every claim. Flag any phrasing that widens the population.
+  </Card>
+  <Card title="9. Missing limitations" icon="scissors">
+    **What happens:** AI produces a tidy summary that drops caveats — small sample size, exploratory analysis, non-significance, immature data, indirect comparison, open-label design.
+
+    **Example:** A summary of an exploratory post-hoc subgroup analysis reads like a pre-specified primary finding.
+
+    **Why it matters:** Removing limitations changes how the evidence should be interpreted, even when every number is correct.
+
+    **How to catch it:** Check whether the source flags the analysis as exploratory, post-hoc, or limited. If it does, the summary must too.
+  </Card>
+  <Card title="10. Compliance-sensitive phrasing drift" icon="scale-balanced">
+    **What happens:** Neutral scientific wording becomes promotional, absolute, unbalanced, or insufficiently qualified.
+
+    **Example:** "Was associated with improved outcomes in this study" becomes "improves outcomes." Safety information shrinks while efficacy language expands.
+
+    **Why it matters:** In regulated materials, phrasing drift can turn a defensible scientific statement into a claim that fails fair-balance or promotional-code review.
+
+    **How to catch it:** Review output against the relevant code (ABPI, PhRMA, local equivalents). Watch for absolute verbs, superlatives, and reduced safety proportionality.
+  </Card>
+</CardGroup>
+
+---
+
+## Summary table
+
+A compact reference for reviewers and reviewers' reviewers.
+
+| Failure mode | Typical risk | Common context | Best check |
+|---|---|---|---|
+| Hallucinated citations | Fabricated reference enters the deliverable | Drafting from prompts without supplied sources | Resolve every reference via PubMed, DOI, or publisher |
+| Misquoted statistics | Wrong numerical value reads as fluent prose | Stats-to-narrative, results summaries | Verify each number against the source table |
+| Wrong trial arm attribution | Result assigned to the wrong arm or population | Multi-arm trials, subgroup results | Cross-check attribution against the source table |
+| Endpoint confusion | Secondary reported as primary; PFS as OS | Oncology summaries, congress content | Confirm endpoint definitions from protocol or publication |
+| Overstated conclusions | Hedged source language upgraded to certainty | Discussion sections, key messages | Line-by-line verb and qualifier check vs. source |
+| Data-claim mismatch | Real citation supporting a different claim | Manuscript drafting, claim libraries | Confirm the cited source supports *this* specific claim |
+| Source conflation | Details blended from multiple studies | Cross-trial summaries, landscape reviews | One source per claim; split blended sentences |
+| Population drift | Narrow finding framed as broad | Adaptation, repurposing, PLS | Confirm analysis population and line of therapy |
+| Missing limitations | Caveats stripped from a tidy summary | Summaries, plain language, slide decks | Check for exploratory, post-hoc, or immature data flags |
+| Compliance-sensitive phrasing drift | Scientific wording becomes promotional | Promotional review, MSL and brand materials | Review against applicable promotional code |
+
+---
+
+## What this does not mean
+
+These failure modes are not a reason to avoid AI in medical writing. They are a reason to pair AI with verification.
+
+The same tools that introduce these errors also make it possible to draft faster, summarise more consistently, and handle larger volumes of evidence than was previously practical. The value does not come from generation alone. It comes from connecting evidence, claims, and verification — keeping the AI inside a workflow where the source is always the ground truth and a human owns the sign-off.
+
+Verification is not an optional extra. In evidence-based medical writing, it is part of the workflow.
+
+---
+
+## Related principles
+
+- [Source Grounding](/principles/source-grounding) — every claim traces to a cited source
+- [Understanding AI Risk](/principles/risk-levels) — why risk varies across tasks
+- [AI Risk Framework](/principles/ai-risk-framework) — tier-based review expectations
+- [Review and Accountability](/principles/review-and-accountability) — sign-off protocols and audit trails
+
+## Related workflows
+
+- [Verify Claims Against References](/workflows/verify-claims-against-references) — claim-by-claim verification
+- [Check Document Consistency](/workflows/check-document-consistency) — catching drift across a document
+- [Check Promotional Compliance](/workflows/check-promotional-compliance) — phrasing and fair-balance review
+- [Final Human Review](/workflows/final-human-review) — the human sign-off step

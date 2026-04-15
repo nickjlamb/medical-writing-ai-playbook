@@ -20,7 +20,7 @@ Recognising these patterns is the first step in catching them. Pairing AI with s
 ## The failure modes
 
 <CardGroup cols={2}>
-  <Card title="1. Hallucinated citations" icon="book-x">
+  <Card title="1. Hallucinated citations" icon="file-circle-xmark">
     **What happens:** AI invents a plausible-looking reference — authors, journal, year, PMID — that does not exist.
 
     **Example:** A draft cites "Patel et al., *Lancet Oncol* 2022;23(4):512–521" to support a survival claim. The paper is not indexed in PubMed. The DOI resolves to nothing.
@@ -47,7 +47,7 @@ Recognising these patterns is the first step in catching them. Pairing AI with s
 
     **How to catch it:** Cross-check attribution against the source table. Confirm the analysis population for every reported value.
   </Card>
-  <Card title="4. Endpoint confusion" icon="target">
+  <Card title="4. Endpoint confusion" icon="bullseye">
     **What happens:** PFS is reported as OS. A secondary endpoint is presented as primary. A biomarker finding is framed as a clinical outcome.
 
     **Example:** AI writes "the trial demonstrated an overall survival benefit" when the reported result was progression-free survival.
@@ -74,7 +74,7 @@ Recognising these patterns is the first step in catching them. Pairing AI with s
 
     **How to catch it:** For each claim, confirm that the cited source actually supports *that specific statement* — not just the general topic.
   </Card>
-  <Card title="7. Source conflation" icon="layers">
+  <Card title="7. Source conflation" icon="layer-group">
     **What happens:** AI blends details from two or more papers or trials into a single clean-sounding summary.
 
     **Example:** A summary describes "a Phase 3 trial in 842 patients showing a 14-month median PFS" — but the patient number comes from one trial and the PFS from another.

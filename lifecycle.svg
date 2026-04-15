@@ -3,8 +3,19 @@
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#16A085"/>
     </marker>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+      <feOffset dx="0" dy="3" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.18"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
     <style>
-      .node-bg { fill: #F0F9F6; stroke: #16A085; stroke-width: 1.5; }
+      .node-bg { fill: #FFFFFF; stroke: #E5E7EB; stroke-width: 1; filter: url(#cardShadow); }
       .num-bg { fill: #0F6B5E; }
       .num-text { fill: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; font-size: 16px; font-weight: 700; }
       .title { fill: #0A4F45; font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; font-size: 17px; font-weight: 700; }

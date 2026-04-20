@@ -90,7 +90,8 @@
                   "workflows/write-a-manuscript",
                   "workflows/draft-regulatory-document",
                   "workflows/convert-stats-to-narrative",
-                  "workflows/create-medical-slide-deck"
+                  "workflows/create-medical-slide-deck",
+                  "workflows/generate-concept-visuals"
                 ]
               },
               {

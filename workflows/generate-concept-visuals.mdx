@@ -1,0 +1,177 @@
+---
+title: "Generate Concept Visuals with AI"
+sidebarTitle: "Generate Concept Visuals"
+description: "Use AI image generation for conceptual figures, visual abstracts, slide visuals, and social graphics — with the guardrails medical content requires."
+icon: "image"
+---
+
+import { RiskBadge } from '/snippets/risk-badge.mdx';
+
+<Info>
+<RiskBadge level="medium" />
+~5–15 min per visual with AI vs. ~hours with a designer (for early concept mockups)
+Enhanced review required. Compliance and brand review needed for anything external-facing.
+
+Concept brief → Prompt → Generate → Select and refine → Review for accuracy and compliance
+</Info>
+
+## What this is
+
+Generative image tools — **Nano Banana 2** (Google), **Midjourney**, and similar — can produce finished-looking imagery from text prompts in seconds. For medical writers, that opens up four practical uses:
+
+- **Conceptual figures** that illustrate an idea (mechanism framing, patient journey moments, abstract metaphors) where a literal scientific figure is not required
+- **Visual abstracts** for social and internal sharing where the graphic supports messaging rather than carries the primary data
+- **Slide visuals** — background imagery, section dividers, opening-slide hero images, unbranded placeholder visuals
+- **Social graphics** for internal comms, congress teaser posts, or brand-led awareness content
+
+It is not a replacement for BioRender, a medical illustrator, or a qualified designer on regulated deliverables. It is a way to get from "I can picture what this should feel like" to "here is a version we can brief against" without a full design cycle.
+
+## Best for
+
+- Early-stage concept mockups before a designer or illustrator is engaged
+- Internal presentations, town halls, and training material where imagery sets tone rather than conveys data
+- Visual abstracts on social platforms that foreground messaging, not mechanism detail
+- Brainstorming visual directions for a campaign or launch
+- Pitch decks and new business proposals
+- Stock-image replacement where licensed imagery is too generic or too expensive
+
+## Inputs
+
+- A clear concept brief: what should the image communicate, to whom, in what setting
+- Tone and style references (realistic, illustrative, abstract, photographic, editorial)
+- Brand parameters where they apply: palette, mood, any visual do-not-use list
+- Format and aspect ratio (social square, 16:9 slide, 4:5 portrait for LinkedIn, etc.)
+- A working list of what the image must **not** show (specific drug names, patient likenesses, logos, any element that would imply a regulated claim)
+
+## Tools
+
+| Tool | Strengths | When to reach for it |
+|---|---|---|
+| [**Nano Banana 2**](https://gemini.google.com) (Google) | Strong prompt adherence, in-image text rendering, native editing, tight integration with Gemini workflows | When you need text inside the image (labels, teaser copy), iterative refinement, or a free tier for quick concepting |
+| [**Midjourney**](https://midjourney.com) | Distinctive aesthetic quality, strong on illustration and editorial imagery, deep control over style | When the image needs to look like finished creative work, or when you are exploring a visual direction rather than a literal scene |
+| [**ChatGPT image generation**](https://chatgpt.com) | Conversational iteration, decent text rendering, integrates directly into a writing workflow | When you want to stay in one tool across text and image |
+| [**Adobe Firefly**](https://firefly.adobe.com) | Trained on licensed content, commercial-use friendly in many pharma environments | When your organisation's legal or procurement team restricts AI image tools to commercially-safe sources |
+
+**A note on rights and provenance.** Check your organisation's policy before using any AI-generated image externally. Some tools offer indemnification; others do not. Some output includes C2PA provenance metadata; most does not yet.
+
+## Prompting patterns
+
+AI image prompts do not work like text prompts. Short descriptive phrases, stacked modifiers, and explicit style cues outperform long paragraphs.
+
+### Pattern 1 — Conceptual figure
+
+```
+A clean, editorial illustration of [concept, e.g., "a patient journey across
+three care settings"]. Flat vector style, muted medical palette (teal, slate,
+warm off-white), no text, centred composition, generous white space, 16:9 aspect.
+```
+
+### Pattern 2 — Visual abstract hero
+
+```
+Soft, photographic image evoking [concept, e.g., "early detection and reassurance"].
+Natural light, shallow depth of field, calm tone, no people's faces visible,
+no medical devices, no logos or text. Editorial health-tech feel. 4:5 portrait.
+```
+
+### Pattern 3 — Slide divider or section opener
+
+```
+Abstract geometric background suggesting [concept, e.g., "data flowing through a
+pathway"]. Minimalist, brand-palette-friendly (deep teal, cream accents), low
+contrast so text can overlay, 16:9.
+```
+
+### Pattern 4 — Social graphic with in-image text
+
+(Nano Banana 2, ChatGPT, and Firefly handle in-image text better than Midjourney.)
+
+```
+Square social graphic for LinkedIn. Headline text: "What does remission really
+mean?" Small subhead: "A series on long-term outcomes". Editorial illustration
+style, off-white background, muted accent colour, no stock-photo look.
+```
+
+### Refinement tips
+
+- Name what you want to **exclude** (`no text`, `no people`, `no medical devices`) — it helps more than listing only what you want to include
+- Iterate in pairs: generate two variants, pick the closer one, refine from there
+- Use reference images where the tool supports them — a mood board beats a paragraph of adjectives
+- Keep a "prompt log" alongside the image so you can reproduce, audit, or hand it off
+
+## Reality check
+
+AI-generated images look polished, which is exactly what makes them risky in medical content. A plausible-looking image is not a verified one.
+
+<Warning>
+AI-generated images are useful for **concept communication**. They must not be used as:
+
+- **Exact scientific figures** — mechanism of action diagrams, anatomy, molecular structures, dose-response curves, or anything where biological accuracy matters. AI will invent plausible-looking but wrong anatomy, receptor placement, cell types, and molecular geometry. Use [BioRender](https://www.biorender.com) or a medical illustrator.
+- **Data visualisations** without verification — AI can generate chart-shaped images that are not built from real data. If a number or trend is visible in the image, it is not a data visualisation, it is a decorative graphic that looks like one. Build real charts from real data.
+- **Regulatory-facing materials** without review — any image attached to regulatory correspondence, labelling, promotional material subject to MLR, or patient-facing content subject to health literacy review, must go through the same review process as the text it accompanies. Compliance and brand approvers need to see the final image, not the concept.
+- **Patient depictions implying clinical outcomes** — an AI-generated "happy patient" image in a treatment context can imply benefit. Treat patient imagery in regulated contexts with the same care as a claim.
+- **Real people, real places, real products** — do not prompt with named HCPs, identifiable patients, competitor branding, or specific-product likenesses. This is a rights and compliance issue before it is an accuracy one.
+</Warning>
+
+## Review checklist
+
+<Accordion title="Human review checklist">
+- The image communicates a concept, not a scientific claim
+- No invented anatomy, biology, or molecular detail is visible
+- Any in-image text is spelled correctly and says what was intended
+- No real people, patients, HCPs, or identifiable locations appear
+- No competitor or unauthorised logos, packaging, or trade dress
+- Brand palette, tone, and style guidelines are met
+- For anything external: MLR, compliance, and brand have reviewed the final image
+- For patient-facing: health literacy review has seen the final image in context
+- Rights, licensing, and AI-disclosure requirements for the destination channel are met
+- The prompt, tool, and date of generation are logged alongside the asset
+</Accordion>
+
+## Why this works
+
+Image generation collapses the cost of the first visual draft to near zero. That changes what a medical writer can bring to a kickoff, a brief, or a concepting meeting — a rough but coherent visual alongside the messaging, rather than a text-only brief that a designer must decode. The designer still owns production; the writer gets to propose.
+
+What it does not change is accountability. The writer, the designer, and the review chain remain responsible for every image that leaves the desk. AI shortens the path to the concept; it does not shorten the path through review.
+
+## Common mistakes
+
+<AccordionGroup>
+  <Accordion title="Using an AI image as a scientific figure">
+    The most common failure. An editorial-looking "cell signalling" image gets dropped into a slide because it looks good and time is short. A reviewer catches it — or worse, does not. If the image depicts biology, it needs a medical illustrator or BioRender, not a generative model.
+  </Accordion>
+  <Accordion title="Treating chart-shaped output as a data visualisation">
+    The AI generates something that looks like a bar chart or Kaplan-Meier curve, and the numbers are invented. The moment an image implies data, it needs to be rebuilt from a real source. Decorative graphs are worse than no graph at all.
+  </Accordion>
+  <Accordion title="Skipping MLR because the image is "just a visual"">
+    Visuals in regulated material are in scope for MLR the same way copy is. An image that implies efficacy, safety, or a patient benefit is a claim, even without text. Route it through review.
+  </Accordion>
+  <Accordion title="Not logging the prompt and tool">
+    A stakeholder asks "where did this come from?" six months later and there is no answer. Log the tool, prompt, date, and any reference images. The review trail applies to visuals too.
+  </Accordion>
+  <Accordion title="Prompting with named people, patients, or competitor products">
+    A quick "make this look like [named HCP] presenting at ASCO" prompt is a rights problem before it is a compliance one. Prompt abstractly; keep identifiable people, places, and products out.
+  </Accordion>
+  <Accordion title="Ignoring in-image text quality">
+    AI-generated text inside images has improved but still misspells, duplicates letters, or mangles punctuation. Always zoom in and proofread every character before sharing.
+  </Accordion>
+</AccordionGroup>
+
+## Tool stack
+
+| Tool | Role |
+|---|---|
+| [Nano Banana 2](https://gemini.google.com) | Concept images and visuals with in-image text |
+| [Midjourney](https://midjourney.com) | Editorial and illustrative concept imagery |
+| [BioRender](https://www.biorender.com) | Publication-quality biological and mechanism figures (not AI image generation — the right tool when accuracy matters) |
+| [Claude Design](/tools/ecosystem#claude-design) | Assembling generated imagery into leavepieces, slides, and pitch deck layouts |
+
+**Alternatives:** [ChatGPT image generation](https://chatgpt.com) for in-flow generation alongside writing. [Adobe Firefly](https://firefly.adobe.com) where commercial-use provenance is required by procurement or legal.
+
+---
+
+**Next steps:** For external-facing concepts, route the final image through [Check Promotional Compliance](/workflows/check-promotional-compliance). For assembling generated imagery into layouts, see [Claude Design](/tools/ecosystem#claude-design). For repurposing across channels, see [Repurpose Content Across Channels](/workflows/repurpose-content-across-channels).
+
+---
+
+*Last reviewed: 20 April 2026*

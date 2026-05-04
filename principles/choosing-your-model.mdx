@@ -1,0 +1,159 @@
+---
+title: "Choosing Your Model"
+description: "When to reach for a reasoning model, when a standard LLM is enough, and how to match model choice to the task in front of you."
+icon: "list-checks"
+---
+
+## Core principle
+
+Match the model to the cognitive demand of the task. The right choice is rarely "the most capable model available" — it is the model whose strengths fit the work, given the cost, latency, and verifiability you need. Most medical writing tasks are well-served by a standard general-purpose LLM. A small but important subset benefits materially from a reasoning model. A few are made worse by one.
+
+---
+
+## Why this matters now
+
+Through 2024–2025, the AI model landscape stopped being one-dimensional. Where "use ChatGPT" or "use Claude" was once a sufficient choice, medical writers now face a real selection question across at least three categories:
+
+- **Standard general-purpose LLMs** (Claude Sonnet, GPT-4-class, Gemini Pro) — fast, single-pass, well-suited to drafting, summarising, and editing
+- **Reasoning models** (Claude with extended thinking, OpenAI o-series, DeepSeek R1) — slower and more expensive, but explicitly "think" through problems before responding
+- **Frontier models** (the most capable models at any given time, e.g. Claude Opus 4.X) — highest quality, highest cost, longest latency
+
+The right choice depends on what the task actually demands. Defaulting to the most capable model wastes budget on tasks that don't need it, and defaulting to a cheap one fails on tasks that do.
+
+---
+
+## The three model classes (and where each shines)
+
+| Class | Strengths | Weaknesses | Best for |
+|---|---|---|---|
+| **Standard LLM** | Fast, low cost, good prose | Can miss multi-step errors; weaker at planning | Drafting, summarising, translation, editing |
+| **Reasoning model** | Explicit step-by-step reasoning; better at verification, planning, and complex synthesis | Higher cost, longer latency; can fabricate within reasoning chains | Multi-step verification, complex evidence synthesis, closed-loop workflows |
+| **Frontier model** | Highest output quality, broadest capability | Highest cost, slower, sometimes overkill | High-stakes deliverables where quality justifies the spend |
+
+These are not mutually exclusive — many real workflows mix model classes (a reasoning model for the hard step, a standard model for everything else).
+
+---
+
+## When to reach for a reasoning model
+
+<AccordionGroup>
+  <Accordion title="Multi-step verification">
+    Anywhere a task involves "do X, then check X against Y, then revise based on the check" — reasoning models materially outperform standard ones because they hold the steps and constraints in their working memory. The closed-loop pattern in [RefCheckr](/tools/refcheckr) is a clear example: verify a claim, rewrite if it doesn't match, re-verify the rewrite, check compliance.
+  </Accordion>
+  <Accordion title="Complex evidence synthesis">
+    When you need to compare findings across multiple studies, reconcile conflicting data, or trace a claim through a chain of references, reasoning models do the bookkeeping more reliably. Useful for systematic literature review tasks, comparative effectiveness narratives, and benefit-risk assessments.
+  </Accordion>
+  <Accordion title="Planning and decomposition">
+    Tasks like "given this brief, what sections does the deliverable need, what evidence does each section require, and what is the right order?" benefit from a model that can plan before writing. Useful at the outline stage, less useful at the draft stage.
+  </Accordion>
+  <Accordion title="Tasks where small errors compound">
+    Statistical narratives, regulatory text, claim chains. If one wrong number cascades into wrong conclusions, the cost of an undetected error is high. Reasoning models reduce that risk; closed-loop workflows reduce it further.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## When a reasoning model is overkill (or worse)
+
+<AccordionGroup>
+  <Accordion title="Single-pass drafting from approved source">
+    If the task is "rewrite this paragraph in publication style" or "draft a slide title from this finding", a standard model is faster, cheaper, and produces output of equivalent quality. Reasoning models add latency without adding value.
+  </Accordion>
+  <Accordion title="High-volume, low-stakes work">
+    Generating 50 social media variants, drafting 30 caption candidates, or producing a first pass on routine email copy. Standard model. Cost per output dominates here.
+  </Accordion>
+  <Accordion title="Translation and adaptation">
+    Translating between languages, or adapting HCP content for patients, is a transformation task — not a reasoning task. Standard models handle it well; reasoning models tend to over-think and produce stilted output.
+  </Accordion>
+  <Accordion title="When you can't verify the reasoning chain">
+    Reasoning models can fabricate within their reasoning chains — citing fake papers in their internal "thinking" or building a plausible chain to a wrong conclusion. If you cannot verify the reasoning trace, the assurance a reasoning model offers is partly illusory. Pair reasoning models with explicit verification (closed-loop, source grounding) or use a standard model and verify the final output directly.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## The cost / quality / latency triangle
+
+| | Standard LLM | Reasoning model | Frontier model |
+|---|---|---|---|
+| **Cost per output** | $ | $$$ | $$$$ |
+| **Latency** | Seconds | Tens of seconds to minutes | Seconds to minutes |
+| **Quality on simple tasks** | High | High (overkill) | High (overkill) |
+| **Quality on complex tasks** | Variable | Higher | Highest |
+| **Best paired with** | Source grounding + human review | Closed-loop verification | High-stakes, low-volume work |
+
+You usually pick two of {cost, quality, latency} — almost never all three. Knowing which two the task requires is the actual decision.
+
+---
+
+## A practical decision matrix
+
+| Task | Suggested model | Why |
+|---|---|---|
+| Draft a Discussion section from study results | Standard | Single-pass prose generation |
+| Summarise a 30-page paper | Standard with long context | Transformation, not reasoning |
+| Convert a CSR section into a plain-language summary | Standard | Translation/adaptation task |
+| Verify claims against cited references | Reasoning (closed-loop) | Multi-step, errors compound |
+| Build an evidence narrative across 8 studies | Reasoning | Complex synthesis |
+| Generate slide titles from key messages | Standard | Routine generation |
+| Draft a regulatory document outline | Reasoning | Planning task |
+| Polish prose for journal style | Standard | Editing transformation |
+| Pre-screen promotional content for compliance signals | Standard with structured prompt or reasoning if findings are nuanced | Pattern-matching is single-pass; nuanced cases benefit from reasoning |
+| Run a closed-loop verify-fix-recheck workflow | Reasoning | The point of the loop is the multi-step thinking |
+
+---
+
+## Worked example: choosing a model for a manuscript workflow
+
+A typical manuscript project might use multiple model classes across its stages:
+
+| Stage | Model class | Reason |
+|---|---|---|
+| Outline from key messages and source paper | Reasoning | Planning task; benefits from explicit decomposition |
+| Section-by-section drafting | Standard | Generation from clear instructions |
+| Reference verification (via [RefCheckr](/tools/refcheckr)) | Reasoning (in closed loop) | Multi-step verification |
+| Style polishing for journal | Standard | Editing transformation |
+| Final claim-vs-source check | Reasoning (in closed loop) | High stakes, errors compound |
+
+The same project does *not* require the same model for every step. Cost-efficient workflows mix classes deliberately.
+
+---
+
+## Common mistakes
+
+<AccordionGroup>
+  <Accordion title="Defaulting to the most capable model for every task">
+    "Use the best model" is a heuristic that wastes budget and adds latency on tasks that don't need it. The best model for a slide title is rarely the same as the best model for a benefit-risk synthesis.
+  </Accordion>
+  <Accordion title="Trusting reasoning chains as evidence">
+    A reasoning model's "thinking" is not a verification of correctness — it's a model of how the model reached its answer. The thinking can be fluent and wrong. Treat reasoning chains as useful introspection, not as proof.
+  </Accordion>
+  <Accordion title="Ignoring latency in user-facing workflows">
+    A reasoning model that takes 90 seconds to answer is fine for a back-end QC pipeline; it can be unworkable for an interactive tool a writer is using turn-by-turn. The model class has to match the workflow shape.
+  </Accordion>
+  <Accordion title="Forgetting that model class is a moving target">
+    Today's frontier model is next year's standard model. The decision framework is durable; the specific model names are not. Re-evaluate periodically.
+  </Accordion>
+  <Accordion title="Using a single model class for an entire pipeline">
+    Most medical writing pipelines benefit from a mix: standard for drafting, reasoning for verification, standard for polishing. Single-class pipelines either underspend on the hard steps or overspend on the easy ones.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## How this connects to other playbook principles
+
+- **[Risk levels](/principles/risk-levels):** Higher-risk work generally justifies a more capable model, but not always — the playbook's risk tier tells you *how much review* is required; this principle tells you *which model* fits the task.
+- **[AI failure modes](/principles/ai-failure-modes):** Different model classes fail differently. Standard LLMs miss multi-step errors; reasoning models can fabricate within their chains. Knowing the failure mode helps the choice.
+- **[Source grounding](/principles/source-grounding):** Source grounding constrains what the model can claim; it does not change which model you choose. Both apply.
+- **[Review and accountability](/principles/review-and-accountability):** Document which model class was used for which step, the same way you document which workflow was followed. This is part of the audit trail.
+
+---
+
+## The bottom line
+
+The right model is the one whose strengths match the cognitive demand of the task — not the most capable model on offer. Standard LLMs handle most drafting, summarising, and editing. Reasoning models earn their keep on multi-step verification, complex synthesis, and planning. Frontier models are worth the cost on high-stakes, low-volume work. Most useful workflows mix classes deliberately. Default to the cheapest model that produces verifiable, correct output for the task; reach higher only when the task demands it.
+
+---
+
+*Last reviewed: 4 May 2026 · 7 min read*

@@ -145,6 +145,12 @@
               "tools/ecosystem",
               "tools/decision-tree"
             ]
+          },
+          {
+            "group": "Templates",
+            "pages": [
+              "templates/disclosure-language"
+            ]
           }
         ]
       }

@@ -5,6 +5,17 @@ description: "Version history and updates to the Medical Writing AI Playbook."
 icon: "list-check"
 ---
 
+## v2.3 — 4 May 2026
+
+- **Five new Principles pages** covering the 2025–26 AI landscape:
+  - **[Declaring AI Use](/principles/declaring-ai-use)** — journal, regulator, and sponsor disclosure expectations, with mid-2026 policy snapshot for ICMJE, NEJM, Lancet, JAMA Network, BMJ, Nature, Science/AAAS, and WAME (each linked to the publisher's actual AI policy page)
+  - **[AI Regulation in Pharma](/principles/ai-regulation)** — the EU AI Act's risk-tier system, Article 50 transparency obligations, foundation model provider obligations, with brief notes on FDA, EMA, MHRA, WHO, PMDA, and NMPA frameworks
+  - **[Choosing Your Model](/principles/choosing-your-model)** — when to reach for a reasoning model vs. a standard LLM vs. a frontier model, with a practical decision matrix and a worked example of mixing model classes across a manuscript workflow
+  - **[Agentic Workflows](/principles/agentic-workflows)** — generalising the closed-loop pattern (RefCheckr) to other agent applications, with five agent patterns and the failure modes specific to agentic systems
+  - **[AI in Peer Review](/principles/ai-in-peer-review)** — what publishers run on submissions before peer review, where the screens work well vs. where they don't, and a pre-submission QC checklist
+- **Glossary expanded** with twelve recent AI terms — Computer use, Frontier model, Grounding, Guardrails, Harness, Human-in-the-loop (HITL), Open-loop AI, Prompt injection, Reasoning model, Skill, System prompt, and Tool use
+- **Homepage hero** added — gradient-background block with the playbook headline, subtitle, and primary/secondary CTAs replacing the previous doc-page intro; auto-rendered title suppressed via project-level CSS scoped to the homepage only
+
 ## v2.24 — 4 May 2026
 
 - **RefCheckr rearchitected as closed-loop AI** — RefCheckr now runs a Verify (Perplexity) → Fix (Claude) → Re-check (Perplexity + MedCheckr ABPI compliance) loop, re-running on failure. It no longer just flags mismatches: it rewrites claims using only evidence from the paper (with guardrails — no new numbers, no new endpoints, no stronger language) and re-verifies the rewrite before returning it

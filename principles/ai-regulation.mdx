@@ -1,0 +1,170 @@
+---
+title: "AI Regulation in Pharma"
+description: "How the EU AI Act and other regulatory frameworks shape AI use in medical writing — what counts as high-risk, what doesn't, and how to assess your tools."
+icon: "scale-balanced"
+---
+
+## Core principle
+
+AI regulation is no longer optional or aspirational. It is an emerging compliance layer sitting on top of the existing GxP, MLR, and journal-disclosure expectations medical writers already work within. The practical question for any AI tool you use is: which regulatory tier does it sit in, and what obligations does that create?
+
+This page is informational, not legal advice. For specific compliance decisions affecting submissions, promotional content, or regulated workflows, escalate to your organisation's regulatory affairs and legal teams.
+
+---
+
+## Why this matters now
+
+The **[EU AI Act](https://artificialintelligenceact.eu/)** is the most far-reaching AI regulation currently in force. Adopted in 2024, it began phasing into effect from February 2025 and will be largely operational by August 2026, with high-risk AI provisions following in August 2027.
+
+It applies extraterritorially. EU-based pharma operations are obviously in scope, but so is any AI-assisted output that reaches EU patients, EU healthcare professionals, or EU regulatory submissions — which covers most globally distributed pharma communications.
+
+The standards the EU AI Act establishes are also increasingly being mirrored by other regulators (FDA, MHRA, EMA), so even non-EU-bound work tends to converge on the same expectations within 12–24 months.
+
+---
+
+## The EU AI Act tier system
+
+The Act categorises AI by the risk it poses, with corresponding obligations:
+
+| Tier | Definition | Typical examples in medical writing |
+|---|---|---|
+| **Prohibited** | Uses banned outright (manipulation, social scoring, real-time biometric ID) | Generally not applicable to medical writing |
+| **High-risk** | AI used in safety-critical decisions or as a medical device | AI in clinical decision support, pharmacovigilance signal triage, AI medical devices |
+| **Limited-risk** | AI subject to transparency obligations | **Most medical writing AI sits here** — drafting, summarising, translating, generating content |
+| **Minimal-risk** | Routine AI with no specific Act obligations | Spell-check, basic search, grammar correction |
+
+For medical writers, the practical takeaway is that almost all generative AI used in writing workflows falls under **limited-risk** transparency obligations, not high-risk obligations. But the boundary is real, and it matters: as soon as AI is making or directly informing a clinical or safety decision, it crosses into high-risk territory and a different compliance regime applies.
+
+---
+
+## Transparency obligations (Article 50)
+
+Limited-risk AI carries specific transparency duties that affect day-to-day medical writing:
+
+- **Users must know they're interacting with AI** — relevant for any chatbot or interactive AI tool deployed to HCPs or patients
+- **AI-generated content must be labelled** — text, images, audio, and video produced or substantially modified by AI must be marked as such, unless it has undergone meaningful human review and editorial responsibility
+- **Synthetic content must be detectable** — providers of generative AI are obliged to make output technically detectable as AI-generated
+
+This aligns closely with [Declaring AI Use](/principles/declaring-ai-use). If you are already complying with ICMJE-style journal disclosure expectations, you are most of the way to Article 50 compliance for your written outputs. The EU AI Act formalises what good practice already required.
+
+---
+
+## What "high-risk" looks like in medical writing contexts
+
+Most generative AI used in writing workflows is *not* high-risk under the Act. But several adjacent uses are, and writers should be alert to them:
+
+- **AI used in adverse-event triaging or pharmacovigilance signal detection** — even if a writer is summarising the output, the upstream AI is high-risk
+- **AI components in software-as-a-medical-device (SaMD)** — content generated to support these systems carries higher documentation expectations
+- **AI used in patient-facing decision support** — including chatbots that triage symptoms or provide treatment guidance
+- **AI in regulatory decisions on benefit-risk** — generally human-decided, but AI inputs to these decisions are scrutinised
+
+If any of your work touches these categories, treat the compliance bar as substantially higher and involve regulatory affairs early.
+
+---
+
+## Foundation model obligations
+
+The Act distinguishes between AI systems (downstream applications) and **general-purpose AI models** (the foundation models like Claude, GPT, Gemini that underlie most AI tools). Providers of general-purpose models carry their own obligations, including:
+
+- Technical documentation and training-data summaries
+- Compliance with EU copyright law
+- For models with "systemic risk" (the most capable frontier models), additional safety, evaluation, and incident-reporting obligations
+
+For medical writers, the practical implication is that **the AI tool you choose carries its own compliance status**, and that status flows through to your work. When evaluating a tool, ask:
+
+- Which underlying model does it use?
+- Has the provider published the documentation required under the Act?
+- Does the provider's data-handling meet your sponsor's and the Act's requirements?
+
+---
+
+## Implementation timeline (mid-2026 status)
+
+| Date | Status |
+|---|---|
+| August 2024 | EU AI Act in force |
+| February 2025 | Prohibited AI uses banned |
+| August 2025 | Foundation model provider obligations apply |
+| August 2026 | Most general obligations (transparency, governance) apply |
+| August 2027 | High-risk AI obligations fully apply |
+
+By the time you read this, transparency and governance obligations are either in force or imminent. High-risk obligations are still in their compliance window, which is why guidance is still evolving for SaMD-adjacent uses.
+
+---
+
+## Other regulatory frameworks
+
+The EU AI Act is the most concrete, but it does not stand alone. Medical writers working in regulated communications should be aware of:
+
+| Body | Framework | Status |
+|---|---|---|
+| **[FDA](https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-and-machine-learning-aiml-enabled-medical-devices)** (US) | AI/ML-enabled medical device guidance; Good Machine Learning Practice (GMLP) framework | Evolving; final framework expected through 2026–27 |
+| **[EMA](https://www.ema.europa.eu/en/about-us/how-we-work/big-data/artificial-intelligence-medicines-regulation)** (EU) | Reflection paper on AI in the medicinal product lifecycle | Published 2024; multi-annual workplan in implementation |
+| **[MHRA](https://www.gov.uk/government/publications/impact-of-ai-on-the-regulation-of-medical-products)** (UK) | AI Airlock; AI as a Medical Device programme | Active sandbox programme; guidance evolving |
+| **[WHO](https://www.who.int/publications/i/item/9789240029200)** | Ethics and governance of AI for health | Global ethical guidance, not regulation |
+| **PMDA** (Japan), **NMPA** (China) | Country-specific AI/SaMD guidance | Increasingly active |
+
+These don't replace the EU AI Act for EU-bound work; they layer on top, and they tend to converge on similar standards (transparency, accountability, validation, post-market surveillance).
+
+---
+
+## Practical assessment for your team
+
+<AccordionGroup>
+  <Accordion title="Map your AI tools by risk tier">
+    For every AI tool in your medical writing workflow, identify which Act tier it falls into. Most will be limited-risk (transparency obligations). Flag any that touch high-risk territory (clinical decisions, pharmacovigilance, medical devices) for regulatory review.
+  </Accordion>
+  <Accordion title="Document AI use contemporaneously">
+    The audit-trail expectations in [Review and Accountability](/principles/review-and-accountability) cover most of what regulators will look for. Build the habit during the work, not when a compliance question arrives.
+  </Accordion>
+  <Accordion title="Verify provider compliance">
+    Ask your AI tool providers for their EU AI Act compliance documentation. Reputable providers (foundation model vendors and downstream tool builders) are publishing this now. Absence of documentation is a flag.
+  </Accordion>
+  <Accordion title="Update SOPs to reference AI Act obligations">
+    Existing pharma SOPs covering editorial assistance, third-party services, and content production should be reviewed to confirm they cover AI use specifically — labelling, disclosure, documentation, and tool vetting.
+  </Accordion>
+  <Accordion title="Train teams on labelling and disclosure">
+    Article 50 transparency obligations mean AI-generated content reaching the public must be labelled. This is now a compliance issue, not just a best practice. Train writers, editors, and reviewers on the labelling expectations for each deliverable type.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Common mistakes
+
+<AccordionGroup>
+  <Accordion title="Assuming non-EU work is exempt">
+    The Act applies to any AI-assisted output that affects people in the EU. Globally distributed pharma materials, EU clinical trial documentation, EU regulatory submissions, and EU-distributed promotional content all bring work into scope, regardless of where the writer or sponsor sits.
+  </Accordion>
+  <Accordion title="Treating compliance as a one-off project">
+    The Act's obligations are continuous (documentation, post-market monitoring, incident reporting for high-risk uses). One-time gap analyses are not enough; compliance is operational.
+  </Accordion>
+  <Accordion title="Conflating minimal-risk with no obligations">
+    Even minimal-risk AI use can trigger transparency obligations under Article 50 if the AI is generating content for external audiences. The tier determines the *kind* of obligation, not whether obligations exist.
+  </Accordion>
+  <Accordion title="Missing provider-level obligations">
+    Your AI tool provider's compliance status is part of your compliance position. Choosing tools without verifying provider obligations leaves a gap in your audit trail.
+  </Accordion>
+  <Accordion title="Not engaging regulatory affairs early">
+    AI use questions on regulated submissions should be raised with regulatory affairs and legal at the project-planning stage, not at submission. Late escalation is the most common reason AI-assisted regulatory work gets reworked.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## How this connects to other playbook principles
+
+- **[Declaring AI Use](/principles/declaring-ai-use):** Article 50 transparency obligations align directly with journal disclosure expectations. Building good disclosure practice covers most of the Act's content-labelling requirements.
+- **[Review and Accountability](/principles/review-and-accountability):** The audit-trail and named-reviewer expectations are the documentation foundation regulators look for.
+- **[Source Grounding](/principles/source-grounding):** The Act doesn't replace evidence-based requirements. Both apply.
+- **[Risk Levels](/principles/risk-levels):** The playbook's internal risk tiers and the EU AI Act's tiers are different frameworks but complementary — the playbook tier tells you *how to review*, the Act tier tells you *what regulators expect*.
+
+---
+
+## The bottom line
+
+The EU AI Act has shifted AI compliance from "best practice" to "legal obligation" for any medical writing reaching the EU. Most generative writing AI sits in the limited-risk tier — meaning transparency, labelling, and documentation, not heavy validation. But the boundary with high-risk uses is real, and the implementation timeline is short. Build the habits now: label AI-generated content, document use contemporaneously, vet provider compliance, and escalate ambiguous cases to regulatory affairs early.
+
+---
+
+*Last reviewed: 4 May 2026 · 8 min read*

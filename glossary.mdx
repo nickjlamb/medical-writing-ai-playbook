@@ -5,10 +5,6 @@ description: "Definitions for abbreviations and terms used across the Medical Wr
 icon: "book-open"
 ---
 
-Quick reference for abbreviations and terms used across the playbook. Listed alphabetically.
-
----
-
 | Term | Definition |
 |---|---|
 | **ABPI** | Association of the British Pharmaceutical Industry. UK pharmaceutical industry body whose Code of Practice governs promotional materials. |
@@ -16,6 +12,7 @@ Quick reference for abbreviations and terms used across the playbook. Listed alp
 | **AI agent** | A program that uses a language model to plan and carry out multi-step tasks by calling tools, retrieving information, or acting on behalf of a user. Differs from a simple chatbot in that it takes actions rather than only generating text. |
 | **CI** | Confidence interval. A range of values within which the true treatment effect is expected to fall (e.g., 95% CI: 0.52–0.84). |
 | **Closed-loop AI** | An AI system that acts, observes the result, and adjusts — repeating that cycle without a human in each step. Contrasts with open-loop use, where the model produces a single output and a human decides what to do next. [RefCheckr](/tools/refcheckr) is one example: it verifies a claim against the source paper, rewrites it if the data don't match, then re-verifies and checks ABPI compliance, looping again if anything fails. |
+| **Computer use** | A model that can see the screen, move a cursor, and type — controlling a computer or browser the way a person does. Used for agents that automate desktop tasks. Higher risk than text generation because actions are taken in the real world, not just suggested. |
 | **Context window** | The amount of text (input plus output) a language model can process in a single call, measured in tokens. A 200,000-token window holds roughly 150,000 words. Sets the limit on how much source material can be provided in one prompt. |
 | **CSR** | Clinical study report. The comprehensive report of a clinical trial, including methods, results, and analysis. Primary source document for many medical writing deliverables. |
 | **DOI** | Digital object identifier. A unique, persistent identifier for published articles (e.g., 10.1000/xyz123). |
@@ -26,9 +23,14 @@ Quick reference for abbreviations and terms used across the playbook. Listed alp
 | **Fair balance** | Regulatory requirement that promotional materials present both benefits and risks of a treatment in a balanced manner. |
 | **FDA** | Food and Drug Administration. The US regulatory authority responsible for approving drugs, biologics, and medical devices. |
 | **Fine-tuning** | Additional training that adapts a general-purpose language model to a specific domain, style, or task using a smaller dataset of examples. |
+| **Frontier model** | Shorthand for the most capable models available at any given time (e.g., Claude Opus 4.X, GPT-5). The label moves as new releases arrive, so today's frontier model is a generation behind within a year. |
+| **Grounding** | Anchoring an AI's output to a specific source rather than letting the model rely on what it learned during training. *Source grounding* is the medical-writing application: every claim must trace to provided evidence. See [Source Grounding](/principles/source-grounding). |
+| **Guardrails** | Explicit rules that constrain what a model is allowed to do or say. In medical writing, examples include "no new numbers", "no language stronger than the source", or "do not infer beyond the data". Usually enforced in the prompt or by a wrapping system, not by the model itself. |
 | **Hallucination** | AI output that reads plausibly but is factually wrong or invented — a fabricated reference, a misremembered statistic, or a claim with no basis in the source. A primary risk in medical writing. |
+| **Harness** | The software wrapper around a language model that turns it into a usable product — handling tool calls, file access, memory, retries, and the loop between the model and the outside world. Claude Code, Cursor, and ChatGPT are all harnesses around their underlying models. The capabilities of an AI tool depend as much on the harness as on the model. |
 | **HCP** | Healthcare professional. Includes physicians, nurses, pharmacists, and other qualified practitioners. |
 | **HEOR** | Health economics and outcomes research. The discipline focused on the economic value and real-world outcomes of healthcare interventions. |
+| **Human-in-the-loop (HITL)** | A workflow design where a human reviews, edits, or approves AI output before it is used. The default for medical writing content destined for external use. See [Human-in-the-Loop](/principles/human-in-the-loop). |
 | **HR** | Hazard ratio. A measure of relative risk over time, commonly used in survival analysis (e.g., HR 0.67 means 33% risk reduction). |
 | **IB** | Investigator's brochure. A regulatory document summarising the clinical and non-clinical data on a compound, provided to investigators conducting clinical trials. |
 | **ICH** | International Council for Harmonisation. Sets technical guidelines for pharmaceutical development and regulatory submissions (e.g., ICH E6 for GCP, ICH M4 for CTD structure). |
@@ -47,6 +49,7 @@ Quick reference for abbreviations and terms used across the playbook. Listed alp
 | **Multimodal** | A model or system that can process more than one type of input — typically text plus images, audio, or video. In medical writing, useful for reading figures, tables, or scanned documents. |
 | **NMA** | Network meta-analysis. A statistical method for comparing multiple treatments indirectly through a network of studies. |
 | **OCR** | Optical character recognition. Converts scanned document images to searchable text. Poor OCR quality can cause errors in automated reference checking. |
+| **Open-loop AI** | An AI system that produces a single output and stops — a human decides what to do next. Contrasts with closed-loop AI. Most everyday LLM use is open-loop: ask, read, decide. |
 | **OR** | Odds ratio. A measure of association between an exposure and an outcome (e.g., OR 1.5 means 50% higher odds). |
 | **ORR** | Objective response rate (or overall response rate). The proportion of patients with a defined reduction in tumour size or disease activity. |
 | **OS** | Overall survival. Time from randomisation to death from any cause. A primary endpoint in many oncology trials. |
@@ -60,16 +63,21 @@ Quick reference for abbreviations and terms used across the playbook. Listed alp
 | **PRISMA** | Preferred Reporting Items for Systematic Reviews and Meta-Analyses. A reporting guideline for systematic reviews. |
 | **Prompt** | The instruction given to a language model. The structure, context, and constraints of a prompt strongly influence output quality. |
 | **Prompt engineering** | The practice of designing prompts to produce reliable, useful output from a language model. Includes setting role, constraints, examples, and output format. |
+| **Prompt injection** | A safety risk where instructions hidden in external content (a PDF, a web page, a user upload) cause the model to do something it wasn't asked to do. Especially relevant for tools that ingest documents or browse the web on the user's behalf. |
 | **QALY** | Quality-adjusted life year. A measure of disease burden used in health economics, combining quantity and quality of life. |
 | **QC** | Quality control. The review and verification process applied to deliverables before submission or publication. |
 | **RAG** | Retrieval-augmented generation. A technique where a language model is given relevant documents to draw on when answering, rather than relying only on what it learned during training. Central to source-grounded medical writing systems. |
 | **RCT** | Randomised controlled trial. A study design where participants are randomly assigned to treatment or control groups. |
+| **Reasoning model** | A class of language model that explicitly "thinks" before answering — generating intermediate reasoning steps that improve performance on complex tasks. Examples: Claude with extended thinking, OpenAI's o-series. Useful for multi-step verification or planning, less necessary for simple drafting. |
 | **SAE** | Serious adverse event. An AE that results in death, hospitalisation, disability, or is otherwise medically significant. |
 | **SAP** | Statistical analysis plan. The document specifying the planned statistical analyses for a clinical trial, written before database lock. |
+| **Skill** | A self-contained, packaged capability an AI assistant can install and call on demand (e.g., Claude Skills, OpenClaw ClawHub skills). Skills bundle prompts, tools, and instructions for a specific job. [Patiently AI](/tools/patiently-ai) is published as a skill. |
 | **SLR** | Systematic literature review. A structured, reproducible search and analysis of published evidence, following a predefined protocol. |
 | **SmPC** | Summary of Product Characteristics. The EU equivalent of prescribing information. Approved by the EMA or national authority. |
 | **SOP** | Standard operating procedure. Documented internal processes that define how work is conducted within an organisation. |
+| **System prompt** | The persistent instructions given to a model that define its role, constraints, and behaviour, separate from the user's turn-by-turn input. Most of the "personality" and capabilities of a tool live in the system prompt, not the model. |
 | **TFL** | Tables, figures, and listings. The statistical outputs from a clinical trial used as source material for CSR drafting. |
 | **Token** | The unit of text a language model processes, roughly ¾ of a word in English. Input and output length — and API costs — are measured in tokens. |
+| **Tool use** | The mechanism by which a language model calls external functions — a search API, a database query, a file operation, a custom service. Also called *function calling*. Tool use turns a chatbot into an agent; MCP is one standard for declaring available tools. |
 | **USPI** | United States Prescribing Information. The FDA-approved product labelling. |
 | **Zero-shot / few-shot** | Prompting styles. Zero-shot gives the model a task with no examples; few-shot includes one or more worked examples. Few-shot often improves accuracy on structured tasks. |

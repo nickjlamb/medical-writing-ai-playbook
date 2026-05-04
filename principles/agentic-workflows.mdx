@@ -1,0 +1,187 @@
+---
+title: "Agentic Workflows"
+description: "When an AI agent earns its keep, when it doesn't, and how to assess agentic workflows for medical writing — with RefCheckr as the worked example."
+icon: "circle-nodes"
+---
+
+## Core principle
+
+An agent earns its keep when the task involves multiple steps that benefit from being orchestrated by AI — typically because the steps include verification, decision-making, or adaptation based on intermediate results. Single-step tasks rarely need an agent. Multi-step verification loops often do.
+
+The decision is never "agents are better" or "agents are dangerous". It is: does the loop add value for *this* task, against the cost, latency, and audit complexity it creates?
+
+---
+
+## Why this matters now
+
+Agentic AI moved from research curiosity to production-ready through 2024–2025. [RefCheckr](/tools/refcheckr) is one example: a verify-fix-recheck loop that closes itself on a claim. The pattern generalises — to systematic literature review conduct, compliance pre-screening with rewrite, evidence synthesis across studies, and more.
+
+Medical writers will increasingly be asked "could this be an agent?" by clients, sponsors, and tool vendors. Knowing when the answer is yes — and when it isn't — is now part of the job.
+
+---
+
+## What "an agent" means here
+
+An agent, in the sense relevant to medical writing, is an AI system that:
+
+- **Plans** a sequence of steps for a goal
+- **Executes** each step (often by calling tools — search APIs, document retrievers, verification services)
+- **Observes** the result of each step
+- **Adapts** based on what it observed (re-tries, re-plans, escalates)
+- **Loops** until a goal condition is met or a limit is hit
+
+This is different from:
+
+- **A single-shot LLM prompt** (one input, one output, no adaptation)
+- **A scripted pipeline** (fixed steps, no decision-making between them)
+- **A human-orchestrated workflow** (the human chooses what happens between steps)
+
+The defining feature is that *the AI is making decisions about what to do next*, not just generating text in response to a single prompt.
+
+---
+
+## Agent patterns worth knowing
+
+<AccordionGroup>
+  <Accordion title="Verify-fix loop (closed-loop)">
+    The agent generates an output, checks it against a constraint, fixes the output if the check fails, then re-checks. Loops until the output passes or the limit is hit. RefCheckr's verify → fix → re-check is the canonical example. Useful anywhere there is a clear pass/fail signal: claim-vs-source verification, compliance signal pre-screening, style-rule conformance.
+  </Accordion>
+  <Accordion title="Plan-execute-verify">
+    The agent decomposes a task into steps, executes each, then verifies the whole. Useful for systematic literature review conduct, manuscript outline generation, and any task with clear sub-deliverables.
+  </Accordion>
+  <Accordion title="Tool-using agent">
+    The agent calls external services to do parts of its work — a search API for evidence retrieval, a calculator for statistics, a document store for source grounding. The reasoning is in the model; the answers come from the tools. PubCrawl, when called via [MCP](/glossary), is a tool an agent can use.
+  </Accordion>
+  <Accordion title="Iterative refinement">
+    The agent drafts, critiques its own draft, then refines. Useful for prose polishing under explicit constraints (style guide, audience adaptation, plain-language rewriting).
+  </Accordion>
+  <Accordion title="Multi-agent / role-based">
+    Multiple specialised agents hand off — a "drafter" passes output to a "verifier", which passes to a "compliance reviewer". Useful when sub-tasks need different prompts, models, or tools. More complex to audit.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## When an agent earns its keep
+
+| Signal that an agent fits | Why |
+|---|---|
+| The task has a natural verification gate | The loop has a place to close |
+| Errors compound across steps | Multi-step thinking outperforms single-shot |
+| The task is high-volume | Automation pays back the build cost |
+| Intermediate steps would benefit from tool use | Agent can route to the right tool per step |
+| You can audit each step | The agent's value is auditable, not just visible in the final output |
+
+**Concrete examples in medical writing:**
+
+| Application | Pattern | Status (mid-2026) |
+|---|---|---|
+| Claim verification ([RefCheckr](/tools/refcheckr)) | Verify-fix loop | Production |
+| Compliance pre-screen with rewrite | Verify-fix loop | Emerging |
+| Systematic literature review conduct | Plan-execute-verify with tool use | Emerging |
+| Evidence synthesis across multiple studies | Plan-execute-verify | Emerging |
+| Manuscript drafting with reference self-check | Iterative refinement | Emerging |
+| Plain-language summary with source verification | Verify-fix loop | Emerging |
+| Pharmacovigilance signal triage (high-risk) | Plan-execute-verify | Emerging — flag as [high-risk under EU AI Act](/principles/ai-regulation) |
+
+---
+
+## When an agent is the wrong tool
+
+<AccordionGroup>
+  <Accordion title="Single-step generation tasks">
+    "Draft a discussion paragraph from this finding" is a single-shot task. Wrapping it in an agent adds latency and cost without adding value.
+  </Accordion>
+  <Accordion title="High-stakes, low-volume one-shots">
+    A board-bound regulatory document drafted once and reviewed by humans does not benefit from agentic decomposition. The cost of the loop exceeds its value when volume is low and stakes are high enough that humans must verify everything anyway.
+  </Accordion>
+  <Accordion title="When verification is harder than the task">
+    If checking the agent's output is more work than doing the task by hand, the agent is creating work, not saving it. This is common when the "verification" requires the same expert judgement as the original task.
+  </Accordion>
+  <Accordion title="When you can't audit intermediate steps">
+    An agent whose decisions are opaque is an audit liability under [Review and Accountability](/principles/review-and-accountability) and the [EU AI Act](/principles/ai-regulation). If you cannot show what the agent did at each step, the loop is faster but also harder to defend.
+  </Accordion>
+  <Accordion title="Time-sensitive interactive work">
+    Agents take longer than single-shot prompts. For interactive use (turn-by-turn editing, live brainstorming), the latency makes them painful. Save the loop for back-end work.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Failure modes specific to agents
+
+The [AI failure modes](/principles/ai-failure-modes) page covers the core risks. Agents add several patterns on top:
+
+- **Cascading errors:** One wrong intermediate step poisons every downstream step. The final output is fluent and confidently wrong.
+- **Reasoning chain fabrication:** The agent's "thinking" can include invented citations or fabricated checks that pass its own verification but fail real verification. Covered in [Choosing Your Model](/principles/choosing-your-model).
+- **Tool misuse:** Agents calling the wrong tool, or the right tool with wrong parameters. A claim sent to a literature search instead of a source-paper verifier looks like work but produces noise.
+- **Cost and latency runaway:** Loops that don't converge, or that keep retrying. Cap iterations explicitly.
+- **Prompt injection at any step:** Each step that ingests external content (a paper, a web result, a user upload) is a potential injection point. Defend at each.
+- **Audit-trail loss:** Multi-step agents are harder to log meaningfully than single-shot prompts. Plan logging upfront, not after the fact.
+
+---
+
+## Practical assessment for medical writing teams
+
+Before commissioning or using an agentic workflow:
+
+<AccordionGroup>
+  <Accordion title="Is this actually agentic?">
+    A fixed pipeline (always step 1 → step 2 → step 3, no branching) is not an agent and does not need agent infrastructure. Calling a fixed pipeline an "agent" is marketing, not architecture. Save the agent vocabulary for systems that adapt based on intermediate observations.
+  </Accordion>
+  <Accordion title="Where does the loop close?">
+    Agents earn their value at verification gates. If you can't point to the moment "the agent checks itself", the loop is open and the system is just a longer pipeline. Ask: what is the pass/fail signal that ends the loop?
+  </Accordion>
+  <Accordion title="What does each step cost?">
+    Total cost = tokens per step × steps per run × runs. Reasoning models in agentic loops can be 10–100× the cost of equivalent single-shot prompts. Budget for it, and cap iterations.
+  </Accordion>
+  <Accordion title="Can you audit it?">
+    For each step, can you produce a record of: input, model used, tool called (if any), output, decision rule that led to the next step? If not, you don't have an audit trail; you have a black box. This affects [Review and Accountability](/principles/review-and-accountability) and [EU AI Act](/principles/ai-regulation) documentation.
+  </Accordion>
+  <Accordion title="What is the risk tier?">
+    The playbook's [risk tier framework](/principles/risk-levels) applies to agentic workflows. High-risk and critical work requires more verification at every step, not less, regardless of how clever the agent is.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Common mistakes
+
+<AccordionGroup>
+  <Accordion title="Wrapping single-shot tasks in agent infrastructure">
+    "Drafting a paragraph" does not need an agent. Adding plan-execute-verify around it makes it slower, costlier, and harder to audit, with no quality benefit.
+  </Accordion>
+  <Accordion title="Skipping the verification gate">
+    A loop without a check at the end is just a pipeline that runs more steps. The closing check is the entire point. If there isn't one, redesign — or use a single-shot prompt.
+  </Accordion>
+  <Accordion title="Trusting agent self-reports">
+    An agent saying "I verified this against the source" is not verification. Either run independent verification (a second model, a deterministic check) or treat the self-report as a hint, not an assurance.
+  </Accordion>
+  <Accordion title="Letting the loop run without a cap">
+    Always cap iterations. Three to five passes is typical. Beyond that, the loop is unlikely to converge and is burning budget.
+  </Accordion>
+  <Accordion title="Treating agents as a category instead of a pattern">
+    "We're using agents" is not an architecture statement. The pattern (verify-fix vs. plan-execute vs. multi-agent) determines the failure modes, the audit requirements, and the cost profile. Specify the pattern.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## How this connects to other playbook principles
+
+- **[Closed-loop AI](/glossary):** The verify-fix loop is the foundational agentic pattern. RefCheckr is the worked example.
+- **[Choosing Your Model](/principles/choosing-your-model):** Agents typically use reasoning models for the planning and verification steps; standard models for generation. Mixing classes is the cost-efficient default.
+- **[Source grounding](/principles/source-grounding):** Agents do not exempt content from source grounding. Each generation step still needs verifiable source attribution.
+- **[Review and accountability](/principles/review-and-accountability):** The audit-trail requirements apply per agent step, not per overall agent run. Plan logging upfront.
+- **[AI Regulation in Pharma](/principles/ai-regulation):** Some agentic uses (PV signal triage, clinical decision support) cross into high-risk territory under the EU AI Act. Map the use, not the technology.
+- **[AI failure modes](/principles/ai-failure-modes):** Agents inherit single-shot failure modes and add new ones (cascading errors, tool misuse, audit-trail loss).
+
+---
+
+## The bottom line
+
+Agents are not better or worse than single-shot prompts; they are different tools for different tasks. The pattern earns its keep on multi-step verification, high-volume work, and tasks with natural verification gates. It is the wrong tool for single-step generation, low-volume one-shots, and anywhere the loop cannot close audibly. Specify the pattern, cap the iterations, log every step — and verify the agent the same way you would verify any other AI output.
+
+---
+
+*Last reviewed: 4 May 2026 · 8 min read*

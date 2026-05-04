@@ -151,7 +151,8 @@
             "pages": [
               "templates/disclosure-language",
               "templates/ai-audit-trail-log",
-              "templates/mlr-ai-review-checklist"
+              "templates/mlr-ai-review-checklist",
+              "templates/pre-submission-qc-checklist"
             ]
           }
         ]

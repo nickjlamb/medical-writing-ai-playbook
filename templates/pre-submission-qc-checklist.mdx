@@ -1,0 +1,156 @@
+---
+title: "Pre-submission QC Checklist"
+description: "Final-gate quality control for AI-assisted manuscripts, abstracts, and regulatory submissions — covers the same checks publishers run on receipt."
+icon: "check-double"
+---
+
+A final-gate quality-control checklist for AI-assisted deliverables before they leave your desk. Covers the categories major publishers and regulators now screen for automatically — reference integrity, image integrity, statistical accuracy, AI disclosure, methodology compliance, plagiarism. Catching these yourself is faster than the round-trip from a desk rejection.
+
+For the principle behind this checklist, see [AI in Peer Review](/principles/ai-in-peer-review). Use after [Final Human Review](/workflows/final-human-review), as the last step before submission.
+
+## How to use this checklist
+
+- **Run on the final, submission-ready version** — not on a working draft.
+- **Run yourself; don't outsource the gate.** The reviewer signing off is accountable for what passes through.
+- **Match scrutiny to the venue.** A high-impact journal submission gets every item; an internal report needs only the relevant subset.
+- **Document outcomes** — the [AI Audit-Trail Log Template](/templates/ai-audit-trail-log) supports the trace from "checked" to "actually verified".
+- **When something fails, fix it before submitting.** "We'll catch it in revisions" is the cycle this checklist is designed to break.
+
+---
+
+## Reference integrity
+
+The single most-detected failure mode on AI-assisted submissions.
+
+- [ ] Every cited reference exists. DOI or PMID resolves to the actual paper.
+- [ ] Claims are supported by the cited source. Closed-loop verification (e.g., [RefCheckr](/tools/refcheckr)) was run and outputs reviewed.
+- [ ] No "borrowed" findings — claims attributed to the wrong study, population, or analysis type.
+- [ ] Subgroup, post-hoc, exploratory qualifiers preserved where present in the source.
+- [ ] Self-citation is appropriate and not over-used.
+
+---
+
+## Data and statistical accuracy
+
+- [ ] Numbers in the deliverable match the source data exactly (p-values, hazard ratios, percentages, sample sizes).
+- [ ] Confidence intervals reported where the source reports them.
+- [ ] No impossible statistics (GRIM violations, p-values inconsistent with reported test statistics, decimal drift).
+- [ ] ITT vs. mITT vs. per-protocol analyses correctly labelled.
+- [ ] Endpoints correctly identified as primary, secondary, exploratory.
+
+---
+
+## Image and figure integrity
+
+- [ ] No image duplications across this submission or prior published work.
+- [ ] No splicing, cropping, or contrast adjustments that could be challenged.
+- [ ] Image-integrity check run (e.g., Imagetwin, Proofig) for any submission with figures from human bodies, gels, blots, or composite assemblies.
+- [ ] AI-generated images (concept visuals, visual abstracts) are explicitly labelled as conceptual, not as primary data.
+- [ ] Figure captions match the figure content and the underlying source.
+
+---
+
+## AI use and disclosure
+
+- [ ] AI disclosure language drafted using the [Disclosure Language Template](/templates/disclosure-language) and customised to this deliverable.
+- [ ] Disclosure specifies tool name, version, scope, and named reviewer.
+- [ ] Disclosure placed in the location the journal or venue requires (Methods, Acknowledgments, dedicated AI-use statement, footer).
+- [ ] [AI audit-trail log](/templates/ai-audit-trail-log) is complete and accessible — every AI use captured with reviewer.
+- [ ] No undisclosed AI use that would appear in the audit log.
+
+---
+
+## Methodology and reporting compliance
+
+- [ ] Reporting guideline followed for the study type (CONSORT for trials, PRISMA for systematic reviews, STROBE for observational, etc.).
+- [ ] Methods section is complete enough for reproducibility.
+- [ ] Pre-registration referenced where applicable.
+- [ ] Limitations clearly stated.
+
+---
+
+## Plagiarism and originality
+
+- [ ] iThenticate or equivalent similarity check run on the final draft.
+- [ ] No verbatim text reuse from prior published work without proper attribution.
+- [ ] Self-plagiarism (text reuse from author's own prior publications) flagged where significant.
+- [ ] Quotation marks and citation used correctly for all directly reproduced passages.
+
+---
+
+## Authorship and affiliations
+
+- [ ] All authors listed meet authorship criteria (ICMJE or journal-specific).
+- [ ] No "courtesy" or "gift" authorship.
+- [ ] Each author's affiliation is current and accurate.
+- [ ] ORCID iDs included for each author.
+- [ ] Conflicts of interest disclosed in full.
+- [ ] AI is *not* listed as an author. (Universally rejected by major journals; immediate desk rejection.)
+
+---
+
+## Venue-specific checks
+
+- [ ] Journal's specific AI-use policy reviewed (see [Declaring AI Use](/principles/declaring-ai-use) for links).
+- [ ] Word, figure, and table limits respected.
+- [ ] Required sections present (e.g., data availability statement, ethics approval, funding).
+- [ ] File formats and naming conventions match the submission system requirements.
+- [ ] Cover letter aligns with the submitted content.
+
+---
+
+## Sign-off block
+
+| Field | Value |
+|---|---|
+| **Deliverable version** | [Version / file name] |
+| **Submission target** | [Journal / regulator / sponsor] |
+| **All reference integrity items cleared** | [Yes / No] |
+| **All data and statistical items cleared** | [Yes / No] |
+| **All image integrity items cleared** | [Yes / No] |
+| **AI disclosure and audit log complete** | [Yes / No] |
+| **Methodology and reporting items cleared** | [Yes / No] |
+| **Plagiarism check passed** | [Yes / No] |
+| **Authorship and affiliations confirmed** | [Yes / No] |
+| **Venue-specific items cleared** | [Yes / No] |
+| **Final reviewer name and role** | [Name, role] |
+| **Sign-off date** | [YYYY-MM-DD] |
+
+---
+
+## Common gaps that trigger desk rejection
+
+<AccordionGroup>
+  <Accordion title="Fabricated references that closed-loop verification would have caught">
+    The single most common failure on AI-assisted submissions. The reference list looks plausible, the DOIs are formatted correctly, but the papers don't exist or don't say what's claimed. Always run reference verification before submission.
+  </Accordion>
+  <Accordion title="AI disclosure that's vague or missing">
+    "AI tools were used" is vague enough to draw editor questions. Specific, named, scoped disclosure (with reviewer accountability) is what publishers expect. The [Disclosure Language Template](/templates/disclosure-language) gives a starting point per scenario.
+  </Accordion>
+  <Accordion title="Image issues found by Imagetwin or Proofig">
+    Publisher-side image-integrity tools share databases. A figure flagged elsewhere will likely flag here. Run an integrity check before submission, not after.
+  </Accordion>
+  <Accordion title="Statistical inconsistencies that GRIM finds">
+    Means and standard deviations that can't arise from the reported sample sizes. AI-drafted summaries sometimes invent or paraphrase statistics that fail this check. Verify against source data.
+  </Accordion>
+  <Accordion title="Authorship issues — AI listed, courtesy authors, missing ORCIDs">
+    Universally rejected: AI as author. Increasingly checked: ORCID for each author, transparent contribution statements, no honorary authorship. Confirm before submission.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Related
+
+- [AI in Peer Review](/principles/ai-in-peer-review) — the principle this checklist operationalises
+- [Declaring AI Use](/principles/declaring-ai-use) — the disclosure principle
+- [Source Grounding](/principles/source-grounding) — the underlying claim-to-source principle
+- [Disclosure Language Template](/templates/disclosure-language) — pairs with the disclosure-confirmed item
+- [AI Audit-Trail Log Template](/templates/ai-audit-trail-log) — pairs with the audit-log-complete item
+- [MLR-with-AI Review Checklist](/templates/mlr-ai-review-checklist) — for promotional content; this checklist is for publication and regulatory submissions
+- [Verify Claims Against References](/workflows/verify-claims-against-references) — workflow that produces the reference integrity outputs
+- [Final Human Review](/workflows/final-human-review) — workflow that precedes this gate
+
+---
+
+*Last reviewed: 4 May 2026 · 7 min read*

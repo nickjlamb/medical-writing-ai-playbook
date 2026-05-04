@@ -149,7 +149,8 @@
           {
             "group": "Templates",
             "pages": [
-              "templates/disclosure-language"
+              "templates/disclosure-language",
+              "templates/ai-audit-trail-log"
             ]
           }
         ]

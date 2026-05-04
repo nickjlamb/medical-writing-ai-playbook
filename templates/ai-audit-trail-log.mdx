@@ -1,0 +1,113 @@
+---
+title: "AI Audit-Trail Log Template"
+description: "Contemporaneous log of AI use across a project — supports disclosure, sponsor audits, and EU AI Act documentation."
+icon: "clipboard-list"
+---
+
+A contemporaneous log of AI use across a project. The same record feeds journal disclosure, sponsor audits, and EU AI Act documentation. Build it as you write — reconstruction at submission time is unreliable.
+
+For the principles behind this template, see [Review and Accountability](/principles/review-and-accountability) and [Declaring AI Use](/principles/declaring-ai-use).
+
+## How to use this template
+
+- **Start the log at project kickoff,** not at submission. "What tool did I use in week 2?" three months later doesn't survive audit.
+- **One log per project, deliverable group, or workstream** — whatever your client or sponsor SOP defines as a unit.
+- **Log every non-trivial AI use.** Spell-check is generally exempt; everything else benefits from capture.
+- **Store the log in the shared project location,** not in a personal note. Audit trails that aren't shared aren't auditable.
+- **Retain per the longest applicable timeframe** (sponsor SOP, journal author guidelines, regulatory archiving). Default is the project's record-retention period.
+
+---
+
+## Project header
+
+Fill in once at kickoff. Update if scope or ownership changes.
+
+| Field | Value |
+|---|---|
+| **Project name** | [e.g., Drug X Phase 3 primary publication] |
+| **Deliverable type** | [e.g., Primary publication / regulatory submission / promotional leave-piece] |
+| **Sponsor / client** | [Sponsor or client name] |
+| **Agency (if applicable)** | [Agency name] |
+| **SOP reference** | [e.g., ABC-SOP-0042 v3.1] |
+| **Project lead / owner** | [Name and role] |
+| **Accountable reviewer** | [Name and role — the named human responsible for sign-off] |
+| **Log start date** | [YYYY-MM-DD] |
+| **Log location** | [Folder path or project file where this log is stored] |
+
+---
+
+## AI use entries
+
+One row per discrete AI use. Add rows as you go.
+
+| Date | Deliverable / section | Tool + version | Scope of use | Source inputs | Reviewer | Outcome | Notes |
+|---|---|---|---|---|---|---|---|
+| 2026-05-04 | Manuscript Discussion section | Claude Opus 4.7 | Drafting (initial) | Trial CSR sections 11–14; key messages doc v2 | A. Smith | Accepted with edits | Two paragraphs rewritten to add HR confidence intervals |
+| 2026-05-05 | Manuscript Methods section | Claude Sonnet 4.6 | Editing for clarity | Existing draft section | A. Smith | Accepted as-is | Light copy-edits only |
+| 2026-05-05 | All references (40) | RefCheckr (closed-loop) | Reference verification and rewrite | Source PDFs of all cited references | A. Smith | 3 rewrites accepted, 1 manual edit | Closed-loop output reviewed; one claim required manual rephrasing |
+| 2026-05-08 | Visual abstract | Nano Banana 2 | Concept image generation | Brief prompt + key messages | M. Jones | Accepted | Caption updated to flag conceptual nature |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+
+Add rows as needed. Keep entries one-line where possible; expand in the Notes column.
+
+### Field guidance
+
+- **Date** — when the AI was used, not when the entry was written.
+- **Deliverable / section** — be specific enough that a reviewer can locate the work product. "Manuscript" alone is not specific; "Manuscript Discussion section" is.
+- **Tool + version** — always include both. "Claude" without a version is undefined when reviewed six months later.
+- **Scope of use** — one of: Drafting, Editing, Translation, Verification, Synthesis, Image generation, Other. Match the categories used in [Declaring AI Use](/principles/declaring-ai-use).
+- **Source inputs** — what was given to the AI? Source documents, prompts, prior drafts.
+- **Reviewer** — the named human who checked the AI output. A blank reviewer field means an unaccountable AI use; the row is not yet complete.
+- **Outcome** — Accepted as-is / Accepted with edits / Rejected / Pending review. Clear all pending entries before sign-off.
+- **Notes** — brief context: what changed, what didn't, what was flagged.
+
+---
+
+## Sign-off block
+
+Complete at deliverable finalisation.
+
+| Field | Value |
+|---|---|
+| **Final deliverable version** | [Version number / file name] |
+| **All log entries reviewed** | [Yes / No] |
+| **All pending entries cleared** | [Yes / No] |
+| **Disclosure language drafted** | [Yes / No — link to specific snippet from the [Disclosure Language Template](/templates/disclosure-language) if used] |
+| **Final reviewer name** | [Name and role] |
+| **Sign-off date** | [YYYY-MM-DD] |
+
+---
+
+## What this log supports
+
+A single log feeds four downstream uses:
+
+- **Journal disclosure** — entries become the basis for the AI-use statement, with the [Disclosure Language Template](/templates/disclosure-language) as the wording reference.
+- **Sponsor or client audit** — when asked "What AI was used on this deliverable?", the log is the answer. Without it, you reconstruct from memory under pressure.
+- **EU AI Act documentation** — the contemporaneous record of tool use, scope, and reviewer aligns with Article 50 transparency obligations and the general documentation expectations covered in [AI Regulation in Pharma](/principles/ai-regulation).
+- **Internal QC retrospectives** — patterns emerge across projects: which tools cause the most rework, which scope of use produces the cleanest output, where reviewers spend their time.
+
+---
+
+## Common mistakes
+
+- **Building the log at submission.** "I'll remember" is not a strategy. Weeks of AI use cannot be reconstructed reliably; entries get missed and the disclosure is weaker than it should be.
+- **Logging only successful uses.** Rejected and revised entries matter — they show review was active, not rubber-stamped.
+- **Vague tool names.** "ChatGPT" doesn't tell a reviewer in 18 months whether it was GPT-4 or GPT-5. Always include version.
+- **Missing the reviewer column.** A log entry without a reviewer name is an unaccountable AI use. Complete the row before treating the entry as logged.
+- **Storing the log in a personal note.** If a colleague needs the log during your absence and can't find it, the audit trail isn't auditable. Store in the shared project location.
+
+---
+
+## Related
+
+- [Review and Accountability](/principles/review-and-accountability) — the principle this log operationalises
+- [Declaring AI Use](/principles/declaring-ai-use) — the disclosure principle the log feeds
+- [Disclosure Language Template](/templates/disclosure-language) — ready-to-paste wording derived from the log
+- [AI Regulation in Pharma](/principles/ai-regulation) — the regulatory expectations this log helps meet
+
+---
+
+*Last reviewed: 4 May 2026 · 6 min read*

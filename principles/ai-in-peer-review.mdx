@@ -1,0 +1,135 @@
+---
+title: "AI in Peer Review"
+description: "What journals run on your manuscript before a human reviewer sees it — and what that means for pre-submission QC."
+icon: "magnifying-glass"
+---
+
+## Core principle
+
+Your manuscript is screened by AI tools before a human peer reviewer reads it. Major journals now run automated checks on every submission for plagiarism, image manipulation, statistical anomalies, reference integrity, and (variably) AI-generation detection. Errors that pass your internal QC will increasingly be caught at the journal's front door.
+
+The practical implication: pre-submission QC is no longer optional polishing. It is the gate before the gate.
+
+---
+
+## Why this matters now
+
+Large publishers — Springer Nature, Elsevier, Wiley, BMJ Group, PLOS, Sage, AAAS — rolled out automated screening tools across 2023–2025. By mid-2026 most major journals run a combined pre-review screen on every submission, with results visible to editors before any peer reviewer is invited. The same publishers also share image-integrity flags via shared databases, so a manipulated figure that has appeared in another paper is detectable on submission elsewhere.
+
+Desk rejections triggered by these screens have risen sharply. The biggest single category is reference fabrication, which has become a leading-indicator flag for AI-generated drafts that were not verified before submission.
+
+---
+
+## What journals run on your manuscript
+
+A non-exhaustive list of the screens common in major medical and life-science journals:
+
+| Screen | What it does | Tools commonly used |
+|---|---|---|
+| **Plagiarism / similarity** | Detects substantial overlap with prior published work and the author's earlier output | [iThenticate](https://www.ithenticate.com/), [Crossref Similarity Check](https://www.crossref.org/services/similarity-check/) |
+| **Image manipulation** | Flags duplicated, spliced, or otherwise altered figures across the submission and against publisher databases | [Imagetwin](https://www.imagetwin.ai/), [Proofig](https://www.proofig.com/) |
+| **Statistical anomaly** | Detects impossible p-values, GRIM violations, decimal drift, and other statistical inconsistencies | [Statcheck](https://statcheck.io/), GRIM/SPRITE, internal publisher tools |
+| **Reference integrity** | Verifies cited references exist, checks DOI/PMID validity, sometimes checks claim-vs-source support | Crossref-based checkers, increasingly LLM-assisted |
+| **AI-generation detection** | Attempts to identify AI-drafted prose | Mixed publisher-internal and third-party (accuracy varies; see caveats below) |
+| **Methodology / reporting compliance** | Checks adherence to reporting guidelines (CONSORT, PRISMA, STROBE, etc.) | Tool-assisted; not yet routine across all journals |
+| **Authorship and affiliation** | Verifies author identity, affiliations, ORCID, conflicts | Identity verification services |
+
+Each major publisher uses a different combination, and the specific tools change. Treat the *categories* as durable; the *vendors* as a moving target.
+
+---
+
+## Where these tools work well, and where they don't
+
+**They work well at:**
+
+- Catching fabricated references (especially the kind AI hallucinates with plausible-looking but non-existent DOIs)
+- Detecting image duplications across the literature (the screens that exposed several high-profile retraction cases through 2022–2025)
+- Spotting impossible statistics — p-values that can't arise from the reported data, summary statistics that fail GRIM
+- Finding substantial verbatim plagiarism
+
+**They struggle at:**
+
+- **AI-generation detection.** False-positive rates on legitimate human-written academic prose remain high. False negatives on carefully edited AI-drafted prose are also common. Some journals have stopped using AI-detection tools as a standalone gate, treating them only as one signal among several.
+- **Subtle methodology issues.** Automated reporting-compliance checks find structural gaps; they miss substantive problems like underpowered analyses or post-hoc reframing.
+- **Sophisticated image manipulation.** Tools catch duplications and gross alterations; subtle splicing remains hard to detect automatically.
+- **Paraphrased plagiarism.** Tools flag verbatim overlap; reworded copying often passes.
+
+The reliable-detection categories are also the ones most exposed by AI-drafted manuscripts that haven't been carefully verified before submission. Reference fabrication is the most common.
+
+---
+
+## What this means for authors and medical writers
+
+<AccordionGroup>
+  <Accordion title="Pre-submission QC is now the gate">
+    The submission process used to assume editors and reviewers would catch errors. The screening layer means many errors are caught — and trigger desk rejection — before any human reviews the science. Pre-submission QC has shifted from polish to gate-keeping.
+  </Accordion>
+  <Accordion title="AI-generated drafts need verification, not just review">
+    A polished-looking AI draft with one fabricated citation is now likely to be flagged on submission. Closed-loop reference verification (e.g., [RefCheckr](/tools/refcheckr)) is the protective habit; reading-through-once is not.
+  </Accordion>
+  <Accordion title="Image integrity audits are routine">
+    Run an image-integrity check on figures before submission, especially for re-used or composite figures. Publisher tools will run their own; catching it first is cheaper than responding to a flag.
+  </Accordion>
+  <Accordion title="Statistical narratives need verification against source data">
+    The same automated checks publishers run can be run by you. GRIM violations and impossible p-values are findable pre-submission. Catching them yourself is faster than the round-trip.
+  </Accordion>
+  <Accordion title="Disclose AI use accurately and specifically">
+    Vague disclosure is a flag. Specific disclosure (per [Declaring AI Use](/principles/declaring-ai-use)) is harder to second-guess. Publishers do not penalise disclosed, reasonable AI use; they penalise undisclosed use that surfaces later.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## A pre-submission checklist
+
+Before submission, run the same kinds of checks the journal will run:
+
+- **References:** every cited reference exists, DOI/PMID resolves, and claims are supported by the cited source. [RefCheckr](/tools/refcheckr) closes this loop; the [Verify Claims Against References](/workflows/verify-claims-against-references) workflow gives the manual fallback.
+- **Plagiarism / similarity:** run an iThenticate or equivalent check on the final draft. Check both external and self-plagiarism (text reuse from your own prior work).
+- **Statistics:** spot-check the reported numbers against the underlying data or the statistical analysis plan. Run GRIM if relevant. The [Convert Stats to Narrative](/workflows/convert-stats-to-narrative) workflow includes verification steps.
+- **Images:** if figures include human bodies, gels, blots, or composite assemblies, audit them against an image-integrity tool before submission.
+- **AI disclosure:** the disclosure language matches the actual AI use, with tool, version, scope, and reviewer accountability per the [Declaring AI Use](/principles/declaring-ai-use) principle.
+- **Reporting guideline compliance:** for trials, CONSORT; for systematic reviews, PRISMA; etc. Check the journal's specific requirements.
+- **Authorship and affiliations:** ORCID for each author, affiliations verified, conflicts disclosed.
+
+---
+
+## Common mistakes
+
+<AccordionGroup>
+  <Accordion title="Assuming the screens are unreliable enough to ignore">
+    AI-detection tools are inconsistent on AI-drafted prose. Reference checkers and image-integrity tools are not. Treating the whole category as unreliable conflates the weakest screen with the strongest ones.
+  </Accordion>
+  <Accordion title="Submitting AI-drafted content without source verification">
+    The single most common reason AI-assisted submissions are flagged is fabricated references. Verify every citation against its source before submission. This is the closed-loop pattern in [RefCheckr](/tools/refcheckr) applied to your own manuscript.
+  </Accordion>
+  <Accordion title="Hiding AI use to avoid scrutiny">
+    Undisclosed AI use that surfaces post-publication is a retraction-grade issue. Disclosed AI use, with appropriate verification, is not. The asymmetry of consequences makes hiding the worse choice.
+  </Accordion>
+  <Accordion title="Treating the screen as the QC gate">
+    Passing the publisher's screen does not mean the manuscript is correct — it means the automated layer found nothing. Peer review and your own [final human review](/workflows/final-human-review) still apply.
+  </Accordion>
+  <Accordion title="Not reading the journal's integrity and AI policies">
+    Each journal has specific policies on AI use, reference accuracy expectations, and image-integrity requirements. The [Declaring AI Use](/principles/declaring-ai-use) page links to the major ones. Read the policy before drafting, not at submission.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## How this connects to other playbook principles
+
+- **[Source grounding](/principles/source-grounding):** Fabricated references — the most-detected AI-drafted error — fail every reference-integrity screen. Source-grounded writing protects against the most common flag.
+- **[Declaring AI Use](/principles/declaring-ai-use):** The journal policies covered there are the same policies that drive what their AI screens look for. Disclosure aligns with detection.
+- **[Review and accountability](/principles/review-and-accountability):** Pre-submission QC is the natural application of the audit-trail and named-reviewer expectations. The screen is the second checkpoint; your QC is the first.
+- **[Closed-loop AI](/glossary):** Tools like [RefCheckr](/tools/refcheckr) close the loop the journal screens are designed to detect. Passing the screen is what closed-loop verification produces as a side effect.
+- **[AI Regulation in Pharma](/principles/ai-regulation):** EU AI Act transparency obligations on AI-generated content align with what journals are also asking. Both pressures point in the same direction.
+
+---
+
+## The bottom line
+
+The submission gate now includes an AI screening layer. The screens reliably catch fabricated references, image duplications, and impossible statistics; they unreliably detect AI-drafted prose. The protective habit is the same set of practices the playbook recommends for production: source-grounded writing, closed-loop reference verification, accurate AI disclosure, and contemporaneous QC. Tighten those before submission and the screen becomes a non-event. Skip them and the screen becomes the desk rejection.
+
+---
+
+*Last reviewed: 4 May 2026 · 7 min read*

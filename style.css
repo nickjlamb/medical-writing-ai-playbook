@@ -1,0 +1,4 @@
+/* Homepage: hide Mintlify's auto-rendered page title and description so the custom hero is the first thing visible. Scoped via :has() so other pages keep their titles. */
+body:has(.playbook-hero) header:has(#page-title) {
+  display: none !important;
+}

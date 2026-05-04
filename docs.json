@@ -67,7 +67,8 @@
               "principles/risk-levels",
               "principles/ai-risk-framework",
               "principles/ai-failure-modes",
-              "principles/review-and-accountability"
+              "principles/review-and-accountability",
+              "principles/declaring-ai-use"
             ]
           },
           {

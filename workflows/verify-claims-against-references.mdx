@@ -12,7 +12,7 @@ import { RiskBadge } from '/snippets/risk-badge.mdx';
 ~20 min with AI, ~2–3 hours without
 Expert review required; verification results must be assessed by a qualified reviewer.
 
-Document + references → RefCheckr first pass → Manual review of flags → Spot-check unflagged → Corrected document
+Document + references → RefCheckr verify-rewrite-recheck loop → Human review of rewrites → Spot-check unflagged → Corrected document
 </Warning>
 
 ## Best for
@@ -37,17 +37,17 @@ Document + references → RefCheckr first pass → Manual review of flags → Sp
   <Step title="Gather all reference materials">
     Obtain the full text of every cited reference. Use high-quality, text-searchable PDFs. Scanned PDFs with OCR errors cause false flags.
   </Step>
-  <Step title="Run automated first-pass verification">
-    Use RefCheckr or the prompt pattern below to compare claims against references. This catches numerical mismatches, language strength discrepancies, and missing qualifiers at scale.
+  <Step title="Run automated verification">
+    Use RefCheckr to verify each claim against its cited reference, rewrite any that don't match, and re-check the rewrites for ABPI compliance — RefCheckr closes that loop automatically. If you don't have RefCheckr, the prompt pattern below produces a verify-only first pass that catches numerical mismatches, language strength discrepancies, and missing qualifiers at scale, leaving the rewrite to you.
   </Step>
-  <Step title="Manually review every flagged item">
-    For each flag, open the cited reference and verify whether the claim is supported, partially supported, or unsupported. Do not accept or reject flags without checking the source.
+  <Step title="Review every output">
+    For each rewrite or pass-through that RefCheckr returns, open the cited reference and confirm the AI's verdict. Do not accept rewrites without checking the source — the closed-loop reduces drift, but a wrong rewrite that passes its own re-check still needs human judgement on context and editorial fit.
   </Step>
   <Step title="Spot-check unflagged claims">
     Automated tools do not catch everything. Manually spot-check 20–30% of unflagged claims, prioritising those with specific numerical data, comparative language, or endpoint results.
   </Step>
   <Step title="Correct, annotate, and re-verify">
-    Fix inaccurate claims, update references, and document the verification outcome. If significant changes were made, run the verification again to confirm corrections.
+    Apply the rewrites you accepted, fix anything the AI missed, update references, and document the verification outcome. If you made further changes after RefCheckr's closed-loop output, run the loop again to confirm corrections still hold.
   </Step>
 </Steps>
 
@@ -137,9 +137,9 @@ AI excels at the mechanical comparison work — scanning dozens of claim-referen
 
 | Tool | Role |
 |---|---|
-| [RefCheckr](/tools/refcheckr) | Primary tool — systematic claim-to-reference comparison |
+| [RefCheckr](/tools/refcheckr) | Primary tool — closed-loop claim verification, rewrite, and re-check |
 
-**Complements:** [Scite.ai](https://scite.ai) for citation context analysis (whether a citation supports, contrasts, or merely mentions a claim). [Perplexity](https://www.perplexity.ai) for quick fact-checking and finding source material to verify against. [Zotero](https://www.zotero.org) or [EndNote](https://endnote.com) for managing and organising the reference library. RefCheckr verifies whether claims are supported by cited evidence; Scite adds context on how that evidence treats the claim; Perplexity can help locate evidence; Zotero/EndNote store and organise it.
+**Complements:** [Scite.ai](https://scite.ai) for citation context analysis (whether a citation supports, contrasts, or merely mentions a claim). [Perplexity](https://www.perplexity.ai) for quick fact-checking and finding source material to verify against. [Zotero](https://www.zotero.org) or [EndNote](https://endnote.com) for managing and organising the reference library. RefCheckr runs a closed loop — it verifies claims against cited evidence, rewrites any that don't match, and re-checks the rewrites for ABPI compliance; Scite adds context on how that evidence treats the claim; Perplexity can help locate evidence; Zotero/EndNote store and organise it.
 
 ## Frequently asked questions
 

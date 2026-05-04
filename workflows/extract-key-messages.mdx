@@ -51,7 +51,7 @@ Source evidence → AI candidate messages → Source cross-check → Verified me
     If an approved messaging framework exists, check alignment and identify genuinely new messages versus restatements of existing ones.
   </Step>
   <Step title="Verify with RefCheckr">
-    Run final messages through RefCheckr to confirm each message is supported by the cited source.
+    Run final messages through RefCheckr — it verifies each message against the cited source, rewrites any that don't match, and re-checks the rewrites for ABPI compliance, looping until each message passes.
   </Step>
 </Steps>
 
@@ -150,7 +150,7 @@ AI pulls candidate messages from a dense 15-page paper in minutes, drafting each
 | Tool | Role |
 |---|---|
 | [PubCrawl](/tools/pubcrawl) | Identify related publications and build the evidence base before extracting messages |
-| [RefCheckr](/tools/refcheckr) | Verify that extracted key messages are supported by the cited source |
+| [RefCheckr](/tools/refcheckr) | Closed-loop: verify, rewrite, and re-check extracted key messages against the cited source |
 
 **Alternatives:** [Claude Cowork](https://claude.ai) for synthesising messages across multiple source documents in a structured workspace. [NotebookLM](https://notebooklm.google.com) for identifying key themes across uploaded papers. [Claude](https://claude.ai) or [ChatGPT](https://chatgpt.com) for initial message brainstorming. [Elicit](https://elicit.com) for cross-paper evidence synthesis. [Otter.ai](https://otter.ai) or [Fireflies.ai](https://fireflies.ai) for transcribing advisory boards, KOL interviews, and focus groups when messages need to come from spoken insight.
 

@@ -5,6 +5,13 @@ description: "Version history and updates to the Medical Writing AI Playbook."
 icon: "list-check"
 ---
 
+## v2.24 — 4 May 2026
+
+- **RefCheckr rearchitected as closed-loop AI** — RefCheckr now runs a Verify (Perplexity) → Fix (Claude) → Re-check (Perplexity + MedCheckr ABPI compliance) loop, re-running on failure. It no longer just flags mismatches: it rewrites claims using only evidence from the paper (with guardrails — no new numbers, no new endpoints, no stronger language) and re-verifies the rewrite before returning it
+- **[RefCheckr tool page](/tools/refcheckr)** rewritten with a "How the closed loop works" table covering Verify, Fix, and Re-check steps and the underlying stack
+- **Closed-loop AI** added to the [glossary](/glossary), anchored to RefCheckr as the working example
+- **Playbook-wide language refresh** — workflow tool-stack tables, the Verify Claims Against References workflow header diagram and steps, the Tool decision tree, the PubCrawl comparison table, the Source grounding principle, the homepage card, the Start guide, and the about page all updated to describe RefCheckr's closed-loop behaviour rather than the old verify-only framing
+
 ## v2.23 — 20 April 2026
 
 - **Generate Concept Visuals with AI** workflow page added under Drafting — when to use AI image generation (conceptual figures, visual abstracts, slide visuals, social graphics), the tool landscape (Nano Banana 2, Midjourney, ChatGPT, Adobe Firefly), four prompting patterns, and a "Reality check" section covering what AI images must not be used for (exact scientific figures, data visualisations, regulatory-facing materials without review, patient depictions implying outcomes, identifiable people or products)

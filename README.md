@@ -57,7 +57,7 @@ This playbook integrates tools from [PharmaTools.AI](https://pharmatools.ai) at 
 
 | Tool | What it does | Where it fits |
 |---|---|---|
-| [RefCheckr](tools/refcheckr.md) | Checks claims against cited references | Pre-MLR reference verification, QC on multi-reference documents |
+| [RefCheckr](tools/refcheckr.md) | Closed-loop AI: verifies, rewrites, and re-checks claims against cited references | Pre-MLR reference verification, QC on multi-reference documents |
 | [MedCheckr](tools/medcheckr.md) | Scans for promotional compliance signals | Pre-MLR compliance screening, self-check before submission |
 | [Patiently AI](tools/patiently-ai.md) | Translates clinical content into patient-friendly language | Patient-facing content development, health literacy adaptation |
 | [LLMentor](tools/llmentor.md) | Adapts content across audience levels | HCP-to-generalist adaptation, multi-stakeholder repurposing |

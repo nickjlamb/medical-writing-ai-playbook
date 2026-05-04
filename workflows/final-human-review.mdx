@@ -97,7 +97,7 @@ Final review is fundamentally a human activity — AI supports it but cannot rep
     A reviewer QCs five AI-generated summaries in one session. By the fourth, they scan for flow rather than verifying data points. An incorrect confidence interval passes through into a client slide deck. Use the structured checklist for every review and limit AI-assisted QC to 3 documents per session.
   </Accordion>
   <Accordion title="Over-reliance on automated verification">
-    RefCheckr returns no flags on a manuscript summary. The reviewer concludes reference accuracy is confirmed. But one claim cites the wrong reference entirely: a mismatch the tool did not detect because it checks claims against cited references, not whether the right reference was cited. Automated tools are one layer, not the whole review.
+    RefCheckr passes a manuscript summary with no rewrites needed. The reviewer concludes reference accuracy is confirmed. But one claim cites the wrong reference entirely: a mismatch the tool did not detect because it checks claims against cited references, not whether the right reference was cited. Automated tools are one layer, not the whole review.
   </Accordion>
   <Accordion title="Reviewing without full source access">
     The reviewer has the paper's abstract but not the full text. They cannot verify a subgroup result cited in the deliverable. They pass it, assuming it is correct. It is not. Before starting, confirm full-text access to every cited reference.
@@ -114,7 +114,7 @@ Final review is fundamentally a human activity — AI supports it but cannot rep
 
 | Tool | Role |
 |---|---|
-| [RefCheckr](/tools/refcheckr) | Automated reference accuracy check as one input to the review |
+| [RefCheckr](/tools/refcheckr) | Closed-loop reference accuracy check (verify, rewrite, re-check) as one input to the review |
 | [MedCheckr](/tools/medcheckr) | Automated compliance signal scan for promotional content |
 
 ## Review checklist

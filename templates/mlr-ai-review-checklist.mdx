@@ -1,0 +1,130 @@
+---
+title: "MLR-with-AI Review Checklist"
+description: "Structured MLR review checklist with AI-specific checks for promotional and scientific content where AI was used in drafting, editing, or verification."
+icon: "list-check"
+---
+
+A structured MLR review checklist with AI-specific items for content where AI was used in any drafting, editing, verification, or generation step. Extends a standard MLR checklist; does not replace it.
+
+For the principles behind this checklist, see [Review and Accountability](/principles/review-and-accountability), [Source Grounding](/principles/source-grounding), and [Declaring AI Use](/principles/declaring-ai-use).
+
+## How to use this checklist
+
+- **Run alongside your standard MLR checklist,** not in place of it. The AI-specific items are additive.
+- **Require every AI item to clear before sign-off.** A "skipped because it's AI" item is the failure mode this checklist exists to prevent.
+- **Match scrutiny to the risk tier.** Critical and high-risk content gets every item; lower-risk content can be more selective. Use the [risk-tier framework](/principles/risk-levels) to calibrate.
+- **Review the audit log before starting.** Without it, the AI-specific checks become best-guess.
+
+---
+
+## Before the review
+
+- [ ] The [AI audit-trail log](/templates/ai-audit-trail-log) for this deliverable is complete and accessible
+- [ ] All cited references are accessible as full text (not abstracts)
+- [ ] The approved messaging framework or claims matrix is to hand
+- [ ] The applicable code is identified (ABPI, IFPMA, FDA OPDP, etc.)
+- [ ] Risk tier of the deliverable is documented
+- [ ] Disclosure language for the deliverable is drafted (see [Disclosure Language Template](/templates/disclosure-language))
+
+---
+
+## AI-specific checks
+
+The items most likely to fail review on AI-assisted content. Run these first.
+
+### Reference and source integrity
+
+- [ ] **No fabricated references.** Every cited reference exists, has a working DOI/PMID, and supports the claim it's cited for. If closed-loop verification was run (e.g., [RefCheckr](/tools/refcheckr)), confirm the output was reviewed and accepted, not rubber-stamped.
+- [ ] **No fabricated data.** Numbers, percentages, p-values, hazard ratios in the deliverable match the source data exactly. Spot-check at least 20% manually — automated checks miss subtle mismatches.
+- [ ] **No merged findings.** AI sometimes blends results from different studies. Confirm each claim is attributed to the correct study, population, and analysis type.
+- [ ] **No drifted qualifiers.** Subgroup, post-hoc, exploratory, and secondary-endpoint markers present in the source are preserved in the deliverable.
+
+### Claim integrity
+
+- [ ] **Claims fall within the approved messaging framework.** AI can drift toward stronger language; verify each claim against the framework before sign-off.
+- [ ] **No off-label implications.** Read each claim against the approved indication. AI is prone to subtle scope expansion ("can help with X" when only X in a narrow population is approved).
+- [ ] **Comparative claims are substantiated.** AI sometimes implies superiority where the trial was designed for non-inferiority. Confirm comparative claims have head-to-head substantiation.
+- [ ] **Language strength matches evidence strength.** "Significantly reduces" requires statistical significance in the source. AI rewrites can soften or strengthen language without adjusting the cited evidence.
+
+### Safety and balance
+
+- [ ] **Fair balance is maintained.** AI-drafted content can over-emphasise efficacy. Safety information must be present, prominent, and proportionate.
+- [ ] **Safety claims verified with the same rigour as efficacy claims.** AI sometimes treats safety information as boilerplate. Verify against the SmPC or USPI.
+- [ ] **No minimised limitations.** Limitations of the evidence are visible, not buried.
+
+### Compliance and documentation
+
+- [ ] **Code-specific signals checked.** ABPI Code, IFPMA Code, or relevant national code obligations have been pre-screened (e.g., via [MedCheckr](/tools/medcheckr)).
+- [ ] **Disclosure language is present.** The deliverable includes the AI-use disclosure appropriate for its venue (manuscript, abstract, regulatory submission, internal report).
+- [ ] **AI use is consistent with sponsor SOP.** Some sponsors restrict AI use for certain deliverable types — confirm compatibility before sign-off.
+- [ ] **Audit log is contemporaneous.** Entries dated alongside the work, not reconstructed at submission.
+
+### AI-generated visuals
+
+- [ ] **AI-generated figures are not presented as primary scientific data.** Concept visuals, visual abstracts, and illustrations are clearly labelled as conceptual.
+- [ ] **Patient depictions don't imply outcomes.** AI image tools can render scenes that suggest treatment results — check for unintended implications.
+- [ ] **No identifiable real people or recognisable products** unless explicitly licensed.
+
+---
+
+## Standard MLR checks (with an AI lens)
+
+These exist on every MLR checklist; the notes flag where AI-assisted content needs different attention.
+
+- [ ] **All claims substantiated.** Same standard as for human-written content; verify against cited evidence.
+- [ ] **References numbered, formatted, and accessible.** AI-fabricated references will trip here if missed earlier.
+- [ ] **Prescribing information present and current.** Confirm no AI-hallucinated PI content.
+- [ ] **Approval workflow followed.** AI-assisted content used the standard review path, not a shortcut.
+
+---
+
+## Sign-off block
+
+| Field | Value |
+|---|---|
+| **Deliverable version reviewed** | [Version / file name] |
+| **All AI-specific items cleared** | [Yes / No] |
+| **All standard MLR items cleared** | [Yes / No] |
+| **Audit log reviewed** | [Yes / No] |
+| **Disclosure language confirmed** | [Yes / No] |
+| **Reviewer name and role** | [Name, role] |
+| **Sign-off date** | [YYYY-MM-DD] |
+
+---
+
+## Common failure patterns
+
+<AccordionGroup>
+  <Accordion title="Treating AI assistance as a polish layer">
+    Reviewers sometimes apply less scrutiny to "AI-edited" content than to "AI-drafted" content, on the assumption editing is low-risk. AI editing can rephrase claims in ways that subtly drift from the source. Apply the same checks regardless of stated scope.
+  </Accordion>
+  <Accordion title="Skipping the audit-log review">
+    The audit log answers "what did the AI actually do?" Without reviewing it, the AI-specific checks become best-guess. Always review the log before sign-off.
+  </Accordion>
+  <Accordion title="Over-trusting closed-loop output">
+    Closed-loop tools like [RefCheckr](/tools/refcheckr) and [MedCheckr](/tools/medcheckr) reduce drift; they don't eliminate it. A "passed" closed-loop output still needs human verification on the high-stakes items.
+  </Accordion>
+  <Accordion title="Defaulting to the standard checklist for AI-assisted content">
+    The AI-specific items are not optional adjuncts. They cover failure modes that don't appear in standard checklists. Skipping them is a common pathway to desk rejection or, in promotional contexts, to MLR rework.
+  </Accordion>
+  <Accordion title="Reviewing without full source access">
+    The reviewer has the abstract but not the full paper. They cannot verify a subgroup result. They pass it. AI-assisted content amplifies this risk because plausible-sounding claims about subgroups are common AI outputs. Confirm full-text access before review.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Related
+
+- [Review and Accountability](/principles/review-and-accountability) — the principle this checklist operationalises
+- [Source Grounding](/principles/source-grounding) — the underlying claim-to-source principle
+- [Declaring AI Use](/principles/declaring-ai-use) — the disclosure principle this checklist confirms
+- [AI Failure Modes](/principles/ai-failure-modes) — the failure patterns this checklist guards against
+- [AI Audit-Trail Log Template](/templates/ai-audit-trail-log) — feeds the "before the review" prep
+- [Disclosure Language Template](/templates/disclosure-language) — pairs with the disclosure-confirmed item
+- [Check Promotional Compliance](/workflows/check-promotional-compliance) — workflow this checklist supports
+- [Final Human Review](/workflows/final-human-review) — broader review workflow for any AI-assisted deliverable
+
+---
+
+*Last reviewed: 4 May 2026 · 7 min read*

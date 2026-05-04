@@ -150,7 +150,8 @@
             "group": "Templates",
             "pages": [
               "templates/disclosure-language",
-              "templates/ai-audit-trail-log"
+              "templates/ai-audit-trail-log",
+              "templates/mlr-ai-review-checklist"
             ]
           }
         ]

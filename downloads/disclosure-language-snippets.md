@@ -1,24 +1,8 @@
----
-title: "Disclosure Language Template"
-description: "Ready-to-use AI disclosure wording for manuscripts, posters, regulatory documents, and other medical writing deliverables."
-icon: "rectangle-list"
----
+# AI Disclosure Language Snippets
 
-Each snippet below is a starting point, not a finished line. Edit the bracketed variables — tool name, version, scope, reviewer name — to match your project before submitting. The wording aligns with current ICMJE-style expectations and most major journal policies; for the principle behind these templates, see [Declaring AI Use](/principles/declaring-ai-use).
+Ready-to-paste AI disclosure wording for medical writing deliverables. Edit the bracketed variables before use. Always check the journal's, regulator's, or sponsor's specific policy at submission.
 
-## Download
-
-<Card title="All snippets (Markdown)" icon="download" href="/downloads/disclosure-language-snippets.md">
-  Plain-text reference with all snippets. Useful for keeping a local copy or pasting into a project SOP.
-</Card>
-
-## How to use this page
-
-- **Pick the scenario** that matches your deliverable.
-- **Edit every bracketed variable.** A disclosure with `[Author X]` left in is a disclosure that doesn't survive contact with reality.
-- **Always name a human.** A disclosure without a named, accountable reviewer is not a disclosure — it is a description.
-- **Match the venue.** Default snippets here align with current ICMJE-style standards. Always check the journal's, regulator's, or sponsor's specific policy at submission.
-- **When in doubt, declare more, not less.** Underdisclosure is the higher-risk position.
+For the principle behind these templates, see https://playbook.pharmatools.ai/principles/declaring-ai-use
 
 ---
 
@@ -56,7 +40,7 @@ Each snippet below is a starting point, not a finished line. Edit the bracketed 
 
 ## Manuscript — AI used for figure or visual abstract generation
 
-*Use in the figure caption and the Methods section. Many journals restrict AI for scientific figures — check the journal's specific policy before use.*
+*Use in the figure caption and Methods section. Many journals restrict AI for scientific figures.*
 
 > The [visual abstract / concept figure / illustration] was generated using [Tool name and version, e.g., Nano Banana 2] from a prompt describing [content]. The image was reviewed for accuracy by [Author name(s)] and is intended as a conceptual illustration, not as primary scientific data.
 
@@ -88,7 +72,7 @@ Each snippet below is a starting point, not a finished line. Edit the bracketed 
 
 ## Promotional or MLR-bound material
 
-*Use per the applicable code (ABPI, IFPMA, etc.) and your client's SOP. The disclosure may be internal-only depending on the deliverable.*
+*Use per the applicable code (ABPI, IFPMA, etc.) and your client's SOP.*
 
 > AI tool [Tool name and version] was used to assist with [drafting / editing / claim verification] of this material. All claims have been verified against approved references and the approved messaging framework. The content was reviewed for code compliance by [reviewer name / role] before submission to MLR.
 
@@ -99,26 +83,3 @@ Each snippet below is a starting point, not a finished line. Edit the bracketed 
 *Use in the document footer or AI-use log per client SOP.*
 
 > Drafted with assistance from [Tool name and version], used for [drafting / summarisation / editing]. Reviewed and finalised by [Author name]. AI use logged per [project SOP / agency SOP reference].
-
----
-
-## Notes on adapting these snippets
-
-- **Be specific about scope.** "AI was used" is not specific enough. Name what the tool did and what it didn't do.
-- **Document contemporaneously.** Build the disclosure as you write, not at submission. The audit-trail expectations in [Review and Accountability](/principles/review-and-accountability) feed directly into the disclosure.
-- **Specify the version where it matters.** "Claude" alone is less defensible than "Claude Opus 4.7" if questions arise about a particular output six months later.
-- **Don't conflate categories.** If AI was used for both editing and translation, declare both explicitly. Don't roll them into a vague "language assistance" line.
-- **Mirror the journal's preferred format.** Some journals want a dedicated AI-use statement; others embed it in the Methods. Check before submission.
-
----
-
-## Related
-
-- [Declaring AI Use](/principles/declaring-ai-use) — the principle behind these templates
-- [AI in Peer Review](/principles/ai-in-peer-review) — what journals run on submissions before peer review
-- [Review and Accountability](/principles/review-and-accountability) — the audit trail that supports disclosure
-- [AI Regulation in Pharma](/principles/ai-regulation) — regulatory expectations that overlap with journal disclosure
-
----
-
-*Last reviewed: 4 May 2026 · 5 min read*

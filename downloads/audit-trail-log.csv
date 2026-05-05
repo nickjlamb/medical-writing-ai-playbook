@@ -1,0 +1,15 @@
+Date,Deliverable / section,Tool + version,Scope of use,Source inputs,Reviewer,Outcome,Notes
+2026-05-04,Manuscript Discussion section,Claude Opus 4.7,Drafting (initial),Trial CSR sections 11-14; key messages doc v2,A. Smith,Accepted with edits,"Two paragraphs rewritten to add HR confidence intervals"
+2026-05-05,Manuscript Methods section,Claude Sonnet 4.6,Editing for clarity,Existing draft section,A. Smith,Accepted as-is,Light copy-edits only
+2026-05-05,All references (40),RefCheckr (closed-loop),Reference verification and rewrite,Source PDFs of all cited references,A. Smith,"3 rewrites accepted, 1 manual edit","Closed-loop output reviewed; one claim required manual rephrasing"
+2026-05-08,Visual abstract,Nano Banana 2,Concept image generation,Brief prompt + key messages,M. Jones,Accepted,Caption updated to flag conceptual nature
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,

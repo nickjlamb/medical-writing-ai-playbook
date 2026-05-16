@@ -5,4 +5,4 @@ compatibility_date = "2025-01-01"
 # Replace `id` after running `wrangler kv namespace create COUNTER`
 [[kv_namespaces]]
 binding = "COUNTER"
-id = "REPLACE_ME_AFTER_KV_CREATE"
+id = "9928d01eb57c4206b52adf31c337e376"

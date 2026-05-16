@@ -601,7 +601,6 @@ hr {
 /* Section divider */
 .section-divider {
   page-break-before: always;
-  page-break-after: always;
   height: 260mm;
   display: flex;
   align-items: center;

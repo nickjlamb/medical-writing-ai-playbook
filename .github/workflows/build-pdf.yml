@@ -36,18 +36,6 @@ jobs:
       - name: Build PDF
         run: npm run build:pdf
 
-      - name: Commit updated PDF
-        run: |
-          if git diff --quiet -- playbook.pdf; then
-            echo "PDF unchanged, nothing to commit."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add playbook.pdf
-          git commit -m "Rebuild playbook.pdf [skip ci]"
-          git push
-
       - name: Publish PDF to GitHub Releases
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

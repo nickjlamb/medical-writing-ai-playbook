@@ -6,14 +6,13 @@ export const DownloadCounter = () => {
       if (el) el.textContent = n.toLocaleString();
     };
     const tryFetch = () => {
-      fetch('https://api.github.com/repos/nickjlamb/medical-writing-ai-playbook/releases/latest')
+      fetch('https://playbook-counter.pharmatools.workers.dev/')
         .then((r) => r.json())
         .then((d) => {
-          const pdf = (d.assets || []).find((a) => a.name === 'playbook.pdf');
-          if (pdf) {
-            apply(pdf.download_count);
-            setTimeout(() => apply(pdf.download_count), 500);
-            setTimeout(() => apply(pdf.download_count), 1500);
+          if (typeof d.downloads === 'number') {
+            apply(d.downloads);
+            setTimeout(() => apply(d.downloads), 500);
+            setTimeout(() => apply(d.downloads), 1500);
           }
         })
         .catch(() => {});

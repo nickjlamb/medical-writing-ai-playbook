@@ -1,0 +1,15 @@
+{
+  "name": "medical-writing-ai-playbook",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Build tooling for the Medical Writing AI Playbook (Mintlify docs site)",
+  "type": "module",
+  "scripts": {
+    "build:pdf": "node scripts/build-pdf.mjs"
+  },
+  "devDependencies": {
+    "gray-matter": "^4.0.3",
+    "marked": "^14.1.3",
+    "puppeteer": "^23.6.0"
+  }
+}

@@ -1,0 +1,49 @@
+name: Build playbook PDF
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.mdx'
+      - 'docs.json'
+      - 'scripts/build-pdf.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'snippets/**'
+      - 'logo-*.svg'
+      - 'lifecycle.svg'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build PDF
+        run: npm run build:pdf
+
+      - name: Commit updated PDF
+        run: |
+          if git diff --quiet -- playbook.pdf; then
+            echo "PDF unchanged, nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add playbook.pdf
+          git commit -m "Rebuild playbook.pdf [skip ci]"
+          git push

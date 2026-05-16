@@ -1,0 +1,28 @@
+export const DownloadCounter = () => {
+  if (typeof window !== 'undefined' && !window.__pbCounterStarted) {
+    window.__pbCounterStarted = true;
+    const apply = (n) => {
+      const el = document.getElementById('playbook-downloads');
+      if (el) el.textContent = n.toLocaleString();
+    };
+    const tryFetch = () => {
+      fetch('https://api.github.com/repos/nickjlamb/medical-writing-ai-playbook/releases/latest')
+        .then((r) => r.json())
+        .then((d) => {
+          const pdf = (d.assets || []).find((a) => a.name === 'playbook.pdf');
+          if (pdf) {
+            apply(pdf.download_count);
+            setTimeout(() => apply(pdf.download_count), 500);
+            setTimeout(() => apply(pdf.download_count), 1500);
+          }
+        })
+        .catch(() => {});
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', tryFetch);
+    } else {
+      tryFetch();
+    }
+  }
+  return null;
+};

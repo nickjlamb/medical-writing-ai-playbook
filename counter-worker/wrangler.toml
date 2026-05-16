@@ -1,0 +1,8 @@
+name = "playbook-counter"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+# Replace `id` after running `wrangler kv namespace create COUNTER`
+[[kv_namespaces]]
+binding = "COUNTER"
+id = "REPLACE_ME_AFTER_KV_CREATE"

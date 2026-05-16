@@ -95,15 +95,46 @@ description: "Use AI to accelerate medical writing without losing scientific acc
     </div>
 
     <p style={{
-      marginTop: '1.75rem',
+      marginTop: '0.85rem',
+      fontSize: '0.8rem',
+      color: 'rgba(255,255,255,0.55)',
+      margin: '0.85rem 0 0',
+      letterSpacing: '0.01em'
+    }}>
+      <span id="playbook-downloads">—</span> downloads so far
+    </p>
+
+    <p style={{
+      marginTop: '1.5rem',
       fontSize: '0.9rem',
       color: 'rgba(255,255,255,0.7)',
-      margin: '1.75rem 0 0'
+      margin: '1.5rem 0 0'
     }}>
       A growing resource for healthcare communications teams adopting AI workflows.
     </p>
   </div>
 </div>
+
+<script dangerouslySetInnerHTML={{__html: `
+(function(){
+  function update(){
+    fetch('https://api.github.com/repos/nickjlamb/medical-writing-ai-playbook/releases/latest')
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        var pdf = (d.assets || []).find(function(a){ return a.name === 'playbook.pdf'; });
+        if (!pdf) return;
+        var el = document.getElementById('playbook-downloads');
+        if (el) el.textContent = pdf.download_count.toLocaleString();
+      })
+      .catch(function(){});
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', update);
+  } else {
+    update();
+  }
+})();
+`}} />
 
 Each workflow explains:
 

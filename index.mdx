@@ -115,26 +115,27 @@ description: "Use AI to accelerate medical writing without losing scientific acc
   </div>
 </div>
 
-<script dangerouslySetInnerHTML={{__html: `
-(function(){
-  function update(){
+export const DownloadCounter = () => {
+  if (typeof window !== 'undefined' && !window.__pbCounterStarted) {
+    window.__pbCounterStarted = true;
     fetch('https://api.github.com/repos/nickjlamb/medical-writing-ai-playbook/releases/latest')
-      .then(function(r){ return r.json(); })
-      .then(function(d){
-        var pdf = (d.assets || []).find(function(a){ return a.name === 'playbook.pdf'; });
+      .then((r) => r.json())
+      .then((d) => {
+        const pdf = (d.assets || []).find((a) => a.name === 'playbook.pdf');
         if (!pdf) return;
-        var el = document.getElementById('playbook-downloads');
-        if (el) el.textContent = pdf.download_count.toLocaleString();
+        const update = () => {
+          const el = document.getElementById('playbook-downloads');
+          if (el) el.textContent = pdf.download_count.toLocaleString();
+        };
+        update();
+        setTimeout(update, 250);
       })
-      .catch(function(){});
+      .catch(() => {});
   }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', update);
-  } else {
-    update();
-  }
-})();
-`}} />
+  return null;
+};
+
+<DownloadCounter />
 
 Each workflow explains:
 

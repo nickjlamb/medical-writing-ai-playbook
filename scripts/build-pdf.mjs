@@ -352,18 +352,32 @@ function prettifySlug(slug) {
 }
 
 function buildCover(version, dateString) {
-  const logoPath = `file://${path.join(ROOT, 'logo-dark.svg')}`;
+  // Inline white SVG mark (PharmaTools.AI emblem, no text — title below carries the wordmark)
+  const logoSvg = `<svg class="cover-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 36" fill="#ffffff">
+  <g transform="scale(0.1105)">
+    <path d="M249.95,35.28H17.64C7.9,35.28,0,27.38,0,17.64S7.9,0,17.64,0h232.31c9.74,0,17.64,7.9,17.64,17.64s-7.9,17.64-17.64,17.64"/>
+    <path d="M317.7,107.87H17.64C7.9,107.87,0,99.97,0,90.23s7.89-17.64,17.64-17.64h300.05c9.74,0,17.64,7.9,17.64,17.64s-7.9,17.64-17.64,17.64"/>
+    <path d="M249.95,253.07H17.64c-9.74,0-17.64-7.9-17.64-17.64s7.9-17.64,17.64-17.64h232.31c9.74,0,17.64,7.9,17.64,17.64s-7.9,17.64-17.64,17.64"/>
+    <path d="M317.7,180.47H17.64C7.9,180.47,0,172.56,0,162.83s7.89-17.64,17.64-17.64h300.05c9.74,0,17.64,7.9,17.64,17.64s-7.9,17.64-17.64,17.64"/>
+    <path d="M144.68,325.66H17.64C7.9,325.66,0,317.75,0,308.02s7.89-17.64,17.64-17.64h127.04c9.74,0,17.64,7.9,17.64,17.64s-7.9,17.64-17.64,17.64"/>
+    <path d="M531.25,325.66h-127.04c-9.75,0-17.64-7.9-17.64-17.64s7.89-17.64,17.64-17.64h127.04c9.74,0,17.64,7.9,17.64,17.64s-7.9,17.64-17.64,17.64"/>
+    <path d="M531.25,253.07h-127.04c-9.75,0-17.64-7.9-17.64-17.64s7.89-17.64,17.64-17.64h127.04c9.74,0,17.64,7.9,17.64,17.64s-7.9,17.64-17.64,17.64"/>
+    <path d="M531.25,180.47h-127.04c-9.75,0-17.64-7.9-17.64-17.64s7.89-17.64,17.64-17.64h127.04c9.74,0,17.64,7.9,17.64,17.64s-7.9,17.64-17.64,17.64"/>
+    <path d="M617.76,107.87h-300.05c-9.75,0-17.64-7.9-17.64-17.64s7.89-17.64,17.64-17.64h300.05c9.74,0,17.64,7.9,17.64,17.64s-7.9,17.64-17.64,17.64"/>
+    <path d="M617.76,35.28h-300.05c-9.75,0-17.64-7.9-17.64-17.64s7.89-17.64,17.64-17.64h300.05c9.74,0,17.64,7.9,17.64,17.64s-7.9,17.64-17.64,17.64"/>
+  </g>
+</svg>`;
   return `
 <section class="cover">
   <div class="cover-inner">
-    <img class="cover-logo" src="${logoPath}" alt="Medical Writing AI Playbook" />
+    ${logoSvg}
     <div class="cover-eyebrow">A free resource by PharmaTools.AI</div>
     <h1 class="cover-title">Medical Writing<br/><span class="cover-title-accent">AI Playbook.</span></h1>
     <p class="cover-subtitle">Use AI across the full writing lifecycle — finding evidence, drafting, checking claims, preparing for review — without losing scientific accuracy or regulatory control.</p>
     <div class="cover-meta">
       <div><span class="meta-label">Version</span><span class="meta-value">${version}</span></div>
       <div><span class="meta-label">Updated</span><span class="meta-value">${dateString}</span></div>
-      <div><span class="meta-label">Web</span><span class="meta-value">medicalwritingai.com</span></div>
+      <div><span class="meta-label">Web</span><span class="meta-value">playbook.pharmatools.ai</span></div>
     </div>
   </div>
 </section>
@@ -518,7 +532,7 @@ hr {
   position: relative;
 }
 .cover-inner { width: 100%; }
-.cover-logo { height: 40px; margin-bottom: 60mm; filter: brightness(0) invert(1); }
+.cover-logo { display: block; height: 28px; width: auto; margin-bottom: 60mm; }
 .cover-eyebrow {
   font-size: 9pt;
   letter-spacing: 0.15em;
@@ -535,12 +549,7 @@ hr {
   color: white;
   letter-spacing: -0.02em;
 }
-.cover-title-accent {
-  background: linear-gradient(90deg, #60a5fa 0%, #a78bfa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+.cover-title-accent { color: #a78bfa; }
 .cover-subtitle {
   font-size: 13pt;
   line-height: 1.5;

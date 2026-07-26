@@ -1,0 +1,131 @@
+---
+title: "The Description–Discernment Loop"
+sidebarTitle: "Description & Discernment"
+description: "AI output quality tracks the quality of your brief. Treat AI writing as a loop — describe with rich context, evaluate with expert judgement, refine with specific instructions."
+icon: "arrows-rotate"
+---
+
+## Core principle
+
+The quality of AI-assisted writing is set before the first draft appears — by how well you brief the model. And it is protected after the draft appears — by how rigorously you evaluate it. These two skills, **Description** and **Discernment**, form a loop: brief, draft, evaluate, refine, and feed what you learn back into the next brief.
+
+Most of this playbook covers the discernment half — verification, compliance screening, review, and sign-off. This page covers the half that gets less attention in regulated writing: the brief. A vague brief produces a generic draft, and a generic draft costs more review time than a good brief would have cost up front.
+
+<Note>
+This page applies concepts from the **AI Fluency Framework** developed by Prof. Rick Dakan (Ringling College of Art and Design) and Prof. Joseph Feller (University College Cork), as taught in Anthropic's AI Fluency courses. The framework describes four competencies — Delegation, Description, Discernment, and Diligence. Description and Discernment are the two with the most direct application to day-to-day medical writing; the playbook's [risk tiers](/principles/risk-levels) and [review protocols](/principles/review-and-accountability) map broadly to Delegation and Diligence.
+</Note>
+
+---
+
+## Description: brief AI like you'd brief a writer
+
+If you handed a deliverable to a freelance medical writer, you would never say "write a manuscript about this trial" and walk away. You would send the brief, the data, the journal requirements, examples of prior work, and the client's preferences. AI needs the same brief — and unlike the freelancer, it cannot ask around the office for what you forgot to include.
+
+### Provide examples of approved work
+
+The fastest way to convey voice, structure, and register is to show, not describe. Where your organisation's policies permit, include in your prompt context:
+
+- A previously approved deliverable of the same type (an approved PLS, a past congress summary, a signed-off slide deck)
+- The house or client style guide, or the relevant extract
+- An approved messaging framework or claims matrix, where one exists
+- The target journal's author guidelines, congress abstract rules, or channel specifications
+
+A model given a strong prior example produces a first draft that already sits close to the expected structure and register. A model given none produces the average of everything it has read — which is precisely the generic voice reviewers then spend cycles editing out.
+
+<Warning>
+**Confidentiality comes first.** Only upload materials you are permitted to share with the AI tool under your organisation's and your client's AI policies. Approved, published, or client-cleared examples are the safe starting point. Never paste unpublished data, patient-level information, or confidential commercial material into a tool that has not been approved for it. See [Declaring AI Use](/principles/declaring-ai-use) for the disclosure side of this.
+</Warning>
+
+### Inject what AI cannot know
+
+AI knows the published literature up to its training cutoff. It does not know:
+
+| What only you know | Why it changes the draft |
+|---|---|
+| The client's messaging priorities and sensitivities | Which endpoint leads, which comparisons are off-limits |
+| What MLR flagged on the last three submissions | The specific phrasings to avoid this time |
+| The audience's actual starting knowledge | A "GP audience" in one market is not the same as another |
+| Where the evidence is genuinely weak | The limitations the deliverable must acknowledge rather than paper over |
+| The project's history and context | Why the brief says what it says — the decisions already made |
+
+The single biggest upgrade to most prompts is not cleverer instructions — it is adding the two or three facts the model had no way of knowing.
+
+### Describe the approach, not just the output
+
+Beyond what to produce, describe how to produce it: "work only from the attached sources; flag anything you cannot support rather than filling gaps" is an approach instruction, and it is the practical implementation of [source grounding](/principles/source-grounding). The [prompt patterns](/prompts/source-analysis-prompts) in this playbook are structured this way — output format, source constraints, and behavioural rules stated explicitly.
+
+---
+
+## Discernment: evaluate more than accuracy
+
+The playbook's [review checklists](/workflows/final-human-review) cover accuracy, completeness, and compliance in depth. Two further discernment questions are easy to skip because nothing "fails" when they go unasked:
+
+### Does it sound like us?
+
+AI defaults to a recognisable register — fluent, balanced, slightly padded, fond of "moreover" and tidy triplets. For an internal summary, that may not matter. For a client deliverable, an authored manuscript, or patient-facing content, it does. Ask explicitly:
+
+- Would a reader familiar with our (or the client's) content recognise this as ours?
+- Does the phrasing match the approved lexicon — or has the model substituted near-synonyms that were deliberately avoided?
+- Is anything padded, hedged, or generically "professional" where the house style is direct?
+
+A [voice and authenticity check](/prompts/review-prompts#7-voice-and-authenticity-check) can support this review, but the judgement is the writer's: you know what your organisation sounds like.
+
+### Is the process working — not just the output?
+
+Discernment applies to the collaboration itself, not only the draft in front of you. If every draft needs the same correction, the fix belongs in the brief, not in another round of edits. Signals worth acting on:
+
+- You keep re-explaining the same context → move it into a standing briefing block
+- The model keeps overreaching the sources → tighten the grounding rules in the prompt
+- Drafts are accurate but tonally wrong → add or improve the voice example
+
+---
+
+## Closing the loop: revise with specifics
+
+Vague feedback to AI produces vague revisions — the model guesses at what you meant, and its guess is usually "more adjectives." Specific feedback produces controlled revisions.
+
+| Instead of | Say |
+|---|---|
+| "Make this more compelling" | "Lead with the primary endpoint result; move the mechanism paragraph after the efficacy data" |
+| "This doesn't sound right" | "Replace 'groundbreaking' and 'robust' — use the neutral register of the attached example" |
+| "Tighten it up" | "Cut to 400 words; keep the safety paragraph unchanged" |
+| "The safety section is weak" | "Add discontinuation rates from Table 3 and retain the severity grading qualifiers" |
+| "Make it more patient-friendly" | "Target reading age 12; replace 'progression-free survival' with the approved plain-language definition" |
+
+Two rules keep iteration safe in medical writing:
+
+1. **Pin what must not change.** When asking for a revision, state explicitly which sections, data points, and qualifiers must be preserved. Unconstrained revisions can quietly re-word verified content — which then needs re-verification.
+2. **Re-verify what changed.** A revised draft is a new draft. Anything the model touched goes back through the applicable checks before sign-off.
+
+---
+
+## Build a briefing pack, not a prompt
+
+The course framing of a "cognitive environment" — context that accumulates across a collaboration — has a practical med comms translation: a reusable briefing pack per client, product, or project. A living document containing:
+
+- Approved voice examples and style rules
+- The standing context block (product, indication, audience definitions, off-limits territory)
+- Grounding and behavioural rules that have proven necessary
+- A running list of corrections that recur — each one a candidate for promotion into the standing brief
+
+After each deliverable, spend two minutes on the reflection the loop depends on: *what context did I have to add mid-project that should have been in the brief from the start?* Move it into the pack. Over a project's lifetime, first drafts get measurably closer to final, and the review effort concentrates where it belongs — on verification and judgement, not on fixing a brief that was never given.
+
+---
+
+## How this maps to the playbook
+
+| Loop stage | Where the playbook covers it |
+|---|---|
+| Describe | [Prompt patterns](/prompts/source-analysis-prompts) · the Inputs section of every workflow card |
+| Draft | The 18 [workflow cards](/workflows/find-evidence) |
+| Discern | [Human-in-the-Loop](/principles/human-in-the-loop) · [Final Human Review](/workflows/final-human-review) · [AI Failure Modes](/principles/ai-failure-modes) |
+| Refine | This page · [Review prompts](/prompts/review-prompts) |
+| Own it | [Review and Accountability](/principles/review-and-accountability) — the person who signs off should be able to stand behind every word, however it was produced |
+
+---
+
+*Concepts adapted from the AI Fluency Framework by Rick Dakan and Joseph Feller, as taught in Anthropic's AI Fluency courses (course materials © 2025 Anthropic and GivingTuesday, CC BY-NC-SA 4.0). The application to medical writing is the playbook's own.*
+
+---
+
+*Last reviewed: 26 July 2026 · 7 min read*

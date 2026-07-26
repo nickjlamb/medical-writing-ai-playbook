@@ -4,7 +4,7 @@ description: "Prompt patterns for QC, verification, and pre-submission review of
 icon: "check-circle"
 ---
 
-Prompt patterns for QC, verification, and pre-submission review of medical communications content. Each pattern targets a specific review task: reference checking, compliance screening, source grounding, safety data completeness, cross-document consistency, and readability assessment. These prompts are review support tools — they inform the reviewer's work, they do not substitute for it.
+Prompt patterns for QC, verification, and pre-submission review of medical communications content. Each pattern targets a specific review task: reference checking, compliance screening, source grounding, safety data completeness, cross-document consistency, readability assessment, and voice authenticity. These prompts are review support tools — they inform the reviewer's work, they do not substitute for it.
 
 ---
 
@@ -190,6 +190,36 @@ Note: This checks readability, not medical accuracy. Accuracy must be verified s
 
 ---
 
+## 7. Voice and Authenticity Check
+
+**Use when:** Reviewing AI-assisted content for generic AI register before it reaches a client or external audience. See [the Description–Discernment loop](/principles/description-discernment) for why this check matters.
+
+```
+You are an editorial reviewer. Compare the following draft against the reference example(s) of approved content and flag where the draft departs from the established voice.
+
+Draft:
+[INSERT DRAFT]
+
+Approved reference example(s):
+[INSERT ONE OR MORE APPROVED DELIVERABLES OF THE SAME TYPE]
+
+Style rules (if available):
+[INSERT HOUSE OR CLIENT STYLE RULES]
+
+Check for:
+1. Generic AI register — filler transitions ("moreover", "furthermore"), tidy triplet constructions, padded hedging
+2. Vocabulary drift — near-synonyms substituted for terminology the reference consistently uses
+3. Register mismatch — more formal, more promotional, or more hedged than the reference
+4. Sentence rhythm — noticeably longer or more uniform sentences than the reference
+5. Empty emphasis — intensifiers ("robust", "significant" used non-statistically, "groundbreaking") absent from the reference
+
+For each issue: quote the draft text, quote or describe the reference pattern it departs from, and suggest a revision.
+
+Note: This checks voice, not accuracy. The reviewer decides which flags matter — the reference examples define "correct", not the model's own preferences.
+```
+
+---
+
 ## Customisation notes
 
 - **Combine prompts as needed:** For a final review, you might run the source grounding check, safety completeness check, and compliance pre-screen in sequence
@@ -202,3 +232,4 @@ Note: This checks readability, not medical accuracy. Accuracy must be verified s
 - [Verify claims against references](/workflows/verify-claims-against-references)
 - [Check promotional compliance](/workflows/check-promotional-compliance)
 - [Final human review](/workflows/final-human-review)
+- [The Description–Discernment loop](/principles/description-discernment) — briefing and iteration principles behind these review patterns

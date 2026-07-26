@@ -64,6 +64,7 @@
             "pages": [
               "principles/human-in-the-loop",
               "principles/source-grounding",
+              "principles/description-discernment",
               "principles/risk-levels",
               "principles/ai-risk-framework",
               "principles/ai-failure-modes",

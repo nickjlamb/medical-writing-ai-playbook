@@ -7,7 +7,7 @@ Page titles and meta descriptions for search and social sharing. Titles target 5
 ## Homepage
 
 **Title:** AI Workflows for Medical Writing — Medical Writing AI Playbook
-**Description:** Free, structured workflows for using AI safely in medical writing. Risk tiers, review frameworks, and prompt patterns for medical writers, agencies, and pharma teams.
+**Description:** Free AI workflows for medical writing, from finding evidence to final review. Risk tiers, prompt patterns and review frameworks for med comms and pharma teams.
 
 ---
 

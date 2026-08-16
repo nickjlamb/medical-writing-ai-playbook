@@ -43,9 +43,26 @@ Limited-risk AI carries specific transparency duties that affect day-to-day medi
 
 - **Users must know they're interacting with AI** — relevant for any chatbot or interactive AI tool deployed to HCPs or patients
 - **AI-generated content must be labelled** — text, images, audio, and video produced or substantially modified by AI must be marked as such, unless it has undergone meaningful human review and editorial responsibility
-- **Synthetic content must be detectable** — providers of generative AI are obliged to make output technically detectable as AI-generated
+- **Synthetic content must be machine-readable** — providers of generative AI are obliged to mark output so it is technically detectable as AI-generated
 
 This aligns closely with [Declaring AI Use](/principles/declaring-ai-use). If you are already complying with ICMJE-style journal disclosure expectations, you are most of the way to Article 50 compliance for your written outputs. The EU AI Act formalises what good practice already required.
+
+### Provider-side content marking (live from August 2026)
+
+The detectability obligation is no longer theoretical. From August 2026, foundation model providers began marking their output at source:
+
+- **Text watermarking.** [Anthropic began watermarking Claude's text output globally](https://www.anthropic.com/news/claude-text-watermark) in August 2026 — a statistical pattern in word choice that is invisible to readers, does not change meaning, and can be verified with a key. Google's SynthID does the same for Gemini. OpenAI has built comparable technology but has not deployed it at scale.
+- **File provenance.** Generated image files (.png, .jpg, .svg) increasingly carry [C2PA content credentials](https://c2pa.org/) — industry-standard metadata recording that the file was AI-produced.
+
+Three practical implications for medical writers:
+
+**The marking obligation is not yours.** It sits on the model provider. You do not need to add anything to a deliverable because it was drafted with a watermarking model, and the watermark itself is not a disclosure.
+
+**Your duty is the deployer duty — and human review is an explicit defence.** Article 50(4) requires deployers publishing AI-generated text on matters of public interest to disclose it, but exempts text that has undergone a human editorial review process with a natural or legal person holding editorial responsibility for its publication. That is the named-reviewer model this playbook argues for throughout, written into the Act. A deliverable with a named accountable reviewer is not, in the Act's own terms, undisclosed synthetic content.
+
+**Detection is not yet something to rely on — in either direction.** Public tooling is limited: Anthropic has announced a detection API but not released it, Google's SynthID text detector has restricted access, and there is no cross-provider detector. The signal is weakest exactly where medical writing sits — short passages, factually constrained prose offering few genuine word choices, and text substantially rewritten through author review and MLR. Do not assume a journal can check. Equally, do not assume an absent watermark evidences human authorship.
+
+The net effect is that watermarking raises the practical cost of non-disclosure without changing what you owe. It does not replace declaration — see [Declaring AI Use](/principles/declaring-ai-use).
 
 ---
 
@@ -85,10 +102,11 @@ For medical writers, the practical implication is that **the AI tool you choose 
 | August 2024 | EU AI Act in force |
 | February 2025 | Prohibited AI uses banned |
 | August 2025 | Foundation model provider obligations apply |
-| August 2026 | Most general obligations (transparency, governance) apply |
+| **2 August 2026** | **Article 50 transparency obligations enforceable** — in force now |
+| 2 December 2026 | Grace period ends for machine-readable marking of synthetic content |
 | August 2027 | High-risk AI obligations fully apply |
 
-By the time you read this, transparency and governance obligations are either in force or imminent. High-risk obligations are still in their compliance window, which is why guidance is still evolving for SaMD-adjacent uses.
+Transparency and governance obligations are now in force. The narrow grace period covering machine-readable marking of synthetic content runs to December 2026, which is why provider watermarking is arriving in stages rather than all at once. High-risk obligations remain in their compliance window, which is why guidance is still evolving for SaMD-adjacent uses.
 
 ---
 
@@ -167,4 +185,4 @@ The EU AI Act has shifted AI compliance from "best practice" to "legal obligatio
 
 ---
 
-*Last reviewed: 4 May 2026 · 8 min read*
+*Last reviewed: 16 August 2026 · 9 min read*

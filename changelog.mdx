@@ -53,55 +53,59 @@ icon: "list-check"
 - **Glossary expanded** with twelve recent AI terms — Computer use, Frontier model, Grounding, Guardrails, Harness, Human-in-the-loop (HITL), Open-loop AI, Prompt injection, Reasoning model, Skill, System prompt, and Tool use
 - **Homepage hero** added — gradient-background block with the playbook headline, subtitle, and primary/secondary CTAs replacing the previous doc-page intro; auto-rendered title suppressed via project-level CSS scoped to the homepage only
 
-## v2.24 — 4 May 2026
+<Note>
+**Version numbering.** Entries below this point were originally numbered v2.0–v2.24. They were renumbered to the v1.x series on 19 August 2026 to clear six duplicate version numbers, created when the current series restarted at v2.3 on 4 May 2026. Only the numbers changed; dates and content are untouched.
+</Note>
+
+## v1.24 — 4 May 2026
 
 - **RefCheckr rearchitected as closed-loop AI** — RefCheckr now runs a Verify (Perplexity) → Fix (Claude) → Re-check (Perplexity + MedCheckr ABPI compliance) loop, re-running on failure. It no longer just flags mismatches: it rewrites claims using only evidence from the paper (with guardrails — no new numbers, no new endpoints, no stronger language) and re-verifies the rewrite before returning it
 - **[RefCheckr tool page](/tools/refcheckr)** rewritten with a "How the closed loop works" table covering Verify, Fix, and Re-check steps and the underlying stack
 - **Closed-loop AI** added to the [glossary](/glossary), anchored to RefCheckr as the working example
 - **Playbook-wide language refresh** — workflow tool-stack tables, the Verify Claims Against References workflow header diagram and steps, the Tool decision tree, the PubCrawl comparison table, the Source grounding principle, the homepage card, the Start guide, and the about page all updated to describe RefCheckr's closed-loop behaviour rather than the old verify-only framing
 
-## v2.23 — 20 April 2026
+## v1.23 — 20 April 2026
 
 - **Generate Concept Visuals with AI** workflow page added under Drafting — when to use AI image generation (conceptual figures, visual abstracts, slide visuals, social graphics), the tool landscape (Nano Banana 2, Midjourney, ChatGPT, Adobe Firefly), four prompting patterns, and a "Reality check" section covering what AI images must not be used for (exact scientific figures, data visualisations, regulatory-facing materials without review, patient depictions implying outcomes, identifiable people or products)
 - **Nano Banana 2** and **Midjourney** added to the [Tool ecosystem](/tools/ecosystem) under a new **AI image generation** section, with an explicit pointer that AI image tools are not substitutes for BioRender or a medical illustrator on scientific figures
 - **Decision tree** updated with a new row for concept images, visual abstracts, slide visuals, and social graphics
 
-## v2.22 — 18 April 2026
+## v1.22 — 18 April 2026
 
 - **Claude Design** added to the [Tool ecosystem](/tools/ecosystem#claude-design) under a new **Design and brand concepting** section — Anthropic Labs' design surface for pitch decks, leavepieces, marketing collateral, and prototypes, framed for medical writers who are increasingly being asked to generate visual concepts before a designer takes over
 - **Decision tree** updated with a new row mapping brand concepts, leavepieces, ad mockups, and pitch deck visuals to Claude Design
 
-## v2.21 — 15 April 2026
+## v1.21 — 15 April 2026
 
 - **AI Failure Modes in Medical Writing** page added to Principles — ten predictable ways AI fails when working with scientific evidence, each with example, why it matters, and how to catch it, plus a summary table
 
-## v2.20 — 14 April 2026
+## v1.20 — 14 April 2026
 
 - **Which tool when** decision tree added to the Tools section — a Mermaid flowchart plus fast-reference list mapping common medical writing tasks to the right tool, covering both third-party options and the PharmaTools.AI suite
 
-## v2.19 — 14 April 2026
+## v1.19 — 14 April 2026
 
 - **Claude Cowork** section on the Tool ecosystem page expanded with a practical example workflow, example prompt, and a short "Why this workflow matters" explainer
 
-## v2.18 — 13 April 2026
+## v1.18 — 13 April 2026
 
 - **Patiently AI** tool page updated with OpenClaw installation option — Patiently AI is now available as a skill on ClawHub (`clawhub install patiently-ai`)
 
-## v2.17 — 9 April 2026
+## v1.17 — 9 April 2026
 
 - **Tool ecosystem page** added to the Tools section — single consolidated reference covering all 16 third-party tools the playbook points to (Claude Cowork, NotebookLM, Elicit, Consensus, Perplexity, Scite.ai, Zotero, EndNote, Claude, ChatGPT, Microsoft Copilot, BioRender, Napkin, Gamma, Otter.ai, Fireflies.ai)
 - Tools grouped by job-to-be-done (multi-document workflows, single-paper exploration, literature search, reference management, general-purpose AI, enterprise productivity, figures, presentation generation, transcription)
 - Each entry links to the playbook workflows and tool pages that already reference it, so readers can jump from the directory back into context
 - The Tools sidebar group now contains the seven PharmaTools.AI products plus a single ecosystem entry, preserving the section's role as a product surface while giving readers one place to discover external options
 
-## v2.16 — 9 April 2026
+## v1.16 — 9 April 2026
 
 - **BioRender** added (Slide Deck, Manuscript) — publication-quality biological figures
 - **Microsoft Copilot** added (Slide Deck, Manuscript, Regulatory Document) — in-Word/PowerPoint drafting for enterprise pharma environments
 - **Otter.ai / Fireflies.ai** added (Extract Key Messages) — transcription for advisory boards, KOL interviews, and focus groups
 - **Scite.ai** added (Verify Claims, Find Evidence, RefCheckr complementary tools) — citation context analysis
 
-## v2.15 — 9 April 2026
+## v1.15 — 9 April 2026
 
 - **Claude Cowork** added as a third-party tool across 6 pages (Find Evidence, Extract Study Data, Extract Key Messages, Write a Manuscript, Draft a Regulatory Document, PubCrawl)
 - Positioned for structured workflows involving multiple source documents (analysing papers together, comparing trials, drafting from multiple sources)
@@ -109,14 +113,14 @@ icon: "list-check"
 - **Glossary expanded** from 27 to 48 terms — added DOI, EMA, EudraCT, FDA, HEOR, IB, ICH, MCP, MedDRA, MeSH, MOA, MSL, ORR, OS, PFS, PICO, PMCPA, PMID, PRISMA, QALY, SAP, TFL
 - **PubCrawl tool page** updated with MCP server explanation and installation details
 
-## v2.14 — 9 April 2026
+## v1.14 — 9 April 2026
 
 - **NotebookLM** added as a third-party tool across 6 pages (Find Evidence, Summarise a Paper, Extract Study Data, Extract Key Messages, Write a Manuscript, PubCrawl)
 - Positioned for source-grounded summarisation, paper familiarisation, and theme identification
 - Homepage intro rewritten for clarity and directness
 - Meta description simplified
 
-## v2.13 — 8 April 2026
+## v1.13 — 8 April 2026
 
 - **Risk Levels** renamed to **Understanding AI Risk in Medical Writing** and rewritten as a conceptual page (why risk varies, failure modes, risk factors)
 - **AI Risk Framework** tightened as the operational page (tier model, workflow mapping, review expectations)
@@ -124,18 +128,18 @@ icon: "list-check"
 - Cross-links added between the two pages
 - All references to "Risk Levels" updated across the playbook
 
-## v2.12 — 8 April 2026
+## v1.12 — 8 April 2026
 
 - **AI Risk Framework** added to Principles: a 4-tier governance framework (Assistive → Structured Transformation → Evidence-Critical → Human Authority Required)
 - Maps all 17 workflows to risk tiers with notes on context-dependent classification
 - Includes review expectations by tier and practical guidance for writers, teams, and stakeholder conversations
 
-## v2.11 — 8 April 2026
+## v1.11 — 8 April 2026
 
 - **Workflows grouped in sidebar** into 5 lifecycle stages: Evidence & Insight, Drafting, Adaptation, Validation, Delivery
 - Reduces visual clutter of the 17-item flat list and reinforces the lifecycle structure
 
-## v2.10 — 8 April 2026
+## v1.10 — 8 April 2026
 
 - **3 new regulatory-adjacent workflows** added: Draft a Regulatory Document, Convert Statistical Outputs to Narrative, Check Document Consistency
 - Integrated into existing lifecycle: regulatory drafting sits in the Draft stage, document consistency sits in the Validate stage
@@ -143,21 +147,21 @@ icon: "list-check"
 - Cross-links added from Write a Manuscript, Extract Study Data, Build an Outline, and Verify Claims to the new workflows
 - Playbook now covers 17 workflows across publications, medical affairs, medcomms, regulatory writing, and promotional content
 
-## v2.9 — 8 April 2026
+## v1.9 — 8 April 2026
 
 - **Workflow lifecycle map** added to homepage: a 6-stage table (Evidence → Insight → Draft → Adapt → Validate → Deliver) linking all 14 workflows
 - Card grid reordered to match the lifecycle sequence
 - Cards grouped by lifecycle stage using natural CardGroup breaks (3-2-3-2-2-2 layout)
 - Two navigation modes now supported: lifecycle overview (table) and task-based access (cards)
 
-## v2.8 — 8 April 2026
+## v1.8 — 8 April 2026
 
 - Sidebar reordered: Congress Summary moved after Summarise a Paper (reflects the evidence-first lifecycle)
 - Slide deck sidebar title changed to "Create a Slide Deck" for verb consistency
 - Cross-links improved: Find Evidence → Congress Summary, Congress Summary → Extract Study Data, Extract Key Messages → outline/deliverable context
 - Minor consistency fixes across workflow Next steps sections
 
-## v2.7 — 8 April 2026
+## v1.7 — 8 April 2026
 
 - **4 new workflows** added: Find Evidence, Extract Study Data, Create a Medical Slide Deck, Write a Manuscript
 - Workflow sidebar reordered to follow the medical writing project lifecycle: Evidence → Insight → Draft → Adapt → Validate → Deliver
@@ -165,7 +169,7 @@ icon: "list-check"
 - Cross-links added between related workflows (summarise → extract data, outline → manuscript/slides)
 - Playbook now covers 14 workflows across publications, medical affairs, medcomms, and promotional writing
 
-## v2.6 — 8 April 2026
+## v1.6 — 8 April 2026
 
 - **External tool ecosystem** integrated across the playbook (Claude, ChatGPT, Elicit, Consensus, Zotero, EndNote, Napkin, Gamma)
 - PharmaTools remain the primary workflow tools; external tools added as alternatives or complements
@@ -173,17 +177,17 @@ icon: "list-check"
 - Complementary tools sections added to PubCrawl and RefCheckr tool pages
 - MedCheckr compliance section kept focused with no external competitors
 
-## v2.5 — 8 April 2026
+## v1.5 — 8 April 2026
 
 - Reduced em dash density by ~30% across all published content to improve writing naturalness
 
-## v2.4 — 8 April 2026
+## v1.4 — 8 April 2026
 
 - **Serif headings** — Newsreader font for headings (matches PharmaTools.AI brand), cleaner editorial feel
 - **Risk-tier callout system** — Low risk workflows use green `Tip`, Medium use blue `Info`, High/Critical use amber `Warning`. Visual colour coding reinforces the risk framework.
 - **Workflow flow diagrams** — Every workflow now shows a compact one-line flow summary (e.g., "Full paper → AI summary → Data verification → Final summary") inside the risk callout
 
-## v2.3 — 8 April 2026
+## v1.3 — 8 April 2026
 
 - **Time estimates** added to all 10 workflow info callouts (e.g., "~10 min with AI, ~45 min without")
 - **Worked examples** added to 3 key workflows: Summarise a Paper, Extract Key Messages, Verify Claims — showing source → AI output → issues caught → reviewed final
@@ -192,12 +196,12 @@ icon: "list-check"
 - **Search** enabled with custom prompt
 - **OG metadata** configured for social sharing
 
-## v2.2 — 8 April 2026
+## v1.2 — 8 April 2026
 
 - Removed checkbox syntax from review checklists — cleaner bullet formatting
 - Renamed all content files from `.md` to `.mdx` for full Mintlify component support
 
-## v2.0 — 8 April 2026
+## v1.1 — 8 April 2026
 
 Major playbook redesign.
 

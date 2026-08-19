@@ -84,6 +84,21 @@ These are not mutually exclusive — many real workflows mix model classes (a re
 
 You usually pick two of cost, quality, and latency — almost never all three. Knowing which two the task requires is the actual decision.
 
+## The fourth axis: resource cost
+
+Cost, quality and latency are what you trade against on any single task. At team scale there is a fourth, and it moves in the same direction as the first: energy and water.
+
+Every query runs in a data centre that consumes electricity and — directly, and through the generation of that electricity — water. Per query the numbers are small; published vendor figures put a text prompt in the fraction-of-a-watt-hour range. The number that matters is the multiplier: a team of thirty writers, times daily use, times a year. And per task, agentic workflows run orders of magnitude above chat-style use, because one instruction becomes many model calls.
+
+The [AI Water and Energy Footprint Calculator](https://www.pharmatools.ai/water-consumption-calculator) sizes this for a given usage profile, using published vendor disclosures and letting you set the measurement boundary — onsite data centre use, or the fuller picture including electricity generation.
+
+Two reasons this belongs in a model-selection decision rather than in a sustainability policy:
+
+- **Over-powered model choice compounds.** Reaching for a reasoning model on a transformation task already costs latency and budget for no quality gain. It costs resources on the same basis. The tasks in the overkill list above are the ones where the saving is free — you lose nothing by choosing the smaller model.
+- **Clients are starting to ask.** Pharma sponsors reporting under CSRD and similar regimes are pushing environmental questions down into procurement, and agency RFPs are beginning to ask what the footprint of an AI-assisted process looks like. That answer is easier to give if you already choose models deliberately.
+
+This is a proportionality point, not an argument against using AI. A frontier model on a high-stakes regulatory document is a good use of resources. The same model generating fifty social captions is not.
+
 ---
 
 ## A practical decision matrix
@@ -156,4 +171,4 @@ The right model is the one whose strengths match the cognitive demand of the tas
 
 ---
 
-*Last reviewed: 4 May 2026 · 7 min read*
+*Last reviewed: 16 August 2026 · 8 min read*

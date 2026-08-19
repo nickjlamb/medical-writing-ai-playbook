@@ -104,6 +104,9 @@ The defining feature is that *the AI is making decisions about what to do next*,
   <Accordion title="Time-sensitive interactive work">
     Agents take longer than single-shot prompts. For interactive use (turn-by-turn editing, live brainstorming), the latency makes them painful. Save the loop for back-end work.
   </Accordion>
+  <Accordion title="When the loop is disproportionate to the task">
+    A single instruction to an agent becomes many model calls, so an agentic workflow consumes orders of magnitude more compute — and the energy and water behind it — than the equivalent chat-style prompt. On work that genuinely needs the loop this is money well spent. On work that does not, it is the same overkill as reaching for a reasoning model to rewrite a sentence, only multiplied. The [AI Water and Energy Footprint Calculator](https://www.pharmatools.ai/water-consumption-calculator) is one way to size the difference; the resource-cost axis in [Choosing Your Model](/principles/choosing-your-model) covers when it changes a decision.
+  </Accordion>
 </AccordionGroup>
 
 ---
@@ -184,4 +187,4 @@ Agents are not better or worse than single-shot prompts; they are different tool
 
 ---
 
-*Last reviewed: 4 May 2026 · 8 min read*
+*Last reviewed: 16 August 2026 · 8 min read*

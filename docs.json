@@ -29,8 +29,9 @@
         "href": "https://pharmatools.ai"
       },
       {
-        "type": "github",
-        "href": "https://github.com/nickjlamb/medical-writing-ai-playbook"
+        "label": "GitHub",
+        "href": "https://github.com/nickjlamb/medical-writing-ai-playbook",
+        "icon": "github"
       }
     ],
     "primary": {

@@ -8,8 +8,12 @@
 // the live site (referer check). Cross-origin or scripted hits to the
 // /download URL still receive the PDF redirect but don't bump the count.
 
+// Points at the LITERAL tag named 'latest' (releases/download/latest/...),
+// not GitHub's /releases/latest/ alias. The alias resolves to the newest
+// release by date, so cutting a version release (v2.8, etc.) would steal it
+// and 404 — the version releases don't carry the PDF.
 const PDF_URL =
-  'https://github.com/nickjlamb/medical-writing-ai-playbook/releases/latest/download/playbook.pdf';
+  'https://github.com/nickjlamb/medical-writing-ai-playbook/releases/download/latest/playbook.pdf';
 
 const ALLOWED_REFERER_PREFIX = 'https://playbook.pharmatools.ai/';
 

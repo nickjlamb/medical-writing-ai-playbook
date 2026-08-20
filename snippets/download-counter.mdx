@@ -3,17 +3,28 @@ export const DownloadCounter = () => {
     window.__pbCounterStarted = true;
 
     const COUNTER = 'https://playbook-counter.pharmatools.workers.dev';
+    const TARGET = 'playbook-downloads';
 
-    const el = () => document.getElementById('playbook-downloads');
-    const apply = (n) => {
-      const node = el();
-      if (node) node.textContent = n.toLocaleString();
-    };
-
-    // Last value the Worker reported, so an optimistic bump has a base to
-    // work from and a later refresh can't silently go backwards.
+    // known      = last count the Worker reported
+    // optimistic = clicks made in this session that KV may not have caught up on
+    // desired    = what the page should currently show
     let known = null;
     let optimistic = 0;
+    let desired = null;
+
+    // Re-asserted on a timer rather than written once. Mintlify hydrates after
+    // first paint and re-renders on client-side navigation, either of which can
+    // replace the element after we have written to it — a one-shot write races
+    // that and loses silently, leaving the placeholder in place.
+    const render = () => {
+      if (desired === null) return;
+      const node = document.getElementById(TARGET);
+      if (!node) return;
+      const text = desired.toLocaleString();
+      if (node.textContent !== text) node.textContent = text;
+    };
+
+    const show = (n) => { desired = n; render(); };
 
     const refresh = () =>
       fetch(COUNTER, { cache: 'no-store' })
@@ -21,34 +32,24 @@ export const DownloadCounter = () => {
         .then((d) => {
           if (typeof d.downloads !== 'number') return;
           known = d.downloads;
-          // KV is eventually consistent: if the server has not caught up with
-          // clicks made in this session, keep showing the higher local number.
-          apply(Math.max(known + optimistic, known));
+          // Never go backwards: KV may not yet reflect this session's clicks.
+          show(Math.max(known + optimistic, desired === null ? known : desired));
         })
         .catch(() => {});
 
-    const start = () => {
-      refresh();
-      // Mintlify hydrates after first paint; re-apply so the value sticks.
-      setTimeout(() => { if (known !== null) apply(known + optimistic); }, 500);
-      setTimeout(() => { if (known !== null) apply(known + optimistic); }, 1500);
+    // Optimistic increment, so a click registers immediately instead of waiting
+    // out KV propagation. Reconciled against the real count 90s later.
+    document.addEventListener('click', (e) => {
+      const a = e.target && e.target.closest && e.target.closest('a[href]');
+      if (!a || a.href.indexOf(COUNTER) !== 0) return;
+      optimistic += 1;
+      if (known !== null) show(known + optimistic);
+      setTimeout(() => { optimistic = 0; refresh(); }, 90000);
+    });
 
-      // Optimistic increment: show the click immediately rather than waiting
-      // out KV propagation, then reconcile with the real count shortly after.
-      document.addEventListener('click', (e) => {
-        const a = e.target && e.target.closest && e.target.closest('a[href*="/download"]');
-        if (!a || a.href.indexOf(COUNTER) !== 0) return;
-        optimistic += 1;
-        if (known !== null) apply(known + optimistic);
-        setTimeout(() => { optimistic = 0; refresh(); }, 90000);
-      });
-    };
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', start);
-    } else {
-      start();
-    }
+    refresh();
+    setInterval(render, 500);
+    setInterval(refresh, 300000);
   }
   return null;
 };

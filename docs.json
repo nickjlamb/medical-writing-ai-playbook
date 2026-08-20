@@ -37,7 +37,7 @@
     "primary": {
       "type": "button",
       "label": "Start Here",
-      "href": "/start"
+      "href": "https://playbook.pharmatools.ai/start"
     }
   },
   "feedback": {

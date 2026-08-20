@@ -33,12 +33,7 @@
         "href": "https://github.com/nickjlamb/medical-writing-ai-playbook",
         "icon": "github"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Start Here",
-      "href": "https://playbook.pharmatools.ai/start"
-    }
+    ]
   },
   "feedback": {
     "thumbsRating": true,

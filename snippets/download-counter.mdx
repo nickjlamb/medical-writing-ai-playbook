@@ -1,26 +1,53 @@
 export const DownloadCounter = () => {
   if (typeof window !== 'undefined' && !window.__pbCounterStarted) {
     window.__pbCounterStarted = true;
+
+    const COUNTER = 'https://playbook-counter.pharmatools.workers.dev';
+
+    const el = () => document.getElementById('playbook-downloads');
     const apply = (n) => {
-      const el = document.getElementById('playbook-downloads');
-      if (el) el.textContent = n.toLocaleString();
+      const node = el();
+      if (node) node.textContent = n.toLocaleString();
     };
-    const tryFetch = () => {
-      fetch('https://playbook-counter.pharmatools.workers.dev/')
+
+    // Last value the Worker reported, so an optimistic bump has a base to
+    // work from and a later refresh can't silently go backwards.
+    let known = null;
+    let optimistic = 0;
+
+    const refresh = () =>
+      fetch(COUNTER, { cache: 'no-store' })
         .then((r) => r.json())
         .then((d) => {
-          if (typeof d.downloads === 'number') {
-            apply(d.downloads);
-            setTimeout(() => apply(d.downloads), 500);
-            setTimeout(() => apply(d.downloads), 1500);
-          }
+          if (typeof d.downloads !== 'number') return;
+          known = d.downloads;
+          // KV is eventually consistent: if the server has not caught up with
+          // clicks made in this session, keep showing the higher local number.
+          apply(Math.max(known + optimistic, known));
         })
         .catch(() => {});
+
+    const start = () => {
+      refresh();
+      // Mintlify hydrates after first paint; re-apply so the value sticks.
+      setTimeout(() => { if (known !== null) apply(known + optimistic); }, 500);
+      setTimeout(() => { if (known !== null) apply(known + optimistic); }, 1500);
+
+      // Optimistic increment: show the click immediately rather than waiting
+      // out KV propagation, then reconcile with the real count shortly after.
+      document.addEventListener('click', (e) => {
+        const a = e.target && e.target.closest && e.target.closest('a[href*="/download"]');
+        if (!a || a.href.indexOf(COUNTER) !== 0) return;
+        optimistic += 1;
+        if (known !== null) apply(known + optimistic);
+        setTimeout(() => { optimistic = 0; refresh(); }, 90000);
+      });
     };
+
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', tryFetch);
+      document.addEventListener('DOMContentLoaded', start);
     } else {
-      tryFetch();
+      start();
     }
   }
   return null;

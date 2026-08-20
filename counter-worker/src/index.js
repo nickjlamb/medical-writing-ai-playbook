@@ -39,12 +39,17 @@ export default {
       return Response.redirect(PDF_URL, 302);
     }
 
-    // Default: return the current count
+    // Default: return the current count.
+    //
+    // no-store, not max-age: KV is eventually consistent and already caches
+    // reads at the edge for ~60s, so an HTTP cache on top stacked a second
+    // minute of staleness. The page increments optimistically on click, so
+    // this endpoint only needs to be as fresh as KV allows.
     const count = parseInt((await env.COUNTER.get('downloads')) || '0', 10);
     return new Response(JSON.stringify({ downloads: count }), {
       headers: {
         'content-type': 'application/json',
-        'cache-control': 'public, max-age=60',
+        'cache-control': 'no-store',
         ...CORS,
       },
     });

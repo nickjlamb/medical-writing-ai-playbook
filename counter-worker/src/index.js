@@ -13,7 +13,7 @@
 // release by date, so cutting a version release (v2.8, etc.) would steal it
 // and 404 — the version releases don't carry the PDF.
 const PDF_URL =
-  'https://github.com/nickjlamb/medical-writing-ai-playbook/releases/download/latest/playbook.pdf';
+  'https://github.com/nickjlamb/medical-writing-ai-playbook/releases/download/latest/Medical-Writing-AI-Playbook.pdf';
 
 const ALLOWED_REFERER_PREFIX = 'https://playbook.pharmatools.ai/';
 

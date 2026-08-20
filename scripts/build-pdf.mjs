@@ -12,7 +12,10 @@ import puppeteer from 'puppeteer';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
-const OUTPUT_PDF = path.join(ROOT, 'playbook.pdf');
+// Filename deliberately carries no version number: the download URL
+// (releases/download/latest/...) must stay stable across releases.
+// The version appears on the cover and in the PDF title metadata.
+const OUTPUT_PDF = path.join(ROOT, 'Medical-Writing-AI-Playbook.pdf');
 const OUTPUT_HTML = path.join(ROOT, 'playbook.preview.html');
 
 // ---------- 1. Read navigation ----------
@@ -373,7 +376,7 @@ function buildCover(version, dateString) {
     ${logoSvg}
     <div class="cover-eyebrow">A free resource by PharmaTools.AI</div>
     <h1 class="cover-title">Medical Writing<br/><span class="cover-title-accent">AI Playbook.</span></h1>
-    <p class="cover-subtitle">Use AI across the full writing lifecycle — finding evidence, drafting, checking claims, preparing for review — without losing scientific accuracy or regulatory control.</p>
+    <p class="cover-subtitle">You&rsquo;re expected to use AI. You&rsquo;re still accountable for every claim. Here&rsquo;s how to do both.</p>
     <div class="cover-meta">
       <div><span class="meta-label">Version</span><span class="meta-value">${version}</span></div>
       <div><span class="meta-label">Updated</span><span class="meta-value">${dateString}</span></div>
@@ -768,7 +771,7 @@ async function main() {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Medical Writing AI Playbook</title>
+  <title>Medical Writing AI Playbook ${version}</title>
   <style>${CSS}</style>
 </head>
 <body>

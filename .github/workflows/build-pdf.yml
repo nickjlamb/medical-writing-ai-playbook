@@ -41,9 +41,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if gh release view latest >/dev/null 2>&1; then
-            gh release upload latest playbook.pdf --clobber
+            gh release upload latest Medical-Writing-AI-Playbook.pdf --clobber
           else
-            gh release create latest playbook.pdf \
+            gh release create latest Medical-Writing-AI-Playbook.pdf \
               --title "Latest playbook PDF" \
               --notes "Auto-generated from main. Always reflects the latest content of the Medical Writing AI Playbook."
           fi

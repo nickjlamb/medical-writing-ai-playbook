@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Read the playbook
+    url: https://playbook.pharmatools.ai
+    about: The full playbook, always current.
+  - name: PharmaTools.AI
+    url: https://pharmatools.ai
+    about: The tools referenced throughout the playbook.

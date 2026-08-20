@@ -1,114 +1,245 @@
-# Medical Writing AI Playbook
+<div align="center">
 
-A structured, workflow-based operating system for using AI in medical writing, med comms, and pharmaceutical content development. Built for people who write, review, and approve medical content for a living.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="logo-dark.svg">
+  <img src="logo-light.svg" alt="Medical Writing AI Playbook" width="400">
+</picture>
+
+<h1>Medical Writing AI Playbook</h1>
+
+<p><strong>You're expected to use AI. You're still accountable for every claim.</strong></p>
+
+<p>An open, workflow-based framework for using AI in medical writing, med comms<br>and pharmaceutical content — without losing scientific accuracy or regulatory control.</p>
+
+<p>
+  <a href="https://playbook.pharmatools.ai"><img alt="Read the playbook" src="https://img.shields.io/badge/read-playbook.pharmatools.ai-0F6B5E?style=flat-square"></a>
+  <a href="https://github.com/nickjlamb/medical-writing-ai-playbook/releases"><img alt="Version" src="https://img.shields.io/github/v/release/nickjlamb/medical-writing-ai-playbook?sort=semver&label=version&color=0F6B5E&style=flat-square"></a>
+  <a href="https://github.com/nickjlamb/medical-writing-ai-playbook/actions/workflows/build-pdf.yml"><img alt="Build PDF" src="https://github.com/nickjlamb/medical-writing-ai-playbook/actions/workflows/build-pdf.yml/badge.svg"></a>
+  <a href="https://github.com/nickjlamb/medical-writing-ai-playbook/releases/latest/download/playbook.pdf"><img alt="Download PDF" src="https://img.shields.io/badge/PDF-download-0F6B5E?style=flat-square"></a>
+  <a href="LICENSE"><img alt="Content licence" src="https://img.shields.io/badge/content-CC%20BY%204.0-lightgrey?style=flat-square"></a>
+  <a href="LICENSE-CODE"><img alt="Code licence" src="https://img.shields.io/badge/code-MIT-lightgrey?style=flat-square"></a>
+  <img alt="Last commit" src="https://img.shields.io/github/last-commit/nickjlamb/medical-writing-ai-playbook?style=flat-square&color=lightgrey">
+</p>
+
+<p>
+  <a href="https://playbook.pharmatools.ai/start"><strong>Start here</strong></a> ·
+  <a href="#workflow-index">Workflows</a> ·
+  <a href="#principles">Principles</a> ·
+  <a href="https://playbook.pharmatools.ai/changelog">Changelog</a> ·
+  <a href="CONTRIBUTING.md">Contributing</a>
+</p>
+
+</div>
 
 ---
 
 ## What this is
 
-This playbook maps where AI fits — and where it does not — across the content development workflows that medical writers, agencies, and pharma teams run every day: from source paper summarisation through to MLR-ready deliverables.
+**18 documented workflows** covering the content development lifecycle medical writers actually run — from finding evidence through to MLR-ready deliverables. Each one states what AI can do, what a human must verify, the risk tier, and how long it saves.
 
-It is not a prompt library. It is not a pitch for automation. It is a working framework built around two principles:
+It is not a prompt library and not a pitch for automation. Two rules hold the whole thing together:
 
 > **AI for acceleration, not authority.**
 > **Translation, not invention.**
 
-Each workflow card defines:
-
-- The specific task AI can handle (and the boundaries of that contribution)
-- The review and verification steps a medical writer must complete
-- The risk tier and what that means for sign-off
-- Where purpose-built tools from PharmaTools.AI slot into the process
-- Reusable prompt patterns designed for source-grounded, reviewable output
-
-The standard of the deliverable does not change because AI was involved in producing it. The production process changes. The accountability does not.
+The standard of the deliverable does not change because AI was involved. The production process changes. The accountability does not.
 
 ---
 
-## Who this is for
+## Quick start
 
-| Role | How to use this playbook |
-|---|---|
-| **Freelance medical writers** | Integrate AI into your drafting, summarisation, and QC workflows. Show clients a credible, structured approach to AI-assisted work — not ad hoc prompting |
-| **Med comms agencies** | Adopt as an operating framework for AI-assisted content development. Standardise how your team uses AI across accounts, train writers consistently, and give clients visibility into your process |
-| **Account leads and strategists** | Understand what AI can realistically deliver at each project stage, where it saves time in the content development timeline, and where it introduces review overhead |
-| **Pharma brand, medical, and training teams** | Evaluate agency AI practices against a structured framework. Understand how AI-assisted workflows maintain accuracy and compliance standards in your deliverables |
-| **Regulatory and compliance reviewers** | See how AI outputs are bounded, verified, and flagged before they enter your review queue — and what additional checks apply to AI-assisted content |
+**Reading it — 60 seconds.** Pick the one that matches your job:
 
----
-
-## Design principles
-
-This playbook is built on four principles, each documented in detail in the [`principles/`](principles/) directory:
-
-1. **[Human-in-the-loop decision making](principles/human-in-the-loop.md)** — Every deliverable has a named owner. AI produces draft material; a qualified medical writer or reviewer verifies, edits, and signs off.
-
-2. **[Source grounding](principles/source-grounding.md)** — Every claim traces to a specific source document. No content enters a deliverable from AI training data. If it is not in the source, it is not in the output.
-
-3. **[Risk-aware use](principles/risk-levels.md)** — Summarising a paper and drafting a promotional claim are different tasks with different failure consequences. Three tiers define how much AI contribution is appropriate and what review each tier requires.
-
-4. **[Review and accountability](principles/review-and-accountability.md)** — Structured sign-off protocols, audit trails, and documentation requirements that sit within existing agency QC processes and MLR workflows.
-
----
-
-## How PharmaTools.AI fits in
-
-This playbook integrates tools from [PharmaTools.AI](https://pharmatools.ai) at specific workflow steps where they solve problems that general-purpose LLMs handle poorly: reference verification, compliance signal detection, patient-friendly content generation, and structured poster extraction.
-
-| Tool | What it does | Where it fits |
+| You are | Start with | Then |
 |---|---|---|
-| [RefCheckr](tools/refcheckr.md) | Closed-loop AI: verifies, rewrites, and re-checks claims against cited references | Pre-MLR reference verification, QC on multi-reference documents |
-| [MedCheckr](tools/medcheckr.md) | Scans for promotional compliance signals | Pre-MLR compliance screening, self-check before submission |
-| [Patiently AI](tools/patiently-ai.md) | Translates clinical content into patient-friendly language | Patient-facing content development, health literacy adaptation |
-| [LLMentor](tools/llmentor.md) | Adapts content across audience levels | HCP-to-generalist adaptation, multi-stakeholder repurposing |
-| [PLS Generator](tools/pls-generator.md) | Generates plain language summaries from clinical sources | EU CTR lay summaries, patient communications, trial disclosure |
-| [PosterLens](tools/posterlens.md) | Extracts structured data from scientific posters | Congress coverage, rapid poster-to-summary workflows |
+| A **freelance medical writer** | [Understanding AI risk](https://playbook.pharmatools.ai/principles/risk-levels) — which of your deliverables sit in which tier | [Summarise a source paper](https://playbook.pharmatools.ai/workflows/summarise-source-paper) — mirrors work you already do |
+| An **agency or team lead** | [Start here](https://playbook.pharmatools.ai/start) — the recommended reading order | [Templates](https://playbook.pharmatools.ai/templates/ai-audit-trail-log) — standardise how your team documents AI use |
+| A **pharma or MLR reviewer** | [Review and accountability](https://playbook.pharmatools.ai/principles/review-and-accountability) | [MLR-with-AI review checklist](https://playbook.pharmatools.ai/templates/mlr-ai-review-checklist) |
+| In a hurry | [Which tool when](https://playbook.pharmatools.ai/tools/decision-tree) — task-to-tool decision tree | [Download the PDF](https://github.com/nickjlamb/medical-writing-ai-playbook/releases/latest/download/playbook.pdf) |
 
-See the [`tools/`](tools/) directory for detailed tool pages.
+**Running it locally — 30 seconds.** No install needed:
+
+```bash
+git clone https://github.com/nickjlamb/medical-writing-ai-playbook.git
+cd medical-writing-ai-playbook
+npx mint dev          # live preview at http://localhost:3000
+```
+
+**Rebuilding the PDF:**
+
+```bash
+npm ci
+npm run build:pdf     # writes playbook.pdf
+```
 
 ---
 
-## Start here
+## Architecture
 
-### If you are a freelance medical writer
+Principles decide, workflows execute, and a shared layer of prompts, templates and tools is reused across both.
 
-1. Read [risk levels](principles/risk-levels.md) — understand which of your typical deliverables fall into which tier
-2. Start with [Summarise a source paper](workflows/summarise-source-paper.md) — it mirrors the work you already do and shows the framework in action
-3. Build up to [Extract key messages](workflows/extract-key-messages.md) and [Build a content outline](workflows/build-content-outline.md) — the workflows that save the most time in early-stage content development
-4. Run every AI-assisted deliverable through [Final human review](workflows/final-human-review.md) before it leaves your desk
-5. Use this playbook to show clients that your AI-assisted work follows a documented, quality-controlled process
+```mermaid
+flowchart LR
+    subgraph F["PRINCIPLES · how to decide"]
+        direction TB
+        P1["Human-in-the-loop"]
+        P2["Source grounding"]
+        P3["Risk levels"]
+        P4["Review and accountability"]
+        P5["Disclosure and regulation"]
+    end
 
-### If you are an agency or team lead
+    subgraph L["WORKFLOWS · what to do"]
+        direction TB
+        W1["Evidence · 5"]
+        W2["Drafting · 6"]
+        W3["Adaptation · 2"]
+        W4["Validation · 3"]
+        W5["Delivery · 2"]
+        W1 --> W2 --> W3 --> W4 --> W5
+    end
 
-1. Read all four [principles](principles/) and assess how they map to your existing SOPs and QC processes
-2. Identify which [workflows](workflows/) match your most common project types — publication support, promotional content, congress coverage, training materials
-3. Use the [templates](templates/) to standardise how your team documents AI-assisted work across accounts
-4. Establish sign-off protocols by risk tier using the [review and accountability](principles/review-and-accountability.md) framework
-5. Brief your client services team on how to position AI-assisted workflows to clients — the [risk levels](principles/risk-levels.md) and [compliance workflow](workflows/check-promotional-compliance.md) are the key credibility documents
+    subgraph S["SHARED · reused everywhere"]
+        direction TB
+        R1["Prompt patterns"]
+        R2["Templates"]
+        R3["Tools"]
+    end
 
-### If you are a pharma brand, medical, or training team
+    F ==> L
+    S -.-> L
+```
 
-1. Start with [risk levels](principles/risk-levels.md) — this is the framework for evaluating what level of AI involvement is appropriate for your content types
-2. Review the [compliance workflow](workflows/check-promotional-compliance.md) and [verification workflow](workflows/verify-claims-against-references.md) to see how accuracy and compliance are maintained through AI-assisted production
-3. Use this playbook to set expectations with agencies about AI use — what you expect to see documented, what review standards apply, and what sign-off looks like
-4. The [review and accountability](principles/review-and-accountability.md) framework maps directly to your existing MLR and content approval processes
+Every workflow card carries the same five parts, which is what makes them auditable rather than anecdotal:
+
+1. **The task** AI can handle, and the boundary of that contribution
+2. **The verification steps** a human must complete
+3. **The risk tier**, and what sign-off that implies
+4. **The prompt pattern**, source-grounded and reusable
+5. **The failure modes** specific to that task
+
+### How it builds and ships
+
+```mermaid
+flowchart LR
+    A["MDX content<br/>+ docs.json"] --> B(["push to main"])
+    B --> C["Mintlify build"]
+    C --> D["playbook.pharmatools.ai"]
+    B --> E["GitHub Actions<br/>build-pdf.yml"]
+    E --> F["Puppeteer<br/>scripts/build-pdf.mjs"]
+    F --> G["playbook.pdf<br/>GitHub Releases"]
+    D -.->|"download link"| H["Cloudflare Worker<br/>counter"]
+    H -.-> G
+```
+
+The PDF rebuilds automatically on every content change, so the download link always serves current content.
+
+---
+
+## Examples
+
+**A prompt pattern.** Every pattern constrains the model to the source and marks what needs checking — this one from [Source Analysis Prompts](https://playbook.pharmatools.ai/prompts/source-analysis-prompts):
+
+```text
+You are a medical writing assistant. Summarise the following published paper
+into a structured format.
+
+Sections:
+- Citation
+- Study design and objective
+- Population (key criteria, sample size)
+- Primary endpoint and results
+- Key secondary endpoints and results
+- Safety findings
+- Authors' conclusions
+- Limitations
+
+Rules:
+- Use only information from the provided paper
+- Reproduce all data points exactly as stated
+- Label subgroup or post-hoc results explicitly
+- Do not interpret beyond the authors' stated conclusions
+- Flag uncertain data points with [VERIFY]
+
+Paper:
+[INSERT FULL TEXT]
+```
+
+**A disclosure line.** Specific enough to survive an audit, from the [disclosure templates](https://playbook.pharmatools.ai/templates/disclosure-language):
+
+> Claude (Anthropic, Opus 4.7) was used between 3 and 11 June 2026 to draft the Discussion section. Output was reviewed and edited by [Author X], who takes responsibility for the accuracy and integrity of the final content.
+
+**A boundary.** From [Declaring AI Use](https://playbook.pharmatools.ai/principles/declaring-ai-use) — disclosure and permission are different tests:
+
+> JAMA Network now prohibits AI-generated references, AI-drafted Opinion pieces and Letters, and AI-created clinical imagery outright. Declaring them does not make them submittable.
 
 ---
 
 ## Workflow index
 
-| # | Workflow | Risk tier | Key tools |
-|---|---|---|---|
-| 1 | [Summarise a source paper](workflows/summarise-source-paper.md) | Low | PosterLens (for posters) |
-| 2 | [Extract key messages](workflows/extract-key-messages.md) | Medium | RefCheckr |
-| 3 | [Build a content outline](workflows/build-content-outline.md) | Low | — |
-| 4 | [Adapt for different audiences](workflows/adapt-for-different-audiences.md) | Low–Medium | LLMentor |
-| 5 | [Create a plain language summary](workflows/create-plain-language-summary.md) | Medium–High | Patiently AI, PLS Generator |
-| 6 | [Verify claims against references](workflows/verify-claims-against-references.md) | High | RefCheckr |
-| 7 | [Check promotional compliance](workflows/check-promotional-compliance.md) | High | MedCheckr |
-| 8 | [Repurpose content across channels](workflows/repurpose-content-across-channels.md) | Medium | LLMentor |
-| 9 | [Prepare a congress or poster summary](workflows/prepare-congress-or-poster-summary.md) | Low–Medium | PosterLens |
-| 10 | [Final human review](workflows/final-human-review.md) | Critical | RefCheckr, MedCheckr |
+Risk tiers set the review requirement. Time estimates are per deliverable, from the workflow pages.
+
+| # | Workflow | Stage | Risk | Time saved |
+|---|---|---|---|---|
+| 1 | [Find evidence](https://playbook.pharmatools.ai/workflows/find-evidence) | Evidence | Low | ~15 min vs ~2–3 hrs |
+| 2 | [Summarise a source paper](https://playbook.pharmatools.ai/workflows/summarise-source-paper) | Evidence | Low | ~10 min vs ~45 min |
+| 3 | [Prepare a congress or poster summary](https://playbook.pharmatools.ai/workflows/prepare-congress-or-poster-summary) | Evidence | Low–Medium | ~10 min vs ~30 min |
+| 4 | [Extract study data](https://playbook.pharmatools.ai/workflows/extract-study-data) | Evidence | Medium | ~15 min vs ~45 min |
+| 5 | [Extract key messages](https://playbook.pharmatools.ai/workflows/extract-key-messages) | Evidence | Medium | ~15 min vs ~60 min |
+| 6 | [Build a content outline](https://playbook.pharmatools.ai/workflows/build-content-outline) | Drafting | Low | ~10 min vs ~30 min |
+| 7 | [Write a manuscript](https://playbook.pharmatools.ai/workflows/write-a-manuscript) | Drafting | Medium–High | ~30 min vs ~2–3 hrs per section |
+| 8 | [Draft a regulatory document](https://playbook.pharmatools.ai/workflows/draft-regulatory-document) | Drafting | High | ~30 min vs ~2–3 hrs per section |
+| 9 | [Convert statistical outputs to narrative](https://playbook.pharmatools.ai/workflows/convert-stats-to-narrative) | Drafting | High | ~10 min vs ~30 min per table |
+| 10 | [Create a medical slide deck](https://playbook.pharmatools.ai/workflows/create-medical-slide-deck) | Drafting | Medium | ~20 min vs ~90 min |
+| 11 | [Generate concept visuals](https://playbook.pharmatools.ai/workflows/generate-concept-visuals) | Drafting | Medium | ~5–15 min per visual |
+| 12 | [Adapt for different audiences](https://playbook.pharmatools.ai/workflows/adapt-for-different-audiences) | Adaptation | Low–Medium | ~15 min vs ~60 min |
+| 13 | [Create a plain language summary](https://playbook.pharmatools.ai/workflows/create-plain-language-summary) | Adaptation | Medium–High | ~20 min vs ~90 min |
+| 14 | [Verify claims against references](https://playbook.pharmatools.ai/workflows/verify-claims-against-references) | Validation | High | ~20 min vs ~2–3 hrs |
+| 15 | [Check promotional compliance](https://playbook.pharmatools.ai/workflows/check-promotional-compliance) | Validation | High | ~15 min vs ~60 min |
+| 16 | [Check document consistency](https://playbook.pharmatools.ai/workflows/check-document-consistency) | Validation | High | ~15 min vs ~60 min |
+| 17 | [Repurpose content across channels](https://playbook.pharmatools.ai/workflows/repurpose-content-across-channels) | Delivery | Medium | ~15 min vs ~45 min per channel |
+| 18 | [Final human review](https://playbook.pharmatools.ai/workflows/final-human-review) | Delivery | Critical | ~30 min vs ~45 min |
+
+---
+
+## Principles
+
+Twelve pages covering how to decide, not just what to run.
+
+| | |
+|---|---|
+| [Human-in-the-Loop Decision Making](https://playbook.pharmatools.ai/principles/human-in-the-loop) | Every deliverable has a named owner who signs off |
+| [Source Grounding](https://playbook.pharmatools.ai/principles/source-grounding) | If it is not in the source, it is not in the output |
+| [The Description–Discernment Loop](https://playbook.pharmatools.ai/principles/description-discernment) | Briefing AI properly, and judging output for voice as well as accuracy |
+| [Understanding AI Risk](https://playbook.pharmatools.ai/principles/risk-levels) | Which deliverables sit in which tier |
+| [AI Risk Framework](https://playbook.pharmatools.ai/principles/ai-risk-framework) | The full tiering model and its review requirements |
+| [AI Failure Modes](https://playbook.pharmatools.ai/principles/ai-failure-modes) | Ten predictable ways AI fails on scientific evidence |
+| [Review and Accountability](https://playbook.pharmatools.ai/principles/review-and-accountability) | Sign-off protocols and audit trails |
+| [Declaring AI Use](https://playbook.pharmatools.ai/principles/declaring-ai-use) | Journal, regulator and sponsor disclosure expectations |
+| [AI Regulation in Pharma](https://playbook.pharmatools.ai/principles/ai-regulation) | EU AI Act tiers, transparency duties, provider obligations |
+| [Choosing Your Model](https://playbook.pharmatools.ai/principles/choosing-your-model) | Reasoning vs standard vs frontier, and what each costs |
+| [Agentic Workflows](https://playbook.pharmatools.ai/principles/agentic-workflows) | When a multi-step AI process earns its cost, and when it does not |
+| [AI in Peer Review](https://playbook.pharmatools.ai/principles/ai-in-peer-review) | What publishers screen for before a human sees your paper |
+
+---
+
+## Prompts, templates and tools
+
+**[Prompt patterns](https://playbook.pharmatools.ai/prompts/source-analysis-prompts)** — source analysis, outlining, adaptation, review. Each designed for a specific task with defined inputs and source-grounding constraints.
+
+**[Templates](https://playbook.pharmatools.ai/templates/disclosure-language)** — disclosure language, AI audit-trail log, MLR-with-AI review checklist, pre-submission QC checklist. Ready to adapt into your own SOPs.
+
+**[Tools](https://playbook.pharmatools.ai/tools/decision-tree)** — a task-to-tool decision tree, a directory of the wider ecosystem, and pages for the purpose-built tools from [PharmaTools.AI](https://pharmatools.ai):
+
+| Tool | What it does |
+|---|---|
+| [RefCheckr](https://playbook.pharmatools.ai/tools/refcheckr) | Closed-loop: verifies claims against references, rewrites, re-checks |
+| [MedCheckr](https://playbook.pharmatools.ai/tools/medcheckr) | Scans for promotional compliance signals |
+| [PubCrawl](https://playbook.pharmatools.ai/tools/pubcrawl) | Literature search and evidence gathering |
+| [Patiently AI](https://playbook.pharmatools.ai/tools/patiently-ai) | Translates clinical content into patient-friendly language |
+| [LLMentor](https://playbook.pharmatools.ai/tools/llmentor) | Adapts content across audience levels |
+| [PLS Generator](https://playbook.pharmatools.ai/tools/pls-generator) | Plain language summaries from clinical sources |
+| [PosterLens](https://playbook.pharmatools.ai/tools/posterlens) | Structured data extraction from scientific posters |
 
 ---
 
@@ -116,87 +247,59 @@ See the [`tools/`](tools/) directory for detailed tool pages.
 
 ```
 medical-writing-ai-playbook/
-├── README.md
-├── principles/
-│   ├── human-in-the-loop.md
-│   ├── source-grounding.md
-│   ├── risk-levels.md
-│   └── review-and-accountability.md
-├── workflows/
-│   ├── summarise-source-paper.md
-│   ├── extract-key-messages.md
-│   ├── build-content-outline.md
-│   ├── adapt-for-different-audiences.md
-│   ├── create-plain-language-summary.md
-│   ├── verify-claims-against-references.md
-│   ├── check-promotional-compliance.md
-│   ├── repurpose-content-across-channels.md
-│   ├── prepare-congress-or-poster-summary.md
-│   └── final-human-review.md
-├── templates/
-│   ├── workflow-card-template.md
-│   ├── prompt-pattern-template.md
-│   └── review-checklist-template.md
-├── tools/
-│   ├── refcheckr.md
-│   ├── medcheckr.md
-│   ├── patiently-ai.md
-│   ├── llmentor.md
-│   ├── pls-generator.md
-│   └── posterlens.md
-└── prompts/
-    ├── source-analysis-prompts.md
-    ├── outlining-prompts.md
-    ├── adaptation-prompts.md
-    └── review-prompts.md
+├── index.mdx              Homepage
+├── start.mdx              Recommended reading order
+├── glossary.mdx           AI terms, defined for medical writers
+├── changelog.mdx          Version history
+├── docs.json              Site config and navigation
+├── principles/            12 pages — how to decide
+├── workflows/             18 pages — what to do, step by step
+├── prompts/                4 pages — reusable prompt patterns
+├── templates/              7 files — disclosure, audit trail, QC checklists
+├── tools/                  9 pages — tool pages, ecosystem, decision tree
+├── snippets/              Shared MDX components (risk badge, download counter)
+├── product/               Positioning, SEO metadata, launch notes
+├── scripts/               PDF build (Puppeteer)
+├── counter-worker/        Cloudflare Worker — PDF download counter
+└── .github/workflows/     CI — rebuilds and publishes the PDF on content change
 ```
-
----
-
-## What this playbook is not
-
-- **Not a replacement for a medical writer.** Every workflow produces draft material that requires trained review. AI moves the starting line forward — it does not move the finish line.
-- **Not regulatory or legal guidance.** Compliance workflows pre-screen for common issues. They do not constitute regulatory advice and do not replace MLR review, legal counsel, or regulatory affairs assessment.
-- **Not an autonomous content pipeline.** There is no workflow in this playbook where AI output goes directly into a deliverable. Every path includes human verification, editing, and sign-off.
-- **Not a generic prompt collection.** Every prompt pattern is designed for a specific med comms task, with defined inputs, source-grounding constraints, and review checkpoints.
-
----
-
-## Planned workflow cards
-
-The following workflows are in development, selected for their value to agencies managing multi-account, multi-deliverable workloads:
-
-| # | Workflow | Risk tier | Why it matters for agencies |
-|---|---|---|---|
-| 11 | **Draft a medical education slide deck** | Low–Medium | One of the highest-volume agency deliverables. AI can generate structured slide outlines and speaker notes from key messages and source papers, saving hours of blank-page time per project. |
-| 12 | **Write a briefing document from source literature** | Low | Account teams and strategists need rapid briefing docs when new data drops. AI can structure a multi-source briefing from papers and data packages, giving the team a reviewable draft within hours instead of days. |
-| 13 | **Generate an annotated reference list** | Low | Annotation of reference libraries is repetitive and time-consuming. AI can produce structured annotations (study design, population, key findings, relevance) from full-text papers, giving writers a working reference summary at project kickoff. |
-| 14 | **Pre-populate an MLR submission package** | Medium–High | Preparing the submission package (claims matrix, reference annotations, rationale notes) is a high-effort, high-accuracy task. AI can draft the initial population from the content and references, with the writer verifying every entry before submission. |
-| 15 | **Develop training materials from approved content** | Low–Medium | Agencies frequently repurpose approved scientific content into training decks, e-learning modules, or onboarding materials for field teams. AI can restructure approved content into training frameworks with knowledge-check questions and learning objectives. |
 
 ---
 
 ## Roadmap
 
-This playbook is a free, open, living system. Planned additions:
+| Status | Item |
+|---|---|
+| ✅ Shipped | Downloadable PDF, auto-rebuilt on every content change |
+| ✅ Shipped | Disclosure, regulation and peer-review principles |
+| ✅ Shipped | Tool decision tree and ecosystem directory |
+| 🔜 Next | Worked examples — source input → AI draft → human review → final output |
+| 🔜 Next | Interactive workflow selector: "What are you writing? Who is it for?" |
+| 📋 Planned | Agency SOP integration guide |
+| 📋 Planned | Anonymised case studies from real med comms projects |
+| 📋 Planned | Expanded regulatory coverage as EU AI Act high-risk obligations land (August 2027) |
 
-- Interactive workflow selector: "What are you writing? Who is it for?" → recommended workflow and risk tier
-- Anonymised case studies from real med comms projects
-- Agency SOP integration guide
-- Worked examples showing source input → AI draft → human review → final output
+---
+
+## What this is not
+
+- **Not a replacement for a medical writer.** Every workflow produces draft material requiring trained review. AI moves the starting line forward — it does not move the finish line.
+- **Not regulatory or legal guidance.** Compliance workflows pre-screen for common issues. They do not replace MLR review, legal counsel, or regulatory affairs assessment.
+- **Not an autonomous content pipeline.** There is no path here where AI output goes straight into a deliverable.
+- **Not a generic prompt collection.** Every pattern targets a specific med comms task, with defined inputs and review checkpoints.
 
 ---
 
 ## Contributing
 
-This playbook is free and open. If you work in medical writing, med comms, or pharmaceutical communications and want to contribute workflows, prompt patterns, or review checklists, contributions are welcome. All contributions must follow the playbook's principles and use the provided templates.
+Corrections, broken links and workflow suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). Policy pages date quickly, so if you spot a journal or regulator that has changed its position, [open an issue](https://github.com/nickjlamb/medical-writing-ai-playbook/issues/new/choose).
+
+## Licence
+
+Content is [CC BY 4.0](LICENSE) — use and adapt it, including commercially, with attribution. Build scripts and the Cloudflare Worker are [MIT](LICENSE-CODE).
 
 ---
 
-## License
-
-This playbook is provided as a free professional resource. See LICENSE for details.
-
----
-
-*A free resource from [PharmaTools.AI](https://pharmatools.ai) — practical AI tools for medical writing and pharmaceutical communications.*
+<div align="center">
+<sub>A free resource from <a href="https://pharmatools.ai">PharmaTools.AI</a> — practical AI tools for medical writing and pharmaceutical communications.</sub>
+</div>

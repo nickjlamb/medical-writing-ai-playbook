@@ -1,0 +1,52 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+SPDX-License-Identifier: CC-BY-4.0
+
+Copyright (c) 2026 Nick Lamb / PharmaTools.AI
+
+This licence applies to the CONTENT of the Medical Writing AI Playbook: all .mdx
+and .md files, and the images and diagrams that accompany them.
+
+Source code in this repository — scripts/, counter-worker/, and the GitHub
+Actions workflows — is licensed separately under the MIT Licence. See
+LICENSE-CODE.
+
+YOU ARE FREE TO:
+
+  Share  — copy and redistribute the material in any medium or format.
+  Adapt  — remix, transform, and build upon the material for any purpose,
+           including commercially.
+
+The licensor cannot revoke these freedoms as long as you follow the licence
+terms.
+
+UNDER THE FOLLOWING TERMS:
+
+  Attribution — You must give appropriate credit, provide a link to the
+  licence, and indicate if changes were made. You may do so in any reasonable
+  manner, but not in any way that suggests the licensor endorses you or your
+  use.
+
+  No additional restrictions — You may not apply legal terms or technological
+  measures that legally restrict others from doing anything the licence
+  permits.
+
+SUGGESTED ATTRIBUTION:
+
+  "Medical Writing AI Playbook" by Nick Lamb / PharmaTools.AI, licensed under
+  CC BY 4.0. https://playbook.pharmatools.ai
+
+NOTICES:
+
+  You do not have to comply with the licence for elements of the material in
+  the public domain, or where your use is permitted by an applicable exception
+  or limitation.
+
+  No warranties are given. The licence may not give you all of the permissions
+  necessary for your intended use. For example, other rights such as publicity,
+  privacy, or moral rights may limit how you use the material.
+
+  This playbook is not regulatory, legal, or medical advice. See the "What this
+  is not" section of the README.
+
+The full legal text of this licence is available at:
+https://creativecommons.org/licenses/by/4.0/legalcode

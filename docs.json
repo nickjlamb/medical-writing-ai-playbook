@@ -22,18 +22,27 @@
       "weight": 600
     }
   },
-  "topbarLinks": [
-    {
-      "name": "PharmaTools.AI",
-      "url": "https://pharmatools.ai"
+  "navbar": {
+    "links": [
+      {
+        "label": "PharmaTools.AI",
+        "href": "https://pharmatools.ai"
+      },
+      {
+        "type": "github",
+        "href": "https://github.com/nickjlamb/medical-writing-ai-playbook"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Start Here",
+      "href": "/start"
     }
-  ],
-  "topbarCtaButton": {
-    "name": "Start Here",
-    "url": "/start"
   },
   "feedback": {
-    "thumbsRating": true
+    "thumbsRating": true,
+    "suggestEdit": true,
+    "raiseIssue": true
   },
   "search": {
     "prompt": "Search workflows, prompts, tools..."
@@ -165,7 +174,10 @@
       }
     ]
   },
-  "footerSocials": {
-    "website": "https://pharmatools.ai"
+  "footer": {
+    "socials": {
+      "website": "https://pharmatools.ai",
+      "github": "https://github.com/nickjlamb/medical-writing-ai-playbook"
+    }
   }
 }

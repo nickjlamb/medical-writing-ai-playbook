@@ -12,6 +12,8 @@ on:
       - 'snippets/**'
       - 'logo-*.svg'
       - 'lifecycle.svg'
+  release:
+    types: [published]
   workflow_dispatch:
 
 permissions:
@@ -39,11 +41,30 @@ jobs:
       - name: Publish PDF to GitHub Releases
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.event.release.tag_name }}
         run: |
+          set -euo pipefail
+          PDF=Medical-Writing-AI-Playbook.pdf
+
+          # Rolling "latest" release. This is what the site's download button
+          # and the README badge point at, via the LITERAL tag name:
+          #   releases/download/latest/<PDF>
+          # Not releases/latest/download/<PDF> — that alias resolves to the
+          # newest release by date, so a version release would steal it.
           if gh release view latest >/dev/null 2>&1; then
-            gh release upload latest Medical-Writing-AI-Playbook.pdf --clobber
+            gh release upload latest "$PDF" --clobber
           else
-            gh release create latest Medical-Writing-AI-Playbook.pdf \
+            gh release create latest "$PDF" \
               --title "Latest playbook PDF" \
               --notes "Auto-generated from main. Always reflects the latest content of the Medical Writing AI Playbook."
+          fi
+          echo "Updated rolling 'latest' release."
+
+          # When this run was triggered by publishing a version release, also
+          # attach a versioned archival copy to that release, so every version
+          # keeps the PDF as it stood at tag time.
+          if [ -n "${TAG:-}" ]; then
+            cp "$PDF" "Medical-Writing-AI-Playbook-$TAG.pdf"
+            gh release upload "$TAG" "Medical-Writing-AI-Playbook-$TAG.pdf" --clobber
+            echo "Attached archival copy to $TAG."
           fi

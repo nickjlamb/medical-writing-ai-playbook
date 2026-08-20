@@ -1,55 +1,27 @@
 export const DownloadCounter = () => {
   if (typeof window !== 'undefined' && !window.__pbCounterStarted) {
     window.__pbCounterStarted = true;
-
-    const COUNTER = 'https://playbook-counter.pharmatools.workers.dev';
-    const TARGET = 'playbook-downloads';
-
-    // known      = last count the Worker reported
-    // optimistic = clicks made in this session that KV may not have caught up on
-    // desired    = what the page should currently show
-    let known = null;
-    let optimistic = 0;
-    let desired = null;
-
-    // Re-asserted on a timer rather than written once. Mintlify hydrates after
-    // first paint and re-renders on client-side navigation, either of which can
-    // replace the element after we have written to it — a one-shot write races
-    // that and loses silently, leaving the placeholder in place.
-    const render = () => {
-      if (desired === null) return;
-      const node = document.getElementById(TARGET);
-      if (!node) return;
-      const text = desired.toLocaleString();
-      if (node.textContent !== text) node.textContent = text;
+    const apply = (n) => {
+      const el = document.getElementById('playbook-downloads');
+      if (el) el.textContent = n.toLocaleString();
     };
-
-    const show = (n) => { desired = n; render(); };
-
-    const refresh = () =>
-      fetch(COUNTER, { cache: 'no-store' })
+    const tryFetch = () => {
+      fetch('https://playbook-counter.pharmatools.workers.dev/')
         .then((r) => r.json())
         .then((d) => {
-          if (typeof d.downloads !== 'number') return;
-          known = d.downloads;
-          // Never go backwards: KV may not yet reflect this session's clicks.
-          show(Math.max(known + optimistic, desired === null ? known : desired));
+          if (typeof d.downloads === 'number') {
+            apply(d.downloads);
+            setTimeout(() => apply(d.downloads), 500);
+            setTimeout(() => apply(d.downloads), 1500);
+          }
         })
         .catch(() => {});
-
-    // Optimistic increment, so a click registers immediately instead of waiting
-    // out KV propagation. Reconciled against the real count 90s later.
-    document.addEventListener('click', (e) => {
-      const a = e.target && e.target.closest && e.target.closest('a[href]');
-      if (!a || a.href.indexOf(COUNTER) !== 0) return;
-      optimistic += 1;
-      if (known !== null) show(known + optimistic);
-      setTimeout(() => { optimistic = 0; refresh(); }, 90000);
-    });
-
-    refresh();
-    setInterval(render, 500);
-    setInterval(refresh, 300000);
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', tryFetch);
+    } else {
+      tryFetch();
+    }
   }
   return null;
 };

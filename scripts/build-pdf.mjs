@@ -355,8 +355,8 @@ function prettifySlug(slug) {
 }
 
 function buildCover(version, dateString) {
-  // Inline white SVG mark (PharmaTools.AI emblem, no text — title below carries the wordmark)
-  const logoSvg = `<svg class="cover-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 36" fill="#ffffff">
+  // PharmaTools.AI emblem, dark on the cream cover.
+  const logoSvg = `<svg class="cover-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 36" fill="#14110D">
   <g transform="scale(0.1105)">
     <path d="M249.95,35.28H17.64C7.9,35.28,0,27.38,0,17.64S7.9,0,17.64,0h232.31c9.74,0,17.64,7.9,17.64,17.64s-7.9,17.64-17.64,17.64"/>
     <path d="M317.7,107.87H17.64C7.9,107.87,0,99.97,0,90.23s7.89-17.64,17.64-17.64h300.05c9.74,0,17.64,7.9,17.64,17.64s-7.9,17.64-17.64,17.64"/>
@@ -370,19 +370,45 @@ function buildCover(version, dateString) {
     <path d="M617.76,35.28h-300.05c-9.75,0-17.64-7.9-17.64-17.64s7.89-17.64,17.64-17.64h300.05c9.74,0,17.64,7.9,17.64,17.64s-7.9,17.64-17.64,17.64"/>
   </g>
 </svg>`;
+
+  // Monoline mark: source documents, verified. Drawn inline so the PDF stays
+  // self-contained — no external image fetch during the build.
+  const artSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 215" fill="none" stroke="#14110D" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="52" y="26" width="132" height="168" rx="10" fill="#FBF6EC"/>
+    <rect x="30" y="14" width="132" height="168" rx="10" fill="#FBF6EC"/>
+    <path d="M52 46h64" stroke-width="7"/>
+    <path d="M52 72h88M52 94h88M52 116h72M52 138h88M52 160h50"/>
+    <circle cx="206" cy="140" r="46" fill="#FBF6EC"/>
+    <path d="M239 173l30 28" stroke-width="8"/>
+    <path d="M185 141l14 15 29-33"/>
+    <path d="M231 40c1.2 8.4 3.6 10.8 12 12-8.4 1.2-10.8 3.6-12 12-1.2-8.4-3.6-10.8-12-12 8.4-1.2 10.8-3.6 12-12z" fill="#14110D" stroke-width="2"/>
+    <path d="M266 78c.8 5.6 2.4 7.2 8 8-5.6.8-7.2 2.4-8 8-.8-5.6-2.4-7.2-8-8 5.6-.8 7.2-2.4 8-8z" fill="#14110D" stroke-width="2"/>
+  </svg>`;
+
   return `
 <section class="cover">
-  <div class="cover-inner">
-    ${logoSvg}
-    <div class="cover-eyebrow">A free resource by PharmaTools.AI</div>
-    <h1 class="cover-title">Medical Writing<br/><span class="cover-title-accent">AI Playbook.</span></h1>
-    <p class="cover-subtitle">You&rsquo;re expected to use AI. You&rsquo;re still accountable for every claim. Here&rsquo;s how to do both.</p>
-    <div class="cover-meta">
-      <div><span class="meta-label">Version</span><span class="meta-value">${version}</span></div>
-      <div><span class="meta-label">Updated</span><span class="meta-value">${dateString}</span></div>
-      <div><span class="meta-label">Web</span><span class="meta-value">playbook.pharmatools.ai</span></div>
+  <div class="cover-top">
+    <div class="cover-brand">
+      ${logoSvg}
+      <span class="cover-wordmark">PharmaTools.AI</span>
     </div>
+    <div class="cover-pill"><span class="dot"></span>Free &amp; open</div>
   </div>
+
+  <div class="cover-head">
+    <h1 class="cover-title">Medical Writing<br/>AI Playbook<span class="dot-accent">.</span></h1>
+    <p class="cover-subtitle">You&rsquo;re expected to use AI. You&rsquo;re still accountable for every claim. Here&rsquo;s how to do both.</p>
+  </div>
+
+  <div class="cover-foot">
+    <div class="cover-inside">
+      <div class="inside-label">Inside:</div>
+      <p>12 principles &middot; 18 step-by-step workflows &middot; reusable prompt patterns &middot; disclosure language &middot; MLR and pre-submission checklists</p>
+    </div>
+    <div class="cover-art">${artSvg}</div>
+  </div>
+
+  <div class="cover-rule"><span>${version} &middot; ${dateString}</span><span>playbook.pharmatools.ai</span></div>
 </section>
 `;
 }
@@ -412,7 +438,7 @@ const CSS = `
   @bottom-right { content: ""; }
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 :root {
   --primary: #0F6B5E;
@@ -525,56 +551,47 @@ hr {
 /* Cover page */
 .cover {
   page-break-after: always;
-  width: 210mm;
-  height: 297mm;
-  background: linear-gradient(135deg, #0c1442 0%, #0F6B5E 100%);
-  color: white;
-  display: flex;
-  align-items: center;
-  padding: 28mm;
+  width: 210mm; height: 297mm;
+  background: #FBF6EC;
+  color: #14110D;
+  display: flex; flex-direction: column;
+  padding: 16mm 18mm 14mm;
   position: relative;
 }
-.cover-inner { width: 100%; }
-.cover-logo { display: block; height: 28px; width: auto; margin-bottom: 60mm; }
-.cover-eyebrow {
-  font-size: 9pt;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.7);
-  margin-bottom: 16mm;
+.cover-top { display: flex; align-items: center; justify-content: space-between; }
+.cover-brand { display: flex; align-items: center; gap: 3.5mm; }
+.cover-logo { display: block; height: 22px; width: auto; }
+.cover-wordmark { font-size: 13.5pt; font-weight: 700; letter-spacing: -0.01em; }
+.cover-pill {
+  display: flex; align-items: center; gap: 2.5mm;
+  background: #fff; border: 1px solid #E7DFCF; border-radius: 999px;
+  padding: 2.6mm 5mm; font-size: 8pt; font-weight: 700;
+  letter-spacing: 0.13em; text-transform: uppercase; color: #14110D;
 }
+.cover-pill .dot { width: 7px; height: 7px; border-radius: 50%; background: #0F6B5E; }
+.cover-head { margin-top: 46mm; }
 .cover-title {
-  font-family: 'Newsreader', Georgia, serif;
-  font-size: 56pt;
-  font-weight: 700;
-  line-height: 1;
-  margin: 0 0 12mm 0;
-  color: white;
-  letter-spacing: -0.02em;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 62pt; font-weight: 800; line-height: 0.94;
+  letter-spacing: -0.035em; margin: 0; color: #14110D;
 }
-.cover-title-accent { color: #a78bfa; }
+.cover-title .dot-accent { color: #0F6B5E; }
 .cover-subtitle {
-  font-size: 13pt;
-  line-height: 1.5;
-  color: rgba(255,255,255,0.85);
-  max-width: 140mm;
-  margin: 0 0 24mm 0;
+  font-size: 13pt; line-height: 1.5; color: #6B6154;
+  max-width: 118mm; margin: 9mm 0 0;
 }
-.cover-meta {
-  display: flex;
-  gap: 18mm;
-  border-top: 1px solid rgba(255,255,255,0.2);
-  padding-top: 10mm;
-  font-size: 9.5pt;
+.cover-foot { margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 10mm; }
+.cover-inside { max-width: 92mm; }
+.inside-label { font-size: 9.5pt; font-weight: 700; margin-bottom: 2.5mm; color: #14110D; }
+.cover-inside p { font-size: 9.5pt; line-height: 1.65; color: #6B6154; margin: 0; }
+.cover-art { flex-shrink: 0; }
+.cover-art svg { display: block; width: 68mm; height: auto; }
+.cover-rule {
+  display: flex; justify-content: space-between;
+  margin-top: 12mm; padding-top: 5mm; border-top: 1px solid #E7DFCF;
+  font-size: 8pt; font-weight: 600; letter-spacing: 0.13em;
+  text-transform: uppercase; color: #9A9081;
 }
-.cover-meta > div { display: flex; flex-direction: column; gap: 2mm; }
-.meta-label {
-  font-size: 8pt;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
-}
-.meta-value { font-weight: 600; color: white; }
 
 /* TOC */
 .toc {

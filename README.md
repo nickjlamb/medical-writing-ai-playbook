@@ -78,37 +78,10 @@ npm run build:pdf     # writes Medical-Writing-AI-Playbook.pdf
 
 Principles decide, workflows execute, and a shared layer of prompts, templates and tools is reused across both.
 
-```mermaid
-flowchart LR
-    subgraph F["PRINCIPLES · how to decide"]
-        direction TB
-        P1["Human-in-the-loop"]
-        P2["Source grounding"]
-        P3["Risk levels"]
-        P4["Review and accountability"]
-        P5["Disclosure and regulation"]
-    end
-
-    subgraph L["WORKFLOWS · what to do"]
-        direction TB
-        W1["Evidence · 5"]
-        W2["Drafting · 6"]
-        W3["Adaptation · 2"]
-        W4["Validation · 3"]
-        W5["Delivery · 2"]
-        W1 --> W2 --> W3 --> W4 --> W5
-    end
-
-    subgraph S["SHARED · reused everywhere"]
-        direction TB
-        R1["Prompt patterns"]
-        R2["Templates"]
-        R3["Tools"]
-    end
-
-    F ==> L
-    S -.-> L
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/architecture-dark.svg">
+  <img src="assets/architecture-light.svg" alt="How the playbook is organised: five principles govern every workflow; eighteen workflows run left to right across the content lifecycle — evidence (5), drafting (6), adaptation (2), validation (3) and delivery (2); and a shared layer of prompt patterns, templates and tools is reused by every stage. Every workflow card carries the same five parts: the task, the human verification, the risk tier, the prompt pattern and the failure modes." width="100%">
+</picture>
 
 Every workflow card carries the same five parts, which is what makes them auditable rather than anecdotal:
 
@@ -120,17 +93,10 @@ Every workflow card carries the same five parts, which is what makes them audita
 
 ### How it builds and ships
 
-```mermaid
-flowchart LR
-    A["MDX content<br/>+ docs.json"] --> B(["push to main"])
-    B --> C["Mintlify build"]
-    C --> D["playbook.pharmatools.ai"]
-    B --> E["GitHub Actions<br/>build-pdf.yml"]
-    E --> F["Puppeteer<br/>scripts/build-pdf.mjs"]
-    F --> G["Medical-Writing-AI-Playbook.pdf<br/>GitHub Releases"]
-    D -.->|"download link"| H["Cloudflare Worker<br/>counter"]
-    H -.-> G
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/build-dark.svg">
+  <img src="assets/build-light.svg" alt="How it builds and ships: MDX content and docs.json are pushed to main, triggering two builds in parallel — a Mintlify build that publishes playbook.pharmatools.ai, and a GitHub Actions workflow that renders the PDF with Puppeteer and attaches it to GitHub Releases. The site download link passes through a Cloudflare Worker counter, so the PDF served is always current." width="100%">
+</picture>
 
 The PDF rebuilds automatically on every content change, so the download link always serves current content.
 

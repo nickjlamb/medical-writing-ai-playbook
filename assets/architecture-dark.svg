@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 582" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" role="img" aria-label="How the playbook is organised: five principles govern every workflow; eighteen workflows run left to right across the content lifecycle — evidence (5), drafting (6), adaptation (2), validation (3) and delivery (2); and a shared layer of prompt patterns, templates and tools is reused by every stage. Every workflow card carries the same five parts: the task, the human verification, the risk tier, the prompt pattern and the failure modes.">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#767d86"/></marker><marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3fb950"/></marker><marker id="ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ab7df8"/></marker></defs>
+<rect x="16" y="52" width="968" height="108" rx="12" fill="#151b23" stroke="#3d444d"/>
+<text x="34" y="78" font-size="11" fill="#9198a1" font-weight="600">PRINCIPLES &#183; HOW TO DECIDE</text>
+<rect x="40.0" y="96" width="172" height="44" rx="8" fill="#212830" stroke="#ab7df8"/>
+<text x="126" y="122.5" font-size="12.5" fill="#ab7df8" font-weight="600" text-anchor="middle">Human-in-the-loop</text>
+<rect x="227.0" y="96" width="172" height="44" rx="8" fill="#212830" stroke="#ab7df8"/>
+<text x="313" y="122.5" font-size="12.5" fill="#ab7df8" font-weight="600" text-anchor="middle">Source grounding</text>
+<rect x="414.0" y="96" width="172" height="44" rx="8" fill="#212830" stroke="#ab7df8"/>
+<text x="500" y="122.5" font-size="12.5" fill="#ab7df8" font-weight="600" text-anchor="middle">Risk levels</text>
+<rect x="601.0" y="96" width="172" height="44" rx="8" fill="#212830" stroke="#ab7df8"/>
+<text x="687" y="122.5" font-size="12.5" fill="#ab7df8" font-weight="600" text-anchor="middle">Review &amp; accountability</text>
+<rect x="788.0" y="96" width="172" height="44" rx="8" fill="#212830" stroke="#ab7df8"/>
+<text x="874" y="122.5" font-size="12.5" fill="#ab7df8" font-weight="600" text-anchor="middle">Disclosure &amp; regulation</text>
+<polyline points="500,162 500,206" fill="none" stroke="#ab7df8" stroke-width="1.5" marker-end="url(#ap)"/>
+<text x="512" y="190" font-size="11" fill="#ab7df8" font-weight="600">govern every workflow</text>
+<rect x="16" y="208" width="968" height="152" rx="12" fill="#151b23" stroke="#3d444d"/>
+<text x="34" y="234" font-size="11" fill="#9198a1" font-weight="600">WORKFLOWS &#183; WHAT TO DO &#183; 18 IN TOTAL</text>
+<rect x="40.0" y="256" width="160" height="58" rx="8" fill="#212830" stroke="#3d444d"/>
+<text x="120" y="279" font-size="12.5" fill="#e6edf3" font-weight="600" text-anchor="middle">Evidence</text>
+<text x="120" y="297" font-size="10.5" fill="#9198a1" text-anchor="middle">5 workflows</text>
+<rect x="230.0" y="256" width="160" height="58" rx="8" fill="#212830" stroke="#3d444d"/>
+<text x="310" y="279" font-size="12.5" fill="#e6edf3" font-weight="600" text-anchor="middle">Drafting</text>
+<text x="310" y="297" font-size="10.5" fill="#9198a1" text-anchor="middle">6 workflows</text>
+<rect x="420.0" y="256" width="160" height="58" rx="8" fill="#212830" stroke="#3d444d"/>
+<text x="500" y="279" font-size="12.5" fill="#e6edf3" font-weight="600" text-anchor="middle">Adaptation</text>
+<text x="500" y="297" font-size="10.5" fill="#9198a1" text-anchor="middle">2 workflows</text>
+<rect x="610.0" y="256" width="160" height="58" rx="8" fill="#212830" stroke="#3d444d"/>
+<text x="690" y="279" font-size="12.5" fill="#e6edf3" font-weight="600" text-anchor="middle">Validation</text>
+<text x="690" y="297" font-size="10.5" fill="#9198a1" text-anchor="middle">3 workflows</text>
+<rect x="800.0" y="256" width="160" height="58" rx="8" fill="#212830" stroke="#3d444d"/>
+<text x="880" y="279" font-size="12.5" fill="#e6edf3" font-weight="600" text-anchor="middle">Delivery</text>
+<text x="880" y="297" font-size="10.5" fill="#9198a1" text-anchor="middle">2 workflows</text>
+<polyline points="200,285 228,285" fill="none" stroke="#767d86" stroke-width="1.5" marker-end="url(#a)"/>
+<polyline points="390,285 418,285" fill="none" stroke="#767d86" stroke-width="1.5" marker-end="url(#a)"/>
+<polyline points="580,285 608,285" fill="none" stroke="#767d86" stroke-width="1.5" marker-end="url(#a)"/>
+<polyline points="770,285 798,285" fill="none" stroke="#767d86" stroke-width="1.5" marker-end="url(#a)"/>
+<text x="500" y="344" font-size="11" fill="#9198a1" text-anchor="middle" font-style="italic">the content development lifecycle, start to MLR-ready</text>
+<polyline points="500,404 500,364" fill="none" stroke="#767d86" stroke-width="1.5" marker-end="url(#a)"/>
+<text x="512" y="390" font-size="11" fill="#9198a1">reused by every stage</text>
+<rect x="16" y="406" width="968" height="108" rx="12" fill="#151b23" stroke="#3d444d"/>
+<text x="34" y="432" font-size="11" fill="#9198a1" font-weight="600">SHARED &#183; REUSED EVERYWHERE</text>
+<rect x="40.0" y="450" width="290" height="44" rx="8" fill="#212830" stroke="#3d444d"/>
+<text x="185" y="476.5" font-size="12.5" fill="#e6edf3" font-weight="600" text-anchor="middle">Prompt patterns</text>
+<rect x="355.0" y="450" width="290" height="44" rx="8" fill="#212830" stroke="#3d444d"/>
+<text x="500" y="476.5" font-size="12.5" fill="#e6edf3" font-weight="600" text-anchor="middle">Templates</text>
+<rect x="670.0" y="450" width="290" height="44" rx="8" fill="#212830" stroke="#3d444d"/>
+<text x="815" y="476.5" font-size="12.5" fill="#e6edf3" font-weight="600" text-anchor="middle">Tools</text>
+<text x="500" y="546" font-size="11.5" fill="#e6edf3" font-weight="600" text-anchor="middle">Every workflow card carries the same five parts &#8212; the task &#183; the human verification &#183; the risk tier &#183; the prompt pattern &#183; the failure modes</text>
+<text x="500" y="568" font-size="12.5" fill="#ab7df8" font-weight="700" text-anchor="middle">AI for acceleration, not authority. Translation, not invention.</text>
+</svg>

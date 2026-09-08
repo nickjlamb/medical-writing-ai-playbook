@@ -35,8 +35,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build PDF
-        run: npm run build:pdf
+      - name: Build PDFs (playbook + complete reference)
+        run: npm run build:pdf:all
 
       - name: Publish PDF to GitHub Releases
         env:
@@ -45,6 +45,7 @@ jobs:
         run: |
           set -euo pipefail
           PDF=Medical-Writing-AI-Playbook.pdf
+          COMPLETE=Medical-Writing-AI-Playbook-Complete-Reference.pdf
 
           # Rolling "latest" release. This is what the site's download button
           # and the README badge point at, via the LITERAL tag name:
@@ -52,9 +53,9 @@ jobs:
           # Not releases/latest/download/<PDF> — that alias resolves to the
           # newest release by date, so a version release would steal it.
           if gh release view latest >/dev/null 2>&1; then
-            gh release upload latest "$PDF" --clobber
+            gh release upload latest "$PDF" "$COMPLETE" --clobber
           else
-            gh release create latest "$PDF" \
+            gh release create latest "$PDF" "$COMPLETE" \
               --title "Latest playbook PDF" \
               --notes "Auto-generated from main. Always reflects the latest content of the Medical Writing AI Playbook."
           fi
@@ -65,6 +66,7 @@ jobs:
           # keeps the PDF as it stood at tag time.
           if [ -n "${TAG:-}" ]; then
             cp "$PDF" "Medical-Writing-AI-Playbook-$TAG.pdf"
-            gh release upload "$TAG" "Medical-Writing-AI-Playbook-$TAG.pdf" --clobber
+            cp "$COMPLETE" "Medical-Writing-AI-Playbook-Complete-Reference-$TAG.pdf"
+            gh release upload "$TAG" "Medical-Writing-AI-Playbook-$TAG.pdf" "Medical-Writing-AI-Playbook-Complete-Reference-$TAG.pdf" --clobber
             echo "Attached archival copy to $TAG."
           fi

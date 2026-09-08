@@ -3,6 +3,7 @@
 // then renders the assembled document with Puppeteer.
 
 import fs from 'node:fs/promises';
+import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import matter from 'gray-matter';
@@ -18,6 +19,45 @@ const ROOT = path.resolve(__dirname, '..');
 const OUTPUT_PDF = path.join(ROOT, 'Medical-Writing-AI-Playbook.pdf');
 const OUTPUT_HTML = path.join(ROOT, 'playbook.preview.html');
 
+// ---------- 0. PDF plan ----------
+//
+// The PDF is built from the same MDX as the site, but it is a different
+// artefact: linear, printed, read offline. These rules describe where the
+// PDF deliberately diverges from docs.json navigation. The site is untouched.
+
+const PDF_PLAN = {
+  // Pages left out of the PDF entirely. Internal links to them are rewritten
+  // (see redirectForSlug) so nothing dangles.
+  exclude: new Set([
+    'changelog', // version history lives on the site; the cover carries the version
+  ]),
+  // Individual PharmaTools tool pages are collapsed into one at-a-glance table
+  // (see buildToolsAtAGlance). The ecosystem and decision-tree pages are kept.
+  collapseTools: new Set([
+    'tools/pubcrawl',
+    'tools/refcheckr',
+    'tools/medcheckr',
+    'tools/patiently-ai',
+    'tools/llmentor',
+    'tools/pls-generator',
+    'tools/posterlens',
+  ]),
+  // Pages moved out of the Overview group into a closing Appendix.
+  appendix: ['glossary', 'about'],
+  // PDF-only title overrides (the site title "Home" reads oddly in print).
+  titles: { index: 'Introduction' },
+};
+
+const SITE_URL = 'https://playbook.pharmatools.ai';
+const TOOLS_GLANCE_SLUG = 'tools/at-a-glance';
+
+// Where a link to an excluded page should go instead.
+function redirectForSlug(slug) {
+  if (PDF_PLAN.collapseTools.has(slug)) return `#${slugFromPath(TOOLS_GLANCE_SLUG)}`;
+  if (PDF_PLAN.exclude.has(slug)) return `${SITE_URL}/${slug}`;
+  return null;
+}
+
 // ---------- 1. Read navigation ----------
 
 async function loadNavigation() {
@@ -25,10 +65,26 @@ async function loadNavigation() {
   const docs = JSON.parse(raw);
   const groups = docs.navigation.tabs[0].groups;
   const sections = [];
+  const appendixPages = [];
   for (const group of groups) {
-    const pages = flattenPages(group.pages);
-    sections.push({ title: group.group, pages });
+    const pages = [];
+    for (const page of flattenPages(group.pages)) {
+      if (PDF_PLAN.exclude.has(page.slug)) continue;
+      if (PDF_PLAN.appendix.includes(page.slug)) { appendixPages.push(page); continue; }
+      if (PDF_PLAN.collapseTools.has(page.slug)) {
+        // Insert the synthetic at-a-glance page where the first tool page sat.
+        if (!pages.some((p) => p.slug === TOOLS_GLANCE_SLUG)) {
+          pages.push({ slug: TOOLS_GLANCE_SLUG, subgroup: null, synthetic: true });
+        }
+        continue;
+      }
+      pages.push(page);
+    }
+    if (pages.length) sections.push({ title: group.group, pages });
   }
+  // Appendix keeps docs.json order for its members.
+  appendixPages.sort((a, b) => PDF_PLAN.appendix.indexOf(a.slug) - PDF_PLAN.appendix.indexOf(b.slug));
+  if (appendixPages.length) sections.push({ title: 'Appendix', pages: appendixPages });
   return sections;
 }
 
@@ -100,8 +156,18 @@ function wrapComponent(content, tagName, openHtml, closeHtml = '</div>') {
   const re = new RegExp(`<${tagName}\\b([^>]*)>([\\s\\S]*?)<\\/${tagName}>`, 'g');
   return content.replace(re, (_, attrs, inner) => {
     const open = typeof openHtml === 'function' ? openHtml(parseAttrs(attrs)) : openHtml;
-    return `\n\n${open}\n\n${inner.trim()}\n\n${closeHtml}\n\n`;
+    return `\n\n${open}\n\n${dedent(inner)}\n\n${closeHtml}\n\n`;
   });
+}
+
+// MDX component bodies are usually indented for readability. Left as-is,
+// marked treats four-space-indented lines as code blocks, so strip the
+// common indent before the inner markdown is parsed.
+function dedent(text) {
+  const lines = text.replace(/^\s*\n/, '').replace(/\s+$/, '').split('\n');
+  const indents = lines.filter((l) => l.trim()).map((l) => l.match(/^[ \t]*/)[0].length);
+  const min = indents.length ? Math.min(...indents) : 0;
+  return lines.map((l) => l.slice(min)).join('\n');
 }
 
 function parseAttrs(attrString) {
@@ -143,13 +209,13 @@ function transformSteps(content) {
     (_, attrs, inner) => {
       const a = parseAttrs(attrs);
       const title = a.title || '';
-      return `\n\n<li class="step"><div class="step-title">${escapeHtml(title)}</div>\n\n${inner.trim()}\n\n</li>\n\n`;
+      return `\n\n<li class="step"><div class="step-title">${escapeHtml(title)}</div>\n\n${dedent(inner)}\n\n</li>\n\n`;
     }
   );
   // Then wrap <Steps> in <ol>
   content = content.replace(
     /<Steps\b[^>]*>([\s\S]*?)<\/Steps>/g,
-    (_, inner) => `\n\n<ol class="steps">\n\n${inner.trim()}\n\n</ol>\n\n`
+    (_, inner) => `\n\n<ol class="steps">\n\n${dedent(inner)}\n\n</ol>\n\n`
   );
   return content;
 }
@@ -161,13 +227,13 @@ function transformAccordions(content) {
     (_, attrs, inner) => {
       const a = parseAttrs(attrs);
       const title = a.title || '';
-      return `\n\n<div class="accordion-item"><div class="accordion-title">${escapeHtml(title)}</div>\n\n${inner.trim()}\n\n</div>\n\n`;
+      return `\n\n<div class="accordion-item"><div class="accordion-title">${escapeHtml(title)}</div>\n\n${dedent(inner)}\n\n</div>\n\n`;
     }
   );
   // AccordionGroup is just a wrapper
   content = content.replace(
     /<AccordionGroup\b[^>]*>([\s\S]*?)<\/AccordionGroup>/g,
-    (_, inner) => `\n\n<div class="accordion-group">\n\n${inner.trim()}\n\n</div>\n\n`
+    (_, inner) => `\n\n<div class="accordion-group">\n\n${dedent(inner)}\n\n</div>\n\n`
   );
   return content;
 }
@@ -179,7 +245,7 @@ function transformCards(content) {
       const a = parseAttrs(attrs);
       const title = a.title || '';
       const titleHtml = `<div class="card-title">${escapeHtml(title)}</div>`;
-      return `\n\n<div class="card">${titleHtml}\n\n${inner.trim()}\n\n</div>\n\n`;
+      return `\n\n<div class="card">${titleHtml}\n\n${dedent(inner)}\n\n</div>\n\n`;
     }
   );
   // Self-closing <Card ... />
@@ -193,7 +259,7 @@ function transformCards(content) {
   );
   content = content.replace(
     /<CardGroup\b[^>]*>([\s\S]*?)<\/CardGroup>/g,
-    (_, inner) => `\n\n<div class="card-group">\n\n${inner.trim()}\n\n</div>\n\n`
+    (_, inner) => `\n\n<div class="card-group">\n\n${dedent(inner)}\n\n</div>\n\n`
   );
   return content;
 }
@@ -204,12 +270,12 @@ function transformTabs(content) {
     (_, attrs, inner) => {
       const a = parseAttrs(attrs);
       const title = a.title || '';
-      return `\n\n<div class="tab"><div class="tab-title">${escapeHtml(title)}</div>\n\n${inner.trim()}\n\n</div>\n\n`;
+      return `\n\n<div class="tab"><div class="tab-title">${escapeHtml(title)}</div>\n\n${dedent(inner)}\n\n</div>\n\n`;
     }
   );
   content = content.replace(
     /<Tabs\b[^>]*>([\s\S]*?)<\/Tabs>/g,
-    (_, inner) => `\n\n<div class="tabs">\n\n${inner.trim()}\n\n</div>\n\n`
+    (_, inner) => `\n\n<div class="tabs">\n\n${dedent(inner)}\n\n</div>\n\n`
   );
   return content;
 }
@@ -217,20 +283,29 @@ function transformTabs(content) {
 function transformFrames(content) {
   return content.replace(
     /<Frame\b[^>]*>([\s\S]*?)<\/Frame>/g,
-    (_, inner) => `\n\n<div class="frame">\n\n${inner.trim()}\n\n</div>\n\n`
+    (_, inner) => `\n\n<div class="frame">\n\n${dedent(inner)}\n\n</div>\n\n`
   );
 }
 
-// Rewrite image src and href paths to be absolute for puppeteer (file://)
+// Inline site-relative images as data URIs. Headless Chrome will not load
+// file:// resources into a page set via setContent, and this keeps the
+// preview HTML self-contained too.
+const MIME = { svg: 'image/svg+xml', png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', gif: 'image/gif', webp: 'image/webp' };
+function assetDataUri(p) {
+  const file = path.join(ROOT, p);
+  try {
+    const ext = path.extname(file).slice(1).toLowerCase();
+    return `data:${MIME[ext] || 'application/octet-stream'};base64,${readFileSync(file).toString('base64')}`;
+  } catch (err) {
+    console.warn(`  ! Missing asset: ${p}`);
+    return `file://${file}`;
+  }
+}
 function rewriteAssetPaths(content) {
   // Markdown images: ![alt](/path)
-  content = content.replace(/!\[([^\]]*)\]\(\/([^)]+)\)/g, (_, alt, p) => {
-    return `![${alt}](file://${path.join(ROOT, p)})`;
-  });
+  content = content.replace(/!\[([^\]]*)\]\(\/([^)]+)\)/g, (_, alt, p) => `![${alt}](${assetDataUri(p)})`);
   // HTML images: src="/path"
-  content = content.replace(/src=["']\/([^"']+)["']/g, (_, p) => {
-    return `src="file://${path.join(ROOT, p)}"`;
-  });
+  content = content.replace(/src=["']\/([^"']+)["']/g, (_, p) => `src="${assetDataUri(p)}"`);
   return content;
 }
 
@@ -239,10 +314,52 @@ function rewriteAssetPaths(content) {
 function rewriteInternalLinks(content) {
   content = content.replace(/\]\(\/([^)#\s]+)(#[^)]*)?\)/g, (match, p, hash) => {
     if (/\.[a-z0-9]+$/i.test(p)) return match;
+    const redirect = redirectForSlug(p);
+    if (redirect) return `](${redirect})`;
     return `](#${slugFromPath(p)})`;
+  });
+  // Same for raw HTML hrefs (used in the index hero and JSX blocks)
+  content = content.replace(/href=["']\/([^"'#]+)(#[^"']*)?["']/g, (match, p) => {
+    if (/\.[a-z0-9]+$/i.test(p)) return match;
+    const redirect = redirectForSlug(p);
+    return `href="${redirect || `#${slugFromPath(p)}`}"`;
   });
   return content;
 }
+
+// ---------- 2b. PDF-specific page trims ----------
+
+// The home page is a web landing page: a hero, several grids of navigation
+// cards, and a footer. In print the cover, contents and Start Here already do
+// that job, so keep only the substantive sections. Sections are separated by
+// `---` rules in index.mdx; we keep the ones whose heading matches.
+const INDEX_KEEP_HEADINGS = ['What\'s new', 'The workflow lifecycle', 'Risk tiers'];
+
+function trimIndexForPdf(content) {
+  const chunks = content.split(/^\s*---\s*$/m);
+  const kept = [];
+  chunks.forEach((chunk, i) => {
+    if (i === 0) {
+      // Preamble: drop the hero <div> and the DownloadCounter; keep the
+      // "Each workflow explains…" bullets and the two rules.
+      const idx = chunk.indexOf('Each workflow explains');
+      if (idx !== -1) kept.push(chunk.slice(idx));
+      return;
+    }
+    const m = chunk.match(/^\s*##\s+(.+?)\s*$/m);
+    if (!m) return;
+    if (!INDEX_KEEP_HEADINGS.includes(m[1].trim())) return;
+    let c = chunk;
+    // Drop the "Most explored workflows" panel — site analytics, not content.
+    c = c.replace(/<div[^>]*>[\s\S]*?Most explored workflows[\s\S]*?<\/ul>\s*<\/div>/, '');
+    // Drop trailing navigation cards inside kept sections (e.g. "Full risk framework →")
+    c = c.replace(/<Card\b[^>]*>[\s\S]*?<\/Card>/g, '');
+    kept.push(c);
+  });
+  return kept.join('\n\n---\n\n');
+}
+
+const PAGE_TRIMS = { index: trimIndexForPdf };
 
 function slugFromPath(p) {
   return p.replace(/\//g, '-').toLowerCase();
@@ -256,9 +373,10 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;');
 }
 
-function transformMdx(raw) {
+function transformMdx(raw, slug = '') {
   const { content, frontmatter } = stripFrontmatter(raw);
   let c = content;
+  if (PAGE_TRIMS[slug]) c = PAGE_TRIMS[slug](c);
   c = stripImports(c);
   c = stripExports(c);
   c = stripJsxAttrs(c);
@@ -281,6 +399,14 @@ marked.setOptions({ gfm: true, breaks: false });
 
 function configureMarkedRenderer() {
   const renderer = new marked.Renderer();
+  // Demote body headings one level so the PDF outline nests as
+  // section (h1) → page (h2) → page headings (h3+). Visual size comes from
+  // the .t1–.t6 classes, not the tag, so nothing changes on the page.
+  renderer.heading = ({ tokens, depth }) => {
+    const text = renderer.parser.parseInline(tokens);
+    const level = Math.min(depth + 1, 6);
+    return `<h${level} class="t${depth}">${text}</h${level}>\n`;
+  };
   // Render external links with target=_blank just for the preview html (no effect in PDF)
   const origLink = renderer.link.bind(renderer);
   renderer.link = ({ href, title, tokens }) => {
@@ -293,20 +419,16 @@ function configureMarkedRenderer() {
   return renderer;
 }
 
-async function renderPage(page) {
-  const filePath = path.join(ROOT, `${page.slug}.mdx`);
-  const raw = await fs.readFile(filePath, 'utf8');
-  const { content, frontmatter } = transformMdx(raw);
-  const title = frontmatter.title || page.slug;
-  const description = frontmatter.description || '';
-  const anchorId = slugFromPath(page.slug);
+async function readPageMeta(slug) {
+  const raw = await fs.readFile(path.join(ROOT, `${slug}.mdx`), 'utf8');
+  return { raw, ...stripFrontmatter(raw) };
+}
 
-  const bodyHtml = marked.parse(content, { renderer: configureMarkedRenderer() });
-
+function pageShell({ anchorId, title, description, bodyHtml }) {
   return `
 <section class="page" id="${anchorId}">
   <header class="page-header">
-    <h1>${escapeHtml(title)}</h1>
+    <h2 class="page-title">${escapeHtml(title)}</h2>
     ${description ? `<p class="page-description">${escapeHtml(description)}</p>` : ''}
   </header>
   ${bodyHtml}
@@ -314,7 +436,63 @@ async function renderPage(page) {
 `;
 }
 
-async function renderSection(section) {
+async function renderPage(page) {
+  if (page.synthetic && page.slug === TOOLS_GLANCE_SLUG) return buildToolsAtAGlance();
+
+  const { raw } = await readPageMeta(page.slug);
+  const { content, frontmatter } = transformMdx(raw, page.slug);
+  const title = PDF_PLAN.titles[page.slug] || frontmatter.title || page.slug;
+  const description = frontmatter.description || '';
+  const anchorId = slugFromPath(page.slug);
+  const bodyHtml = marked.parse(content, { renderer: configureMarkedRenderer() });
+  return pageShell({ anchorId, title, description, bodyHtml });
+}
+
+// One-page summary standing in for the seven individual tool pages. Built from
+// each tool page's frontmatter, its "Where it fits in the playbook" table and
+// its "Risk tier" paragraph, so edits to the tool pages flow through.
+async function buildToolsAtAGlance() {
+  const rows = [];
+  for (const slug of PDF_PLAN.collapseTools) {
+    const { content, frontmatter: data } = await readPageMeta(slug);
+    const url = (content.match(/https:\/\/www\.pharmatools\.ai\/[a-z0-9-]+/) || [''])[0];
+    // "Where it fits" table: | [Workflow](/workflows/x) | Primary tool — … |
+    const fits = [];
+    const fitRe = /^\|\s*\[([^\]]+)\]\(\/([^)]+)\)\s*\|\s*(Primary|Supporting)/gm;
+    let m;
+    while ((m = fitRe.exec(content)) !== null) {
+      fits.push(`<a href="#${slugFromPath(m[2])}">${escapeHtml(m[1])}</a>${m[3] === 'Primary' ? '' : ' <span class="muted">(supporting)</span>'}`);
+    }
+    const riskSection = content.split(/^## Risk tier\s*$/m)[1] || '';
+    const risk = (riskSection.match(/\*\*([^*]+)\*\*/) || ['', '—'])[1];
+    rows.push(`<tr>
+      <td>${url ? `<a class="ext" href="${url}"><strong>${escapeHtml(data.title || slug)}</strong></a>` : `<strong>${escapeHtml(data.title || slug)}</strong>`}</td>
+      <td>${escapeHtml(data.description || '')}</td>
+      <td>${fits.join('<br>') || '—'}</td>
+      <td>${escapeHtml(risk.charAt(0).toUpperCase() + risk.slice(1))}</td>
+    </tr>`);
+  }
+  const bodyHtml = `
+<p>Purpose-built tools from <a class="ext" href="https://pharmatools.ai">PharmaTools.AI</a> for the workflow steps where general-purpose LLMs fall short. Each has a full page on the site, with worked examples, limitations and complementary tools; this table is the short version.</p>
+<table class="tools-glance">
+  <thead><tr><th>Tool</th><th>What it does</th><th>Where it fits</th><th>Risk</th></tr></thead>
+  <tbody>${rows.join('\n')}</tbody>
+</table>
+<p class="muted small">Tool names link to the product pages on pharmatools.ai. Every tool output is an input to human review, not a decision — see <a href="#principles-review-and-accountability">Review and Accountability</a>.</p>
+`;
+  return pageShell({
+    anchorId: slugFromPath(TOOLS_GLANCE_SLUG),
+    title: 'PharmaTools.AI tools at a glance',
+    description: 'What each purpose-built tool does, which workflows it supports, and the risk tier it operates in.',
+    bodyHtml,
+  });
+}
+
+function sectionAnchor(title) {
+  return `section-${title.toLowerCase().replace(/\s+/g, '-')}`;
+}
+
+async function renderSection(section, index) {
   const pagesHtml = [];
   for (const page of section.pages) {
     try {
@@ -323,27 +501,38 @@ async function renderSection(section) {
       console.error(`Failed to render ${page.slug}:`, err.message);
     }
   }
-  const anchorId = `section-${section.title.toLowerCase().replace(/\s+/g, '-')}`;
+  // A banner at the top of the section's first page, rather than a divider
+  // page of its own. Pages within the section then flow continuously.
   return `
-<section class="section-divider" id="${anchorId}">
-  <div class="section-divider-inner">
-    <div class="section-eyebrow">Section</div>
+<section class="section-start">
+  <header class="section-banner" id="${sectionAnchor(section.title)}">
+    <div class="section-eyebrow">Section ${index + 1}</div>
     <h1 class="section-title">${escapeHtml(section.title)}</h1>
-  </div>
-</section>
+  </header>
 ${pagesHtml.join('\n')}
+</section>
 `;
 }
 
-function buildTOC(sections) {
+async function buildTOC(sections) {
   const items = [];
   for (const section of sections) {
-    items.push(`<li class="toc-section"><a href="#section-${section.title.toLowerCase().replace(/\s+/g, '-')}">${escapeHtml(section.title)}</a></li>`);
+    items.push(`<li class="toc-section"><a href="#${sectionAnchor(section.title)}">${escapeHtml(section.title)}</a></li>`);
     for (const page of section.pages) {
-      items.push(`<li class="toc-page"><a href="#${slugFromPath(page.slug)}">${escapeHtml(prettifySlug(page.slug))}</a></li>`);
+      items.push(`<li class="toc-page"><a href="#${slugFromPath(page.slug)}">${escapeHtml(await pageTitle(page))}</a></li>`);
     }
   }
-  return `<nav class="toc"><h2>Contents</h2><ol>${items.join('\n')}</ol></nav>`;
+  return `<nav class="toc"><div class="toc-heading">Contents</div><ol>${items.join('\n')}</ol></nav>`;
+}
+
+async function pageTitle(page) {
+  if (page.synthetic) return 'PharmaTools.AI tools at a glance';
+  if (PDF_PLAN.titles[page.slug]) return PDF_PLAN.titles[page.slug];
+  try {
+    const { frontmatter } = await readPageMeta(page.slug);
+    if (frontmatter.title) return frontmatter.title;
+  } catch {}
+  return prettifySlug(page.slug);
 }
 
 function prettifySlug(slug) {
@@ -396,7 +585,7 @@ function buildCover(version, dateString) {
   </div>
 
   <div class="cover-head">
-    <h1 class="cover-title">Medical Writing<br/>AI Playbook<span class="dot-accent">.</span></h1>
+    <div class="cover-title">Medical Writing<br/>AI Playbook<span class="dot-accent">.</span></div>
     <p class="cover-subtitle">You&rsquo;re expected to use AI. You&rsquo;re still accountable for every claim. Here&rsquo;s how to do both.</p>
   </div>
 
@@ -418,7 +607,7 @@ function buildCover(version, dateString) {
 const CSS = `
 @page {
   size: A4;
-  margin: 18mm 16mm 22mm;
+  margin: 15mm 14mm 18mm;
   @bottom-left {
     content: "Medical Writing AI Playbook";
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -456,26 +645,35 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 10.5pt;
-  line-height: 1.55;
+  font-size: 10pt;
+  line-height: 1.45;
   color: var(--text);
 }
 
+/* Pagination: let long blocks break across pages, keep headings with the
+   text that follows them, and avoid stranded single lines. */
+p, li, td, th { orphans: 3; widows: 3; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid; page-break-after: avoid; }
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Newsreader', Georgia, serif;
   font-weight: 600;
   color: #111827;
   line-height: 1.25;
-  margin-top: 1.4em;
-  margin-bottom: 0.5em;
+  margin-top: 1.3em;
+  margin-bottom: 0.45em;
 }
 
-h1 { font-size: 22pt; }
-h2 { font-size: 16pt; border-bottom: 1px solid var(--border); padding-bottom: 0.3em; }
-h3 { font-size: 13pt; }
-h4 { font-size: 11.5pt; }
+/* Type scale is class-driven (see configureMarkedRenderer) */
+.t1 { font-size: 20pt; }
+.t2 { font-size: 15pt; border-bottom: 1px solid var(--border); padding-bottom: 0.25em; }
+.t3 { font-size: 12.5pt; }
+.t4 { font-size: 11pt; }
+.t5, .t6 { font-size: 10pt; }
 
-p { margin: 0.7em 0; }
+p { margin: 0.6em 0; }
+.muted { color: var(--text-muted); }
+.small { font-size: 9pt; }
+.nowrap { white-space: nowrap; }
 
 a {
   color: var(--primary);
@@ -495,14 +693,14 @@ code {
 pre {
   background: #0b1020;
   color: #e5e7eb;
-  padding: 1em 1.2em;
+  padding: 0.9em 1.1em;
   border-radius: 6px;
   overflow-x: hidden;
   white-space: pre-wrap;
   word-wrap: break-word;
-  font-size: 9pt;
-  line-height: 1.5;
-  page-break-inside: avoid;
+  font-size: 8.5pt;
+  line-height: 1.45;
+  break-inside: auto;
 }
 pre code {
   background: transparent;
@@ -522,13 +720,15 @@ blockquote {
 table {
   border-collapse: collapse;
   width: 100%;
-  margin: 1em 0;
-  font-size: 9.5pt;
-  page-break-inside: avoid;
+  margin: 0.9em 0;
+  font-size: 9pt;
+  break-inside: auto;
 }
+thead { display: table-header-group; }   /* repeat header row after a page break */
+tr { break-inside: avoid; }
 th, td {
   border: 1px solid var(--border);
-  padding: 6pt 8pt;
+  padding: 4.5pt 7pt;
   text-align: left;
   vertical-align: top;
 }
@@ -537,8 +737,8 @@ th {
   font-weight: 600;
 }
 
-ul, ol { margin: 0.7em 0; padding-left: 1.4em; }
-li { margin: 0.3em 0; }
+ul, ol { margin: 0.6em 0; padding-left: 1.4em; }
+li { margin: 0.2em 0; }
 
 img { max-width: 100%; height: auto; }
 
@@ -593,63 +793,78 @@ hr {
   text-transform: uppercase; color: #9A9081;
 }
 
-/* TOC */
-.toc {
-  page-break-after: always;
-  padding: 12mm 0;
-}
-.toc h2 {
+/* TOC: two columns so it sits on a single page. The following section
+   forces its own page break, so none is needed here. */
+.toc { padding: 6mm 0 0; }
+.toc-heading {
+  font-family: 'Newsreader', Georgia, serif;
+  font-weight: 600;
   font-size: 20pt;
-  margin-top: 0;
-  border: none;
-  padding: 0;
+  margin: 0 0 4mm;
 }
-.toc ol { list-style: none; padding-left: 0; }
-.toc li { margin: 4pt 0; }
+.toc ol { list-style: none; padding-left: 0; margin: 0; columns: 2; column-gap: 10mm; }
+.toc li { margin: 2.5pt 0; break-inside: avoid; }
 .toc .toc-section {
   font-family: 'Newsreader', Georgia, serif;
   font-weight: 600;
-  font-size: 12.5pt;
+  font-size: 11.5pt;
   color: var(--primary-dark);
-  margin-top: 12pt;
-  padding-bottom: 4pt;
+  margin-top: 9pt;
+  padding-bottom: 3pt;
   border-bottom: 1px solid var(--border);
+  break-after: avoid;
 }
-.toc .toc-page { padding-left: 8mm; font-size: 10pt; }
+.toc .toc-page { padding-left: 5mm; font-size: 9.5pt; }
 .toc a { color: var(--text); }
 
-/* Section divider */
-.section-divider {
-  page-break-before: always;
-  height: 260mm;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+/* Tools at-a-glance table */
+.tools-glance { table-layout: fixed; }
+.tools-glance th:nth-child(1) { width: 17%; }
+.tools-glance th:nth-child(2) { width: 33%; }
+.tools-glance th:nth-child(3) { width: 34%; }
+.tools-glance th:nth-child(4) { width: 16%; }
+.tools-glance td:first-child a::after { content: none; }
+
+/* Section banner: sits at the top of the section's first page. Each section
+   starts a new page; the pages inside it flow continuously. */
+.section-start { break-before: page; page-break-before: always; }
+.section-banner {
+  padding: 2mm 0 4mm 5mm;
+  margin: 0 0 8mm;
+  border-left: 4px solid var(--primary);
+  border-bottom: 1px solid var(--border);
+  break-after: avoid;
 }
-.section-divider-inner { padding-left: 4mm; border-left: 4px solid var(--primary); }
 .section-eyebrow {
-  font-size: 9pt;
+  font-size: 8.5pt;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--primary);
-  margin-bottom: 4mm;
+  margin-bottom: 1.5mm;
 }
 .section-title {
-  font-size: 36pt;
+  font-size: 28pt;
   margin: 0;
   color: var(--text);
 }
 
-/* Page */
-.page {
-  page-break-before: always;
+/* Page: no forced break. A rule and generous top margin mark the boundary,
+   and the PDF outline (bookmarks) handles navigation. */
+.page { margin-top: 9mm; }
+.section-banner + .page { margin-top: 0; }
+.page-header {
+  margin-bottom: 0.9em;
+  padding-top: 4mm;
+  border-top: 2px solid var(--primary);
+  break-after: avoid;
+  break-inside: avoid;
 }
-.page-header { margin-bottom: 1em; }
-.page-header h1 { margin: 0; font-size: 22pt; }
+.section-banner + .page .page-header { border-top: none; padding-top: 0; }
+.page-header .page-title { margin: 0; font-size: 20pt; border: none; padding: 0; }
 .page-description {
   color: var(--text-muted);
-  font-size: 11pt;
-  margin: 0.4em 0 0 0;
+  font-size: 10.5pt;
+  margin: 0.35em 0 0 0;
   font-style: italic;
 }
 
@@ -659,9 +874,10 @@ hr {
   padding: 0.9em 1.1em;
   border-radius: 6px;
   border-left: 3px solid;
-  font-size: 10pt;
-  page-break-inside: avoid;
+  font-size: 9.5pt;
+  break-inside: avoid;
 }
+.callout-update { break-inside: auto; }
 .callout p:first-child { margin-top: 0; }
 .callout p:last-child { margin-bottom: 0; }
 .callout-tip { background: #ecfdf5; border-color: #10b981; }
@@ -697,8 +913,8 @@ ol.steps li.step {
   counter-increment: step;
   position: relative;
   padding-left: 32pt;
-  margin: 0.9em 0;
-  page-break-inside: avoid;
+  margin: 0.8em 0;
+  break-inside: auto;
 }
 ol.steps li.step::before {
   content: counter(step);
@@ -716,34 +932,37 @@ ol.steps li.step::before {
   align-items: center;
   justify-content: center;
 }
-.step-title { font-weight: 600; margin-bottom: 0.2em; color: var(--primary-dark); }
+.step-title { font-weight: 600; margin-bottom: 0.2em; color: var(--primary-dark); break-after: avoid; }
 
 /* Accordions (rendered expanded) */
 .accordion-group { margin: 1em 0; }
 .accordion-item {
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 0.8em 1em;
-  margin: 0.6em 0;
-  page-break-inside: avoid;
+  padding: 0.7em 1em;
+  margin: 0.5em 0;
+  break-inside: auto;
 }
 .accordion-title {
   font-weight: 600;
   color: var(--primary-dark);
   margin-bottom: 0.4em;
-  font-size: 10.5pt;
+  font-size: 10pt;
+  break-after: avoid;
 }
 
-/* Cards */
-.card-group { margin: 1em 0; display: block; }
+/* Cards: two columns in print (they are short navigation-style blocks) */
+.card-group { margin: 0.8em 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5em 0.8em; }
 .card {
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 0.7em 1em;
-  margin: 0.5em 0;
+  padding: 0.6em 0.9em;
+  margin: 0;
   background: var(--bg-subtle);
-  page-break-inside: avoid;
+  font-size: 9.5pt;
+  break-inside: avoid;
 }
+.card > :last-child { margin-bottom: 0; }
 .card-title { font-weight: 600; color: var(--primary-dark); margin-bottom: 0.3em; }
 
 /* Tabs (rendered as sequential blocks) */
@@ -773,8 +992,8 @@ async function main() {
 
   console.log('→ Rendering pages...');
   const sectionsHtml = [];
-  for (const section of sections) {
-    sectionsHtml.push(await renderSection(section));
+  for (const [i, section] of sections.entries()) {
+    sectionsHtml.push(await renderSection(section, i));
   }
 
   const version = await readVersion();
@@ -782,7 +1001,7 @@ async function main() {
     day: 'numeric', month: 'long', year: 'numeric',
   });
   const cover = buildCover(version, dateString);
-  const toc = buildTOC(sections);
+  const toc = await buildTOC(sections);
 
   const html = `<!DOCTYPE html>
 <html lang="en">
@@ -814,11 +1033,25 @@ async function main() {
     format: 'A4',
     printBackground: true,
     preferCSSPageSize: true,
+    // Tagged PDF with a document outline (sidebar bookmarks) built from the
+    // heading structure — the navigation aid for a continuously flowing document.
+    tagged: true,
+    outline: true,
   });
   await browser.close();
 
   const stats = await fs.stat(OUTPUT_PDF);
-  console.log(`✓ PDF written: ${path.relative(ROOT, OUTPUT_PDF)} (${(stats.size / 1024).toFixed(0)} KB)`);
+  const pageCount = await countPdfPages(OUTPUT_PDF);
+  console.log(`✓ PDF written: ${path.relative(ROOT, OUTPUT_PDF)} (${(stats.size / 1024).toFixed(0)} KB, ${pageCount} pages)`);
+}
+
+// Cheap page count, no PDF library needed: the root of the page tree carries
+// the largest /Count (intermediate nodes carry partial counts).
+async function countPdfPages(file) {
+  const buf = await fs.readFile(file, 'latin1');
+  let max = 0;
+  for (const m of buf.matchAll(/\/Type\s*\/Pages\b[^>]*?\/Count\s+(\d+)/g)) max = Math.max(max, Number(m[1]));
+  return max || '?';
 }
 
 async function readVersion() {

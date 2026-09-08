@@ -16,7 +16,7 @@
   <a href="https://github.com/nickjlamb/medical-writing-ai-playbook/releases"><img alt="Version" src="https://img.shields.io/github/v/release/nickjlamb/medical-writing-ai-playbook?sort=semver&label=version&color=0F6B5E&style=flat-square"></a>
   <a href="https://github.com/nickjlamb/medical-writing-ai-playbook/actions/workflows/build-pdf.yml"><img alt="Build PDF" src="https://github.com/nickjlamb/medical-writing-ai-playbook/actions/workflows/build-pdf.yml/badge.svg"></a>
   <a href="https://github.com/nickjlamb/medical-writing-ai-playbook/releases/download/latest/Medical-Writing-AI-Playbook.pdf"><img alt="Download PDF" src="https://img.shields.io/badge/PDF-download-0F6B5E?style=flat-square"></a>
-  <a href="https://github.com/nickjlamb/medical-writing-ai-playbook/releases/download/latest/Medical-Writing-AI-Playbook-Field-Edition.pdf"><img alt="Download field edition" src="https://img.shields.io/badge/PDF-field%20edition-0F6B5E?style=flat-square"></a>
+  <a href="https://github.com/nickjlamb/medical-writing-ai-playbook/releases/download/latest/Medical-Writing-AI-Playbook-Complete-Reference.pdf"><img alt="Download complete reference" src="https://img.shields.io/badge/PDF-complete%20reference-lightgrey?style=flat-square"></a>
   <a href="LICENSE"><img alt="Content licence" src="https://img.shields.io/badge/content-CC%20BY%204.0-lightgrey?style=flat-square"></a>
   <a href="LICENSE-CODE"><img alt="Code licence" src="https://img.shields.io/badge/code-MIT-lightgrey?style=flat-square"></a>
   <img alt="Last commit" src="https://img.shields.io/github/last-commit/nickjlamb/medical-writing-ai-playbook?style=flat-square&color=lightgrey">
@@ -56,7 +56,7 @@ The standard of the deliverable does not change because AI was involved. The pro
 | A **freelance medical writer** | [Understanding AI risk](https://playbook.pharmatools.ai/principles/risk-levels) — which of your deliverables sit in which tier | [Summarise a source paper](https://playbook.pharmatools.ai/workflows/summarise-source-paper) — mirrors work you already do |
 | An **agency or team lead** | [Start here](https://playbook.pharmatools.ai/start) — the recommended reading order | [Templates](https://playbook.pharmatools.ai/templates/ai-audit-trail-log) — standardise how your team documents AI use |
 | A **pharma or MLR reviewer** | [Review and accountability](https://playbook.pharmatools.ai/principles/review-and-accountability) | [MLR-with-AI review checklist](https://playbook.pharmatools.ai/templates/mlr-ai-review-checklist) |
-| In a hurry | [Which tool when](https://playbook.pharmatools.ai/tools/decision-tree) — task-to-tool decision tree | [Field edition PDF](https://github.com/nickjlamb/medical-writing-ai-playbook/releases/download/latest/Medical-Writing-AI-Playbook-Field-Edition.pdf) — principles in brief, one-page workflow cards, the checklists (~40 pages) · [Full PDF](https://github.com/nickjlamb/medical-writing-ai-playbook/releases/download/latest/Medical-Writing-AI-Playbook.pdf) |
+| In a hurry | [Which tool when](https://playbook.pharmatools.ai/tools/decision-tree) — task-to-tool decision tree | [Download the PDF](https://github.com/nickjlamb/medical-writing-ai-playbook/releases/download/latest/Medical-Writing-AI-Playbook.pdf) — principles in brief, a one-page card per workflow, the checklists (~40 pages) |
 
 **Running it locally — 30 seconds.** No install needed:
 
@@ -70,8 +70,8 @@ npx mint dev          # live preview at http://localhost:3000
 
 ```bash
 npm ci
-npm run build:pdf        # full reference → Medical-Writing-AI-Playbook.pdf
-npm run build:pdf:field  # short companion → Medical-Writing-AI-Playbook-Field-Edition.pdf
+npm run build:pdf           # the download (~40 pages) → Medical-Writing-AI-Playbook.pdf
+npm run build:pdf:complete  # every page of the site  → Medical-Writing-AI-Playbook-Complete-Reference.pdf
 ```
 
 ---
@@ -238,7 +238,7 @@ medical-writing-ai-playbook/
 
 | Status | Item |
 |---|---|
-| ✅ Shipped | Downloadable PDF (full reference and ~40-page field edition), auto-rebuilt on every content change |
+| ✅ Shipped | Downloadable PDF (~40 pages) plus a complete-reference PDF, both auto-rebuilt on every content change |
 | ✅ Shipped | Disclosure, regulation and peer-review principles |
 | ✅ Shipped | Tool decision tree and ecosystem directory |
 | 🔜 Next | Worked examples — source input → AI draft → human review → final output |

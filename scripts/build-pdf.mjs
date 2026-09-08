@@ -24,18 +24,19 @@ const ROOT = path.resolve(__dirname, '..');
 // PDF deliberately diverges from docs.json navigation. The site is untouched.
 
 // Two editions are built from the same source:
-//   full   — the complete reference (default)
-//   field  — a short companion: principles in brief, one-page workflow
-//            cards, the checklists and the tool guide
-// Usage: node scripts/build-pdf.mjs [--edition full|field]
+//   playbook  — the download (default): principles in brief, one-page
+//               workflow cards, the checklists and the tool guide (~40 pages)
+//   complete  — the complete reference: every page of the site (~170 pages)
+// Usage: node scripts/build-pdf.mjs [--edition playbook|complete]
 
 const EDITION = (() => {
   const i = process.argv.indexOf('--edition');
-  const e = i === -1 ? 'full' : process.argv[i + 1];
-  if (!['full', 'field'].includes(e)) throw new Error(`Unknown edition "${e}" (use full or field)`);
+  const e = i === -1 ? 'playbook' : process.argv[i + 1];
+  if (!['playbook', 'complete'].includes(e)) throw new Error(`Unknown edition "${e}" (use playbook or complete)`);
   return e;
 })();
 
+// Complete reference: the site's navigation, minus a few print adjustments.
 const PDF_PLAN = {
   // Pages left out of the PDF entirely. Internal links to them are rewritten
   // (see redirectForSlug) so nothing dangles.
@@ -59,12 +60,11 @@ const PDF_PLAN = {
   titles: { index: 'Introduction' },
 };
 
-// The field edition is a curated subset. Each entry names a page and,
+// The playbook edition is a curated subset. Each entry names a page and,
 // optionally, the `## ` sections of it to keep (`keep`); everything else on
 // that page is dropped. Workflow pages are listed by reading docs.json so a
 // new workflow joins the cards automatically.
-const FIELD_PLAN = {
-  label: 'Field Edition',
+const PLAYBOOK_PLAN = {
   inside: 'The principles in brief · 18 one-page workflow cards · disclosure snippets · MLR and pre-submission checklists · which tool when',
   principles: [
     { slug: 'principles/human-in-the-loop', keep: ['Core principle', 'Decision points in every workflow'] },
@@ -86,7 +86,7 @@ const FIELD_PLAN = {
   },
   cardSide: ['Best for', 'Review checklist'],
   // Cards whose checklist is too long for a side column: run everything at
-  // full width, with the checklist set in two columns.
+  // full width, with the checklist set in three columns.
   cardSingleColumn: ['workflows/final-human-review'],
   templates: [
     {
@@ -112,11 +112,14 @@ const FIELD_PLAN = {
   ],
 };
 
-const OUTPUT_PDF = path.join(ROOT, EDITION === 'field' ? 'Medical-Writing-AI-Playbook-Field-Edition.pdf' : 'Medical-Writing-AI-Playbook.pdf');
-const OUTPUT_HTML = path.join(ROOT, EDITION === 'field' ? 'playbook-field.preview.html' : 'playbook.preview.html');
+// The playbook edition keeps the original filename so the stable download
+// URL (releases/download/latest/Medical-Writing-AI-Playbook.pdf), the site
+// button and the download counter all keep working unchanged.
+const OUTPUT_PDF = path.join(ROOT, EDITION === 'complete' ? 'Medical-Writing-AI-Playbook-Complete-Reference.pdf' : 'Medical-Writing-AI-Playbook.pdf');
+const OUTPUT_HTML = path.join(ROOT, EDITION === 'complete' ? 'playbook-complete.preview.html' : 'playbook.preview.html');
 
 const SITE_URL = 'https://playbook.pharmatools.ai';
-const FULL_PDF_URL = 'https://github.com/nickjlamb/medical-writing-ai-playbook/releases/download/latest/Medical-Writing-AI-Playbook.pdf';
+const COMPLETE_PDF_URL = 'https://github.com/nickjlamb/medical-writing-ai-playbook/releases/download/latest/Medical-Writing-AI-Playbook-Complete-Reference.pdf';
 const TOOLS_GLANCE_SLUG = 'tools/at-a-glance';
 
 // Slugs present in the edition being built; set once navigation is loaded.
@@ -135,12 +138,12 @@ async function loadNavigation() {
   const raw = await fs.readFile(path.join(ROOT, 'docs.json'), 'utf8');
   const docs = JSON.parse(raw);
   const groups = docs.navigation.tabs[0].groups;
-  const sections = EDITION === 'field' ? fieldSections(groups) : fullSections(groups);
+  const sections = EDITION === 'playbook' ? playbookSections(groups) : completeSections(groups);
   INCLUDED = new Set(sections.flatMap((s) => s.pages.map((p) => p.slug)));
   return sections;
 }
 
-function fullSections(groups) {
+function completeSections(groups) {
   const sections = [];
   const appendixPages = [];
   for (const group of groups) {
@@ -165,19 +168,19 @@ function fullSections(groups) {
   return sections;
 }
 
-function fieldSections(groups) {
+function playbookSections(groups) {
   const workflowGroup = groups.find((g) => g.group === 'AI Workflow');
   const workflows = flattenPages(workflowGroup.pages).map((p) => ({
     ...p,
-    keep: FIELD_PLAN.workflowKeepOverrides[p.slug] || FIELD_PLAN.workflowKeep,
+    keep: PLAYBOOK_PLAN.workflowKeepOverrides[p.slug] || PLAYBOOK_PLAN.workflowKeep,
     card: true,
   }));
   return [
-    { title: 'Overview', pages: [{ slug: 'index', field: true }] },
-    { title: 'Principles in brief', pages: FIELD_PLAN.principles },
+    { title: 'Overview', pages: [{ slug: 'index', playbook: true }] },
+    { title: 'Principles in brief', pages: PLAYBOOK_PLAN.principles },
     { title: 'Workflow cards', pages: workflows, pageBreaks: true },
-    { title: 'Checklists and templates', pages: FIELD_PLAN.templates },
-    { title: 'Tools', pages: FIELD_PLAN.tools },
+    { title: 'Checklists and templates', pages: PLAYBOOK_PLAN.templates },
+    { title: 'Tools', pages: PLAYBOOK_PLAN.tools },
   ];
 }
 
@@ -454,14 +457,14 @@ function trimIndexForPdf(content) {
 
 const PAGE_TRIMS = { index: trimIndexForPdf };
 
-// Field-edition home page: the two rules and the risk tiers, plus a pointer
-// to the full reference.
-function trimIndexForField(content) {
+// Playbook-edition home page: the two rules and the risk tiers, plus a
+// pointer to the complete reference.
+function trimIndexForPlaybook(content) {
   const full = trimIndexForPdf(content);
   const chunks = full.split(/^\s*---\s*$/m);
   const kept = chunks.filter((c, i) => i === 0 || /^\s*##\s+Risk tiers\s*$/m.test(c));
   const note = `<Info>
-**This is the field edition** — the principles in brief, a one-page card for each workflow, and the checklists. The full reference, with worked examples, prompt patterns, common mistakes and FAQs for every workflow, is at [playbook.pharmatools.ai](${SITE_URL}) or as a [PDF](${FULL_PDF_URL}).
+**How to use this PDF.** It holds the principles in brief, a one-page card for each workflow, and the checklists — enough to run the workflows and review the output. The worked examples, prompt patterns, common mistakes and FAQs for every workflow are at [playbook.pharmatools.ai](${SITE_URL}), or in the [complete reference PDF](${COMPLETE_PDF_URL}).
 </Info>`;
   return `${note}\n\n${kept.join('\n\n')}`;
 }
@@ -483,11 +486,11 @@ function keepSections(content, names, { card = false } = {}) {
   let out;
   if (card) {
     // Card layout: preamble across the top, then a main column and a side
-    // column (see FIELD_PLAN.cardSide). Wrappers get blank lines around them
+    // column (see PLAYBOOK_PLAN.cardSide). Wrappers get blank lines around them
     // so marked still parses the markdown inside.
     const preamble = kept.filter((p) => !p.startsWith('## '));
-    const single = FIELD_PLAN.cardSingleColumn.includes(card.slug);
-    const side = single ? [] : kept.filter((p) => FIELD_PLAN.cardSide.includes(headingOf(p)));
+    const single = PLAYBOOK_PLAN.cardSingleColumn.includes(card.slug);
+    const side = single ? [] : kept.filter((p) => PLAYBOOK_PLAN.cardSide.includes(headingOf(p)));
     const main = kept.filter((p) => p.startsWith('## ') && !side.includes(p));
     out = [
       preamble.join('\n'),
@@ -521,7 +524,7 @@ function escapeHtml(s) {
 function transformMdx(raw, page = {}) {
   const { content, frontmatter } = stripFrontmatter(raw);
   let c = content;
-  if (page.field && page.slug === 'index') c = trimIndexForField(c);
+  if (page.playbook && page.slug === 'index') c = trimIndexForPlaybook(c);
   else if (PAGE_TRIMS[page.slug]) c = PAGE_TRIMS[page.slug](c);
   if (page.keep) c = keepSections(c, page.keep, { card: page.card ? page : false });
   c = stripImports(c);
@@ -728,7 +731,7 @@ function buildCover(version, dateString) {
       ${logoSvg}
       <span class="cover-wordmark">PharmaTools.AI</span>
     </div>
-    <div class="cover-pill"><span class="dot"></span>${EDITION === 'field' ? FIELD_PLAN.label : 'Free &amp; open'}</div>
+    <div class="cover-pill"><span class="dot"></span>${EDITION === 'complete' ? 'Complete reference' : 'Free &amp; open'}</div>
   </div>
 
   <div class="cover-head">
@@ -739,7 +742,7 @@ function buildCover(version, dateString) {
   <div class="cover-foot">
     <div class="cover-inside">
       <div class="inside-label">Inside:</div>
-      <p>${EDITION === 'field' ? FIELD_PLAN.inside : '12 principles &middot; 18 step-by-step workflows &middot; reusable prompt patterns &middot; disclosure language &middot; MLR and pre-submission checklists'}</p>
+      <p>${EDITION === 'complete' ? '12 principles &middot; 18 step-by-step workflows &middot; reusable prompt patterns &middot; disclosure language &middot; MLR and pre-submission checklists' : PLAYBOOK_PLAN.inside}</p>
     </div>
     <div class="cover-art">${artSvg}</div>
   </div>
@@ -1183,7 +1186,7 @@ async function main() {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Medical Writing AI Playbook${EDITION === 'field' ? ' — Field Edition' : ''} ${version}</title>
+  <title>Medical Writing AI Playbook${EDITION === 'complete' ? ' — Complete Reference' : ''} ${version}</title>
   <style>${CSS}</style>
 </head>
 <body>

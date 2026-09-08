@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "build:pdf": "node scripts/build-pdf.mjs",
-    "build:pdf:field": "node scripts/build-pdf.mjs --edition field",
-    "build:pdf:all": "npm run build:pdf && npm run build:pdf:field"
+    "build:pdf:complete": "node scripts/build-pdf.mjs --edition complete",
+    "build:pdf:all": "npm run build:pdf && npm run build:pdf:complete"
   },
   "devDependencies": {
     "gray-matter": "^4.0.3",

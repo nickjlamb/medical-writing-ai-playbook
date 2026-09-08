@@ -19,6 +19,12 @@ on:
 permissions:
   contents: write
 
+# Two pushes in quick succession (e.g. a PR merge followed by a follow-up
+# commit) must not race each other over the same release assets.
+concurrency:
+  group: build-pdf
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -52,8 +58,26 @@ jobs:
           #   releases/download/latest/<PDF>
           # Not releases/latest/download/<PDF> — that alias resolves to the
           # newest release by date, so a version release would steal it.
+          # Replace assets explicitly rather than with --clobber: gh's clobber
+          # deletes and re-uploads back to back, and the upload endpoint can
+          # 404 while the deletion is still propagating. Delete, wait, upload
+          # with retries.
+          upload_assets() {
+            local tag="$1"; shift
+            for f in "$@"; do
+              gh release delete-asset "$tag" "$(basename "$f")" --yes 2>/dev/null || true
+            done
+            sleep 5
+            for attempt in 1 2 3 4; do
+              if gh release upload "$tag" "$@"; then return 0; fi
+              echo "Upload to $tag failed (attempt $attempt), retrying..."
+              sleep $((attempt * 10))
+            done
+            return 1
+          }
+
           if gh release view latest >/dev/null 2>&1; then
-            gh release upload latest "$PDF" "$COMPLETE" --clobber
+            upload_assets latest "$PDF" "$COMPLETE"
           else
             gh release create latest "$PDF" "$COMPLETE" \
               --title "Latest playbook PDF" \
@@ -67,6 +91,6 @@ jobs:
           if [ -n "${TAG:-}" ]; then
             cp "$PDF" "Medical-Writing-AI-Playbook-$TAG.pdf"
             cp "$COMPLETE" "Medical-Writing-AI-Playbook-Complete-Reference-$TAG.pdf"
-            gh release upload "$TAG" "Medical-Writing-AI-Playbook-$TAG.pdf" "Medical-Writing-AI-Playbook-Complete-Reference-$TAG.pdf" --clobber
+            upload_assets "$TAG" "Medical-Writing-AI-Playbook-$TAG.pdf" "Medical-Writing-AI-Playbook-Complete-Reference-$TAG.pdf"
             echo "Attached archival copy to $TAG."
           fi

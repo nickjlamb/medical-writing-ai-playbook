@@ -5,7 +5,9 @@
   "description": "Build tooling for the Medical Writing AI Playbook (Mintlify docs site)",
   "type": "module",
   "scripts": {
-    "build:pdf": "node scripts/build-pdf.mjs"
+    "build:pdf": "node scripts/build-pdf.mjs",
+    "build:pdf:field": "node scripts/build-pdf.mjs --edition field",
+    "build:pdf:all": "npm run build:pdf && npm run build:pdf:field"
   },
   "devDependencies": {
     "gray-matter": "^4.0.3",

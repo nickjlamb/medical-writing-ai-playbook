@@ -16,14 +16,25 @@ const ROOT = path.resolve(__dirname, '..');
 // Filename deliberately carries no version number: the download URL
 // (releases/download/latest/...) must stay stable across releases.
 // The version appears on the cover and in the PDF title metadata.
-const OUTPUT_PDF = path.join(ROOT, 'Medical-Writing-AI-Playbook.pdf');
-const OUTPUT_HTML = path.join(ROOT, 'playbook.preview.html');
 
 // ---------- 0. PDF plan ----------
 //
 // The PDF is built from the same MDX as the site, but it is a different
 // artefact: linear, printed, read offline. These rules describe where the
 // PDF deliberately diverges from docs.json navigation. The site is untouched.
+
+// Two editions are built from the same source:
+//   full   — the complete reference (default)
+//   field  — a short companion: principles in brief, one-page workflow
+//            cards, the checklists and the tool guide
+// Usage: node scripts/build-pdf.mjs [--edition full|field]
+
+const EDITION = (() => {
+  const i = process.argv.indexOf('--edition');
+  const e = i === -1 ? 'full' : process.argv[i + 1];
+  if (!['full', 'field'].includes(e)) throw new Error(`Unknown edition "${e}" (use full or field)`);
+  return e;
+})();
 
 const PDF_PLAN = {
   // Pages left out of the PDF entirely. Internal links to them are rewritten
@@ -48,14 +59,74 @@ const PDF_PLAN = {
   titles: { index: 'Introduction' },
 };
 
+// The field edition is a curated subset. Each entry names a page and,
+// optionally, the `## ` sections of it to keep (`keep`); everything else on
+// that page is dropped. Workflow pages are listed by reading docs.json so a
+// new workflow joins the cards automatically.
+const FIELD_PLAN = {
+  label: 'Field Edition',
+  inside: 'The principles in brief · 18 one-page workflow cards · disclosure snippets · MLR and pre-submission checklists · which tool when',
+  principles: [
+    { slug: 'principles/human-in-the-loop', keep: ['Core principle', 'Decision points in every workflow'] },
+    { slug: 'principles/source-grounding', keep: ['Core principle', 'How to implement source grounding'] },
+    { slug: 'principles/risk-levels', keep: ['Core principle', 'How review intensity follows risk'] },
+    { slug: 'principles/ai-risk-framework', keep: ['The framework', 'Workflow mapping'] },
+    { slug: 'principles/ai-failure-modes', keep: ['Summary table'] },
+    { slug: 'principles/review-and-accountability', keep: ['Core principle', 'Review process framework'] },
+    { slug: 'principles/declaring-ai-use', keep: ['Core principle', 'What to declare, where, and how'] },
+  ],
+  // Workflow cards: the sections kept, and which of them sit in the side
+  // column of the card layout (the rest run down the main column).
+  workflowKeep: ['Best for', 'Steps', 'Review checklist'],
+  workflowKeepOverrides: {
+    // No numbered steps on this page; its guidance lives in these sections.
+    'workflows/generate-concept-visuals': ['Best for', 'Reality check', 'Review checklist'],
+    // The longest checklist in the playbook; "Best for" is self-evident here.
+    'workflows/final-human-review': ['Steps', 'Review checklist'],
+  },
+  cardSide: ['Best for', 'Review checklist'],
+  // Cards whose checklist is too long for a side column: run everything at
+  // full width, with the checklist set in two columns.
+  cardSingleColumn: ['workflows/final-human-review'],
+  templates: [
+    {
+      slug: 'templates/disclosure-language',
+      keep: [
+        'How to use this page',
+        'Manuscript — AI drafted a section',
+        'Manuscript — AI used for editing or proofing only',
+        'Conference abstract or poster',
+        'Plain language summary',
+        'Regulatory document (CSR section, IB, Module 2 summary, etc.)',
+        'Promotional or MLR-bound material',
+        'Internal client deliverable (briefing doc, internal report, leave-piece copy)',
+        'Where no snippet exists — because the use is not permitted',
+      ],
+    },
+    { slug: 'templates/mlr-ai-review-checklist', keep: ['Before the review', 'AI-specific checks', 'Standard MLR checks (with an AI lens)', 'Sign-off block'] },
+    { slug: 'templates/pre-submission-qc-checklist', keep: ['Reference integrity', 'Data and statistical accuracy', 'Image and figure integrity', 'AI use and disclosure', 'Sign-off block'] },
+  ],
+  tools: [
+    { slug: 'tools/at-a-glance', synthetic: true },
+    { slug: 'tools/decision-tree' },
+  ],
+};
+
+const OUTPUT_PDF = path.join(ROOT, EDITION === 'field' ? 'Medical-Writing-AI-Playbook-Field-Edition.pdf' : 'Medical-Writing-AI-Playbook.pdf');
+const OUTPUT_HTML = path.join(ROOT, EDITION === 'field' ? 'playbook-field.preview.html' : 'playbook.preview.html');
+
 const SITE_URL = 'https://playbook.pharmatools.ai';
+const FULL_PDF_URL = 'https://github.com/nickjlamb/medical-writing-ai-playbook/releases/download/latest/Medical-Writing-AI-Playbook.pdf';
 const TOOLS_GLANCE_SLUG = 'tools/at-a-glance';
 
-// Where a link to an excluded page should go instead.
+// Slugs present in the edition being built; set once navigation is loaded.
+let INCLUDED = new Set();
+
+// Where a link to a page that is not in this PDF should go instead.
 function redirectForSlug(slug) {
-  if (PDF_PLAN.collapseTools.has(slug)) return `#${slugFromPath(TOOLS_GLANCE_SLUG)}`;
-  if (PDF_PLAN.exclude.has(slug)) return `${SITE_URL}/${slug}`;
-  return null;
+  if (INCLUDED.has(slug)) return null;
+  if (PDF_PLAN.collapseTools.has(slug) && INCLUDED.has(TOOLS_GLANCE_SLUG)) return `#${slugFromPath(TOOLS_GLANCE_SLUG)}`;
+  return `${SITE_URL}/${slug}`;
 }
 
 // ---------- 1. Read navigation ----------
@@ -64,6 +135,12 @@ async function loadNavigation() {
   const raw = await fs.readFile(path.join(ROOT, 'docs.json'), 'utf8');
   const docs = JSON.parse(raw);
   const groups = docs.navigation.tabs[0].groups;
+  const sections = EDITION === 'field' ? fieldSections(groups) : fullSections(groups);
+  INCLUDED = new Set(sections.flatMap((s) => s.pages.map((p) => p.slug)));
+  return sections;
+}
+
+function fullSections(groups) {
   const sections = [];
   const appendixPages = [];
   for (const group of groups) {
@@ -86,6 +163,22 @@ async function loadNavigation() {
   appendixPages.sort((a, b) => PDF_PLAN.appendix.indexOf(a.slug) - PDF_PLAN.appendix.indexOf(b.slug));
   if (appendixPages.length) sections.push({ title: 'Appendix', pages: appendixPages });
   return sections;
+}
+
+function fieldSections(groups) {
+  const workflowGroup = groups.find((g) => g.group === 'AI Workflow');
+  const workflows = flattenPages(workflowGroup.pages).map((p) => ({
+    ...p,
+    keep: FIELD_PLAN.workflowKeepOverrides[p.slug] || FIELD_PLAN.workflowKeep,
+    card: true,
+  }));
+  return [
+    { title: 'Overview', pages: [{ slug: 'index', field: true }] },
+    { title: 'Principles in brief', pages: FIELD_PLAN.principles },
+    { title: 'Workflow cards', pages: workflows, pageBreaks: true },
+    { title: 'Checklists and templates', pages: FIELD_PLAN.templates },
+    { title: 'Tools', pages: FIELD_PLAN.tools },
+  ];
 }
 
 function flattenPages(pages) {
@@ -361,6 +454,58 @@ function trimIndexForPdf(content) {
 
 const PAGE_TRIMS = { index: trimIndexForPdf };
 
+// Field-edition home page: the two rules and the risk tiers, plus a pointer
+// to the full reference.
+function trimIndexForField(content) {
+  const full = trimIndexForPdf(content);
+  const chunks = full.split(/^\s*---\s*$/m);
+  const kept = chunks.filter((c, i) => i === 0 || /^\s*##\s+Risk tiers\s*$/m.test(c));
+  const note = `<Info>
+**This is the field edition** — the principles in brief, a one-page card for each workflow, and the checklists. The full reference, with worked examples, prompt patterns, common mistakes and FAQs for every workflow, is at [playbook.pharmatools.ai](${SITE_URL}) or as a [PDF](${FULL_PDF_URL}).
+</Info>`;
+  return `${note}\n\n${kept.join('\n\n')}`;
+}
+
+// Keep only the named `## ` sections of a page (plus anything before the
+// first heading, which carries the risk badge on workflow pages). Section
+// names are matched on the heading text exactly as written in the MDX.
+function keepSections(content, names, { card = false } = {}) {
+  const parts = content.split(/^(?=## )/m);
+  const headingOf = (part) => part.match(/^## (.+?)\s*$/m)?.[1].trim();
+  const kept = parts.filter((part, i) => {
+    if (i === 0 && !part.startsWith('## ')) return true; // preamble
+    return names.includes(headingOf(part));
+  });
+  // Warn about names that matched nothing — usually a heading was renamed.
+  for (const name of names) {
+    if (!parts.some((p) => headingOf(p) === name)) console.warn(`  ! Section "${name}" not found`);
+  }
+  let out;
+  if (card) {
+    // Card layout: preamble across the top, then a main column and a side
+    // column (see FIELD_PLAN.cardSide). Wrappers get blank lines around them
+    // so marked still parses the markdown inside.
+    const preamble = kept.filter((p) => !p.startsWith('## '));
+    const single = FIELD_PLAN.cardSingleColumn.includes(card.slug);
+    const side = single ? [] : kept.filter((p) => FIELD_PLAN.cardSide.includes(headingOf(p)));
+    const main = kept.filter((p) => p.startsWith('## ') && !side.includes(p));
+    out = [
+      preamble.join('\n'),
+      // Closing tags carry a comment so stripJsxAttrs (which drops bare
+      // <div>/</div> lines) leaves them alone.
+      `<div class="card-main${single ? ' card-single' : ''}">\n\n${main.join('\n')}\n\n</div><!-- /card-main -->`,
+      single ? '' : `<div class="card-side">\n\n${side.join('\n')}\n\n</div><!-- /card-side -->`,
+    ].join('\n\n');
+  } else {
+    out = kept.join('\n');
+  }
+  // In a trimmed page the horizontal rules and "Last reviewed" footers are
+  // noise; drop them.
+  out = out.replace(/^\s*---\s*$/gm, '');
+  out = out.replace(/^\*Last reviewed:.*\*\s*$/gm, '');
+  return out;
+}
+
 function slugFromPath(p) {
   return p.replace(/\//g, '-').toLowerCase();
 }
@@ -373,10 +518,12 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;');
 }
 
-function transformMdx(raw, slug = '') {
+function transformMdx(raw, page = {}) {
   const { content, frontmatter } = stripFrontmatter(raw);
   let c = content;
-  if (PAGE_TRIMS[slug]) c = PAGE_TRIMS[slug](c);
+  if (page.field && page.slug === 'index') c = trimIndexForField(c);
+  else if (PAGE_TRIMS[page.slug]) c = PAGE_TRIMS[page.slug](c);
+  if (page.keep) c = keepSections(c, page.keep, { card: page.card ? page : false });
   c = stripImports(c);
   c = stripExports(c);
   c = stripJsxAttrs(c);
@@ -431,7 +578,7 @@ function pageShell({ anchorId, title, description, bodyHtml }) {
     <h2 class="page-title">${escapeHtml(title)}</h2>
     ${description ? `<p class="page-description">${escapeHtml(description)}</p>` : ''}
   </header>
-  ${bodyHtml}
+  <div class="page-body">${bodyHtml}</div>
 </section>
 `;
 }
@@ -440,7 +587,7 @@ async function renderPage(page) {
   if (page.synthetic && page.slug === TOOLS_GLANCE_SLUG) return buildToolsAtAGlance();
 
   const { raw } = await readPageMeta(page.slug);
-  const { content, frontmatter } = transformMdx(raw, page.slug);
+  const { content, frontmatter } = transformMdx(raw, page);
   const title = PDF_PLAN.titles[page.slug] || frontmatter.title || page.slug;
   const description = frontmatter.description || '';
   const anchorId = slugFromPath(page.slug);
@@ -504,7 +651,7 @@ async function renderSection(section, index) {
   // A banner at the top of the section's first page, rather than a divider
   // page of its own. Pages within the section then flow continuously.
   return `
-<section class="section-start">
+<section class="section-start${section.pageBreaks ? ' section-paged' : ''}">
   <header class="section-banner" id="${sectionAnchor(section.title)}">
     <div class="section-eyebrow">Section ${index + 1}</div>
     <h1 class="section-title">${escapeHtml(section.title)}</h1>
@@ -581,7 +728,7 @@ function buildCover(version, dateString) {
       ${logoSvg}
       <span class="cover-wordmark">PharmaTools.AI</span>
     </div>
-    <div class="cover-pill"><span class="dot"></span>Free &amp; open</div>
+    <div class="cover-pill"><span class="dot"></span>${EDITION === 'field' ? FIELD_PLAN.label : 'Free &amp; open'}</div>
   </div>
 
   <div class="cover-head">
@@ -592,7 +739,7 @@ function buildCover(version, dateString) {
   <div class="cover-foot">
     <div class="cover-inside">
       <div class="inside-label">Inside:</div>
-      <p>12 principles &middot; 18 step-by-step workflows &middot; reusable prompt patterns &middot; disclosure language &middot; MLR and pre-submission checklists</p>
+      <p>${EDITION === 'field' ? FIELD_PLAN.inside : '12 principles &middot; 18 step-by-step workflows &middot; reusable prompt patterns &middot; disclosure language &middot; MLR and pre-submission checklists'}</p>
     </div>
     <div class="cover-art">${artSvg}</div>
   </div>
@@ -852,6 +999,34 @@ hr {
    and the PDF outline (bookmarks) handles navigation. */
 .page { margin-top: 9mm; }
 .section-banner + .page { margin-top: 0; }
+/* Sections whose pages are cards: one per PDF page, two columns */
+.section-paged .page { break-before: page; margin-top: 0; font-size: 8.75pt; line-height: 1.38; }
+.section-paged .page-header { margin-bottom: 0.6em; }
+.section-paged .page-body ul, .section-paged .page-body ol:not(.steps) { padding-left: 1.15em; }
+.section-paged .section-banner + .page { break-before: auto; }
+.section-paged .page-body { display: grid; grid-template-columns: 1fr 1fr; gap: 0 8mm; align-items: start; }
+.section-paged .page-body > * { grid-column: 1 / -1; }
+.section-paged .card-main { grid-column: 1; }
+.section-paged .card-side { grid-column: 2; }
+.section-paged .card-single { grid-column: 1 / -1; font-size: 8.25pt; line-height: 1.32; }
+.section-paged .card-single .t3 { font-size: 10.5pt; margin-top: 0.6em; }
+.section-paged .card-single ol.steps { columns: 2; column-gap: 8mm; margin: 0.6em 0; }
+.section-paged .card-single .accordion-item { padding: 0.4em 0.8em 0.3em; margin: 0.4em 0; }
+.section-paged .page-body > :last-child, .section-paged .card-main > :last-child { margin-bottom: 0; }
+.section-paged .card-single ol.steps li.step { break-inside: avoid; margin-top: 0; }
+.section-paged .card-single .accordion-item { columns: 3; column-gap: 7mm; }
+.section-paged .card-single .accordion-title { column-span: all; }
+.section-paged .card-single .t3 { break-after: avoid; margin-top: 0.8em; }
+.section-paged .callout { break-inside: auto; }
+.section-paged .page-body .t2 { font-size: 12pt; margin-top: 0.9em; }
+.section-paged .card-main > .t2:first-child, .section-paged .card-side > .t2:first-child { margin-top: 0.4em; }
+.section-paged .callout { font-size: 8.75pt; padding: 0.6em 0.9em; margin: 0.5em 0; }
+.section-paged ol.steps li.step { margin: 0.55em 0; padding-left: 26pt; }
+.section-paged ol.steps li.step::before { width: 18pt; height: 18pt; font-size: 9pt; }
+.section-paged .accordion-item { padding: 0.5em 0.8em; }
+.section-paged .accordion-title { font-size: 9.5pt; }
+.section-paged li { margin: 0.15em 0; }
+.section-paged p { margin: 0.45em 0; }
 .page-header {
   margin-bottom: 0.9em;
   padding-top: 4mm;
@@ -985,6 +1160,7 @@ ol.steps li.step::before {
 // ---------- 5. Main ----------
 
 async function main() {
+  console.log(`→ Building ${EDITION} edition`);
   console.log('→ Reading navigation...');
   const sections = await loadNavigation();
   const totalPages = sections.reduce((n, s) => n + s.pages.length, 0);
@@ -1007,7 +1183,7 @@ async function main() {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Medical Writing AI Playbook ${version}</title>
+  <title>Medical Writing AI Playbook${EDITION === 'field' ? ' — Field Edition' : ''} ${version}</title>
   <style>${CSS}</style>
 </head>
 <body>

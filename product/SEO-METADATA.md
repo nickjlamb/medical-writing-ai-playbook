@@ -45,7 +45,7 @@ Page titles and meta descriptions for search and social sharing. Titles target 5
 ### 4. Adapt Content for Different Audiences
 
 **Title:** Adapt Medical Content for Different Audiences — AI Workflow
-**Description:** Transform specialist content for GPs, nurses, payers, or patients while preserving accuracy. Medium risk. Includes LLMentor integration.
+**Description:** Transform specialist content for GPs, nurses, payers, or patients while preserving accuracy. Medium risk.
 
 ### 5. Create a Plain Language Summary
 

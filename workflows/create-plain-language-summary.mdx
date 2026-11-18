@@ -40,7 +40,7 @@ Clinical source → AI plain language draft → Expert review → Lay reader tes
     Understand the findings — including safety data and limitations — before generating a draft. You cannot review AI output for accuracy if you have not read the source.
   </Step>
   <Step title="Generate a first draft">
-    Use PLS Generator, Patiently AI, or the prompt pattern below. Provide the full source text, target audience, reading level, and format requirements.
+    Use the prompt pattern below in your approved general-purpose model, or Patiently AI. Provide the full source text, target audience, reading level, and format requirements.
   </Step>
   <Step title="Review every clinical claim for accuracy">
     The highest-priority step. For each simplified statement, ask: is this still true? Does it preserve the scope and certainty of the original? Check all numbers, percentages, and timeframes.
@@ -115,10 +115,10 @@ AI rapidly translates dense clinical language into plain terms and structures co
 
 | Tool | Role |
 |---|---|
-| [PLS Generator](/tools/pls-generator) | Primary tool for generating structured plain language summary drafts |
+| [Claude](/tools/ecosystem#claude) or [ChatGPT](/tools/ecosystem#chatgpt) | Generating structured plain language summary drafts with the [patient-facing adaptation prompt](/prompts/adaptation-prompts) |
 | [Patiently AI](/tools/patiently-ai) | Simplifying specific medical explanations within the PLS |
 
-**Alternatives:** [Claude](https://claude.ai) or [ChatGPT](https://chatgpt.com) for general-purpose simplification. PLS Generator and Patiently AI are built specifically for clinical-to-patient translation, including structured PLS formats and regulatory template support.
+**Alternatives:** [Microsoft Copilot](/tools/ecosystem#microsoft-copilot) if your organisation works in Microsoft 365. For EU CTR lay summaries, the structure comes from the regulatory template, not the tool: give the model the required section headings and check every one is present.
 
 ## Frequently asked questions
 

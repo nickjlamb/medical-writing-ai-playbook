@@ -205,8 +205,6 @@ Twelve pages covering how to decide, not just what to run.
 | [MedCheckr](https://playbook.pharmatools.ai/tools/medcheckr) | Scans for promotional compliance signals |
 | [PubCrawl](https://playbook.pharmatools.ai/tools/pubcrawl) | Literature search and evidence gathering |
 | [Patiently AI](https://playbook.pharmatools.ai/tools/patiently-ai) | Translates clinical content into patient-friendly language |
-| [LLMentor](https://playbook.pharmatools.ai/tools/llmentor) | Adapts content across audience levels |
-| [PLS Generator](https://playbook.pharmatools.ai/tools/pls-generator) | Plain language summaries from clinical sources |
 | [PosterLens](https://playbook.pharmatools.ai/tools/posterlens) | Structured data extraction from scientific posters |
 
 ---
@@ -224,7 +222,7 @@ medical-writing-ai-playbook/
 ├── workflows/             18 pages — what to do, step by step
 ├── prompts/                4 pages — reusable prompt patterns
 ├── templates/              8 files — disclosure, AI-use statement, audit trail, QC checklists
-├── tools/                  9 pages — tool pages, ecosystem, decision tree
+├── tools/                  7 pages — tool pages, ecosystem, decision tree
 ├── snippets/              Shared MDX components (risk badge, download counter)
 ├── product/               Positioning, SEO metadata, launch notes
 ├── scripts/               PDF build (Puppeteer)

@@ -150,8 +150,6 @@
               "tools/refcheckr",
               "tools/medcheckr",
               "tools/patiently-ai",
-              "tools/llmentor",
-              "tools/pls-generator",
               "tools/posterlens",
               "tools/ecosystem",
               "tools/decision-tree"
@@ -176,5 +174,15 @@
       "website": "https://pharmatools.ai",
       "github": "https://github.com/nickjlamb/medical-writing-ai-playbook"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/tools/llmentor",
+      "destination": "/workflows/adapt-for-different-audiences"
+    },
+    {
+      "source": "/tools/pls-generator",
+      "destination": "/workflows/create-plain-language-summary"
+    }
+  ]
 }

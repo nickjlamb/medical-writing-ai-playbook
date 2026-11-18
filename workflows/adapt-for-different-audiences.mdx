@@ -44,7 +44,7 @@ Reviewed source → AI audience adaptation → Accuracy cross-check → Adapted 
     Paste the source content along with clear instructions about the target audience, format, and any regulatory context. Use the prompt pattern below.
   </Step>
   <Step title="Generate the adapted version">
-    Run the prompt in LLMentor (or Patiently AI for patient audiences). Request multiple options if you are unsure of the right framing.
+    Run the prompt in your approved general-purpose model, such as Claude or ChatGPT (or Patiently AI for patient audiences). Request multiple options if you are unsure of the right framing.
   </Step>
   <Step title="Review for meaning preservation">
     The highest-priority check. Read each clinical claim in the adapted version and confirm it says the same thing as the source — not just something that sounds similar.
@@ -119,10 +119,10 @@ AI handles the mechanical work of adjusting vocabulary, restructuring paragraphs
 
 | Tool | Role |
 |---|---|
-| [LLMentor](/tools/llmentor) | Primary tool for audience-level adaptation |
+| [Claude](/tools/ecosystem#claude) or [ChatGPT](/tools/ecosystem#chatgpt) | Audience-level adaptation, using the [audience-level adaptation prompt](/prompts/adaptation-prompts) |
 | [Patiently AI](/tools/patiently-ai) | When the target audience is patients or carers |
 
-**Alternatives:** [Claude](https://claude.ai) or [ChatGPT](https://chatgpt.com) for general-purpose audience rewriting. LLMentor differs in that it is shaped specifically for medical communications audience adaptation, not general text simplification.
+**Alternatives:** [Microsoft Copilot](/tools/ecosystem#microsoft-copilot) if your organisation works in Microsoft 365. Whichever model you use, the prompt pattern does the medical-communications shaping: give it the source, the target audience and what must not change.
 
 ## Review checklist
 

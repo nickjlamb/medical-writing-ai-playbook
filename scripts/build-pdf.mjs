@@ -50,8 +50,6 @@ const PDF_PLAN = {
     'tools/refcheckr',
     'tools/medcheckr',
     'tools/patiently-ai',
-    'tools/llmentor',
-    'tools/pls-generator',
     'tools/posterlens',
   ]),
   // Pages moved out of the Overview group into a closing Appendix.

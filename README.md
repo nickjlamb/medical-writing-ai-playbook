@@ -195,7 +195,7 @@ Twelve pages covering how to decide, not just what to run.
 
 **[Prompt patterns](https://playbook.pharmatools.ai/prompts/source-analysis-prompts)** — source analysis, outlining, adaptation, review. Each designed for a specific task with defined inputs and source-grounding constraints.
 
-**[Templates](https://playbook.pharmatools.ai/templates/disclosure-language)** — disclosure language, AI audit-trail log, MLR-with-AI review checklist, pre-submission QC checklist. Ready to adapt into your own SOPs.
+**[Templates](https://playbook.pharmatools.ai/templates/disclosure-language)** — disclosure language, freelancer AI-use statement, AI audit-trail log, MLR-with-AI review checklist, pre-submission QC checklist. Ready to adapt into your own SOPs.
 
 **[Tools](https://playbook.pharmatools.ai/tools/decision-tree)** — a task-to-tool decision tree, a directory of the wider ecosystem, and pages for the purpose-built tools from [PharmaTools.AI](https://pharmatools.ai):
 
@@ -223,7 +223,7 @@ medical-writing-ai-playbook/
 ├── principles/            12 pages — how to decide
 ├── workflows/             18 pages — what to do, step by step
 ├── prompts/                4 pages — reusable prompt patterns
-├── templates/              7 files — disclosure, audit trail, QC checklists
+├── templates/              8 files — disclosure, AI-use statement, audit trail, QC checklists
 ├── tools/                  9 pages — tool pages, ecosystem, decision tree
 ├── snippets/              Shared MDX components (risk badge, download counter)
 ├── product/               Positioning, SEO metadata, launch notes

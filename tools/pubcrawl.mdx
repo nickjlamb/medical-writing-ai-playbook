@@ -52,6 +52,7 @@ PubCrawl is most relevant at the start of a project, before the core writing wor
 - Searches clinical trial registries for trial records and results
 - Retrieves SmPCs and USPIs for prescribing information
 - Finds related papers from a starting reference
+- Flags retracted papers in search results, abstracts, full texts and formatted citations, and lists expressions of concern and errata
 - Supports indication-based and compound-based searches
 
 ## How it works
@@ -66,6 +67,7 @@ No API keys required. Install with `npm install -g @pharmatools/pubcrawl` and ad
 
 - **Does not assess study quality.** PubCrawl finds publications; it does not appraise their methodology or assess risk of bias.
 - **Does not replace a systematic literature review.** For formal SLRs, PubCrawl can support the search phase but does not replace the structured methodology, screening, or reporting required.
+- **Does not detect fabricated references.** Retraction flags rely on publisher notices. A paper whose reference list contains references that do not exist will not be flagged unless the publisher has acted on it. See [Source Grounding](/principles/source-grounding#fabricated-references-in-the-published-literature).
 - **Does not select your sources for you.** The writer decides which papers are relevant, appropriate, and sufficient for the project.
 
 ## Risk tier
